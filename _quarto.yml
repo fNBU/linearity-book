@@ -32,6 +32,7 @@ book:
     #   - ways-of-writing-linear-maps.qmd
     #   - solving-systems-of-linear-equations.qmd
     # - part: "Inner Product Spaces"
+    - references.qmd
 
 bibliography: references.bib
 
