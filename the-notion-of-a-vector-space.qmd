@@ -1,0 +1,15 @@
+# The notion of a Vector Space
+
+[TODO]
+
+## Definition
+
+[TODO]
+
+## Scalars
+
+[TODO]
+
+## Finite and infinite dimension
+
+[TODO]

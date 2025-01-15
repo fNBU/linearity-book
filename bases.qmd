@@ -1,0 +1,24 @@
+# Bases
+
+[TODO]
+
+## What is the minimal amount of information needed to unambiguously describe a linear function?
+
+[TODO]
+
+## Writing inputs relative to basis
+
+[TODO]
+
+## Applying linear functions using basis-representation
+
+[TODO]
+
+## Other bases
+
+[TODO]
+
+## Dimension
+
+[TODO]
+

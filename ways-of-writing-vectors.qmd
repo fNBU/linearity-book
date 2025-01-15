@@ -1,0 +1,31 @@
+# Ways of writing vectors (relative to a basis)
+
+[TODO]
+
+## Columns
+
+[TODO]
+
+## Linear combinations
+
+[TODO]
+
+### Summation notation
+
+[TODO]
+
+## Other ways you might encounter
+
+[TODO]
+
+### Rows
+
+[TODO]
+
+### Einstein summation notation
+
+[TODO]
+
+### bra-ket
+
+[TODO]

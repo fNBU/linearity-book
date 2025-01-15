@@ -1,0 +1,58 @@
+project:
+  type: book
+  output-dir: build
+
+book:
+  title: "Linearity"
+  author: "Adam Layne"
+  date: "January 14, 2025"
+  # logo: cover.png
+
+  search: true
+
+  # the github repository hosting the book code
+  repo-url: https://github.com/fnbu/textbook 
+  
+  # when folks click the link to the repo, which branch are they taken to
+  repo-branch: release
+
+  repo-actions: [issue, edit, source]
+  sharing: [twitter, facebook, linkedin]
+  chapters:
+    # there must be a section with title `index.qmd`
+    - index.qmd 
+    - preface.qmd
+    - part: "Vector Spaces"
+      chapters:
+      - what-is-linearity.qmd
+    #   - bases.qmd
+    #   - the-notion-of-a-vector-space.qmd
+    #   - vector-spaces-isomorphic-to-euclidean-space.qmd
+    #   - ways-of-writing-vectors.qmd
+    #   - ways-of-writing-linear-maps.qmd
+    #   - solving-systems-of-linear-equations.qmd
+    # - part: "Inner Product Spaces"
+
+bibliography: references.bib
+
+format:
+  html:
+    number-depth: 1
+    theme:
+      light: cosmo
+      dark: [cosmo, theme-dark.scss]
+  pdf:
+    keep-tex: true
+    number-depth: 1
+    documentclass: book
+    cover-image: "img/cover.png"
+    include-in-header: 
+      text: |
+        \usepackage{makeidx}
+        \makeindex
+    include-after-body: 
+      text: |
+        \printindex
+
+
+

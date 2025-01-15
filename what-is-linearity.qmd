@@ -1,0 +1,214 @@
+# What is Linearity?
+
+The function $C : \mathbb R \to \mathbb R$ given by 
+
+$$ C(r) := 2 \pi r $$
+
+computes the circumference of a circle, given its radius.
+
+::: {.callout-tip title="Notation"}
+
+First, let's talk about this notation.
+
+The notation $C : \mathbb R \to \mathbb R$ tells you about the inputs and outputs of the function $C.$
+When we write $f : A \to B$, we mean that $f$ takes inputs from the set $A$ and creates outputs in the set $B$.
+You can think of $f$ as a machine transforming $A$s into $B$s.
+
+<!-- :::
+
+::: {#rem-function-colon}
+
+## $:=$ notation -->
+
+The notation $C(r) := 2 \pi r$ tells you that the *definition* of the function $C$ appears here.
+This is to avoid confusion like the following:
+
+$$ f(x) = x^2 $$
+
+If the function $f$ hasn't appeared before, then this equation is probably a definition.
+But if we wrote "Given $f(x) = x - 2$, solve the equation $f(x) = x^2$", then the same equation is not a definition.
+To avoid this ambiguity, when we write an equals sign with a colon on one side like this $A := B$ or $B =: A$, we mean that the name on the side of the $=$ *with* the colon is defined to be the expression on the side without.
+
+:::
+
+The circumference of a circle has a couple nice properties.
+First, the circumference of a circle of radius 14 is twice the circumference of a circle of radius 7:
+
+$$ 
+\begin{aligned}
+C(7) &= 2 \pi (7) = 14 \pi   \\
+C(14) &= 2 \pi (14) = 28 \pi   
+\end{aligned}
+$$
+
+This holds in general; multiplying the radius of a circle by $k$ also changes the circumference by a factor of $k$:
+
+$$ C(k r) = k C(r) . $$
+
+Furthermore, adding any amount to the radius increases the circumference in a predictable way:
+
+$$ C(r_1 + r_2) = C(r_1) + C(r_2). $$
+
+It's a bit remarkable that these two properties hold not just for circles; scaling any shape in the plane (with circumference $c$) by a factor of $k$ multiplies its circumference by $k$ (its new circumference is $kc$), and increasing the scale by a constant $s$ increases its circumference by $sc$.
+
+![Scaling a curve by a factor of 2](img/2-scale.svg){width=60%}
+
+## Two properties
+
+What other functions have the following two properties?
+
+$$
+\begin{aligned}
+\text{Property 1:} \quad & f(a x )= a f(x) \\
+\text{Property 2:} \quad & f( x + y ) = f(x) + f(y)
+\end{aligned}
+$$
+
+::: {#exr-circle}
+
+Demonstrate that the *area* of a circle as a function of its radius does not satisfy properties 1 and 2.
+
+:::
+
+::: {#exr-area}
+
+Can you think of any shape in the plane whose area (as a function of scaling) satisfies properties 1 and 2?
+If yes, which?
+If no, why not?
+
+:::
+
+::: {#exr-volume}
+
+Can you think of any shape in the 3-dimensional space whose *volume* (as a function of scaling) satisfies properties 1 and 2?
+If yes, which?
+If no, why not?
+
+:::
+
+### Classification of functions satisfying Properties 1 and 2
+
+So far, we have seen that some functions satisfy properties 1 and 2, and others do not.
+
+| do | don't |
+| ---------------------------- | ---------------------------------- |
+| circumference of a circle as a function of radius | area of a circle as a function of radius |
+| circumference of any shape in the plane as a function of scale | area of any shape in the plane as a function of scale |
+|  | volume of any shape in 3-dimensions as a function of scale |
+
+: Functions that do and don't satisfy properties 1 and 2
+
+#### Why does scaling satisfy properties 1 & 2 for any shape, not just circles?
+
+We asserted above that property 1 is not just satisfied by circles (when you scale the radius) but is satisfied by all curves.
+Why is this the case?
+
+What do we mean by scaling a figure in the plane by a factor of 2?
+Well, a reasonable answer is to say that a figure is a set of points and each point has an $x$ and $y$ coordinate.
+For example, the circle of radius $r$ is the set of points with coordinates given by
+
+$$
+\begin{aligned}
+x =& r \cos \theta \\
+y =& r \sin \theta 
+\end{aligned}
+$$
+
+where $\theta \in [0,2\pi]$.
+
+::: {.callout-tip title="Notation"}
+
+When we want to refer to a set, we will often use notation like the following:
+
+$$
+\left\{ (x,y) \in \mathbb R^2 \mid x = r \cos \theta , y = r \sin \theta , \theta \in [0,2\pi] \right\}.
+$$
+
+In general, this notation has the form
+
+$$
+B=\left\{ f(x_1,x_2,...) \in A \mid \text{ constraints involving } x_1,x_2,... \right\}.
+$$
+
+The process for constructing the set $B$ is the following:
+
+1. 
+    Find all the $x_i$ that satisfy the constraints to the right of the $\mid$ symbol.
+
+1.  
+    Plug all the $x_i$ you found in the previous step into the function $f$.
+
+1.  
+    The function $f$ produces things in $A$, and so the set of all the things you produced in the last step is a collection of some (but not necessarily all) of the things in $A$.
+
+    This is the set $B$.
+:::
+
+Consider the point $(4,2)$ in the plane.
+We can think of this point as the "sum" of its $x$ and $y$ coordinates:
+
+$$
+(4,2) = (4,0) + (0,2).
+$$
+
+To scale this point by a factor of 2, it seems reasonable to multiply both coordinates by 2:
+
+$$
+S_2((4,2)) = (8,4).
+$$
+
+Notice that the function $S_2 : \mathbb R^2 \to \mathbb R^2$ "multiply coordinates by 2" has properties 1 and 2.
+
+::: {#exr-scale-by-2-linear}
+
+Verify this.
+
+:::
+
+::: {#exr-scaling-by-2-circle}
+
+Check that applying $S_2$ to a circle of radius $r$ produces a circle of radius $2r$.
+
+:::
+
+#### More functions which break up over "sums"
+
+Now consider how we compute the derivative of a function like the following:
+
+$$
+\begin{aligned}
+\frac{d}{dx} \left[ 2x^2 + x \right] &= \frac{d}{dx} \left[ 2x^2 \right] + \frac{d}{dx} \left[ x \right] \\
+&= 2\frac{d}{dx} \left[ x^2 \right] + \frac{d}{dx} \left[ x \right] \\
+&= 4x + 1 
+\end{aligned}
+$$
+
+If we let $D : \text{FUNCTIONS} \to \text{FUNCTIONS}$ be the operation of taking a derivative, then in the first line we used
+
+$$ D[f_1(x) + f_2(x)] = D[f_1(x)] + D[f_2(x)] $$
+
+and in the second line we used the fact that, when $k$ is constant, 
+
+$$ D[k f(x)] = k D[f(x)]. $$
+
+Thus, $D$ (that is, differentiation) satisfies properties 1 and 2.
+(Although you should probably be uncomfortable that we wrote $D : \text{FUNCTIONS} \to \text{FUNCTIONS}$ above. 
+What is the set $\text{FUNCTIONS}$?
+Are all functions differentiable?
+We will address this later.)
+
+Why is it useful that $D$ satisfies properties 1 and 2?
+It allows us to compute derivatives of complicated expressions like $2x^2 + x$ if we only know the computation on some simple parts of the expression.
+Knowing the derivative of $x^2$ and $x$ is all that is needed.
+
+Similarly, if we know the circumference of a shape in the plane at one scale, we can compute its circumference at all scales using property 1.
+
+## Linear functions
+
+::: {#def-linear-function}
+
+## linear function
+
+A function satisfying properties 1 and 2 is called *linear*.
+
+:::

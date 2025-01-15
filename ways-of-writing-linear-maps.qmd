@@ -1,0 +1,43 @@
+# Ways of writing linear maps
+
+[TODO]
+
+## Maps from 1-dimensional spaces
+
+[TODO]
+
+## Maps to 1-dimensional spaces
+
+[TODO]
+
+## Maps from 2-dimensions to 2-dimensions
+
+[TODO]
+
+## Maps in finite dimensions
+
+[TODO]
+
+## Maps involving infinite dimensional spaces
+
+[TODO]
+
+## Composing maps
+
+[TODO]
+
+### Noncommutativity
+
+[TODO]
+
+## Adding maps
+
+[TODO]
+
+## Matrices are sort of like numbers
+
+[TODO]
+
+### Numbers are $1 \times 1$ matrices
+
+[TODO]
