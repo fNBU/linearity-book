@@ -29,6 +29,9 @@ jobs:
           # version: SPECIFIC-QUARTO-VERSION-HERE
       
       # add software dependencies here and any libraries
+
+      - name: Set up rsvg-convert
+        run: sudo apt-get install -y rsvg-convert
       
       # From https://github.com/actions/setup-python
       # - name: Setup Python
