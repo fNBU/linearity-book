@@ -1,3 +1,5 @@
 # What are these notes? {.unnumbered}
 
 These are notes for a first course in Linear Algebra.
+
+The PDF version of these notes can be fount at https://fnbu.pw/linearity-book/Linearity.pdf

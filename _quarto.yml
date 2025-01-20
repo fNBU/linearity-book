@@ -11,7 +11,7 @@ book:
   search: true
 
   # the github repository hosting the book code
-  repo-url: https://github.com/fnbu/textbook 
+  repo-url: https://github.com/fnbu/linearity-book 
   
   # when folks click the link to the repo, which branch are they taken to
   repo-branch: release
