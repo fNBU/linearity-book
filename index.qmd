@@ -2,4 +2,4 @@
 
 These are notes for a first course in Linear Algebra.
 
-The PDF version of these notes can be fount at https://fnbu.pw/linearity-book/Linearity.pdf
+The PDF version of these notes can be fount at [https://fnbu.pw/linearity-book/Linearity.pdf](https://fnbu.pw/linearity-book/Linearity.pdf).
