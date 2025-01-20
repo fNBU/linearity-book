@@ -31,7 +31,7 @@ jobs:
       # add software dependencies here and any libraries
 
       - name: Set up rsvg-convert
-        run: sudo apt-get -y update && sudo apt-get install -y rsvg-convert
+        run: sudo apt-get -y update && sudo apt-get install -y librsvg2-bin
       
       # From https://github.com/actions/setup-python
       # - name: Setup Python
