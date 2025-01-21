@@ -16,7 +16,7 @@ book:
   # when folks click the link to the repo, which branch are they taken to
   repo-branch: release
 
-  repo-actions: [issue, edit, source]
+  repo-actions: [source]
   sharing: [twitter, facebook, linkedin]
   chapters:
     # there must be a section with title `index.qmd`

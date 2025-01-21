@@ -171,6 +171,36 @@ Check that applying $S_2$ to a circle of radius $r$ produces a circle of radius 
 
 :::
 
+Now, remember for any curve $\gamma : [a,b] \to \mathbb R^2$ given by
+
+$$
+\gamma(t) = (x(t) , y(t)),
+$$
+
+its length can be computed by
+
+$$
+L=\int _{a}^{b}{\sqrt {x'(t)^{2}+y'(t)^{2}}} \quad dt.
+$$
+
+Consider the composition
+
+```{.tikz}
+%%| filename: stick-figure
+%%| caption: A Stick Figure
+
+\begin{tikzpicture}
+  % Head
+  \draw (0,0) circle (1cm);
+  % Body
+  \draw (0,-1) -- (0,-3);
+  % Arms
+  \draw (-1,-2) -- (0,-1) -- (1,-2);
+  % Legs
+  \draw (-1,-4) -- (0,-3) -- (1,-4);
+\end{tikzpicture}
+```
+
 #### More functions which break up over "sums"
 
 Now consider how we compute the derivative of a function like the following:
