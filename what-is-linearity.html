@@ -41,8 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-78faf54a06e50be45dc6d83ab59297a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4645002a323adc29859d3b0e6581ff17.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ca80a785959aa3106eea590d00a8e12e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -215,7 +215,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#linear-functions" id="toc-linear-functions" class="nav-link" data-scroll-target="#linear-functions">Linear functions</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/fnbu/linearity-book/edit/release/what-is-linearity.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/fnbu/linearity-book/blob/release/what-is-linearity.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/what-is-linearity.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -298,7 +298,7 @@ C(14) &amp;= 2 \pi (14) = 28 \pi
 <p><span class="theorem-title"><strong>Exercise 1.2</strong></span> Can you think of any shape in the plane whose area (as a function of scaling) satisfies properties 1 and 2? If yes, which? If no, why not?</p>
 </div>
 <div id="exr-volume" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1.3</strong></span> Can you think of any shape in the 3-dimensional space whose <em>volume</em> (as a function of scaling) satisfies properties 1 and 2? If yes, which? If no, why not?</p>
+<p><span class="theorem-title"><strong>Exercise 1.3</strong></span> Can you think of any shape in the 3-dimensional space whose <em>volume</em> (as a function of scaling) satisfies properties 1 and 2? If yes, which? If no, why not?false</p>
 </div>
 <section id="classification-of-functions-satisfying-properties-1-and-2" class="level3">
 <h3 class="anchored" data-anchor-id="classification-of-functions-satisfying-properties-1-and-2">Classification of functions satisfying Properties 1 and 2</h3>
@@ -383,9 +383,54 @@ S_2((4,2)) = (8,4).
 <div id="exr-scaling-by-2-circle" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 1.5</strong></span> Check that applying <span class="math inline">\(S_2\)</span> to a circle of radius <span class="math inline">\(r\)</span> produces a circle of radius <span class="math inline">\(2r\)</span>.</p>
 </div>
+<p>Now, for any curve <span class="math inline">\(\gamma : [a,b] \to \mathbb R^2\)</span> given by</p>
+<p><span class="math display">\[
+\gamma(t) = (x(t) , y(t)),
+\]</span></p>
+<p>its length can be computed by</p>
+<p><span class="math display">\[
+L=\int _{a}^{b}{\sqrt {x'(t)^{2}+y'(t)^{2}}} \quad dt.
+\]</span></p>
+<p>(You may have seen this in multivariable calculus or physics.) Consider the composition</p>
+<p><span class="math display">\[
+[a,b] \xrightarrow{\quad \gamma \quad} \mathbb R^2 \xrightarrow{\quad S_2 \quad} \mathbb R^2
+\]</span></p>
+<!-- still trying to get the tikz diagram below to compile -->
+<!-- ```{.tikz}
+%%| filename: stick-figure
+%%| caption: A Stick Figure
+
+\begin{tikzpicture}
+  % Head
+  \draw (0,0) circle (1cm);
+  % Body
+  \draw (0,-1) -- (0,-3);
+  % Arms
+  \draw (-1,-2) -- (0,-1) -- (1,-2);
+  % Legs
+  \draw (-1,-4) -- (0,-3) -- (1,-4);
+\end{tikzpicture}
+``` -->
+<p>The formula is</p>
+<p><span class="math display">\[
+( S_2 \circ \gamma )(x) =  ( 2 x(t) , 2 y(t) )
+\]</span></p>
+<p>and the length is given by</p>
+<p><span class="math display">\[
+\begin{aligned}
+L=&amp;\int _{a}^{b}{\sqrt {\left(\left[2x(t)\right]'\right)^{2}+\left(\left[2y(t)\right]'\right)^{2}}} \quad dt \\
+=&amp;\int _{a}^{b}{\sqrt {\left(2x'(t)\right)^{2}+\left(2y'(t)\right)^{2}}} \quad dt \\
+=&amp;\int _{a}^{b}{\sqrt {4\left(x'(t)\right)^{2}+4\left(y'(t)\right)^{2}}} \quad dt \\
+=&amp;\int _{a}^{b}{2\sqrt {\left(x'(t)\right)^{2}+\left(y'(t)\right)^{2}}} \quad dt \\
+=&amp;2\int _{a}^{b}{\sqrt {\left(x'(t)\right)^{2}+\left(y'(t)\right)^{2}}} \quad dt
+\end{aligned}
+\]</span></p>
+<p>Notice that what we obtain on the last line is exactly twice the length of the curve <span class="math inline">\(\gamma\)</span>. Convince yourself that there is nothing special about the number 2 here; if we had replaced <span class="math inline">\(S_2\)</span> by <span class="math inline">\(S_{17}\)</span>, then we would have obtained 17 times the length of <span class="math inline">\(\gamma\)</span> in the last line.</p>
 </section>
 <section id="more-functions-which-break-up-over-sums" class="level4">
 <h4 class="anchored" data-anchor-id="more-functions-which-break-up-over-sums">More functions which break up over “sums”</h4>
+<section id="differentiation" class="level5">
+<h5 class="anchored" data-anchor-id="differentiation">Differentiation</h5>
 <p>Now consider how we compute the derivative of a function like the following:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -398,9 +443,23 @@ S_2((4,2)) = (8,4).
 <p><span class="math display">\[ D[f_1(x) + f_2(x)] = D[f_1(x)] + D[f_2(x)] \]</span></p>
 <p>and in the second line we used the fact that, when <span class="math inline">\(k\)</span> is constant,</p>
 <p><span class="math display">\[ D[k f(x)] = k D[f(x)]. \]</span></p>
-<p>Thus, <span class="math inline">\(D\)</span> (that is, differentiation) satisfies properties 1 and 2. (Although you should probably be uncomfortable that we wrote <span class="math inline">\(D : \text{FUNCTIONS} \to \text{FUNCTIONS}\)</span> above. What is the set <span class="math inline">\(\text{FUNCTIONS}\)</span>? Are all functions differentiable? We will address this later.)</p>
+<p>Thus, <span class="math inline">\(D\)</span> (that is, differentiation) satisfies properties 1 and 2. (Although you should probably be uncomfortable that we wrote <span class="math inline">\(D : \text{FUNCTIONS} \to \text{FUNCTIONS}\)</span> above. What is the set <span class="math inline">\(\text{FUNCTIONS}\)</span>? Are all functions differentiable? We will address this later. For now, it suffices to replace <span class="math inline">\(\text{FUNCTIONS}\)</span> above with <span class="math inline">\(P_n\)</span>, the set of all polynomials of degree <span class="math inline">\(n\)</span>. In fact, it is the case that <span class="math inline">\(D : P_n \to P_{n-1}\)</span> if <span class="math inline">\(n\geq 1\)</span>.)</p>
+</section>
+<section id="definite-integration" class="level5">
+<h5 class="anchored" data-anchor-id="definite-integration">Definite integration</h5>
+<p>Fix an interval <span class="math inline">\([a,b]\)</span> and consider <span class="math display">\[
+I(f) := \int_a^b f(x) \quad dx.
+\]</span></p>
+<div id="exr-integration-is-linear" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1.6</strong></span> Check that <span class="math inline">\(I\)</span> has properties 1 and 2.</p>
+</div>
+</section>
+</section>
+<section id="why-are-properties-1-and-2-useful" class="level4">
+<h4 class="anchored" data-anchor-id="why-are-properties-1-and-2-useful">Why are properties 1 and 2 useful</h4>
 <p>Why is it useful that <span class="math inline">\(D\)</span> satisfies properties 1 and 2? It allows us to compute derivatives of complicated expressions like <span class="math inline">\(2x^2 + x\)</span> if we only know the computation on some simple parts of the expression. Knowing the derivative of <span class="math inline">\(x^2\)</span> and <span class="math inline">\(x\)</span> is all that is needed.</p>
 <p>Similarly, if we know the circumference of a shape in the plane at one scale, we can compute its circumference at all scales using property 1.</p>
+<p>Not all functions are linear, but if a function is linear, it is much easier to compute with.</p>
 </section>
 </section>
 </section>
@@ -408,6 +467,22 @@ S_2((4,2)) = (8,4).
 <h2 class="anchored" data-anchor-id="linear-functions">Linear functions</h2>
 <div id="def-linear-function" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 1.1 (linear function)</strong></span> A function satisfying properties 1 and 2 is called <em>linear</em>.</p>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We use the term “linear” for these functions, but we also use the word “line” for graphs in the plane with formula <span class="math inline">\(f(x) = m x + b\)</span>. This term is overloaded and means different things in these two contexts.</p>
+</div>
+</div>
+<div id="exr-when-are-lines-linear" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1.7</strong></span> Show that <span class="math inline">\(f(x) = m x + b\)</span> is only a linear function when <span class="math inline">\(b = 0\)</span>.</p>
 </div>
 
 
@@ -992,4 +1067,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fnbu/linearity-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/fnbu/linearity-book/edit/release/what-is-linearity.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/fnbu/linearity-book/blob/release/what-is-linearity.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/what-is-linearity.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div></div></footer></body></html>
