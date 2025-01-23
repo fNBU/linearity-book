@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.1.23)  23 JAN 2025 13:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.1.23)  23 JAN 2025 13:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**stick-figure.tex
-(./stick-figure.tex
+**"scaling composition.tex"
+(./scaling composition.tex
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
 (/usr/share/texlive/texmf-dist/tex/latex/standalone/standalone.cls
@@ -366,8 +366,8 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count294
 \l__pdf_internal_box=\box64
 )
-(./stick-figure.aux)
-\openout1 = `stick-figure.aux'.
+(./scaling composition.aux)
+\openout1 = `"scaling composition.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -406,28 +406,52 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 12.
+
+! Undefined control sequence.
+<recently read> \mathbb 
+                        
+l.12      [a,b] & \mathbb
+                          R^2 \\};
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
 
 [1
 
-] (./stick-figure.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+(./scaling composition.aux)
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 12300 strings out of 475322
- 256763 string characters out of 5770417
- 610079 words of memory out of 5000000
- 34966 multiletter control sequences out of 15000+600000
+ 12439 strings out of 475322
+ 260349 string characters out of 5770417
+ 612097 words of memory out of 5000000
+ 35101 multiletter control sequences out of 15000+600000
  558069 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 117i,5n,121p,397b,380s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-Output written on stick-figure.pdf (1 page, 1174 bytes).
+ 117i,15n,121p,406b,846s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>
+Output written on "scaling composition.pdf" (1 page, 26452 bytes).
 PDF statistics:
- 11 PDF objects out of 1000 (max. 8388607)
- 7 compressed objects within 1 object stream
+ 26 PDF objects out of 1000 (max. 8388607)
+ 16 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

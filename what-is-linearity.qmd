@@ -193,18 +193,15 @@ $$
 <!-- still trying to get the tikz diagram below to compile -->
 
 <!-- ```{.tikz}
-%%| filename: stick-figure
-%%| caption: A Stick Figure
+%%| filename: scaling-composition
 
-\begin{tikzpicture}
-  % Head
-  \draw (0,0) circle (1cm);
-  % Body
-  \draw (0,-1) -- (0,-3);
-  % Arms
-  \draw (-1,-2) -- (0,-1) -- (1,-2);
-  % Legs
-  \draw (-1,-4) -- (0,-3) -- (1,-4);
+\usetikzlibrary{matrix}
+\begin{tikzpicture}[scale=2]
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em]
+  {
+     [a,b] & \mathbb R^2 \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$\gamma$} (m-1-2);
 \end{tikzpicture}
 ``` -->
 
