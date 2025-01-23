@@ -16,7 +16,7 @@ book:
   # when folks click the link to the repo, which branch are they taken to
   repo-branch: release
 
-  repo-actions: [issue, edit, source]
+  repo-actions: [source]
   sharing: [twitter, facebook, linkedin]
   chapters:
     # there must be a section with title `index.qmd`
@@ -33,6 +33,15 @@ book:
     #   - solving-systems-of-linear-equations.qmd
     # - part: "Inner Product Spaces"
     - references.qmd
+
+
+filters:
+  - tikz
+
+tikz:
+  cache: true
+  # save-tex: true  # Enable saving intermediate .tex files
+  tex-dir: tikz-tex  # Optional: Specify directory to save .tex files
 
 bibliography: references.bib
 

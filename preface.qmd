@@ -19,7 +19,7 @@ These notes are constructed to vindicate the following objectives:
 
 1.  
     In practice, scientists, engineers, etc. need to be able to recognize linearity so that they may choose the correct solution techniques. 
-    They also need to understand why linear problems are preferable to non-linear ones so and that they might try to massage their current problem into a linear one.
+    They also need to understand why linear problems are preferable to non-linear ones so that they might try to massage their current problem into a linear one.
 
 1.  
     When we say "solution techniques" as above, 99% of the time we mean software packages.
