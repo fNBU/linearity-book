@@ -2,3 +2,4 @@ Linearity.tex
 /.quarto/
 /build/
 /index_files/
+/.luarc.json

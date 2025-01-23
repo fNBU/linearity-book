@@ -82,7 +82,7 @@ If no, why not?
 
 Can you think of any shape in the 3-dimensional space whose *volume* (as a function of scaling) satisfies properties 1 and 2?
 If yes, which?
-If no, why not?
+If no, why not?false
 
 :::
 
@@ -171,7 +171,7 @@ Check that applying $S_2$ to a circle of radius $r$ produces a circle of radius 
 
 :::
 
-Now, remember for any curve $\gamma : [a,b] \to \mathbb R^2$ given by
+Now, for any curve $\gamma : [a,b] \to \mathbb R^2$ given by
 
 $$
 \gamma(t) = (x(t) , y(t)),
@@ -183,9 +183,16 @@ $$
 L=\int _{a}^{b}{\sqrt {x'(t)^{2}+y'(t)^{2}}} \quad dt.
 $$
 
+(You may have seen this in multivariable calculus or physics.)
 Consider the composition
 
-```{.tikz}
+$$
+[a,b] \xrightarrow{\quad \gamma \quad} \mathbb R^2 \xrightarrow{\quad S_2 \quad} \mathbb R^2
+$$
+
+<!-- still trying to get the tikz diagram below to compile -->
+
+<!-- ```{.tikz}
 %%| filename: stick-figure
 %%| caption: A Stick Figure
 
@@ -199,10 +206,33 @@ Consider the composition
   % Legs
   \draw (-1,-4) -- (0,-3) -- (1,-4);
 \end{tikzpicture}
-```
+``` -->
+
+The formula is
+
+$$
+( S_2 \circ \gamma )(x) =  ( 2 x(t) , 2 y(t) )
+$$
+
+and the length is given by
+
+$$
+\begin{aligned}
+L=&\int _{a}^{b}{\sqrt {\left(\left[2x(t)\right]'\right)^{2}+\left(\left[2y(t)\right]'\right)^{2}}} \quad dt \\
+=&\int _{a}^{b}{\sqrt {\left(2x'(t)\right)^{2}+\left(2y'(t)\right)^{2}}} \quad dt \\
+=&\int _{a}^{b}{\sqrt {4\left(x'(t)\right)^{2}+4\left(y'(t)\right)^{2}}} \quad dt \\
+=&\int _{a}^{b}{2\sqrt {\left(x'(t)\right)^{2}+\left(y'(t)\right)^{2}}} \quad dt \\
+=&2\int _{a}^{b}{\sqrt {\left(x'(t)\right)^{2}+\left(y'(t)\right)^{2}}} \quad dt 
+\end{aligned}
+$$
+
+Notice that what we obtain on the last line is exactly twice the length of the curve $\gamma$.
+Convince yourself that there is nothing special about the number 2 here; if we had replaced $S_2$ by $S_{17}$, then we would have obtained 17 times the length of $\gamma$ in the last line.
+
 
 #### More functions which break up over "sums"
 
+##### Differentiation
 Now consider how we compute the derivative of a function like the following:
 
 $$
@@ -225,13 +255,32 @@ Thus, $D$ (that is, differentiation) satisfies properties 1 and 2.
 (Although you should probably be uncomfortable that we wrote $D : \text{FUNCTIONS} \to \text{FUNCTIONS}$ above. 
 What is the set $\text{FUNCTIONS}$?
 Are all functions differentiable?
-We will address this later.)
+We will address this later.
+For now, it suffices to replace $\text{FUNCTIONS}$ above with $P_n$, the set of all polynomials of degree $n$.
+In fact, it is the case that $D : P_n \to P_{n-1}$ if $n\geq 1$.)
+
+##### Definite integration
+
+Fix an interval $[a,b]$ and consider
+$$
+I(f) := \int_a^b f(x) \quad dx.
+$$
+
+::: {#exr-integration-is-linear}
+
+Check that $I$ has properties 1 and 2.
+
+:::
+
+#### Why are properties 1 and 2 useful
 
 Why is it useful that $D$ satisfies properties 1 and 2?
 It allows us to compute derivatives of complicated expressions like $2x^2 + x$ if we only know the computation on some simple parts of the expression.
 Knowing the derivative of $x^2$ and $x$ is all that is needed.
 
 Similarly, if we know the circumference of a shape in the plane at one scale, we can compute its circumference at all scales using property 1.
+
+Not all functions are linear, but if a function is linear, it is much easier to compute with.
 
 ## Linear functions
 
@@ -242,3 +291,15 @@ Similarly, if we know the circumference of a shape in the plane at one scale, we
 A function satisfying properties 1 and 2 is called *linear*.
 
 :::
+
+::: {.callout-warning}
+We use the term "linear" for these functions, but we also use the word "line" for graphs in the plane with formula $f(x) = m x + b$.
+This term is overloaded and means different things in these two contexts.
+:::
+
+::: {#exr-when-are-lines-linear}
+
+Show that $f(x) = m x + b$ is only a linear function when $b = 0$.
+
+:::
+

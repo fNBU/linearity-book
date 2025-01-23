@@ -34,6 +34,15 @@ book:
     # - part: "Inner Product Spaces"
     - references.qmd
 
+
+filters:
+  - tikz
+
+tikz:
+  cache: true
+  # save-tex: true  # Enable saving intermediate .tex files
+  tex-dir: tikz-tex  # Optional: Specify directory to save .tex files
+
 bibliography: references.bib
 
 format:
