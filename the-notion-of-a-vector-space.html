@@ -331,11 +331,11 @@ Notation
 </div>
 </div>
 <p>All of the properties above hold (with the field of scalars <span class="math inline">\(F\)</span> set to <span class="math inline">\(\mathbb R\)</span>) for all the spaces we have used so far as the domain and codomain of a linear function. (You may want to check this for yourself quickly. Most of these facts obviously hold for polynomials, functions, points in <span class="math inline">\(\mathbb R^2\)</span>, and <span class="math inline">\(\mathbb R\)</span> itself. However, one must still check all of them before using a set as the domain or codomain of a linear function.)</p>
-<p>Not all sets of mathematical objects satisfy these properties, though. An example is the set of points on the sphere. It turns out that there is no way (all the proof is hard) to turn that set into a vector space.</p>
+<p>Not all sets of mathematical objects satisfy these properties, though. An example is the set of points on the sphere. It turns out that there is no way (although the proof is hard) to turn that set into a vector space.</p>
 <p>The way you should think about this definition is the following:</p>
 <ul>
 <li>a set <span class="math inline">\(A\)</span> satisfying all of the properties in <a href="#def-vector-space" class="quarto-xref">Definition&nbsp;<span>2.1</span></a> <strong>may</strong> be used as the domain or codomain of a linear function, but</li>
-<li>a set <span class="math inline">\(A\)</span> that fails to satisfy any of the properties above <strong>can never be used</strong> as the domain or codomain of a linear function. If you tried to use it in this way, you would eventually run into statements that make no sense.</li>
+<li>a set <span class="math inline">\(A\)</span> that fails to satisfy any of the properties above <strong>can never be used</strong> as the domain or codomain of a linear function. If you tried to use it in this way, you would eventually run into statements that make no sense.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
 </ul>
 <p>An example of the kind of problem you can run into is the following: Let <span class="math inline">\(L:A \to B\)</span> be linear and suppose <span class="math inline">\(A\)</span> is a vector space as defined above but that <span class="math inline">\(B\)</span> fails to have an additive identity (there is no zero vector in <span class="math inline">\(B\)</span>). We can compute</p>
 <p><span class="math display">\[
@@ -382,7 +382,7 @@ P_n := \left\{ a_{n} x^n + a_{n-1} x^n + \cdots + a_1 x + a_0 \mid a_n , a_{n-1}
 <h3 class="anchored" data-anchor-id="abstract-algebra">Abstract algebra</h3>
 <p>In case you are interested, the full definition of a field can be found on <a href="https://en.wikipedia.org/wiki/Field_(mathematics)#Classic_definition">Wikipedia</a>. A field that you already know about, but that is not <span class="math inline">\(\mathbb R\)</span> or <span class="math inline">\(\mathbb C\)</span> is the field of rational numbers:</p>
 <p><span class="math display">\[
-\mathbb Q := \left\{ \left. \frac{a}{b}  \right| a,b \in \mathbb R ,  b \ne 0  \right\}.
+\mathbb Q := \left\{ \left. \frac{a}{b}  \right| a,b \in \mathbb Z ,  b \ne 0  \right\}.
 \]</span></p>
 <p>There are esoteric examples of fields, and also algebraic structures stranger than fields. If this is interesting to you, you might try to take a course in Abstract Algebra. I learned this topic from <span class="citation" data-cites="dummit-foote">Dummit and Foote (<a href="references.html#ref-dummit-foote" role="doc-biblioref">2004</a>)</span>.</p>
 <p>In computing, real numbers (which do form a field) are often represented by 32 or 64 bit floating point numbers. It is perhaps interesting to know that floating point numbers (in any number of bits) (which are encountered <strong>often</strong> in the wild) do not form a field because addition of floating point numbers is not associative.</p>
@@ -394,6 +394,12 @@ Dummit, David S., and Richard M. Foote. 2004. <em>Abstract Algebra</em>. Third. 
 </div>
 </div>
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>It is the case that some maps between spaces that are weaker than vector spaces have defining properties 1 and 2. The spaces are a generalization of vector spaces called <a href="https://en.wikipedia.org/wiki/Module_(mathematics)">modules</a> and the maps are called <a href="https://en.wikipedia.org/wiki/Module_homomorphism">module homomorphisms</a>. If you look at the definition of module homomorphism on wikipedia, you’ll see the same two equations we used to define linear functions.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
