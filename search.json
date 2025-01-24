@@ -63,11 +63,121 @@
     ]
   },
   {
+    "objectID": "the-notion-of-a-vector-space.html",
+    "href": "the-notion-of-a-vector-space.html",
+    "title": "2  The notion of a Vector Space",
+    "section": "",
+    "text": "Definition\nIf \\(L : A \\to B\\) is linear, what must be true about \\(A\\) and \\(B\\)?\nLet’s go back to the definition of of a linear function. A function is linear if and only if it satisfies the following two properties:\n\\[\n\\begin{aligned}\n\\text{Property 1:} \\quad & L(a x )= a L(x) \\\\\n\\text{Property 2:} \\quad & L( x + y ) = L(x) + L(y).\n\\end{aligned}\n\\]\nLet’s list a few things that must be true to arrive at these expressions:\nThere are perhaps some more properties that would be nice, and that are true about all the domains and codomains of linear functions we have seen so far:\nEventually, mathematicians (who were working with linear functions intuitively) worked out the minimal set of facts that one needs about the domain and codomain of a linear function for everything to be coherent. Here it is\nAll of the properties above hold (with the field of scalars \\(F\\) set to \\(\\mathbb R\\)) for all the spaces we have used so far as the domain and codomain of a linear function. (You may want to check this for yourself quickly. Most of these facts obviously hold for polynomials, functions, points in \\(\\mathbb R^2\\), and \\(\\mathbb R\\) itself. However, one must still check all of them before using a set as the domain or codomain of a linear function.)\nNot all sets of mathematical objects satisfy these properties, though. An example is the set of points on the sphere. It turns out that there is no way (all the proof is hard) to turn that set into a vector space.\nThe way you should think about this definition is the following:\nAn example of the kind of problem you can run into is the following: Let \\(L:A \\to B\\) be linear and suppose \\(A\\) is a vector space as defined above but that \\(B\\) fails to have an additive identity (there is no zero vector in \\(B\\)). We can compute\n\\[\nL(0) = 0L(0) = 0 (?) = 0\n\\] where the \\(?\\) stands for whatever \\(L(0)\\) maps to. Notice that in the end, it doesn’t matter because we conclude that \\(L(0) = 0 \\in B\\). But this is nonsensical since we assumed there was no zero vector in \\(B\\).",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The notion of a Vector Space</span>"
+    ]
+  },
+  {
+    "objectID": "the-notion-of-a-vector-space.html#definition",
+    "href": "the-notion-of-a-vector-space.html#definition",
+    "title": "2  The notion of a Vector Space",
+    "section": "",
+    "text": "Definition 2.1 A vector space is a set \\(V\\) of vectors and a set \\(F\\) of scalars that satisfy the following properties\n\nthe set of scalars \\(F\\) is a field (see the next section for more information on what we mean by field),\nthere is a function \\(+ \\colon V \\times V \\to V\\), called vector addition that\n\nis associative: \\((X+Y) + Z = X + (Y + Z)\\),\nis commutative: \\(X+Y = Y+X\\),\nhas a \\(0\\) (an additive identity) which means that \\(0\\) satisfies \\(0 + X = X\\) for all \\(X \\in V\\),\nhas negatives (additive inverses) which means that for each \\(X \\in V\\) there is an element \\(Y \\in V\\) such that \\(X + Y = 0\\) (one can prove that there is only one inverse of \\(X\\), and this is usually written \\(-X\\)),\n\n\\(V\\) is closed under vector addition and scalar multiplication, which means that\n\nfor every \\(X,Y \\in V\\), \\(X + Y\\) is also in \\(V\\)\nfor every \\(a \\in F\\) and \\(X \\in V\\), \\(aX\\) is also in \\(V\\)\n\nthe following distributive laws hold:\n\n\\((a+b) X = aX + bX , \\quad \\forall a, b\\in F , X \\in V\\)\n\\(a(X+Y) = aX + aY , \\quad \\forall a \\in F ,  X,Y \\in V\\)\n\n\n\n\n\n\n\n\n\nNotation\n\n\n\nAbove, we used the symbol \\(\\forall\\). This is a symbol that mathematicians use that literally just means “for all”.\nSo, as an example \\(x \\in P_3 , \\forall x \\in P_2\\) is read as “for all x in the set of second degree polynomials, x is in the set of third degree polynomials”, which is just a wordy way of saying that all second degree polynomials are third degree polynomials.\n\n\n\n\n\n\na set \\(A\\) satisfying all of the properties in Definition 2.1 may be used as the domain or codomain of a linear function, but\na set \\(A\\) that fails to satisfy any of the properties above can never be used as the domain or codomain of a linear function. If you tried to use it in this way, you would eventually run into statements that make no sense.\n\n\n\n\nExercise 2.1 Check that \\(\\mathbb R\\) forms a vector space (the set of scalars is \\(\\mathbb R\\)).\n\n\nExercise 2.2 Check that \\(\\mathbb R^2\\) is a vector space.",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The notion of a Vector Space</span>"
+    ]
+  },
+  {
+    "objectID": "the-notion-of-a-vector-space.html#scalars",
+    "href": "the-notion-of-a-vector-space.html#scalars",
+    "title": "2  The notion of a Vector Space",
+    "section": "Scalars",
+    "text": "Scalars\nIn the above definition, we said that the scalars for a vector space must come from a field. What does this mean?\nFor the purposes of this text, our field will always be \\(\\mathbb R\\) or the field of complex numbers:\n\\[\n\\mathbb C := \\{ a + b i \\mid a,b \\in \\mathbb R \\}\n\\]\nwhere the symbol \\(i\\) has the property that \\(i^2 = -1\\) (and so we sometimes write it as \\(\\sqrt{-1}\\)). These two sets are the set of scalars for most vector spaces found in applications in the wild.\n\nExercise 2.3 Check that \\(\\mathbb C\\) can be thought of as a vector space with field of scalars \\(\\mathbb R\\).\n\n\nDefinition 2.2 Let \\(P_n\\) be the\n\\[\n\\left\\{ a_{n} x^n + a_{n-1} x^n + \\cdots + a_1 x + a_0 \\mid a_n , a_{n-1}, \\ldots , a_1 , a_0 \\in \\mathbb R \\right\\}.\n\\]\nThis is called the set of polynomials of degree \\(n\\).\n\n\nExercise 2.4 Is \\(P_n\\) a vector space for each \\(n \\in \\mathbb N\\)?\n\nFrom the previous two examples, you might notice that the definitions\n\\[\n\\mathbb C := \\{ a + b i \\mid a,b \\in \\mathbb R \\}\n\\]\nand\n\\[\nP_n := \\left\\{ a_{n} x^n + a_{n-1} x^n + \\cdots + a_1 x + a_0 \\mid a_n , a_{n-1}, \\ldots , a_1 , a_0 \\in \\mathbb R \\right\\}\n\\]\nlook similar, and they give you a hint about how to think of these as vector spaces; in both cases, they are constructed as the sum of things with coefficients in \\(\\mathbb R\\). We will investigate this further in the next chapter.\n\nAbstract algebra\nIn case you are interested, the full definition of a field can be found on Wikipedia. A field that you already know about, but that is not \\(\\mathbb R\\) or \\(\\mathbb C\\) is the field of rational numbers:\n\\[\n\\mathbb Q := \\left\\{ \\left. \\frac{a}{b}  \\right| a,b \\in \\mathbb R ,  b \\ne 0  \\right\\}.\n\\]\nThere are esoteric examples of fields, and also algebraic structures stranger than fields. If this is interesting to you, you might try to take a course in Abstract Algebra. I learned this topic from Dummit and Foote (2004).\nIn computing, real numbers (which do form a field) are often represented by 32 or 64 bit floating point numbers. It is perhaps interesting to know that floating point numbers (in any number of bits) (which are encountered often in the wild) do not form a field because addition of floating point numbers is not associative.\n\n\n\n\nDummit, David S., and Richard M. Foote. 2004. Abstract Algebra. Third. John Wiley & Sons, Inc., Hoboken, NJ.",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The notion of a Vector Space</span>"
+    ]
+  },
+  {
+    "objectID": "bases.html",
+    "href": "bases.html",
+    "title": "3  Bases",
+    "section": "",
+    "text": "What is the minimal amount of information needed to unambiguously describe a linear function?\nRemember that the derivative function \\(D(f) := \\frac{df}{dx}\\) allows us to compute the derivative of, for example\n\\[\nf(x) = x^2 + 4 \\sin x\n\\]\nif we know how to compute \\(D\\) on only \\(x^2\\) and \\(\\sin x\\). In fact, knowing just how to compute \\(D\\) on these two functions and knowing that \\(D\\) is linear allows us to compute the derivative of any function of the form\n\\[\nx \\mapsto a x^2 + b \\sin x , \\quad a,b \\in \\mathbb R.\n\\]\nFrom a very small amount of information, we actually know a lot about \\(D\\). Thus, we begin this chapter straightforwardly with a question, which is the title of the next section:\nConsider the following example:\nAssume that \\(L : P_2 \\to P_0\\) is linear and that\n\\[\nL(x^2 + 3x) = 4.\n\\]\nCan we determine \\(L\\) on every element of \\(P_2\\)? That is, can we compute\n\\[\nL(a x^2 + b x + c)?\n\\]\nLet’s try our best. We would like to isolate a term that looks like \\(x^2 + 3x\\) because that is something we have information about.\n\\[\n\\begin{aligned}\nL(a x^2 + b x + c)=& L(a x^2 + b x)  + L(c) \\quad &\\text{by property 1} \\\\\n=& L\\left(a \\left[ x^2 + \\frac{b}{a} x \\right] \\right)  + L(c) \\quad &\\text{assuming } a \\ne 0 \\\\\n=& a L\\left( x^2 + \\frac{b}{a} x \\right)  + L(c) &\\quad \\text{by property 2}  \\end{aligned}\n\\]\nthen we are basically stuck. Although we can force \\(x^2\\) to show up, we can’t at the same time force \\(3x\\) to show up; forcing a coefficient of \\(1\\) on \\(x^2\\) will always effect the coefficient of \\(x\\). Furthermore, we have no information about how to deal with \\(L(c)\\).\nSo, in this case, knowing that \\(L\\) is linear and knowing its value on one input is insufficient.",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Bases</span>"
+    ]
+  },
+  {
+    "objectID": "bases.html#what-is-the-minimal-amount-of-information-needed-to-unambiguously-describe-a-linear-function",
+    "href": "bases.html#what-is-the-minimal-amount-of-information-needed-to-unambiguously-describe-a-linear-function",
+    "title": "3  Bases",
+    "section": "",
+    "text": "Exercise 3.1 In the example above, is it enough to know that \\[\n\\begin{aligned}\nL(x^2) =& 1 , \\\\\nL(x) =& 1 ,\n\\end{aligned}\n\\]\nto be able to determine \\(L\\) on all of \\(P_2\\)?\nWhat if we know \\[\n\\begin{aligned}\nL(x^2) =& 1 , \\\\\nL(x) =& 1 ,\\\\\nL(1) =& -2\n\\end{aligned}?\n\\]",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Bases</span>"
+    ]
+  },
+  {
+    "objectID": "bases.html#writing-vectors-relative-to-a-set-of-vectors",
+    "href": "bases.html#writing-vectors-relative-to-a-set-of-vectors",
+    "title": "3  Bases",
+    "section": "Writing vectors relative to a set of vectors",
+    "text": "Writing vectors relative to a set of vectors\nLet \\(X,Y \\in \\mathbb R^2\\) be given by \\(X:= (1,1)\\) and \\(Y:= (1,-1)\\). Suppose \\(L : \\mathbb R^2 \\to \\mathbb R\\) is linear and also that we know \\[\n\\begin{aligned}\nL(X) =&  1, \\\\\nL(Y) =&  -2\n\\end{aligned}.\n\\]\nCan we compute \\(L\\) on the vector \\((2,3)\\)? If the answer to this question were yes then there would have to be a way to express \\((2,3)\\) in terms of \\(X\\) and \\(Y\\) (since those are the only two values we know anything about). That is, there would be \\(a,b \\in \\mathbb R\\) such that\n\\[\n(2,3) = a X + b Y = a (1,1) + b(1 , -1) = (a , a) + ( b , -b ) = (a + b , a - b).\n\\]\nSo, \\(L\\) can be computed on \\((2,3)\\) if and only if the following system has a solution:\n\\[\n\\begin{aligned}\n2 =& a + b ,\\\\\n3 =& a - b\n\\end{aligned}.\n\\]\nWe can solve this system (solving for, say, \\(a\\) in the first and substituting the value in the second). We find that there is only one solution: \\(a = \\frac{5}{2} , b= -\\frac{1}{2}\\).\nUsing this information, how do we compute \\(L(2,3)\\)? Well, now we know that\n\\[\n(2,3) = \\frac{5}{2} (1 , 1) + \\left( -\\frac{1}{2} \\right) (1,-1)\n\\]\nso let’s just apply the function \\(L\\) to both sides of this equation:\n\\[\n\\begin{aligned}\nL(2,3) =& L \\left[ \\frac{5}{2} (1 , 1) + \\left( -\\frac{1}{2} \\right) (1,-1) \\right] \\\\\n=& L \\left[ \\frac{5}{2} (1 , 1) \\right] + L \\left[ \\left( -\\frac{1}{2} \\right) (1,-1) \\right] \\\\\n=& \\frac{5}{2} L   (1 , 1) + \\left( -\\frac{1}{2} \\right) L  (1,-1) \\\\\n=& \\frac{5}{2} 1 + \\left( -\\frac{1}{2} \\right) (-2) \\\\\n=& \\frac{5}{2}  + 1\\\\\n=& \\frac{7}{2}\n\\end{aligned}\n\\]\n\nExercise 3.2 For each \\(=\\)-symbol in the computation above, write the assumption, property, or rule that tells us we are allowed to conclude the left hand side is equal to the right hand side.\n\nThe above computation shows that the answer to our question is yes, this amount of information about \\(L\\) is sufficient to compute \\(L(2,3)\\). Notice that this is the case even though we were not given the formula for \\(L\\).\nYou may want to convince yourself that the vector \\((2,3)\\) above was not special; given the information we have about \\(L\\), we can compute \\(L(k,l)\\) for any \\((k,l) \\in \\mathbb R^2\\).\n\nExercise 3.3 If we know that \\(L : \\mathbb R^2 \\to \\mathbb R\\) is linear and that\n\\[\nL(0,1) = 1 , \\quad L(0,2) = -6,\n\\]\ncan we compute \\(L(1,2)\\)? If yes, compute it. If no, why not?\n\n\nExercise 3.4 If we know that \\(L : \\mathbb R^2 \\to \\mathbb R\\) is linear and that\n\\[\nL(0,1) = 2 , \\quad L(1,1) = 2,\n\\]\ncan we compute \\(L(1,2)\\)? If yes, compute it. If no, why not?\n\n\nLinear combinations\nThe trick to computing \\(L(2,3)\\) in the previous section was to rewrite \\((2,3)\\) in the form\n\\[\n(2,3) = a (1,1) + b(1 , -1).\n\\]\nThis is a good ansatz[^1] because we are able to split over the \\(+\\) and pull the \\(a\\) and \\(b\\) out (using the fact that \\(L\\) is linear). [^1]: This is a German word that, in math, means a guess with some free parameters (in this case, \\(a\\) and \\(b\\)) in it. We compute with this guess, and then later find values of the parameters that make the computation valid. This pattern is so common when working with linear functions that we have a name for it:\n\nDefinition 3.1 If \\(X_1, X_2 , \\ldots , X_n\\) is a collection of vectors in the vector space \\(V\\), then any expression of the form\n\\[\na_1 X_1 + a_2 X_2 + \\cdots + a_n X^n, \\quad a_i \\in F\n\\]\nis called a linear combination of \\(X_1, X_2 , \\ldots , X_n\\).\n\nWe then have the following generalization of the computation we did in the example above:\n\nTheorem 3.1 Let \\(L: A \\to B\\) be linear, and suppose we know the value of \\(L\\) on a set of vectors \\(X_1 ,  X_2 , \\ldots , X_n \\in A\\). That is,\n\\[\n\\begin{aligned}\nL(X_1) =& Y_1 \\\\\nL(X_2) =& Y_2 \\\\\n\\vdots & \\\\\nL(X_n) =& Y_n\n\\end{aligned}\n\\]\nfor some \\(Y_i \\in B\\).\nThen the value of \\(L\\) is known on any linear combination of \\(X_1 ,  X_2 , \\ldots , X_n\\).\n\nThe proof of this theorem is a straightforward application of properties 1 and 2 of linear functions. You might try to generate the justification yourself.\n\n\nThe span of a set of vectors\n[TODO]\n\n\nLinear independence\n[TODO]\n\n\nA basis for a vector space\n[TODO]",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Bases</span>"
+    ]
+  },
+  {
+    "objectID": "bases.html#subspaces",
+    "href": "bases.html#subspaces",
+    "title": "3  Bases",
+    "section": "Subspaces",
+    "text": "Subspaces\n[TODO]",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Bases</span>"
+    ]
+  },
+  {
+    "objectID": "bases.html#applying-linear-functions-using-basis-representation",
+    "href": "bases.html#applying-linear-functions-using-basis-representation",
+    "title": "3  Bases",
+    "section": "Applying linear functions using basis-representation",
+    "text": "Applying linear functions using basis-representation\n[TODO]",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Bases</span>"
+    ]
+  },
+  {
+    "objectID": "bases.html#other-bases",
+    "href": "bases.html#other-bases",
+    "title": "3  Bases",
+    "section": "Other bases",
+    "text": "Other bases\n[TODO]",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Bases</span>"
+    ]
+  },
+  {
+    "objectID": "bases.html#dimension",
+    "href": "bases.html#dimension",
+    "title": "3  Bases",
+    "section": "Dimension",
+    "text": "Dimension\n[TODO]",
+    "crumbs": [
+      "Vector Spaces",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Bases</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Axler, Sheldon. 2024. Linear Algebra Done Right. Undergraduate\nTexts in Mathematics. Springer, Cham. https://doi.org/10.1007/978-3-031-41026-0.",
+    "text": "Axler, Sheldon. 2024. Linear Algebra Done Right. Undergraduate\nTexts in Mathematics. Springer, Cham. https://doi.org/10.1007/978-3-031-41026-0.\n\n\nDummit, David S., and Richard M. Foote. 2004. Abstract Algebra.\nThird. John Wiley & Sons, Inc., Hoboken, NJ.",
     "crumbs": [
       "References"
     ]
