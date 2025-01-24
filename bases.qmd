@@ -1,12 +1,254 @@
 # Bases
 
-[TODO]
+Remember that the derivative function $D(f) := \frac{df}{dx}$ allows us to compute the derivative of, for example
+
+$$
+f(x) = x^2 + 4 \sin x
+$$
+
+if we know how to compute $D$ on only $x^2$ and $\sin x$.
+In fact, knowing just how to compute $D$ on these two functions and knowing that $D$ is linear allows us to compute the derivative of any function of the form
+
+$$
+x \mapsto a x^2 + b \sin x , \quad a,b \in \mathbb R.
+$$
+
+::: {.callout-tip title="Notation"}
+
+We just introduced the notation $\mapsto$.
+This is a mathematician's way of referring to a function without giving it a name.
+
+As an example both of
+
+$$
+x \mapsto x^2 \quad \text{and} \quad f(x) = x^2
+$$
+
+are the same function.
+On the right, we choose to give the function a name "$f$".
+On the left, we describe the function by saying how inputs are transformed into outputs, but we don't give it a name.
+The function on the left is just "the function that squares its input".
+It doesn't have a name, so this is called an *anonymous function*.
+
+Mathematicians use an anonymous function when they won't want to refer to a function again later, and so have no need of giving it a name.
+If you'll want to refer to a function later, it's useful to give it a name when you define it, so you'll write $f(x)= x^2$ (or use some other letter if $f$ is already used for something else).
+
+This pattern also shows up in computer science, although they often call anonymous functions *lambdas* and instead of writing $x \mapsto x^2$ they will write `λx.x^2` or `fun x => x^2` or some variation thereof.
+
+:::
+
+From a very small amount of information, we actually know a lot about $D$.
+Thus, we begin this chapter straightforwardly with a question, which is the title of the next section:
 
 ## What is the minimal amount of information needed to unambiguously describe a linear function?
 
+Consider the following example:
+
+Assume that $L : P_2 \to P_0$ is linear and that
+
+$$
+L(x^2 + 3x) = 4.
+$$
+
+Can we determine $L$ on every element of $P_2$?
+That is, can we compute
+
+$$
+L(a x^2 + b x + c)?
+$$
+
+Let's try our best.
+We would like to isolate a term that looks like $x^2 + 3x$ because that is something we have information about.
+
+$$
+\begin{aligned}
+L(a x^2 + b x + c)=& L(a x^2 + b x)  + L(c) \quad &\text{by property 1} \\
+=& L\left(a \left[ x^2 + \frac{b}{a} x \right] \right)  + L(c) \quad &\text{assuming } a \ne 0 \\
+=& a L\left( x^2 + \frac{b}{a} x \right)  + L(c) &\quad \text{by property 2}  \end{aligned}
+$$
+
+then we are basically stuck.
+Although we can force $x^2$ to show up, we can't *at the same time* force $3x$ to show up; forcing a coefficient of $1$ on $x^2$ will always effect the coefficient of $x$.
+Furthermore, we have no information about how to deal with $L(c)$.
+
+So, in this case, knowing that $L$ is linear and knowing its value on *one* input is insufficient.
+
+::: {#exr-p2-basis}
+
+In the example above, is it enough to know that 
+$$
+\begin{aligned}
+L(x^2) =& 1 , \\
+L(x) =& 1 ,
+\end{aligned}
+$$
+
+to be able to determine $L$ on all of $P_2$?
+
+What if we know 
+$$
+\begin{aligned}
+L(x^2) =& 1 , \\
+L(x) =& 1 ,\\
+L(1) =& -2 
+\end{aligned}?
+$$
+
+:::
+
+## Writing vectors relative to a set of vectors
+
+Let $X,Y \in \mathbb R^2$ be given by $X:= (1,1)$ and $Y:= (1,-1)$.
+Suppose $L : \mathbb R^2 \to \mathbb R$ is linear and also that we know
+$$
+\begin{aligned}
+L(X) =&  1, \\
+L(Y) =&  -2 
+\end{aligned}.
+$$
+
+Can we compute $L$ on the vector $(2,3)$?
+If the answer to this question were yes then there would have to be a way to express $(2,3)$ in terms of $X$ and $Y$ (since those are the only two values we know anything about).
+That is, there would be $a,b \in \mathbb R$ such that
+
+$$
+(2,3) = a X + b Y = a (1,1) + b(1 , -1) = (a , a) + ( b , -b ) = (a + b , a - b).
+$$
+
+So, $L$ can be computed on $(2,3)$ if and only if the following system has a solution:
+
+$$
+\begin{aligned}
+2 =& a + b ,\\
+3 =& a - b
+\end{aligned}.
+$$
+
+We can solve this system (solving for, say, $a$ in the first and substituting the value in the second).
+We find that there is only one solution: $a = \frac{5}{2} , b= -\frac{1}{2}$.
+
+Using this information, how do we compute $L(2,3)$?
+Well, now we know that
+
+$$
+(2,3) = \frac{5}{2} (1 , 1) + \left( -\frac{1}{2} \right) (1,-1)
+$$
+
+so let's just apply the function $L$ to both sides of this equation:
+
+$$
+\begin{aligned}
+L(2,3) =& L \left[ \frac{5}{2} (1 , 1) + \left( -\frac{1}{2} \right) (1,-1) \right] \\
+=& L \left[ \frac{5}{2} (1 , 1) \right] + L \left[ \left( -\frac{1}{2} \right) (1,-1) \right] \\
+=& \frac{5}{2} L   (1 , 1) + \left( -\frac{1}{2} \right) L  (1,-1) \\
+=& \frac{5}{2} 1 + \left( -\frac{1}{2} \right) (-2) \\
+=& \frac{5}{2}  + 1\\
+=& \frac{7}{2}
+\end{aligned}
+$$
+
+::: {#exr-lin-example-justification}
+
+For each $=$-symbol in the computation above, write the assumption, property, or rule that tells us we are allowed to conclude the left hand side is equal to the right hand side.
+
+:::
+
+The above computation shows that the answer to our question is yes, this amount of information about $L$ is sufficient to compute $L(2,3)$.
+Notice that this is the case even though we were not given the formula for $L$.
+
+You may want to convince yourself that the vector $(2,3)$ above was not special; given the information we have about $L$, we can compute $L(k,l)$ for any $(k,l) \in \mathbb R^2$.
+
+::: {#exr-lin-nonexample}
+
+If we know that $L : \mathbb R^2 \to \mathbb R$ is linear and that
+
+$$
+L(0,1) = 1 , \quad L(0,2) = -6,
+$$
+
+can we compute $L(1,2)$?
+If yes, compute it.
+If no, why not?
+
+:::
+
+::: {#exr-lin-example}
+
+
+If we know that $L : \mathbb R^2 \to \mathbb R$ is linear and that
+
+$$
+L(0,1) = 2 , \quad L(1,1) = 2,
+$$
+
+can we compute $L(1,2)$?
+If yes, compute it.
+If no, why not?
+
+:::
+
+### Linear combinations
+
+The trick to computing $L(2,3)$ in the previous section was to rewrite $(2,3)$ in the form
+
+$$
+(2,3) = a (1,1) + b(1 , -1).
+$$
+
+This is a good ansatz[^1] because we are able to split over the $+$ and pull the $a$ and $b$ out (using the fact that $L$ is linear).
+[^1]: This is a German word that, in math, means a guess with some free parameters (in this case, $a$ and $b$) in it. We compute with this guess, and then later find values of the parameters that make the computation valid.
+This pattern is so common when working with linear functions that we have a name for it:
+
+::: {#def-linear-combination}
+
+If $X_1, X_2 , \ldots , X_n$ is a collection of vectors in the vector space $V$, then any expression of the form
+
+$$
+a_1 X_1 + a_2 X_2 + \cdots + a_n X^n, \quad a_i \in F
+$$
+
+is called a *linear combination* of $X_1, X_2 , \ldots , X_n$.
+
+:::
+
+We then have the following generalization of the computation we did in the example above:
+
+::: {#thm-linear-function-sufficiency-1}
+
+Let $L: A \to B$ be linear, and suppose we know the value of $L$ on a set of vectors $X_1 ,  X_2 , \ldots , X_n \in A$.
+That is, 
+
+$$
+\begin{aligned}
+L(X_1) =& Y_1 \\
+L(X_2) =& Y_2 \\
+\vdots & \\
+L(X_n) =& Y_n 
+\end{aligned}
+$$
+
+for some $Y_i \in B$.
+
+Then the value of $L$ is known on any linear combination of $X_1 ,  X_2 , \ldots , X_n$.
+
+:::
+
+The proof of this theorem is a straightforward application of properties 1 and 2 of linear functions.
+You might try to generate the justification yourself.
+
+### The span of a set of vectors
+
 [TODO]
 
-## Writing inputs relative to basis
+### Linear independence
+
+[TODO]
+
+### A basis for a vector space
+
+[TODO]
+
+## Subspaces
 
 [TODO]
 

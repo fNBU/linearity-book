@@ -25,8 +25,8 @@ book:
     - part: "Vector Spaces"
       chapters:
       - what-is-linearity.qmd
-    #   - bases.qmd
-    #   - the-notion-of-a-vector-space.qmd
+      - the-notion-of-a-vector-space.qmd
+      - bases.qmd
     #   - vector-spaces-isomorphic-to-euclidean-space.qmd
     #   - ways-of-writing-vectors.qmd
     #   - ways-of-writing-linear-maps.qmd
