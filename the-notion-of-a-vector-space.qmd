@@ -60,12 +60,14 @@ All of the properties above hold (with the field of scalars $F$ set to $\mathbb 
 
 Not all sets of mathematical objects satisfy these properties, though.
 An example is the set of points on the sphere.
-It turns out that there is no way (all the proof is hard) to turn that set into a vector space.
+It turns out that there is no way (although the proof is hard) to turn that set into a vector space.
 
 The way you should think about this definition is the following:
 
 - a set $A$ satisfying all of the properties in @def-vector-space **may** be used as the domain or codomain of a linear function, but
-- a set $A$ that fails to satisfy any of the properties above **can never be used** as the domain or codomain of a linear function. If you tried to use it in this way, you would eventually run into statements that make no sense.
+- a set $A$ that fails to satisfy any of the properties above **can never be used** as the domain or codomain of a linear function. If you tried to use it in this way, you would eventually run into statements that make no sense.[^ring-note]
+
+[^ring-note]: It is the case that some maps between spaces that are weaker than vector spaces have defining properties 1 and 2. The spaces are a generalization of vector spaces called [modules](https://en.wikipedia.org/wiki/Module_(mathematics)) and the maps are called [module homomorphisms](https://en.wikipedia.org/wiki/Module_homomorphism). If you look at the definition of module homomorphism on wikipedia, you'll see the same two equations we used to define linear functions.
 
 An example of the kind of problem you can run into is the following: Let $L:A \to B$ be linear and suppose $A$ is a vector space as defined above but that $B$ fails to have an additive identity (there is no zero vector in $B$).
 We can compute
@@ -148,7 +150,7 @@ In case you are interested, the full definition of a field can be found on [Wiki
 A field that you already know about, but that is not $\mathbb R$ or $\mathbb C$ is the field of rational numbers:
 
 $$
-\mathbb Q := \left\{ \left. \frac{a}{b}  \right| a,b \in \mathbb R ,  b \ne 0  \right\}.
+\mathbb Q := \left\{ \left. \frac{a}{b}  \right| a,b \in \mathbb Z ,  b \ne 0  \right\}.
 $$
 
 There are esoteric examples of fields, and also algebraic structures stranger than fields.
