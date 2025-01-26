@@ -2,4 +2,22 @@
 
 These are notes for a first course in Linear Algebra.
 
+::: {.content-visible when-format="html"}
+
+<!-- This section is only rendered in in the HTML output. -->
+
 The PDF version of these notes can be fount at [https://fnbu.pw/linearity-book/Linearity.pdf](https://fnbu.pw/linearity-book/Linearity.pdf).
+
+:::
+
+::: {.content-visible when-format="pdf"} 
+
+<!-- This section is only rendered in the PDF. -->
+
+## License
+
+This book is copyright (2025) Adam Layne ([https://fnbu.pw/](https://fnbu.pw/)) and is released under CC BY 4.0 ([https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1)).
+
+The source code ([https://github.com/fnbu/linearity-book](https://github.com/fnbu/linearity-book)) generating this book is provided under the MIT License ([https://github.com/fNBU/linearity-book/blob/release/LICENSE](https://github.com/fNBU/linearity-book/blob/release/LICENSE)).
+
+:::
