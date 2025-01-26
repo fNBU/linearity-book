@@ -2,7 +2,7 @@
 
 If $L : A \to B$ is linear, what must be true about $A$ and $B$?
 
-Let's go back to the definition of of a linear function.
+Let's go back to the definition of a linear function.
 A function is linear if and only if it satisfies the following two properties:
 
 $$
@@ -113,7 +113,7 @@ Check that $\mathbb C$ can be thought of as a vector space with field of scalars
 
 ::: {#def-polynomial-space}
 
-Let $P_n$ be the 
+Let $P_n$ be the set (which we mentioned informally in the previous chapter)
 
 $$
 \left\{ a_{n} x^n + a_{n-1} x^n + \cdots + a_1 x + a_0 \mid a_n , a_{n-1}, \ldots , a_1 , a_0 \in \mathbb R \right\}.
@@ -155,7 +155,7 @@ $$
 
 There are esoteric examples of fields, and also algebraic structures stranger than fields.
 If this is interesting to you, you might try to take a course in Abstract Algebra.
-I learned this topic from @dummit-foote.
+I learned this topic from Liz Stanhope and @dummit-foote.
 
 In computing, real numbers (which do form a field) are often represented by 32 or 64 bit floating point numbers.
 It is perhaps interesting to know that floating point numbers (in any number of bits) (which are encountered **often** in the wild) do not form a field because addition of floating point numbers is not associative.
