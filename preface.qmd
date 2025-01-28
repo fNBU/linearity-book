@@ -14,7 +14,7 @@ These notes are constructed to vindicate the following objectives:
 
 1.  
     It is morally right for course materials to be free.
-    Few existing books on this subject in English satisfy this criterion. 
+    Few existing books on this subject in English satisfy this criterion (eg @hefferon is GFDL or CC BY-SA 3.0 US, @treil is  CC BY-NC-ND 3.0 with source unavailable). 
     This book, and the source used to generate it are freely available with a permissive license.
 
 1.  
@@ -36,7 +36,10 @@ These notes are constructed to vindicate the following objectives:
     They traditionally begin with coordinate geometry or solving systems of linear equations. 
     It is a very mathematicians' way of thinking to motivate study of a topic by identifying a class of equations and asking "How do we solve them? What properties do they have?" 
     This is not a way of thinking that is useful for people encountering linearity in the wild. 
-    @axler is an example of an open text that properly emphasizes this aspect from the beginning, but is not suitable for a class where students have not yet learned proofs.
+    
+    Many advanced undergraduate books like @axler begin with the definition of a vector space.
+    It is also a very mathematician's way of thiking to begin with a definition of a set of objects which will be mapped into or out of (viz. most treatments of Abstract Algebra).
+    To talk about maps (which are really the objects of interest), *surely* we must first talk about (co)domains!
 
     Coordinate geometry is, at least, a class of real problems where linear techniques naturally arise, but the relevance of this as an example from "the wild" has basically vanished in the last 70 years.
     Today's scientists and engineers are more likely to encounter linearity in optimization, data science, machine learning, or numerical PDEs.
