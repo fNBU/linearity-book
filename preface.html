@@ -61,8 +61,8 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-ca80a785959aa3106eea590d00a8e12e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-a0641ef8e0de3485004944ea44cde210.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-4827ddcd61b679de51c8630bc5e3bdc6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -277,12 +277,13 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="the-perspective-of-these-notes">The perspective of these notes</h2>
 <p>These notes are constructed to vindicate the following objectives:</p>
 <ol type="1">
-<li><p>It is morally right for course materials to be free. Few existing books on this subject in English satisfy this criterion. This book, and the source used to generate it are freely available with a permissive license.</p></li>
+<li><p>It is morally right for course materials to be free. Few existing books on this subject in English satisfy this criterion (eg <span class="citation" data-cites="hefferon">Hefferon (<a href="references.html#ref-hefferon" role="doc-biblioref">2022</a>)</span> is GFDL or CC BY-SA 3.0 US, <span class="citation" data-cites="treil">Treil (<a href="references.html#ref-treil" role="doc-biblioref">2024</a>)</span> is CC BY-NC-ND 3.0 with source unavailable). This book, and the source used to generate it are freely available with a permissive license.</p></li>
 <li><p>In practice, scientists, engineers, etc. need to be able to recognize linearity so that they may choose the correct solution techniques. They also need to understand why linear problems are preferable to non-linear ones so that they might try to massage their current problem into a linear one.</p></li>
 <li><p>When we say “solution techniques” as above, 99% of the time we mean software packages. Mathematicians and physicists teach linear algebra techniques in colleges and universities, and emphasize by-hand solution techniques for historical and cultural reasons. Most working people who encounter such problems do not use such techniques, they recognize that their problem is linear and offload the problem to a software package. Mathematicians and physicists generally get a second pass at learning linear algebra in a more theory-heavy context (at the very least when learning modules), and so do not need that approach in a first course.</p></li>
 <li><p>The usefulness of linear algebra techniques stems wholly from the homomorphism property of linear maps:</p>
 <p><span class="math display">\[ L(a V + b W) = a L(V) + b L(W) \]</span></p>
-<p>No introductory, open-access, English language books on the topic that I am aware of motivate the study of the subject with this point. They traditionally begin with coordinate geometry or solving systems of linear equations. It is a very mathematicians’ way of thinking to motivate study of a topic by identifying a class of equations and asking “How do we solve them? What properties do they have?” This is not a way of thinking that is useful for people encountering linearity in the wild. <span class="citation" data-cites="axler">Axler (<a href="references.html#ref-axler" role="doc-biblioref">2024</a>)</span> is an example of an open text that properly emphasizes this aspect from the beginning, but is not suitable for a class where students have not yet learned proofs.</p>
+<p>No introductory, open-access, English language books on the topic that I am aware of motivate the study of the subject with this point. They traditionally begin with coordinate geometry or solving systems of linear equations. It is a very mathematicians’ way of thinking to motivate study of a topic by identifying a class of equations and asking “How do we solve them? What properties do they have?” This is not a way of thinking that is useful for people encountering linearity in the wild.</p>
+<p>Many advanced undergraduate books like <span class="citation" data-cites="axler">Axler (<a href="references.html#ref-axler" role="doc-biblioref">2024</a>)</span> begin with the definition of a vector space. It is also a very mathematician’s way of thiking to begin with a definition of a set of objects which will be mapped into or out of (viz.&nbsp;most treatments of Abstract Algebra). To talk about maps (which are really the objects of interest), <em>surely</em> we must first talk about (co)domains!</p>
 <p>Coordinate geometry is, at least, a class of real problems where linear techniques naturally arise, but the relevance of this as an example from “the wild” has basically vanished in the last 70 years. Today’s scientists and engineers are more likely to encounter linearity in optimization, data science, machine learning, or numerical PDEs.</p></li>
 </ol>
 <p>So, for these reasons, I set out to write my own course notes.</p>
@@ -291,6 +292,12 @@ window.Quarto = {
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-axler" class="csl-entry" role="listitem">
 Axler, Sheldon. 2024. <em>Linear Algebra Done Right</em>. Undergraduate Texts in Mathematics. Springer, Cham. <a href="https://doi.org/10.1007/978-3-031-41026-0">https://doi.org/10.1007/978-3-031-41026-0</a>.
+</div>
+<div id="ref-hefferon" class="csl-entry" role="listitem">
+Hefferon, Jim. 2022. <em>Linear Algebra</em>. Fourth Ed. <a href="https://hefferon.net/linearalgebra/">https://hefferon.net/linearalgebra/</a>.
+</div>
+<div id="ref-treil" class="csl-entry" role="listitem">
+Treil, Sergei. 2024. <em>Linear Algebra Done Wrong</em>. <a href="https://sites.google.com/a/brown.edu/sergei-treil-homepage/linear-algebra-done-wrong">https://sites.google.com/a/brown.edu/sergei-treil-homepage/linear-algebra-done-wrong</a>.
 </div>
 </div>
 </section>

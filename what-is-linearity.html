@@ -41,8 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-ca80a785959aa3106eea590d00a8e12e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-a0641ef8e0de3485004944ea44cde210.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-4827ddcd61b679de51c8630bc5e3bdc6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -266,11 +266,6 @@ Notation
 <div class="callout-body-container callout-body">
 <p>First, let’s talk about this notation.</p>
 <p>The notation <span class="math inline">\(C : \mathbb R \to \mathbb R\)</span> tells you about the inputs and outputs of the function <span class="math inline">\(C.\)</span> When we write <span class="math inline">\(f : A \to B\)</span>, we mean that <span class="math inline">\(f\)</span> takes inputs from the set <span class="math inline">\(A\)</span> and creates outputs in the set <span class="math inline">\(B\)</span>. You can think of <span class="math inline">\(f\)</span> as a machine transforming <span class="math inline">\(A\)</span>s into <span class="math inline">\(B\)</span>s.</p>
-<!-- :::
-
-::: {#rem-function-colon}
-
-## $:=$ notation -->
 <p>The notation <span class="math inline">\(C(r) := 2 \pi r\)</span> tells you that the <em>definition</em> of the function <span class="math inline">\(C\)</span> appears here. This is to avoid confusion like the following:</p>
 <p><span class="math display">\[ f(x) = x^2 \]</span></p>
 <p>If the function <span class="math inline">\(f\)</span> hasn’t appeared before, then this equation is probably a definition. But if we wrote “Given <span class="math inline">\(f(x) = x - 2\)</span>, solve the equation <span class="math inline">\(f(x) = x^2\)</span>”, then the same equation is not a definition. To avoid this ambiguity, when we write an equals sign with a colon on one side like this <span class="math inline">\(A := B\)</span> or <span class="math inline">\(B =: A\)</span>, we mean that the name on the side of the <span class="math inline">\(=\)</span> <em>with</em> the colon is defined to be the expression on the side without.</p>
@@ -310,7 +305,7 @@ C(14) &amp;= 2 \pi (14) = 28 \pi
 <p><span class="theorem-title"><strong>Exercise 1.2</strong></span> Can you think of any shape in the plane whose area (as a function of scaling) satisfies properties 1 and 2? If yes, which? If no, why not?</p>
 </div>
 <div id="exr-volume" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1.3</strong></span> Can you think of any shape in the 3-dimensional space whose <em>volume</em> (as a function of scaling) satisfies properties 1 and 2? If yes, which? If no, why not?false</p>
+<p><span class="theorem-title"><strong>Exercise 1.3</strong></span> Can you think of any shape in the 3-dimensional space whose <em>volume</em> (as a function of scaling) satisfies properties 1 and 2? If yes, which? If no, why not?</p>
 </div>
 <section id="classification-of-functions-satisfying-properties-1-and-2" class="level3">
 <h3 class="anchored" data-anchor-id="classification-of-functions-satisfying-properties-1-and-2">Classification of functions satisfying Properties 1 and 2</h3>
@@ -363,13 +358,28 @@ Notation
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>We introduced a symbol above: <span class="math inline">\(\in\)</span>. This literally means “in” or “is in” depending on context.</p>
+<p>For example, <span class="math inline">\(\pi \in \mathbb R\)</span> means “pi is in the real numbers”.</p>
+<p>Sometimes we will want to list the set first, like <span class="math inline">\(\mathbb R \ni \pi\)</span>. In this case we read it as “the real numbers contain pi.”</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Notation
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>When we want to refer to a set, we will often use notation like the following:</p>
 <p><span class="math display">\[
-\left\{ (x,y) \in \mathbb R^2 \mid x = r \cos \theta , y = r \sin \theta , \theta \in [0,2\pi] \right\}.
+\left\{ (x,y) \in \mathbb R^2 \left| \begin{aligned} x =&amp; r \cos \theta \\ y =&amp; r \sin \theta \end{aligned} \quad, \theta \in [0,2\pi] \right. \right\}.
 \]</span></p>
 <p>In general, this notation has the form</p>
 <p><span class="math display">\[
-B=\left\{ f(x_1,x_2,...) \in A \mid \text{ constraints involving } x_1,x_2,... \right\}.
+B=\left\{ f(x_1,x_2,...) \in A \left| \begin{aligned} &amp; \text{ constraints involving }  \\ &amp; x_1,x_2,... \end{aligned} \right. \right\}.
 \]</span></p>
 <p>The process for constructing the set <span class="math inline">\(B\)</span> is the following:</p>
 <ol type="1">
@@ -401,25 +411,12 @@ S_2((4,2)) = (8,4).
 \]</span></p>
 <p>its length can be computed by</p>
 <p><span class="math display">\[
-L=\int _{a}^{b}{\sqrt {x'(t)^{2}+y'(t)^{2}}} \quad dt.
+\int _{a}^{b}{\sqrt {x'(t)^{2}+y'(t)^{2}}} \quad dt.
 \]</span></p>
 <p>(You may have seen this in multivariable calculus or physics.) Consider the composition</p>
 <p><span class="math display">\[
 [a,b] \xrightarrow{\quad \gamma \quad} \mathbb R^2 \xrightarrow{\quad S_2 \quad} \mathbb R^2
 \]</span></p>
-<!-- still trying to get the tikz diagram below to compile -->
-<!-- ```{.tikz}
-%%| filename: scaling-composition
-
-\usetikzlibrary{matrix}
-\begin{tikzpicture}[scale=2]
-  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em]
-  {
-     [a,b] & \mathbb R^2 \\};
-  \path[-stealth]
-    (m-1-1) edge node [above] {$\gamma$} (m-1-2);
-\end{tikzpicture}
-``` -->
 <p>The formula is</p>
 <p><span class="math display">\[
 ( S_2 \circ \gamma )(x) =  ( 2 x(t) , 2 y(t) )
@@ -427,7 +424,7 @@ L=\int _{a}^{b}{\sqrt {x'(t)^{2}+y'(t)^{2}}} \quad dt.
 <p>and the length is given by</p>
 <p><span class="math display">\[
 \begin{aligned}
-L=&amp;\int _{a}^{b}{\sqrt {\left(\left[2x(t)\right]'\right)^{2}+\left(\left[2y(t)\right]'\right)^{2}}} \quad dt \\
+&amp;\int _{a}^{b}{\sqrt {\left(\left[2x(t)\right]'\right)^{2}+\left(\left[2y(t)\right]'\right)^{2}}} \quad dt \\
 =&amp;\int _{a}^{b}{\sqrt {\left(2x'(t)\right)^{2}+\left(2y'(t)\right)^{2}}} \quad dt \\
 =&amp;\int _{a}^{b}{\sqrt {4\left(x'(t)\right)^{2}+4\left(y'(t)\right)^{2}}} \quad dt \\
 =&amp;\int _{a}^{b}{2\sqrt {\left(x'(t)\right)^{2}+\left(y'(t)\right)^{2}}} \quad dt \\
@@ -452,7 +449,7 @@ L=&amp;\int _{a}^{b}{\sqrt {\left(\left[2x(t)\right]'\right)^{2}+\left(\left[2y(
 <p><span class="math display">\[ D[f_1(x) + f_2(x)] = D[f_1(x)] + D[f_2(x)] \]</span></p>
 <p>and in the second line we used the fact that, when <span class="math inline">\(k\)</span> is constant,</p>
 <p><span class="math display">\[ D[k f(x)] = k D[f(x)]. \]</span></p>
-<p>Thus, <span class="math inline">\(D\)</span> (that is, differentiation) satisfies properties 1 and 2. (Although you should probably be uncomfortable that we wrote <span class="math inline">\(D : \text{FUNCTIONS} \to \text{FUNCTIONS}\)</span> above. What is the set <span class="math inline">\(\text{FUNCTIONS}\)</span>? Are all functions differentiable? We will address this later. For now, it suffices to replace <span class="math inline">\(\text{FUNCTIONS}\)</span> above with <span class="math inline">\(P_n\)</span>, the set of all polynomials of degree <span class="math inline">\(n\)</span>. In fact, it is the case that <span class="math inline">\(D : P_n \to P_{n-1}\)</span> if <span class="math inline">\(n\geq 1\)</span>.)</p>
+<p>Thus, <span class="math inline">\(D\)</span> (that is, differentiation) satisfies properties 1 and 2. (Although you should probably be uncomfortable that we wrote <span class="math inline">\(D : \text{FUNCTIONS} \to \text{FUNCTIONS}\)</span> above. What is the set <span class="math inline">\(\text{FUNCTIONS}\)</span>? Are all functions differentiable? We will address this later. For now, it suffices to replace <span class="math inline">\(\text{FUNCTIONS}\)</span> above with <span class="math inline">\(P_n\)</span>, the set of all polynomials of degree at most <span class="math inline">\(n\)</span>. In fact, it is the case that <span class="math inline">\(D : P_n \to P_{n-1}\)</span> if <span class="math inline">\(n\geq 1\)</span>.)</p>
 </section>
 <section id="definite-integration" class="level5">
 <h5 class="anchored" data-anchor-id="definite-integration">Definite integration</h5>
@@ -465,7 +462,7 @@ I(f) := \int_a^b f(x) \quad dx.
 </section>
 </section>
 <section id="why-are-properties-1-and-2-useful" class="level4">
-<h4 class="anchored" data-anchor-id="why-are-properties-1-and-2-useful">Why are properties 1 and 2 useful</h4>
+<h4 class="anchored" data-anchor-id="why-are-properties-1-and-2-useful">Why are properties 1 and 2 useful?</h4>
 <p>Why is it useful that <span class="math inline">\(D\)</span> satisfies properties 1 and 2? It allows us to compute derivatives of complicated expressions like <span class="math inline">\(2x^2 + x\)</span> if we only know the computation on some simple parts of the expression. Knowing the derivative of <span class="math inline">\(x^2\)</span> and <span class="math inline">\(x\)</span> is all that is needed.</p>
 <p>Similarly, if we know the circumference of a shape in the plane at one scale, we can compute its circumference at all scales using property 1.</p>
 <p>Not all functions are linear, but if a function is linear, it is much easier to compute with.</p>

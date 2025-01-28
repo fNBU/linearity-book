@@ -61,8 +61,8 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-ca80a785959aa3106eea590d00a8e12e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-a0641ef8e0de3485004944ea44cde210.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-4827ddcd61b679de51c8630bc5e3bdc6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -244,8 +244,13 @@ window.Quarto = {
   <li><a href="#definition" id="toc-definition" class="nav-link active" data-scroll-target="#definition">Definition</a></li>
   <li><a href="#scalars" id="toc-scalars" class="nav-link" data-scroll-target="#scalars">Scalars</a>
   <ul class="collapse">
-  <li><a href="#abstract-algebra" id="toc-abstract-algebra" class="nav-link" data-scroll-target="#abstract-algebra">Abstract algebra</a></li>
+  <li><a href="#fields" id="toc-fields" class="nav-link" data-scroll-target="#fields">Fields</a></li>
   </ul></li>
+  <li><a href="#subspaces" id="toc-subspaces" class="nav-link" data-scroll-target="#subspaces">Subspaces</a>
+  <ul class="collapse">
+  <li><a href="#easier-subspaces" id="toc-easier-subspaces" class="nav-link" data-scroll-target="#easier-subspaces">Easier subspaces</a></li>
+  </ul></li>
+  <li><a href="#the-space-of-lists-of-length-n" id="toc-the-space-of-lists-of-length-n" class="nav-link" data-scroll-target="#the-space-of-lists-of-length-n">The space of lists of length <span class="math inline">\(n\)</span></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/the-notion-of-a-vector-space.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
@@ -304,10 +309,10 @@ window.Quarto = {
 <li>has a <span class="math inline">\(0\)</span> (an additive identity) which means that <span class="math inline">\(0\)</span> satisfies <span class="math inline">\(0 + X = X\)</span> for all <span class="math inline">\(X \in V\)</span>,</li>
 <li>has negatives (additive inverses) which means that for each <span class="math inline">\(X \in V\)</span> there is an element <span class="math inline">\(Y \in V\)</span> such that <span class="math inline">\(X + Y = 0\)</span> (one can prove that there is only one inverse of <span class="math inline">\(X\)</span>, and this is usually written <span class="math inline">\(-X\)</span>),</li>
 </ul></li>
-<li><span class="math inline">\(V\)</span> is closed under vector addition and scalar multiplication, which means that
+<li>there is a function <span class="math inline">\(\cdot \colon F \times V \to V\)</span>, called <em>scalar multiplication</em> such that
 <ul>
-<li>for every <span class="math inline">\(X,Y \in V\)</span>, <span class="math inline">\(X + Y\)</span> is also in <span class="math inline">\(V\)</span></li>
-<li>for every <span class="math inline">\(a \in F\)</span> and <span class="math inline">\(X \in V\)</span>, <span class="math inline">\(aX\)</span> is also in <span class="math inline">\(V\)</span></li>
+<li>scalar multiplication associates with field multiplication (that is, <span class="math inline">\(\forall a , b \in F, X \in V\)</span> it’s true that <span class="math inline">\((ab)X = a (bX)\)</span>)</li>
+<li>the multiplicative unit in <span class="math inline">\(F\)</span> is a unit for scalar multiplication (that is, <span class="math inline">\(\forall X \in V\)</span> we have <span class="math inline">\(1 X = X\)</span>)</li>
 </ul></li>
 <li>the following distributive laws hold:
 <ul>
@@ -330,14 +335,15 @@ Notation
 <p>So, as an example <span class="math inline">\(x \in P_3 , \forall x \in P_2\)</span> is read as “for all x in the set of second degree polynomials, x is in the set of third degree polynomials”, which is just a wordy way of saying that all second degree polynomials are third degree polynomials.</p>
 </div>
 </div>
+<p>Note that the notation <span class="math inline">\(+ \colon V \times V \to V\)</span> implies that <span class="math inline">\(V\)</span> is, in particular, closed under addition (since <span class="math inline">\(V\)</span> is the conomain of <span class="math inline">\(+\)</span>; addition cannot by definition return an element not in <span class="math inline">\(V\)</span>). Similarly we can conclude that <span class="math inline">\(V\)</span> must be closed under scalar multiplication.</p>
 <p>All of the properties above hold (with the field of scalars <span class="math inline">\(F\)</span> set to <span class="math inline">\(\mathbb R\)</span>) for all the spaces we have used so far as the domain and codomain of a linear function. (You may want to check this for yourself quickly. Most of these facts obviously hold for polynomials, functions, points in <span class="math inline">\(\mathbb R^2\)</span>, and <span class="math inline">\(\mathbb R\)</span> itself. However, one must still check all of them before using a set as the domain or codomain of a linear function.)</p>
-<p>Not all sets of mathematical objects satisfy these properties, though. An example is the set of points on the sphere. It turns out that there is no way (although the proof is hard) to turn that set into a vector space.</p>
+<p>Not all sets of mathematical objects satisfy these properties, though. An example is the set of points on the sphere. It turns out that there is no way (although the proof will have to wait for a future chapter) to turn that set into a vector space.</p>
 <p>The way you should think about this definition is the following:</p>
 <ul>
-<li>a set <span class="math inline">\(A\)</span> satisfying all of the properties in <a href="#def-vector-space" class="quarto-xref">Definition&nbsp;<span>2.1</span></a> <strong>may</strong> be used as the domain or codomain of a linear function, but</li>
+<li>we are <strong>allowed to use</strong> a set <span class="math inline">\(A\)</span> satisfying all of the properties in <a href="#def-vector-space" class="quarto-xref">Definition&nbsp;<span>2.1</span></a> as the domain or codomain of a linear function, but</li>
 <li>a set <span class="math inline">\(A\)</span> that fails to satisfy any of the properties above <strong>can never be used</strong> as the domain or codomain of a linear function. If you tried to use it in this way, you would eventually run into statements that make no sense.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
 </ul>
-<p>An example of the kind of problem you can run into is the following: Let <span class="math inline">\(L:A \to B\)</span> be linear and suppose <span class="math inline">\(A\)</span> is a vector space as defined above but that <span class="math inline">\(B\)</span> fails to have an additive identity (there is no zero vector in <span class="math inline">\(B\)</span>). We can compute</p>
+<p>An example of the kind of problem you can run into is the following: Let <span class="math inline">\(L:A \to B\)</span> be linear and suppose <span class="math inline">\(A\)</span> is a vector space as defined above but that <span class="math inline">\(B\)</span> fails to have an additive identity (that is, there is no zero vector in <span class="math inline">\(B\)</span>). We can compute</p>
 <p><span class="math display">\[
 L(0) = 0L(0) = 0 (?) = 0
 \]</span> where the <span class="math inline">\(?\)</span> stands for whatever <span class="math inline">\(L(0)\)</span> maps to. Notice that in the end, it doesn’t matter because we conclude that <span class="math inline">\(L(0) = 0 \in B\)</span>. But this is nonsensical since we assumed there was no zero vector in <span class="math inline">\(B\)</span>.</p>
@@ -378,22 +384,119 @@ L(0) = 0L(0) = 0 (?) = 0
 P_n := \left\{ a_{n} x^n + a_{n-1} x^n + \cdots + a_1 x + a_0 \mid a_n , a_{n-1}, \ldots , a_1 , a_0 \in \mathbb R \right\}
 \]</span></p>
 <p>look similar, and they give you a hint about how to think of these as vector spaces; in both cases, they are constructed as the sum of things with coefficients in <span class="math inline">\(\mathbb R\)</span>. We will investigate this further in the next chapter.</p>
-<section id="abstract-algebra" class="level3">
-<h3 class="anchored" data-anchor-id="abstract-algebra">Abstract algebra</h3>
+<section id="fields" class="level3">
+<h3 class="anchored" data-anchor-id="fields">Fields</h3>
 <p>In case you are interested, the full definition of a field can be found on <a href="https://en.wikipedia.org/wiki/Field_(mathematics)#Classic_definition">Wikipedia</a>. A field that you already know about, but that is not <span class="math inline">\(\mathbb R\)</span> or <span class="math inline">\(\mathbb C\)</span> is the field of rational numbers:</p>
 <p><span class="math display">\[
 \mathbb Q := \left\{ \left. \frac{a}{b}  \right| a,b \in \mathbb Z ,  b \ne 0  \right\}.
 \]</span></p>
 <p>There are esoteric examples of fields, and also algebraic structures stranger than fields. If this is interesting to you, you might try to take a course in Abstract Algebra. I learned this topic from Liz Stanhope and <span class="citation" data-cites="dummit-foote">Dummit and Foote (<a href="references.html#ref-dummit-foote" role="doc-biblioref">2004</a>)</span>.</p>
 <p>In computing, real numbers (which do form a field) are often represented by 32 or 64 bit floating point numbers. It is perhaps interesting to know that floating point numbers (in any number of bits) (which are encountered <strong>often</strong> in the wild) do not form a field because addition of floating point numbers is not associative.</p>
+</section>
+</section>
+<section id="subspaces" class="level2">
+<h2 class="anchored" data-anchor-id="subspaces">Subspaces</h2>
+<p>We have seen in this chapter that if you want to do something with a linear function, you better check first that its domain and codomain are vector spaces. It’s quite a lengthy process to verify all the properties in <a href="#def-vector-space" class="quarto-xref">Definition&nbsp;<span>2.1</span></a>, even if in many cases it is not difficult to verify each one individually. We are in need of machines that allow us to know that something is a vector space more easily. That is what this and the next section are about.</p>
+<p>How do we know that a set <span class="math inline">\(W \subset V\)</span> is a vector space?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Notation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Above, we used the symbol <span class="math inline">\(\subset\)</span>. This just means “is a sub set of”, for example <span class="math inline">\(\mathbb Z \subset \mathbb Q\)</span> means “the set of integers is a subset of the set of rational numbers.”</p>
+<p>When we say “A is a subset of B” or, equivalently write <span class="math inline">\(A \subset B\)</span>, we mean that everything in <span class="math inline">\(A\)</span> is also in <span class="math inline">\(B\)</span>.</p>
+<p>We will sometimes write <span class="math inline">\(A \supset B\)</span> to mean that <span class="math inline">\(B\)</span> is a subset of <span class="math inline">\(A\)</span> or that “A has B as a subset.”</p>
+</div>
+</div>
+<p>We’ve already seen some examples of this. For example, we know that differentiable functions form a vector space, and also the set <span class="math inline">\(P_n\)</span> forms a vector space. Since every polynomial is differentiable, it follows that <span class="math inline">\(P_n \subset \{ \text{differentiable functions}\}\)</span>. So <span class="math inline">\(P_n\)</span> is an example of a subset of a vector space that turns out to be a vector space itself.</p>
+<p>Let’s introduce some terminology for this situation.</p>
+<div id="def-vector-subspace" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2.3</strong></span> A subset <span class="math inline">\(W\)</span> of a vector space <span class="math inline">\(V\)</span> is called a (vector) <em>subspace</em> if <span class="math inline">\(W\)</span> is itself a vector space (with field of scalars <span class="math inline">\(F\)</span>, addition, multiplication, zero vector inherited from <span class="math inline">\(V\)</span>).</p>
+</div>
+<p>We have already seen an example of a subspace above. A nonexample is the set of points in the plane at distance 1 from the origin. This set doesn’t satisfy the closure assumptions of <a href="#def-vector-space" class="quarto-xref">Definition&nbsp;<span>2.1</span></a>.</p>
+<p>It is a bit remarkable (although not difficult to prove) that we actually only need to check the closure assumptions. The following theorem encodes this fact.</p>
+<div id="thm-vector-subspace" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 2.1</strong></span> A subset <span class="math inline">\(W\)</span> of a vector space <span class="math inline">\(V\)</span> is itself a vector space (with field of scalars <span class="math inline">\(F\)</span>, addition, multiplication, zero vector inherited from <span class="math inline">\(V\)</span>) iff the following two properties hold:</p>
+<ol type="1">
+<li><span class="math inline">\(W\)</span> is closed under scalar multiplication: <span class="math inline">\(aX \in W \quad \forall a \in F, X \in W\)</span></li>
+<li><span class="math inline">\(W\)</span> is closed under vector addition: <span class="math inline">\(X+Y \in W \quad \forall X,Y \in W\)</span></li>
+</ol>
+</div>
+<p>We won’t do the proof here (you can go to e.g. <span class="citation" data-cites="hefferon">Hefferon (<a href="references.html#ref-hefferon" role="doc-biblioref">2022</a>)</span> to see it), but we will sketch it.</p>
+<p>Since the scalars, and the operations <span class="math inline">\(\cdot , +\)</span> are inherited from the ambient space <span class="math inline">\(V\)</span>, they are known to satisfy associativity, commutativity, existence of inverses and zeros, etc (because we had to prove those things when we showed that <span class="math inline">\(V\)</span> was a vector space). However, in <a href="#def-vector-space" class="quarto-xref">Definition&nbsp;<span>2.1</span></a>, we wrote <span class="math inline">\(+ \colon V \times V \to V\)</span>. That is, <span class="math inline">\(+\)</span> takes two vectors in <span class="math inline">\(V\)</span> and returns a vector in <span class="math inline">\(V\)</span>. Since <span class="math inline">\(W \subset V\)</span>, we know that we can use elements of <span class="math inline">\(W\)</span> as inputs to <span class="math inline">\(+\)</span>. That is, we know <span class="math inline">\(+ \colon W \times W \to V\)</span>, but we cannot know addition of vectors always lands in the subset <span class="math inline">\(W\)</span>. The first assumption above tells us this. Similarly for scalar multiplication.</p>
+<p>For the proof in the opposite direction, notice that for <span class="math inline">\(W\)</span> to be a vector space we must have <span class="math inline">\(+ \colon W \times W \to W\)</span>. If addition is not closed, then <span class="math inline">\(+\)</span> has the wrong codomain, and <span class="math inline">\(W\)</span> isn’t a vector space. Similarly if <span class="math inline">\(W\)</span> is not closed under scalar multiplication.</p>
+<section id="easier-subspaces" class="level3">
+<h3 class="anchored" data-anchor-id="easier-subspaces">Easier subspaces</h3>
+<p>Notice that we can use <a href="#thm-vector-subspace" class="quarto-xref">Theorem&nbsp;<span>2.1</span></a> to quite easily prove (assuming we know differentiable functions form a vector space) that <span class="math inline">\(P_n\)</span> is a vector space. We can also conclude easily that, for example,</p>
+<p><span class="math display">\[
+\{ a \sin x + b \cos x \mid a,b \in \mathbb R \}
+\]</span></p>
+<p>is a vector space.</p>
+<div id="exr-arrows-subspace" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2.5</strong></span> Is the set of arrows that are either fully horizontal or fully vertical a vector subspace of the vector space of arrows in 2D? Why?</p>
+</div>
+<div id="exr-monomials" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2.6</strong></span> Consider the set of monomials</p>
+<p><span class="math display">\[
+\{ 1 , x , x^2 , x^3 , \ldots  \} .
+\]</span></p>
+<p>If I pick any two of these (say <span class="math inline">\(x^k\)</span> and <span class="math inline">\(x^l\)</span> with <span class="math inline">\(k \ne l\)</span>, eg <span class="math inline">\(x^{17}\)</span> and <span class="math inline">\(x^{2025}\)</span>) and form the set</p>
+<p><span class="math display">\[
+\{ a x^k + b x^l \mid a,b \in \mathbb R \} ,
+\]</span></p>
+<p>is this a vector subspace of the space of differentiable functions? Why?</p>
+</div>
+</section>
+</section>
+<section id="the-space-of-lists-of-length-n" class="level2">
+<h2 class="anchored" data-anchor-id="the-space-of-lists-of-length-n">The space of lists of length <span class="math inline">\(n\)</span></h2>
+<p>We have seen that the following are vector spaces: <span class="math inline">\(\mathbb R\)</span> over <span class="math inline">\(\mathbb R\)</span>, <span class="math inline">\(\mathbb R^2\)</span> over <span class="math inline">\(\mathbb R\)</span>, <span class="math inline">\(\mathbb C\)</span> over <span class="math inline">\(\mathbb C\)</span>.</p>
+<p>There is a very powerful theorem that we can prove to generate many vector spaces that are of a similar form.</p>
+<div id="thm-list-spaces" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 2.2</strong></span> Let <span class="math inline">\(F\)</span> be any field. Define the following set</p>
+<p><span class="math display">\[
+F^n := \{ (a_1 , a_2 , \cdots , a_n) \mid a_i \in F \}.
+\]</span></p>
+<p>This is the space of lists of length <span class="math inline">\(n\)</span>, with members from <span class="math inline">\(F\)</span>.</p>
+<p>Let <span class="math inline">\(+ : F^n \times F^n \to F^n\)</span> be defined by</p>
+<p><span class="math display">\[
+(a_1 , a_2 , \cdots , a_n) + (b_1 , b_2 , \cdots , b_n) = (a_1 + b_1 , a_2 + b_2 , \cdots , a_n + b_n )
+\]</span></p>
+<p>and let <span class="math inline">\(\cdot : F \times F^n \to F^n\)</span> be defined by</p>
+<p><span class="math display">\[
+x (a_1 , a_2 , \cdots , a_n) = (xa_1 , xa_2 , \cdots , xa_n).
+\]</span></p>
+<p>Then <span class="math inline">\(F^n\)</span> with these two operations (and field of scalars <span class="math inline">\(F\)</span>) is a vector space.</p>
+</div>
+<p>The proof is a straightforward check of all the items in <a href="#def-vector-space" class="quarto-xref">Definition&nbsp;<span>2.1</span></a>.</p>
+<p>Note that <span class="math inline">\(\mathbb R, \mathbb R^2 , \mathbb C\)</span> can be proved to be vector spaces using this theorem.</p>
+<p>To develop your intuition for what this looks like, let’s do a multiplication in <span class="math inline">\(\mathbb C^4\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; i (1 , i , 1 + i , 2 - 3 i)\\
+=&amp; (i , i^2 , i + i^2 , 2 i - 3 i^2) \\
+=&amp; ( i , -1 , i -1 , 2i +3).
+\end{aligned}
+\]</span></p>
+<p>Note that this theorem only works if <span class="math inline">\(F^n\)</span> is a vector space over <span class="math inline">\(F\)</span>. So, above, <span class="math inline">\(\mathbb C^4\)</span> is a vector space with scalars <span class="math inline">\(\mathbb C\)</span>.</p>
+<div id="exr-cn-rn" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2.7</strong></span> Is <span class="math inline">\(\mathbb R^n\)</span> a vector subspace of <span class="math inline">\(\mathbb C^n\)</span>? Think very carefully about <a href="#def-vector-subspace" class="quarto-xref">Definition&nbsp;<span>2.3</span></a>.</p>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-dummit-foote" class="csl-entry" role="listitem">
-Dummit, David S., and Richard M. Foote. 2004. <em>Abstract Algebra</em>. Third. John Wiley &amp; Sons, Inc., Hoboken, NJ.
+Dummit, David S., and Richard M. Foote. 2004. <em>Abstract Algebra</em>. Third Ed. John Wiley &amp; Sons, Inc., Hoboken, NJ.
+</div>
+<div id="ref-hefferon" class="csl-entry" role="listitem">
+Hefferon, Jim. 2022. <em>Linear Algebra</em>. Fourth Ed. <a href="https://hefferon.net/linearalgebra/">https://hefferon.net/linearalgebra/</a>.
 </div>
 </div>
-</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
