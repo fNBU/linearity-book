@@ -38,7 +38,8 @@ These notes are constructed to vindicate the following objectives:
     This is not a way of thinking that is useful for people encountering linearity in the wild. 
     
     Many advanced undergraduate books like @axler begin with the definition of a vector space.
-    It is also a very mathematician's way of thiking to begin with a definition of a set of objects which will be mapped into or out of (viz. most treatments of Abstract Algebra).
+
+    It is also a very mathematician's way of thinking to begin with a definition of a set of objects which will be mapped into or out of (viz. most treatments of Abstract Algebra).
     To talk about maps (which are really the objects of interest), *surely* we must first talk about (co)domains!
 
     Coordinate geometry is, at least, a class of real problems where linear techniques naturally arise, but the relevance of this as an example from "the wild" has basically vanished in the last 70 years.
