@@ -1,3 +1,10 @@
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
 # Bases
 
 Remember that the derivative function $D(f) := \frac{df}{dx}$ allows us to compute the derivative of, for example
@@ -163,7 +170,7 @@ You may want to convince yourself that the vector $(2,3)$ above was not special;
 If we know that $L : \mathbb R^2 \to \mathbb R$ is linear and that
 
 $$
-L(0,1) = 1 , \quad L(0,2) = -6,
+L(0,1) = 1 , \quad L(0,2) = 2,
 $$
 
 can we compute $L(1,2)$?
@@ -196,8 +203,8 @@ $$
 $$
 
 This is a good ansatz[^1] because we are able to split over the $+$ and pull the $a$ and $b$ out (using the fact that $L$ is linear).
-[^1]: This is a German word that, in math, means a guess with some free parameters (in this case, $a$ and $b$) in it. We compute with this guess, and then later find values of the parameters that make the computation valid.
-This pattern is so common when working with linear functions that we have a name for it:
+
+[^1]: This is a German word that, in math, means a guess with some free parameters (in this case, $a$ and $b$) in it. We compute with this guess, and then later find values of the parameters that make the computation valid and also solve our problem. If we cannot find such values, the we have essentially proved that there is no solution to our problem with the form given in the ansatz (although there may be a solution of another form if our ansatz is not general enough).
 
 ::: {#def-linear-combination}
 
@@ -215,40 +222,202 @@ We then have the following generalization of the computation we did in the examp
 
 ::: {#thm-linear-function-sufficiency-1}
 
-Let $L: A \to B$ be linear, and suppose we know the value of $L$ on a set of vectors $X_1 ,  X_2 , \ldots , X_n \in A$.
-That is, 
+Let $L: A \to B$ be linear. These two statements are equivalent:
 
-$$
-\begin{aligned}
-L(X_1) =& Y_1 \\
-L(X_2) =& Y_2 \\
-\vdots & \\
-L(X_n) =& Y_n 
-\end{aligned}
-$$
+- We know the value of $L$ on a set of vectors $X_1 ,  X_2 , \ldots , X_n \in A$.
+  That is, 
 
-for some $Y_i \in B$.
+  $$
+  \begin{aligned}
+  L(X_1) =& Y_1 \\
+  L(X_2) =& Y_2 \\
+  \vdots & \\
+  L(X_n) =& Y_n 
+  \end{aligned}
+  $$
 
-Then the value of $L$ is known on any linear combination of $X_1 ,  X_2 , \ldots , X_n$.
+  for some $Y_i \in B$.
+
+- We know the value of $L$ on any linear combination of $X_1 ,  X_2 , \ldots , X_n$.
 
 :::
 
-The proof of this theorem is a straightforward application of properties 1 and 2 of linear functions.
+The proof $\implies$ is a straightforward application of properties 1 and 2 of linear functions.
 You might try to generate the justification yourself.
+The proof of $\impliedby$ is an application of proof by contradiction.
+
+::: {.callout-note}
+
+@thm-linear-function-sufficiency-1 is not a tautology!
+
+The set $\{X_1 ,  X_2 , \ldots , X_n\}$ is a finite set (think of $\{(1,1) , (1,-1)\}$ which contains only 2 elements).
+
+The set of linear combinations of $\{X_1 ,  X_2 , \ldots , X_n\}$ is *infinite* (if the field of scalars is infinite, which in the case of $\mathbb R$ or $\mathbb C$ it is).
+
+The set of linear combinations of $\{(1,1) , (1,-1)\}$ contains, for example,
+$$
+\begin{aligned}
+&(1,1),(2,2),(a,a) \forall a \in \mathbb R ,\\
+&(\pi,e),\left(\sqrt{2},2025^{1/3}\right),\\
+&a(1,1) + b(1,-1) = (a+b,a-b) \forall a,b \in \mathbb R.
+\end{aligned}
+$$
+In particular, this set is infinite.
+
+:::
 
 ### The span of a set of vectors
 
-[TODO]
+We will use the words "is a linear combination of" or "can be expressed as a linear combination of" quite often, so we introduce some terminology to shorthand this.
+
+::: {#def-span}
+
+If $V$ is a vector space over a field $F$, $X_1 , \ldots , X_n \in V$, and $W$ is expressible as a linear combination of $\{X_1 , \ldots , X_n \}$ we say that $W$ is in the *span* of $\{X_1 , \ldots , X_n \}$. We can write this
+
+$$
+W \in \Span \{X_1 , \ldots , X_n \}.
+$$
+
+We also refer to the following set as *the span* of $\{X_1 , \ldots , X_n \}$:
+$$
+\Span \{X_1 , \ldots , X_n \} := \{ a_1 X_1 + \cdots + a_n X_n \mid a_i \in F \}.
+$$
+
+:::
+
+So, for example, $(0,2025) \in \Span \{(0,1),(0,6)\}$, but the vector $(17,9) \not \in \Span \{(0,1),(0,6)\}$.
+
+::: {#exr-span-basis}
+Let $(a,b) \in \mathbb R^2$.
+Is $(a,b) \in \Span \{ (1,1) , (1,-1) \}$?
+Why or why not?
+:::
+
+
+::: {#exr-span-dependent}
+Let $(a,b) \in \mathbb R^2$.
+Is $(a,b) \in \Span \{ (1,2) , (1 ,5) , (1 , -3) \}$?
+Why or why not?
+:::
+
+Given the above definition, we can rephrase @thm-linear-function-sufficiency-1:
+
+::: {#thm-linear-function-sufficiency-2}
+
+Let $L: A \to B$ be linear. These two statements are equivalent:
+
+- We know the value of $L$ on a set of vectors $X_1 ,  X_2 , \ldots , X_n \in A$.
+- We know the value of $L$ on $\Span \{ X_1 ,  X_2 , \cdots , X_n \}$.
+
+:::
+
+There isn't really anything to prove here; this is exactly @thm-linear-function-sufficiency-1 except with "any linear combination of" replaced by $\Span$, which is @def-span.
+
+::: {#exr-p2-sufficiency}
+Is $\Span \{ 1 + x , x + x^2 \} = P_2$? Why or why not?
+:::
+
+::: {#exr-p3-sufficiency}
+Show that $\Span \{ 1 + x , x + x^2, x^2 , x^3 \} = P_3$ by finding a representation of
+$$
+ax^3 + b x^2 + c x + d 
+$$
+(which is the form of a generic element of $P_3$) as a linear combination of $\{ 1 + x , x + x^2, x^2 , x^3 \}$.
+:::
+
+::: {#exr-diff-span}
+Suppose we know that $F'(x) = f(x)$ and $G'(x) = g(x)$ (that is, $F,G$ have derivatives, and we give the names $f,g$ to those derivatives).
+Recall the definition of the operator $D$ for differentiation:
+$$
+D(h) := h'(x),
+$$
+and that we already know $D : \{ \text{differentiable functions} \} \to \{ \text{ functions}\}$ is linear.
+
+Is it true that $D(F(x) + 14G(x))=f(x) + 16 g(x)$?
+Did you use any properties about $D$ *other than* linearity to conclude that?
+
+Suppose $G(x) > 0 , \forall x$.
+Is it true that 
+$$
+D\left [ \frac{F(x)}{G(x)} \right] = \frac{f(x) G(x) - F(x)g(x)}{\left[G(x)\right]^2}?
+$$
+Did you use any properties about $D$ *other than* linearity to conclude that?
+:::
 
 ### Linear independence
 
-[TODO]
+Suppose we have a collection of vectors $\{ X_1 , \ldots , X_n \} \in \mathbb R^2$.
+We have seen examples where 
+
+1. $\{ X_1 , \ldots , X_n \}$ consists of two vectors and $\Span \{ X_1 , \ldots , X_n \}$ **is not all of** $\mathbb R^2$ 
+
+   (this happened when $\{ X_1 , \ldots , X_n \} = \{(0,1) , (0,2)\}$),
+
+1. $\{ X_1 , \ldots , X_n \}$ consists of two vectors and $\Span \{ X_1 , \ldots , X_n \}$ **is equal to** $\mathbb R^2$ 
+
+   (this happened when $\{ X_1 , \ldots , X_n \} = \{(1,1) , (1,-1)\}$),
+
+1. $\{ X_1 , \ldots , X_n \}$ consists of three vectors and $\Span \{ X_1 , \ldots , X_n \}$ **is equal to** $\mathbb R^2$ 
+
+   (this happened when $\{ X_1 , \ldots , X_n \} = \{(1,2) , (1 , 6) , (1,-3)\}$).
+
+In the last case, we got something extra; there were infinitely many ways of representing an arbitrary element $(a,b) \in \mathbb R^2$ as a linear combination of $\{(1,2) , (1 , 6) , (1,-3)\}$.
+In the second case, we get a unique way of representing each vector as a linear combination, and in the first case we don't even get any way to represent some vectors as a linear combination.
+
+From @def-span we now can say that the distinction between the first case and the other two is that
+
+$$
+\Span \{(1,1) , (1,-1)\} = \Span \{(1,2) , (1 , 6) , (1,-3)\} = \mathbb R^2
+$$
+
+but that
+
+$$
+\Span \{(0,1) , (0,2)\} \ne \mathbb R^2.
+$$
+
+From @thm-linear-function-sufficiency-2, we know that if we know a linear function on the two vectors
+
+$$
+(1,1) , (1,-1)
+$$
+
+or on the three vectors
+
+$$
+(1,2) , (1 , 6) , (1,-3)
+$$
+
+then we know its value on all inputs $(a,b) \in \mathbb R^2$.
+
+What is the criterion that distinguishes the second case from the last one?
+That is, is there a property of a set of vectors 
+$$
+\{(1,2) , (1 , 6) , (1,-3)\}
+$$ 
+from the set of vectors 
+$$
+\{(1,1) , (1,-1)\}
+$$ 
+that tells is that we get a unique linear combination in the latter case, but a nonunique linear combination in the former case?
+It turns out to be the following definition, and we will see why in a later part of the book.
+
+::: {#def-linear-independence}
+
+Let $V$ be a vector space and $\{ X_1 , \ldots , X_n \} \subset V$.
+We say that the set $\{ X_1 , \ldots , X_n \}$ is *linearly independent* if, for each $i \in \{ 1 , \ldots , n \}$,
+
+$$
+X_i \not \in \Span \{X_1 , X_2 , \cdots , X_{i-1} , X_{i + 1} , \cdots , X_n\}.
+$$
+
+This is another way of saying that $X_i$ is **not** in the span of all the $\{ X_j \}$ with $X_i$ removed.
+
+:::
+
+
 
 ### A basis for a vector space
-
-[TODO]
-
-## Subspaces
 
 [TODO]
 
