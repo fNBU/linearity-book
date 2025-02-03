@@ -56,7 +56,7 @@ So, as an example $x \in P_3 , \forall x \in P_2$ is read as "for all x in the s
 
 :::
 
-Note that the notation $+ \colon V \times V \to V$ implies that $V$ is, in particular, closed under addition (since $V$ is the conomain of $+$; addition cannot by definition return an element not in $V$).
+Note that the notation $+ \colon V \times V \to V$ implies that $V$ is, in particular, closed under addition (since $V$ is the codomain of $+$; addition cannot by definition return an element not in $V$).
 Similarly we can conclude that $V$ must be closed under scalar multiplication.
 
 All of the properties above hold (with the field of scalars $F$ set to $\mathbb R$) for all the spaces we have used so far as the domain and codomain of a linear function. (You may want to check this for yourself quickly. Most of these facts obviously hold for polynomials, functions, points in $\mathbb R^2$, and $\mathbb R$ itself. However, one must still check all of them before using a set as the domain or codomain of a linear function.)
