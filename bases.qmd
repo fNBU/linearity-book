@@ -1,8 +1,13 @@
+
+::: {.content-visible when-format="html"} 
+
 <!-- the following block is for page defs which do not render anything upon definition  -->
 ::: {.hidden} 
 $$
 \DeclareMathOperator{\Span}{Span}
 $$
+:::
+
 :::
 
 # Bases

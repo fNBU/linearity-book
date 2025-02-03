@@ -59,10 +59,11 @@ format:
     keep-tex: true # Keep the TeX sources around (by default, a single `.tex` file in the project root directory) for debugging
     number-depth: 1
     documentclass: book
-    include-in-header: 
+    include-in-header:
       text: |
         \usepackage{makeidx}
         \makeindex
+        \DeclareMathOperator{\Span}{Span}
     include-after-body: 
       text: |
         \printindex
