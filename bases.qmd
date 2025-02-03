@@ -1,8 +1,12 @@
+::: {.content-visible when-format="html"} 
+
 <!-- the following block is for page defs which do not render anything upon definition  -->
 ::: {.hidden} 
 $$
 \DeclareMathOperator{\Span}{Span}
 $$
+:::
+
 :::
 
 # Bases
@@ -240,6 +244,7 @@ Let $L: A \to B$ be linear. These two statements are equivalent:
 
 - We know the value of $L$ on any linear combination of $X_1 ,  X_2 , \ldots , X_n$.
 
+
 :::
 
 The proof $\implies$ is a straightforward application of properties 1 and 2 of linear functions.
@@ -352,6 +357,7 @@ We have seen examples where
 1. $\{ X_1 , \ldots , X_n \}$ consists of two vectors and $\Span \{ X_1 , \ldots , X_n \}$ **is not all of** $\mathbb R^2$ 
 
    (this happened when $\{ X_1 , \ldots , X_n \} = \{(0,1) , (0,2)\}$),
+
 
 1. $\{ X_1 , \ldots , X_n \}$ consists of two vectors and $\Span \{ X_1 , \ldots , X_n \}$ **is equal to** $\mathbb R^2$ 
 
