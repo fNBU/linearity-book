@@ -1,3 +1,4 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
 ::: {.content-visible when-format="html"} 
 
 <!-- the following block is for page defs which do not render anything upon definition  -->
@@ -207,6 +208,7 @@ $$
 $$
 
 This is a good ansatz[^1] because we are able to split over the $+$ and pull the $a$ and $b$ out (using the fact that $L$ is linear).
+The following definition captures this pattern in general.
 
 [^1]: This is a German word that, in math, means a guess with some free parameters (in this case, $a$ and $b$) in it. We compute with this guess, and then later find values of the parameters that make the computation valid and also solve our problem. If we cannot find such values, the we have essentially proved that there is no solution to our problem with the form given in the ansatz (although there may be a solution of another form if our ansatz is not general enough).
 
@@ -215,10 +217,64 @@ This is a good ansatz[^1] because we are able to split over the $+$ and pull the
 If $X_1, X_2 , \ldots , X_n$ is a collection of vectors in the vector space $V$, then any expression of the form
 
 $$
-a_1 X_1 + a_2 X_2 + \cdots + a_n X^n, \quad a_i \in F
+a_1 X_1 + a_2 X_2 + \cdots + a_n X_n, \quad a_i \in F
 $$
 
 is called a *linear combination* of $X_1, X_2 , \ldots , X_n$.
+
+:::
+
+For some of the following exercises, we need to know about the following definition:
+
+::: {#def-ck}
+
+We use $C^k(\mathbb R, \mathbb R)$ to denote the set of functions $\mathbb R \to \mathbb R$ such that, $\forall f \in C^k(\mathbb R, \mathbb R)$
+
+- $f$ has $k$ derivatives and
+- all of $f$'s $k$ derivatives are continuous.
+
+:::
+
+Sometimes we write just $C^k$ rather than $C^k(\mathbb R, \mathbb R)$ if it is implicit from the context that we are talking about functions $\mathbb R \to \mathbb R$.
+
+Notice, in particular, that $C^0$ is just the set of continuous functions $\mathbb R \to \mathbb R$.
+$C^1$ is the set of functions with at least one derivative which is continuous.
+
+$C^\infty$ is used to denote the set of functions $\mathbb R \to \mathbb R$ that have infinitely many derivatives, all of which are continuous (many "nice" familiar functions are in $C^\infty$, for example $x \mapsto \sin x$, $x \mapsto e^x$ and any polynomial).
+
+::: {#lem-ck-vspace}
+
+For any $k$, the set $C^k(\mathbb R, \mathbb R)$ is a vector space over $\mathbb R$.
+
+:::
+
+The proof of this lemma follows from the fact that $\mathbb R$ is a vector space over $\mathbb R$, and when we do operations on functions, we really do operations inside the codomain of the function.
+
+::: {#exr-cinfty-example-1}
+
+Is
+
+$$
+\pi \sin x - 100 x^3
+$$
+
+a linear combination in $C^0$?
+If no, why not?
+If yes, what is a set of vectors in $C^0$ that this is a linear combination of?
+
+:::
+
+::: {#exr-cinfty-example-2}
+
+Is
+
+$$
+7 \cos x \sin x 
+$$
+
+a linear combination in $C^0$?
+If no, why not?
+If yes, what is a set of vectors in $C^0$ that this is a linear combination of?
 
 :::
 
@@ -336,9 +392,13 @@ Recall the definition of the operator $D$ for differentiation:
 $$
 D(h) := h'(x),
 $$
-and that we already know $D : \{ \text{differentiable functions} \} \to \{ \text{ functions}\}$ is linear.
+and that we already know $D : \{ \text{differentiable functions} \} \to \{ \text{functions}\}$ is linear.
+(In view of the notation introduced in @def-ck, we can now write this as $D: C^1 \to C^0$.)
 
-Is it true that $D(F(x) + 14G(x))=f(x) + 16 g(x)$?
+Is it true that 
+$$
+D\left[F(x) + 14G(x)\right]=f(x) + 14 g(x)?
+$$
 Did you use any properties about $D$ *other than* linearity to conclude that?
 
 Suppose $G(x) > 0 , \forall x$.
@@ -397,11 +457,11 @@ $$
 then we know its value on all inputs $(a,b) \in \mathbb R^2$.
 
 What is the criterion that distinguishes the second case from the last one?
-That is, is there a property of a set of vectors 
+That is, is there a property we can measure about the set of vectors 
 $$
 \{(1,2) , (1 , 6) , (1,-3)\}
 $$ 
-from the set of vectors 
+that is different when we measure it about
 $$
 \{(1,1) , (1,-1)\}
 $$ 
@@ -421,11 +481,162 @@ This is another way of saying that $X_i$ is **not** in the span of all the $\{ X
 
 :::
 
+::: {#exr-linearly-indep-1}
 
+Is the set $\{(1,0),(0,1)\} \subset \mathbb R^2$ linearly independent? Explain why.
+
+:::
+
+::: {#exr-linearly-indep-2}
+
+Is the set $\{(2,1),(2,-1)\} \subset \mathbb R^2$ linearly independent? Explain why.
+
+:::
+
+::: {#exr-linearly-indep-3}
+
+Is the set $\{(1,2),(3,4),(-1,4)\} \subset \mathbb R^2$ linearly independent? Explain why.
+
+:::
+
+Although we chose to define linear independence using @def-linear-independence, there are equivalent statements that we could have used.
+We summarize them in the following theorem.
+
+::: {#thm-linear-indep-defs}
+
+Let $V$ be a vector space and $\{ X_1 , \ldots , X_n \} \subset V$.
+The following statements are equivalent:
+
+1. $\{ X_1 , \ldots , X_n \}$ is linearly independent in the sense of @def-linear-independence.
+
+1. $0 = a_1 X_1 + \cdots + a_n X_n$ has only one solution (when $a_i = 0 \, \forall i$).
+
+1. For every $v \in \Span  \{ X_1 , \ldots , X_n \}$, the equation $v = a_1 X_1 + \cdots + a_n X_n$ has **exactly** one solution.
+
+:::
+
+When we say "the following statements are equivalent", we mean that among (1.), (2.), and (3.) above, there are proofs
+
+$$
+(1.) \, \Leftrightarrow \, (2.) \, \Leftrightarrow \, (3.).
+$$
+
+So, we chose to use @def-linear-independence as the definition, and (in the proof of @thm-linear-indep-defs) would prove that (2.) is equivalent to @def-linear-independence.
+But we could have just as well used (2.) as the definition, and proved the statement in @def-linear-independence as a theorem.
+If you look at different books on this subject, you will see different approaches; all of them are equally correct.
+
+We omit the proof of @thm-linear-indep-defs; the equivalences are not difficult to prove.
+
+From this, we get the following lemma quite easily:
+
+::: {#lem-some-tests-for-linear-dep}
+
+Let $V$ be a vector space and $S=\{ X_1 , \ldots , X_n \} \subset V$.
+
+- If $S$ contains the zero vector, it is linearly dependent.
+- If $S$ contains the same vector twice, it is linearly dependent.
+
+:::
+
+Note that this lemma **is not an iff** statement.
+For example, not every linearly dependent set contains the zero vector.
+But if a set does contain the zero vector, this lemma tells you that that set is linearly dependent.
+
+#### Necessity and sufficiency
+
+We are finally in a position to answer the question that began this chapter: 
+
+> What is the minimal amount of information needed to unambiguously describe a linear function?
+
+Note that there are two parts of this statement: how much information suffices to define a linear function, and how much information minimally suffices.
+These criteria are different.
+
+For example, in @sec-ch-what-is-linearity we saw that the formula
+
+$$
+C(r) := 2 \pi r
+$$
+
+is enough to know $C$ on all its inputs (after all, this formula tells you how to compute $C$ for any input you could pick).
+So this formula **suffices** to define the linear function $C$.
+
+However, we saw later in that chapter that, once we know $C$ is linear, this is more information than we need.
+It is enough to know far less information.
+For example, suppose I tell you that, in some other universe there are creatures called pumans who have a shape they call a pircle whose pircumference (as they call it) is a function of some measurement they refer to as the pradius of the pircle.
+Both pradius and pircumference are nonnegative real numbers, thankfully.
+
+I don't know the formula for pircumference as a function of pradius (communication with the pumans is very slow and difficult), but I have learned from them two things:
+
+- pircumference as a function of pradius is linear
+- the pircumference of a pircle of pradius 2025 is 45.
+
+It turns out that this is enough information to discover the formula for pircumference!
+Let $k \geq 0$ be any arbitrary pradius, and call the pircumference function $P$.
+We can compute
+
+$$
+P(k) = P\left(\frac{k}{2025} 2025 \right) = \frac{k}{2025}P\left( 2025 \right)= \frac{k}{2025}45 = \frac{k}{45}.
+$$
+
+Verify for yourself that you understand why each equality in this computation is true.
+For the second equality, we used our knowledge that pircumference is linear and for the third equality we used our knowledge that $P(2025) = 45$.
+If we had been missing either of those facts, we could not conclusively determine the formula for $P$.
+That means that, once we know $P$ is linear, the knowledge of $P$ on at least one nonzero input is **necessary**.
+
+The following theorem gives two criteria addressing our motivating question at the start of this section: the first criteron describes when we have sufficient information to determine a linear function, the second describes when we have only the necessary (minimal) amount of information.
+
+::: {#thm-linear-definition-nec-and-suff}
+
+Let $L:A \to B$ be linear.
+Suppose we know the value of $L$ on a set of vectors $\{ V_1 , \ldots , V_n \}$.
+
+- If $\Span \{ V_1 ,  \ldots V_n \} = A$, we can compute the value of $L$ on all inputs.
+- If $\{ V_1 , \ldots , V_n \}$ is linearly independent, then $\{ V_1 , \ldots , V_n \}$ is a minimal set of information defining $L$ on $\Span \{ V_1 ,  \ldots V_n \}$.
+
+:::
+
+Note that, if $\Span \{ V_1 ,  \ldots V_n \} = A$ and $\{ V_1 , \ldots , V_n \}$ is linearly independent, this theorem implies that $\{ V_1 , \ldots , V_n \}$ is a minimal choice of information defining $L$ everywhere on $A$.
+
+This theorem is very powerful.
+For example, consider a linear function $F : \mathbb R^3 \to \mathbb R^{2025}$.
+@thm-linear-definition-nec-and-suff tells us that if we know only three facts, e.g. the values of $L(1,0,0)$, $L(0,1,0)$, and $L(0,0,1)$, then we are able to use this information to find the value of $L$ on **any** of the infinitely many vectors in $\mathbb R^3$.
+Of course, we would first have to show that $\{(1,0,0),(0,1,0),(0,0,1)\}$ spans $\mathbb R^3$.
+
+The situation of having a set of vectors that both spans an entire vector space and is linearly independent is so common, we give it the following name:
 
 ### A basis for a vector space
 
-[TODO]
+::: {#def-basis}
+
+Let $V$ be a vector space and let $B \subset V$ be a finite set of vectors.
+If $\Span B = V$ and $B$ is linearly independent, we say that $B$ is *a basis for* $V$.
+
+:::
+
+
+::: {#exr-basis-1}
+
+Is the set $\{(1,0),(0,1)\} \subset \mathbb R^2$ a basis? Explain why.
+
+:::
+
+::: {#exr-basis-2}
+
+Is the set $\{(2,1),(2,-1)\} \subset \mathbb R^2$ a basis? Explain why.
+
+:::
+
+
+::: {.callout-note}
+
+The preceding exercises demonstrate a very important point: if $V$ has a basis, it is not unique.
+There are actually many bases for a vector space, and which one you should choose to use **depends on the problem at hand**.
+
+For example, both $\{(1,0), (0,1)\}$ and $\{(1,1), (1,-1)\}$ are bases for $\mathbb R^2$.
+If we are dealing with a linear function $L : \mathbb R^2 \to \mathbb R$ where we know $L (1,1) = 5$ and $L(1,-1) = 3$, then it is not useful to work with the basis $\{(1,0), (0,1)\}$
+
+:::
+
 
 ## Applying linear functions using basis-representation
 

@@ -1,4 +1,4 @@
-# What is Linearity?
+# What is Linearity? {#sec-ch-what-is-linearity}
 
 The function $C : \mathbb R \to \mathbb R$ given by 
 
