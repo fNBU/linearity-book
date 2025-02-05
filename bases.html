@@ -257,6 +257,7 @@ window.Quarto = {
 </header>
 
 
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
 <!-- the following block is for page defs which do not render anything upon definition  -->
 <div class="hidden">
 <p><span class="math display">\[
@@ -389,13 +390,42 @@ L(0,1) = 2 , \quad L(1,1) = 2,
 <p><span class="math display">\[
 (2,3) = a (1,1) + b(1 , -1).
 \]</span></p>
-<p>This is a good ansatz<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> because we are able to split over the <span class="math inline">\(+\)</span> and pull the <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> out (using the fact that <span class="math inline">\(L\)</span> is linear).</p>
+<p>This is a good ansatz<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> because we are able to split over the <span class="math inline">\(+\)</span> and pull the <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> out (using the fact that <span class="math inline">\(L\)</span> is linear). The following definition captures this pattern in general.</p>
 <div id="def-linear-combination" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.1</strong></span> If <span class="math inline">\(X_1, X_2 , \ldots , X_n\)</span> is a collection of vectors in the vector space <span class="math inline">\(V\)</span>, then any expression of the form</p>
 <p><span class="math display">\[
-a_1 X_1 + a_2 X_2 + \cdots + a_n X^n, \quad a_i \in F
+a_1 X_1 + a_2 X_2 + \cdots + a_n X_n, \quad a_i \in F
 \]</span></p>
 <p>is called a <em>linear combination</em> of <span class="math inline">\(X_1, X_2 , \ldots , X_n\)</span>.</p>
+</div>
+<p>For some of the following exercises, we need to know about the following definition:</p>
+<div id="def-ck" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.2</strong></span> We use <span class="math inline">\(C^k(\mathbb R, \mathbb R)\)</span> to denote the set of functions <span class="math inline">\(\mathbb R \to \mathbb R\)</span> such that, <span class="math inline">\(\forall f \in C^k(\mathbb R, \mathbb R)\)</span></p>
+<ul>
+<li><span class="math inline">\(f\)</span> has <span class="math inline">\(k\)</span> derivatives and</li>
+<li>all of <span class="math inline">\(f\)</span>’s <span class="math inline">\(k\)</span> derivatives are continuous.</li>
+</ul>
+</div>
+<p>Sometimes we write just <span class="math inline">\(C^k\)</span> rather than <span class="math inline">\(C^k(\mathbb R, \mathbb R)\)</span> if it is implicit from the context that we are talking about functions <span class="math inline">\(\mathbb R \to \mathbb R\)</span>.</p>
+<p>Notice, in particular, that <span class="math inline">\(C^0\)</span> is just the set of continuous functions <span class="math inline">\(\mathbb R \to \mathbb R\)</span>. <span class="math inline">\(C^1\)</span> is the set of functions with at least one derivative which is continuous.</p>
+<p><span class="math inline">\(C^\infty\)</span> is used to denote the set of functions <span class="math inline">\(\mathbb R \to \mathbb R\)</span> that have infinitely many derivatives, all of which are continuous (many “nice” familiar functions are in <span class="math inline">\(C^\infty\)</span>, for example <span class="math inline">\(x \mapsto \sin x\)</span>, <span class="math inline">\(x \mapsto e^x\)</span> and any polynomial).</p>
+<div id="lem-ck-vspace" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 3.1</strong></span> For any <span class="math inline">\(k\)</span>, the set <span class="math inline">\(C^k(\mathbb R, \mathbb R)\)</span> is a vector space over <span class="math inline">\(\mathbb R\)</span>.</p>
+</div>
+<p>The proof of this lemma follows from the fact that <span class="math inline">\(\mathbb R\)</span> is a vector space over <span class="math inline">\(\mathbb R\)</span>, and when we do operations on functions, we really do operations inside the codomain of the function.</p>
+<div id="exr-cinfty-example-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.5</strong></span> Is</p>
+<p><span class="math display">\[
+\pi \sin x - 100 x^3
+\]</span></p>
+<p>a linear combination in <span class="math inline">\(C^0\)</span>? If no, why not? If yes, what is a set of vectors in <span class="math inline">\(C^0\)</span> that this is a linear combination of?</p>
+</div>
+<div id="exr-cinfty-example-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.6</strong></span> Is</p>
+<p><span class="math display">\[
+7 \cos x \sin x
+\]</span></p>
+<p>a linear combination in <span class="math inline">\(C^0\)</span>? If no, why not? If yes, what is a set of vectors in <span class="math inline">\(C^0\)</span> that this is a linear combination of?</p>
 </div>
 <p>We then have the following generalization of the computation we did in the example above:</p>
 <div id="thm-linear-function-sufficiency-1" class="theorem">
@@ -442,7 +472,7 @@ Note
 <h3 class="anchored" data-anchor-id="the-span-of-a-set-of-vectors">The span of a set of vectors</h3>
 <p>We will use the words “is a linear combination of” or “can be expressed as a linear combination of” quite often, so we introduce some terminology to shorthand this.</p>
 <div id="def-span" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.2</strong></span> If <span class="math inline">\(V\)</span> is a vector space over a field <span class="math inline">\(F\)</span>, <span class="math inline">\(X_1 , \ldots , X_n \in V\)</span>, and <span class="math inline">\(W\)</span> is expressible as a linear combination of <span class="math inline">\(\{X_1 , \ldots , X_n \}\)</span> we say that <span class="math inline">\(W\)</span> is in the <em>span</em> of <span class="math inline">\(\{X_1 , \ldots , X_n \}\)</span>. We can write this</p>
+<p><span class="theorem-title"><strong>Definition 3.3</strong></span> If <span class="math inline">\(V\)</span> is a vector space over a field <span class="math inline">\(F\)</span>, <span class="math inline">\(X_1 , \ldots , X_n \in V\)</span>, and <span class="math inline">\(W\)</span> is expressible as a linear combination of <span class="math inline">\(\{X_1 , \ldots , X_n \}\)</span> we say that <span class="math inline">\(W\)</span> is in the <em>span</em> of <span class="math inline">\(\{X_1 , \ldots , X_n \}\)</span>. We can write this</p>
 <p><span class="math display">\[
 W \in \Span \{X_1 , \ldots , X_n \}.
 \]</span></p>
@@ -452,10 +482,10 @@ W \in \Span \{X_1 , \ldots , X_n \}.
 </div>
 <p>So, for example, <span class="math inline">\((0,2025) \in \Span \{(0,1),(0,6)\}\)</span>, but the vector <span class="math inline">\((17,9) \not \in \Span \{(0,1),(0,6)\}\)</span>.</p>
 <div id="exr-span-basis" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.5</strong></span> Let <span class="math inline">\((a,b) \in \mathbb R^2\)</span>. Is <span class="math inline">\((a,b) \in \Span \{ (1,1) , (1,-1) \}\)</span>? Why or why not?</p>
+<p><span class="theorem-title"><strong>Exercise 3.7</strong></span> Let <span class="math inline">\((a,b) \in \mathbb R^2\)</span>. Is <span class="math inline">\((a,b) \in \Span \{ (1,1) , (1,-1) \}\)</span>? Why or why not?</p>
 </div>
 <div id="exr-span-dependent" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.6</strong></span> Let <span class="math inline">\((a,b) \in \mathbb R^2\)</span>. Is <span class="math inline">\((a,b) \in \Span \{ (1,2) , (1 ,5) , (1 , -3) \}\)</span>? Why or why not?</p>
+<p><span class="theorem-title"><strong>Exercise 3.8</strong></span> Let <span class="math inline">\((a,b) \in \mathbb R^2\)</span>. Is <span class="math inline">\((a,b) \in \Span \{ (1,2) , (1 ,5) , (1 , -3) \}\)</span>? Why or why not?</p>
 </div>
 <p>Given the above definition, we can rephrase <a href="#thm-linear-function-sufficiency-1" class="quarto-xref">Theorem&nbsp;<span>3.1</span></a>:</p>
 <div id="thm-linear-function-sufficiency-2" class="theorem">
@@ -465,20 +495,22 @@ W \in \Span \{X_1 , \ldots , X_n \}.
 <li>We know the value of <span class="math inline">\(L\)</span> on <span class="math inline">\(\Span \{ X_1 ,  X_2 , \cdots , X_n \}\)</span>.</li>
 </ul>
 </div>
-<p>There isn’t really anything to prove here; this is exactly <a href="#thm-linear-function-sufficiency-1" class="quarto-xref">Theorem&nbsp;<span>3.1</span></a> except with “any linear combination of” replaced by <span class="math inline">\(\Span\)</span>, which is <a href="#def-span" class="quarto-xref">Definition&nbsp;<span>3.2</span></a>.</p>
+<p>There isn’t really anything to prove here; this is exactly <a href="#thm-linear-function-sufficiency-1" class="quarto-xref">Theorem&nbsp;<span>3.1</span></a> except with “any linear combination of” replaced by <span class="math inline">\(\Span\)</span>, which is <a href="#def-span" class="quarto-xref">Definition&nbsp;<span>3.3</span></a>.</p>
 <div id="exr-p2-sufficiency" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.7</strong></span> Is <span class="math inline">\(\Span \{ 1 + x , x + x^2 \} = P_2\)</span>? Why or why not?</p>
+<p><span class="theorem-title"><strong>Exercise 3.9</strong></span> Is <span class="math inline">\(\Span \{ 1 + x , x + x^2 \} = P_2\)</span>? Why or why not?</p>
 </div>
 <div id="exr-p3-sufficiency" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.8</strong></span> Show that <span class="math inline">\(\Span \{ 1 + x , x + x^2, x^2 , x^3 \} = P_3\)</span> by finding a representation of <span class="math display">\[
+<p><span class="theorem-title"><strong>Exercise 3.10</strong></span> Show that <span class="math inline">\(\Span \{ 1 + x , x + x^2, x^2 , x^3 \} = P_3\)</span> by finding a representation of <span class="math display">\[
 ax^3 + b x^2 + c x + d
 \]</span> (which is the form of a generic element of <span class="math inline">\(P_3\)</span>) as a linear combination of <span class="math inline">\(\{ 1 + x , x + x^2, x^2 , x^3 \}\)</span>.</p>
 </div>
 <div id="exr-diff-span" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.9</strong></span> Suppose we know that <span class="math inline">\(F'(x) = f(x)\)</span> and <span class="math inline">\(G'(x) = g(x)\)</span> (that is, <span class="math inline">\(F,G\)</span> have derivatives, and we give the names <span class="math inline">\(f,g\)</span> to those derivatives). Recall the definition of the operator <span class="math inline">\(D\)</span> for differentiation: <span class="math display">\[
+<p><span class="theorem-title"><strong>Exercise 3.11</strong></span> Suppose we know that <span class="math inline">\(F'(x) = f(x)\)</span> and <span class="math inline">\(G'(x) = g(x)\)</span> (that is, <span class="math inline">\(F,G\)</span> have derivatives, and we give the names <span class="math inline">\(f,g\)</span> to those derivatives). Recall the definition of the operator <span class="math inline">\(D\)</span> for differentiation: <span class="math display">\[
 D(h) := h'(x),
-\]</span> and that we already know <span class="math inline">\(D : \{ \text{differentiable functions} \} \to \{ \text{ functions}\}\)</span> is linear.</p>
-<p>Is it true that <span class="math inline">\(D(F(x) + 14G(x))=f(x) + 16 g(x)\)</span>? Did you use any properties about <span class="math inline">\(D\)</span> <em>other than</em> linearity to conclude that?</p>
+\]</span> and that we already know <span class="math inline">\(D : \{ \text{differentiable functions} \} \to \{ \text{functions}\}\)</span> is linear. (In view of the notation introduced in <a href="#def-ck" class="quarto-xref">Definition&nbsp;<span>3.2</span></a>, we can now write this as <span class="math inline">\(D: C^1 \to C^0\)</span>.)</p>
+<p>Is it true that <span class="math display">\[
+D\left[F(x) + 14G(x)\right]=f(x) + 14 g(x)?
+\]</span> Did you use any properties about <span class="math inline">\(D\)</span> <em>other than</em> linearity to conclude that?</p>
 <p>Suppose <span class="math inline">\(G(x) &gt; 0 , \forall x\)</span>. Is it true that <span class="math display">\[
 D\left [ \frac{F(x)}{G(x)} \right] = \frac{f(x) G(x) - F(x)g(x)}{\left[G(x)\right]^2}?
 \]</span> Did you use any properties about <span class="math inline">\(D\)</span> <em>other than</em> linearity to conclude that?</p>
@@ -496,7 +528,7 @@ D\left [ \frac{F(x)}{G(x)} \right] = \frac{f(x) G(x) - F(x)g(x)}{\left[G(x)\righ
 <p>(this happened when <span class="math inline">\(\{ X_1 , \ldots , X_n \} = \{(1,2) , (1 , 6) , (1,-3)\}\)</span>).</p></li>
 </ol>
 <p>In the last case, we got something extra; there were infinitely many ways of representing an arbitrary element <span class="math inline">\((a,b) \in \mathbb R^2\)</span> as a linear combination of <span class="math inline">\(\{(1,2) , (1 , 6) , (1,-3)\}\)</span>. In the second case, we get a unique way of representing each vector as a linear combination, and in the first case we don’t even get any way to represent some vectors as a linear combination.</p>
-<p>From <a href="#def-span" class="quarto-xref">Definition&nbsp;<span>3.2</span></a> we now can say that the distinction between the first case and the other two is that</p>
+<p>From <a href="#def-span" class="quarto-xref">Definition&nbsp;<span>3.3</span></a> we now can say that the distinction between the first case and the other two is that</p>
 <p><span class="math display">\[
 \Span \{(1,1) , (1,-1)\} = \Span \{(1,2) , (1 , 6) , (1,-3)\} = \mathbb R^2
 \]</span></p>
@@ -513,22 +545,112 @@ D\left [ \frac{F(x)}{G(x)} \right] = \frac{f(x) G(x) - F(x)g(x)}{\left[G(x)\righ
 (1,2) , (1 , 6) , (1,-3)
 \]</span></p>
 <p>then we know its value on all inputs <span class="math inline">\((a,b) \in \mathbb R^2\)</span>.</p>
-<p>What is the criterion that distinguishes the second case from the last one? That is, is there a property of a set of vectors <span class="math display">\[
+<p>What is the criterion that distinguishes the second case from the last one? That is, is there a property we can measure about the set of vectors <span class="math display">\[
 \{(1,2) , (1 , 6) , (1,-3)\}
-\]</span> from the set of vectors <span class="math display">\[
+\]</span> that is different when we measure it about <span class="math display">\[
 \{(1,1) , (1,-1)\}
 \]</span> that tells is that we get a unique linear combination in the latter case, but a nonunique linear combination in the former case? It turns out to be the following definition, and we will see why in a later part of the book.</p>
 <div id="def-linear-independence" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.3</strong></span> Let <span class="math inline">\(V\)</span> be a vector space and <span class="math inline">\(\{ X_1 , \ldots , X_n \} \subset V\)</span>. We say that the set <span class="math inline">\(\{ X_1 , \ldots , X_n \}\)</span> is <em>linearly independent</em> if, for each <span class="math inline">\(i \in \{ 1 , \ldots , n \}\)</span>,</p>
+<p><span class="theorem-title"><strong>Definition 3.4</strong></span> Let <span class="math inline">\(V\)</span> be a vector space and <span class="math inline">\(\{ X_1 , \ldots , X_n \} \subset V\)</span>. We say that the set <span class="math inline">\(\{ X_1 , \ldots , X_n \}\)</span> is <em>linearly independent</em> if, for each <span class="math inline">\(i \in \{ 1 , \ldots , n \}\)</span>,</p>
 <p><span class="math display">\[
 X_i \not \in \Span \{X_1 , X_2 , \cdots , X_{i-1} , X_{i + 1} , \cdots , X_n\}.
 \]</span></p>
 <p>This is another way of saying that <span class="math inline">\(X_i\)</span> is <strong>not</strong> in the span of all the <span class="math inline">\(\{ X_j \}\)</span> with <span class="math inline">\(X_i\)</span> removed.</p>
 </div>
+<div id="exr-linearly-indep-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.12</strong></span> Is the set <span class="math inline">\(\{(1,0),(0,1)\} \subset \mathbb R^2\)</span> linearly independent? Explain why.</p>
+</div>
+<div id="exr-linearly-indep-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.13</strong></span> Is the set <span class="math inline">\(\{(2,1),(2,-1)\} \subset \mathbb R^2\)</span> linearly independent? Explain why.</p>
+</div>
+<div id="exr-linearly-indep-3" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.14</strong></span> Is the set <span class="math inline">\(\{(1,2),(3,4),(-1,4)\} \subset \mathbb R^2\)</span> linearly independent? Explain why.</p>
+</div>
+<p>Although we chose to define linear independence using <a href="#def-linear-independence" class="quarto-xref">Definition&nbsp;<span>3.4</span></a>, there are equivalent statements that we could have used. We summarize them in the following theorem.</p>
+<div id="thm-linear-indep-defs" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3.3</strong></span> Let <span class="math inline">\(V\)</span> be a vector space and <span class="math inline">\(\{ X_1 , \ldots , X_n \} \subset V\)</span>. The following statements are equivalent:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\{ X_1 , \ldots , X_n \}\)</span> is linearly independent in the sense of <a href="#def-linear-independence" class="quarto-xref">Definition&nbsp;<span>3.4</span></a>.</p></li>
+<li><p><span class="math inline">\(0 = a_1 X_1 + \cdots + a_n X_n\)</span> has only one solution (when <span class="math inline">\(a_i = 0 \, \forall i\)</span>).</p></li>
+<li><p>For every <span class="math inline">\(v \in \Span  \{ X_1 , \ldots , X_n \}\)</span>, the equation <span class="math inline">\(v = a_1 X_1 + \cdots + a_n X_n\)</span> has <strong>exactly</strong> one solution.</p></li>
+</ol>
+</div>
+<p>When we say “the following statements are equivalent”, we mean that among (1.), (2.), and (3.) above, there are proofs</p>
+<p><span class="math display">\[
+(1.) \, \Leftrightarrow \, (2.) \, \Leftrightarrow \, (3.).
+\]</span></p>
+<p>So, we chose to use <a href="#def-linear-independence" class="quarto-xref">Definition&nbsp;<span>3.4</span></a> as the definition, and (in the proof of <a href="#thm-linear-indep-defs" class="quarto-xref">Theorem&nbsp;<span>3.3</span></a>) would prove that (2.) is equivalent to <a href="#def-linear-independence" class="quarto-xref">Definition&nbsp;<span>3.4</span></a>. But we could have just as well used (2.) as the definition, and proved the statement in <a href="#def-linear-independence" class="quarto-xref">Definition&nbsp;<span>3.4</span></a> as a theorem. If you look at different books on this subject, you will see different approaches; all of them are equally correct.</p>
+<p>We omit the proof of <a href="#thm-linear-indep-defs" class="quarto-xref">Theorem&nbsp;<span>3.3</span></a>; the equivalences are not difficult to prove.</p>
+<p>From this, we get the following lemma quite easily:</p>
+<div id="lem-some-tests-for-linear-dep" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 3.2</strong></span> Let <span class="math inline">\(V\)</span> be a vector space and <span class="math inline">\(S=\{ X_1 , \ldots , X_n \} \subset V\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(S\)</span> contains the zero vector, it is linearly dependent.</li>
+<li>If <span class="math inline">\(S\)</span> contains the same vector twice, it is linearly dependent.</li>
+</ul>
+</div>
+<p>Note that this lemma <strong>is not an iff</strong> statement. For example, not every linearly dependent set contains the zero vector. But if a set does contain the zero vector, this lemma tells you that that set is linearly dependent.</p>
+<section id="necessity-and-sufficiency" class="level4">
+<h4 class="anchored" data-anchor-id="necessity-and-sufficiency">Necessity and sufficiency</h4>
+<p>We are finally in a position to answer the question that began this chapter:</p>
+<blockquote class="blockquote">
+<p>What is the minimal amount of information needed to unambiguously describe a linear function?</p>
+</blockquote>
+<p>Note that there are two parts of this statement: how much information suffices to define a linear function, and how much information minimally suffices. These criteria are different.</p>
+<p>For example, in <a href="what-is-linearity.html" class="quarto-xref"><span>Chapter 1</span></a> we saw that the formula</p>
+<p><span class="math display">\[
+C(r) := 2 \pi r
+\]</span></p>
+<p>is enough to know <span class="math inline">\(C\)</span> on all its inputs (after all, this formula tells you how to compute <span class="math inline">\(C\)</span> for any input you could pick). So this formula <strong>suffices</strong> to define the linear function <span class="math inline">\(C\)</span>.</p>
+<p>However, we saw later in that chapter that, once we know <span class="math inline">\(C\)</span> is linear, this is more information than we need. It is enough to know far less information. For example, suppose I tell you that, in some other universe there are creatures called pumans who have a shape they call a pircle whose pircumference (as they call it) is a function of some measurement they refer to as the pradius of the pircle. Both pradius and pircumference are nonnegative real numbers, thankfully.</p>
+<p>I don’t know the formula for pircumference as a function of pradius (communication with the pumans is very slow and difficult), but I have learned from them two things:</p>
+<ul>
+<li>pircumference as a function of pradius is linear</li>
+<li>the pircumference of a pircle of pradius 2025 is 45.</li>
+</ul>
+<p>It turns out that this is enough information to discover the formula for pircumference! Let <span class="math inline">\(k \geq 0\)</span> be any arbitrary pradius, and call the pircumference function <span class="math inline">\(P\)</span>. We can compute</p>
+<p><span class="math display">\[
+P(k) = P\left(\frac{k}{2025} 2025 \right) = \frac{k}{2025}P\left( 2025 \right)= \frac{k}{2025}45 = \frac{k}{45}.
+\]</span></p>
+<p>Verify for yourself that you understand why each equality in this computation is true. For the second equality, we used our knowledge that pircumference is linear and for the third equality we used our knowledge that <span class="math inline">\(P(2025) = 45\)</span>. If we had been missing either of those facts, we could not conclusively determine the formula for <span class="math inline">\(P\)</span>. That means that, once we know <span class="math inline">\(P\)</span> is linear, the knowledge of <span class="math inline">\(P\)</span> on at least one nonzero input is <strong>necessary</strong>.</p>
+<p>The following theorem gives two criteria addressing our motivating question at the start of this section: the first criteron describes when we have sufficient information to determine a linear function, the second describes when we have only the necessary (minimal) amount of information.</p>
+<div id="thm-linear-definition-nec-and-suff" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3.4</strong></span> Let <span class="math inline">\(L:A \to B\)</span> be linear. Suppose we know the value of <span class="math inline">\(L\)</span> on a set of vectors <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(\Span \{ V_1 ,  \ldots V_n \} = A\)</span>, we can compute the value of <span class="math inline">\(L\)</span> on all inputs.</li>
+<li>If <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span> is linearly independent, then <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span> is a minimal set of information defining <span class="math inline">\(L\)</span> on <span class="math inline">\(\Span \{ V_1 ,  \ldots V_n \}\)</span>.</li>
+</ul>
+</div>
+<p>Note that, if <span class="math inline">\(\Span \{ V_1 ,  \ldots V_n \} = A\)</span> and <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span> is linearly independent, this theorem implies that <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span> is a minimal choice of information defining <span class="math inline">\(L\)</span> everywhere on <span class="math inline">\(A\)</span>.</p>
+<p>This theorem is very powerful. For example, consider a linear function <span class="math inline">\(F : \mathbb R^3 \to \mathbb R^{2025}\)</span>. <a href="#thm-linear-definition-nec-and-suff" class="quarto-xref">Theorem&nbsp;<span>3.4</span></a> tells us that if we know only three facts, e.g.&nbsp;the values of <span class="math inline">\(L(1,0,0)\)</span>, <span class="math inline">\(L(0,1,0)\)</span>, and <span class="math inline">\(L(0,0,1)\)</span>, then we are able to use this information to find the value of <span class="math inline">\(L\)</span> on <strong>any</strong> of the infinitely many vectors in <span class="math inline">\(\mathbb R^3\)</span>. Of course, we would first have to show that <span class="math inline">\(\{(1,0,0),(0,1,0),(0,0,1)\}\)</span> spans <span class="math inline">\(\mathbb R^3\)</span>.</p>
+<p>The situation of having a set of vectors that both spans an entire vector space and is linearly independent is so common, we give it the following name:</p>
+</section>
 </section>
 <section id="a-basis-for-a-vector-space" class="level3">
 <h3 class="anchored" data-anchor-id="a-basis-for-a-vector-space">A basis for a vector space</h3>
-<p>[TODO]</p>
+<div id="def-basis" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.5</strong></span> Let <span class="math inline">\(V\)</span> be a vector space and let <span class="math inline">\(B \subset V\)</span> be a finite set of vectors. If <span class="math inline">\(\Span B = V\)</span> and <span class="math inline">\(B\)</span> is linearly independent, we say that <span class="math inline">\(B\)</span> is <em>a basis for</em> <span class="math inline">\(V\)</span>.</p>
+</div>
+<div id="exr-basis-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.15</strong></span> Is the set <span class="math inline">\(\{(1,0),(0,1)\} \subset \mathbb R^2\)</span> a basis? Explain why.</p>
+</div>
+<div id="exr-basis-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.16</strong></span> Is the set <span class="math inline">\(\{(2,1),(2,-1)\} \subset \mathbb R^2\)</span> a basis? Explain why.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The preceding exercises demonstrate a very important point: if <span class="math inline">\(V\)</span> has a basis, it is not unique. There are actually many bases for a vector space, and which one you should choose to use <strong>depends on the problem at hand</strong>.</p>
+<p>For example, both <span class="math inline">\(\{(1,0), (0,1)\}\)</span> and <span class="math inline">\(\{(1,1), (1,-1)\}\)</span> are bases for <span class="math inline">\(\mathbb R^2\)</span>. If we are dealing with a linear function <span class="math inline">\(L : \mathbb R^2 \to \mathbb R\)</span> where we know <span class="math inline">\(L (1,1) = 5\)</span> and <span class="math inline">\(L(1,-1) = 3\)</span>, then it is not useful to work with the basis <span class="math inline">\(\{(1,0), (0,1)\}\)</span></p>
+</div>
+</div>
 </section>
 </section>
 <section id="applying-linear-functions-using-basis-representation" class="level2">
