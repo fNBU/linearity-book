@@ -230,7 +230,7 @@ For some of the following exercises, we need to know about the following definit
 
 We use $C^k(\mathbb R, \mathbb R)$ to denote the set of functions $\mathbb R \to \mathbb R$ such that, $\forall f \in C^k(\mathbb R, \mathbb R)$
 
-- $f$ has $k$ derivatives and
+- $f$ has at least $k$ derivatives and
 - all of $f$'s $k$ derivatives are continuous.
 
 :::
