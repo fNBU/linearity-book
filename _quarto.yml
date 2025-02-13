@@ -31,9 +31,9 @@ book:
       - what-is-linearity.qmd
       - the-notion-of-a-vector-space.qmd
       - bases.qmd
-    #   - vector-spaces-isomorphic-to-euclidean-space.qmd
-    #   - ways-of-writing-vectors.qmd
-    #   - ways-of-writing-linear-maps.qmd
+      - vector-spaces-isomorphic-to-euclidean-space.qmd
+      - ways-of-writing-vectors.qmd
+      - ways-of-writing-linear-maps.qmd
     #   - solving-systems-of-linear-equations.qmd
     # - part: "Inner Product Spaces"
     - references.qmd
@@ -51,6 +51,8 @@ bibliography: references.bib
 
 format:
   html:
+    # fig-width: 8
+    # fig-height: 8
     number-depth: 1
     theme:
       light: cosmo
