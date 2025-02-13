@@ -230,7 +230,7 @@ For some of the following exercises, we need to know about the following definit
 
 We use $C^k(\mathbb R, \mathbb R)$ to denote the set of functions $\mathbb R \to \mathbb R$ such that, $\forall f \in C^k(\mathbb R, \mathbb R)$
 
-- $f$ has $k$ derivatives and
+- $f$ has at least $k$ derivatives and
 - all of $f$'s $k$ derivatives are continuous.
 
 :::
@@ -585,7 +585,7 @@ That means that, once we know $P$ is linear, the knowledge of $P$ on at least on
 
 The following theorem gives two criteria addressing our motivating question at the start of this section: the first criteron describes when we have sufficient information to determine a linear function, the second describes when we have only the necessary (minimal) amount of information.
 
-::: {#thm-linear-definition-nec-and-suff}
+::: {#thm-linear-definition-nec-and-suff-v1}
 
 Let $L:A \to B$ be linear.
 Suppose we know the value of $L$ on a set of vectors $\{ V_1 , \ldots , V_n \}$.
@@ -599,7 +599,7 @@ Note that, if $\Span \{ V_1 ,  \ldots V_n \} = A$ and $\{ V_1 , \ldots , V_n \}$
 
 This theorem is very powerful.
 For example, consider a linear function $F : \mathbb R^3 \to \mathbb R^{2025}$.
-@thm-linear-definition-nec-and-suff tells us that if we know only three facts, e.g. the values of $L(1,0,0)$, $L(0,1,0)$, and $L(0,0,1)$, then we are able to use this information to find the value of $L$ on **any** of the infinitely many vectors in $\mathbb R^3$.
+@thm-linear-definition-nec-and-suff-v1 tells us that if we know only three facts, e.g. the values of $L(1,0,0)$, $L(0,1,0)$, and $L(0,0,1)$, then we are able to use this information to find the value of $L$ on **any** of the infinitely many vectors in $\mathbb R^3$.
 Of course, we would first have to show that $\{(1,0,0),(0,1,0),(0,0,1)\}$ spans $\mathbb R^3$.
 
 The situation of having a set of vectors that both spans an entire vector space and is linearly independent is so common, we give it the following name:
@@ -608,21 +608,32 @@ The situation of having a set of vectors that both spans an entire vector space 
 
 ::: {#def-basis}
 
-Let $V$ be a vector space and let $B \subset V$ be a finite set of vectors.
-If $\Span B = V$ and $B$ is linearly independent, we say that $B$ is *a basis for* $V$.
+Let $V$ be a vector space and let $B$ be a finite, ordered list of vectors in $V$.
+If 
+
+- $\Span B = V$ and 
+- $B$ is linearly independent, we say that $B$ is *a basis for* $V$.
 
 :::
 
+We write list here because order and repetition matter, and these are not qualities of sets.
+
+::: {.callout-tip title="Notation"}
+We write lists like $[ 1 , 2, 2 , 3]$ with square brackets rather than curly ones.[^list-notation]
+Note that for lists, $[1,1,1] \ne [1]$ while for sets $\{1,1,1\} = \{1\}$, and also, for lists $[1 , 2] \ne [2,1]$ while for sets $\{1,2\} = \{2,1\}$.
+:::
+
+[^list-notation]: This is the notation convention used by many modern programming languages.
 
 ::: {#exr-basis-1}
 
-Is the set $\{(1,0),(0,1)\} \subset \mathbb R^2$ a basis? Explain why.
+Is the list $[(1,0),(0,1)] \subset \mathbb R^2$ a basis? Explain why.
 
 :::
 
 ::: {#exr-basis-2}
 
-Is the set $\{(2,1),(2,-1)\} \subset \mathbb R^2$ a basis? Explain why.
+Is the set $[(2,1),(2,-1)] \subset \mathbb R^2$ a basis? Explain why.
 
 :::
 
@@ -632,21 +643,17 @@ Is the set $\{(2,1),(2,-1)\} \subset \mathbb R^2$ a basis? Explain why.
 The preceding exercises demonstrate a very important point: if $V$ has a basis, it is not unique.
 There are actually many bases for a vector space, and which one you should choose to use **depends on the problem at hand**.
 
-For example, both $\{(1,0), (0,1)\}$ and $\{(1,1), (1,-1)\}$ are bases for $\mathbb R^2$.
-If we are dealing with a linear function $L : \mathbb R^2 \to \mathbb R$ where we know $L (1,1) = 5$ and $L(1,-1) = 3$, then it is not useful to work with the basis $\{(1,0), (0,1)\}$
+For example, both $[(1,0), (0,1)]$ and $[(1,1), (1,-1)]$ are bases for $\mathbb R^2$.
+If we are dealing with a linear function $L : \mathbb R^2 \to \mathbb R$ where we know $L (1,1) = 5$ and $L(1,-1) = 3$, then it is not useful to work with the basis $[(1,0), (0,1)]$.
 
 :::
 
+We now have a restatement of @thm-linear-definition-nec-and-suff-v1 that uses this definition:
 
-## Applying linear functions using basis-representation
+::: {#thm-linear-definition-nec-and-suff-v2}
+Let $L:A \to B$ be linear.
+Suppose we know the value of $L$ on a set of vectors $\{ V_1 , \ldots , V_n \}$.
+If $[ V_1 , \ldots , V_n ]$ is a basis for $A$, then we know the value of $L$ on all its inputs and $\{ V_1 , \ldots , V_n \}$ is a minimal choice of data defining $L$. 
+:::
 
-[TODO]
-
-## Other bases
-
-[TODO]
-
-## Dimension
-
-[TODO]
-
+We finally answered the two mysteries that have been motivating us for a few chapters, so we're done, right?
