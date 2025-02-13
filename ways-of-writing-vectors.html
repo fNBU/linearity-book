@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – Linearity</title>
+<title>5&nbsp; Ways of writing vectors (relative to a basis) – Linearity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ways-of-writing-linear-maps.html" rel="prev">
+<link href="./ways-of-writing-linear-maps.html" rel="next">
+<link href="./vector-spaces-isomorphic-to-euclidean-space.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -101,7 +83,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./ways-of-writing-vectors.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ways of writing vectors (relative to a basis)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -200,7 +182,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ways-of-writing-vectors.html" class="sidebar-item-text sidebar-link">
+  <a href="./ways-of-writing-vectors.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ways of writing vectors (relative to a basis)</span></span></a>
   </div>
 </li>
@@ -214,7 +196,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -223,15 +205,31 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#columns" id="toc-columns" class="nav-link active" data-scroll-target="#columns">Columns</a></li>
+  <li><a href="#linear-combinations" id="toc-linear-combinations" class="nav-link" data-scroll-target="#linear-combinations">Linear combinations</a>
+  <ul class="collapse">
+  <li><a href="#summation-notation" id="toc-summation-notation" class="nav-link" data-scroll-target="#summation-notation">Summation notation</a></li>
+  </ul></li>
+  <li><a href="#other-ways-you-might-encounter" id="toc-other-ways-you-might-encounter" class="nav-link" data-scroll-target="#other-ways-you-might-encounter">Other ways you might encounter</a>
+  <ul class="collapse">
+  <li><a href="#rows" id="toc-rows" class="nav-link" data-scroll-target="#rows">Rows</a></li>
+  <li><a href="#einstein-summation-notation" id="toc-einstein-summation-notation" class="nav-link" data-scroll-target="#einstein-summation-notation">Einstein summation notation</a></li>
+  <li><a href="#bra-ket" id="toc-bra-ket" class="nav-link" data-scroll-target="#bra-ket">bra-ket</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/ways-of-writing-vectors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./ways-of-writing-vectors.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ways of writing vectors (relative to a basis)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ways of writing vectors (relative to a basis)</span></h1>
 </div>
 
 
@@ -248,24 +246,37 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-axler" class="csl-entry" role="listitem">
-Axler, Sheldon. 2024. <em>Linear Algebra Done Right</em>. Undergraduate
-Texts in Mathematics. Springer, Cham. <a href="https://doi.org/10.1007/978-3-031-41026-0">https://doi.org/10.1007/978-3-031-41026-0</a>.
-</div>
-<div id="ref-dummit-foote" class="csl-entry" role="listitem">
-Dummit, David S., and Richard M. Foote. 2004. <em>Abstract Algebra</em>.
-Third Ed. John Wiley &amp; Sons, Inc., Hoboken, NJ.
-</div>
-<div id="ref-hefferon" class="csl-entry" role="listitem">
-Hefferon, Jim. 2022. <em>Linear Algebra</em>. Fourth Ed. <a href="https://hefferon.net/linearalgebra/">https://hefferon.net/linearalgebra/</a>.
-</div>
-<div id="ref-treil" class="csl-entry" role="listitem">
-Treil, Sergei. 2024. <em>Linear Algebra Done Wrong</em>. <a href="https://sites.google.com/a/brown.edu/sergei-treil-homepage/linear-algebra-done-wrong">https://sites.google.com/a/brown.edu/sergei-treil-homepage/linear-algebra-done-wrong</a>.
-</div>
-</div>
+<p>[TODO]</p>
+<section id="columns" class="level2">
+<h2 class="anchored" data-anchor-id="columns">Columns</h2>
+<p>[TODO]</p>
+</section>
+<section id="linear-combinations" class="level2">
+<h2 class="anchored" data-anchor-id="linear-combinations">Linear combinations</h2>
+<p>[TODO]</p>
+<section id="summation-notation" class="level3">
+<h3 class="anchored" data-anchor-id="summation-notation">Summation notation</h3>
+<p>[TODO]</p>
+</section>
+</section>
+<section id="other-ways-you-might-encounter" class="level2">
+<h2 class="anchored" data-anchor-id="other-ways-you-might-encounter">Other ways you might encounter</h2>
+<p>[TODO]</p>
+<section id="rows" class="level3">
+<h3 class="anchored" data-anchor-id="rows">Rows</h3>
+<p>[TODO]</p>
+</section>
+<section id="einstein-summation-notation" class="level3">
+<h3 class="anchored" data-anchor-id="einstein-summation-notation">Einstein summation notation</h3>
+<p>[TODO]</p>
+</section>
+<section id="bra-ket" class="level3">
+<h3 class="anchored" data-anchor-id="bra-ket">bra-ket</h3>
+<p>[TODO]</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -831,11 +842,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ways-of-writing-linear-maps.html" class="pagination-link" aria-label="Ways of writing linear maps">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ways of writing linear maps</span></span>
+      <a href="./vector-spaces-isomorphic-to-euclidean-space.html" class="pagination-link" aria-label="Vector spaces isomorphic to Euclidean space">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector spaces isomorphic to Euclidean space</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./ways-of-writing-linear-maps.html" class="pagination-link" aria-label="Ways of writing linear maps">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ways of writing linear maps</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -848,7 +862,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/references.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/ways-of-writing-vectors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>The source code generating this book is provided under <a href="https://github.com/fNBU/linearity-book/blob/release/LICENSE">the MIT License</a>.</p>
 </div>

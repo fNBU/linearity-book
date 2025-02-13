@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – Linearity</title>
+<title>4&nbsp; Vector spaces isomorphic to Euclidean space – Linearity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ways-of-writing-linear-maps.html" rel="prev">
+<link href="./ways-of-writing-vectors.html" rel="next">
+<link href="./bases.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -89,6 +71,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +112,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./vector-spaces-isomorphic-to-euclidean-space.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector spaces isomorphic to Euclidean space</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -194,7 +205,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./vector-spaces-isomorphic-to-euclidean-space.html" class="sidebar-item-text sidebar-link">
+  <a href="./vector-spaces-isomorphic-to-euclidean-space.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector spaces isomorphic to Euclidean space</span></span></a>
   </div>
 </li>
@@ -214,7 +225,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -223,15 +234,24 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dimension" id="toc-dimension" class="nav-link active" data-scroll-target="#dimension">Dimension</a></li>
+  <li><a href="#the-notion-of-isomorphism" id="toc-the-notion-of-isomorphism" class="nav-link" data-scroll-target="#the-notion-of-isomorphism">The notion of isomorphism</a></li>
+  <li><a href="#isomorphism-to-mathbb-rn-given-a-basis" id="toc-isomorphism-to-mathbb-rn-given-a-basis" class="nav-link" data-scroll-target="#isomorphism-to-mathbb-rn-given-a-basis">Isomorphism to <span class="math inline">\(\mathbb R^n\)</span> (given a basis)</a></li>
+  <li><a href="#basis-dependence" id="toc-basis-dependence" class="nav-link" data-scroll-target="#basis-dependence">Basis dependence</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/vector-spaces-isomorphic-to-euclidean-space.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./vector-spaces-isomorphic-to-euclidean-space.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector spaces isomorphic to Euclidean space</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector spaces isomorphic to Euclidean space</span></h1>
 </div>
 
 
@@ -248,24 +268,172 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-axler" class="csl-entry" role="listitem">
-Axler, Sheldon. 2024. <em>Linear Algebra Done Right</em>. Undergraduate
-Texts in Mathematics. Springer, Cham. <a href="https://doi.org/10.1007/978-3-031-41026-0">https://doi.org/10.1007/978-3-031-41026-0</a>.
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+<!-- the following block is for page defs which do not render anything upon definition  -->
+<div class="hidden">
+<p><span class="math display">\[
+\DeclareMathOperator{\Span}{Span}
+\]</span></p>
 </div>
-<div id="ref-dummit-foote" class="csl-entry" role="listitem">
-Dummit, David S., and Richard M. Foote. 2004. <em>Abstract Algebra</em>.
-Third Ed. John Wiley &amp; Sons, Inc., Hoboken, NJ.
+<p>No, there are still more mysteries!</p>
+<p>One example is the difference between <span class="math inline">\(P_1\)</span> and <span class="math inline">\(\mathbb R^2\)</span>. We have the following ordered bases for these</p>
+<p><span class="math display">\[
+[x,1] \text{ for } P_1 \text{ and } [(1,0),(0,1)] \text{ for } \mathbb R^2.
+\]</span></p>
+<p>When we have fixed a basis for a vector space, <a href="bases.html#def-basis" class="quarto-xref">Definition&nbsp;<span>3.5</span></a> together with <a href="bases.html#thm-linear-indep-defs" class="quarto-xref">Theorem&nbsp;<span>3.3</span></a> and <a href="bases.html#def-span" class="quarto-xref">Definition&nbsp;<span>3.3</span></a> tell us that, for each vector in our vector space, there is a exactly one way to write that vector as a linear combination of the basis vectors. So, for example, the vector <span class="math inline">\(x - 3 \in P_1\)</span> can be thought of as <span class="math inline">\((1)\underbrace{(x)}_{\text{1st basis vector}} + (-3)\underbrace{(1)}_{\text{2nd basis vector}}\)</span>.</p>
+<p>If you and I are thinking of the same basis <span class="math inline">\([x,1]\)</span> for <span class="math inline">\(P_1\)</span>, then there is no confusion if we just list the coefficients of this vector relative to this basis. That is, we use the notation <span class="math inline">\((1,-3)\)</span> to <em>refer</em> to the vector <span class="math inline">\(x - 3 \in P_1\)</span>.</p>
+<p>But <span class="math inline">\((1,-3)\)</span> is a list of two real numbers, so isn’t this an element in <span class="math inline">\(\mathbb R^2\)</span>? Is <span class="math inline">\(P_1\)</span> the same as <span class="math inline">\(\mathbb R^2\)</span>?</p>
+<section id="dimension" class="level2">
+<h2 class="anchored" data-anchor-id="dimension">Dimension</h2>
+<p>One remarkable fact about <span class="math inline">\(P_1\)</span> is that, although <span class="math inline">\([x,1]\)</span> isn’t the only basis for it (the list <span class="math inline">\([x+1, x-1]\)</span>, we have seen, is another), <strong>all</strong> the bases of <span class="math inline">\(P_1\)</span> have something in common: they have exactly two elements. This can be generalized to the following lemma:</p>
+<div id="lem-dimension" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 4.1</strong></span> Let <span class="math inline">\(V\)</span> be a vector space with at least one finite basis and let <span class="math inline">\(B\)</span> be that basis. Then all bases of <span class="math inline">\(V\)</span> have the same number of elements as <span class="math inline">\(B\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </div>
-<div id="ref-hefferon" class="csl-entry" role="listitem">
-Hefferon, Jim. 2022. <em>Linear Algebra</em>. Fourth Ed. <a href="https://hefferon.net/linearalgebra/">https://hefferon.net/linearalgebra/</a>.
+<p>This immediately tells us that all bases for <span class="math inline">\(P_1\)</span> have two elements, as well as all bases for <span class="math inline">\(\mathbb R^2\)</span>.</p>
+<p>Since all bases for a vector space are the same length we can refer to this length as a property of the vector space, rather than a property of a particular basis.</p>
+<div id="def-dimension" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.1</strong></span> Let <span class="math inline">\(V\)</span> be a vector space with a finite basis of size <span class="math inline">\(n\)</span>. Then we say that the <em>dimension</em> of <span class="math inline">\(V\)</span> is <span class="math inline">\(n\)</span> and we write this like <span class="math display">\[
+\dim V = n.
+\]</span></p>
 </div>
-<div id="ref-treil" class="csl-entry" role="listitem">
-Treil, Sergei. 2024. <em>Linear Algebra Done Wrong</em>. <a href="https://sites.google.com/a/brown.edu/sergei-treil-homepage/linear-algebra-done-wrong">https://sites.google.com/a/brown.edu/sergei-treil-homepage/linear-algebra-done-wrong</a>.
+<p>So, using this notation, <span class="math inline">\(\dim P_1 = 2 = \dim \mathbb R^2\)</span>.</p>
+<div id="exr-dim-of-pn" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.1</strong></span> What is the dimension of <span class="math inline">\(P_2\)</span>? What about <span class="math inline">\(P_3\)</span>? What about <span class="math inline">\(P_n\)</span>?</p>
 </div>
+<div id="exr-dim-of-arrows" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.2</strong></span> What is the dimension of the vector space of arrows drawn on a piece of paper? What is the dimension of the vector space of arrows created in a space like a room? (You can think of bits of string of different lengths, with arrows on one end of them, held in space by two people. Addition and multiplication is as for arrows on paper.)</p>
 </div>
+<div id="exr-dim-of-cc" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.3</strong></span> What is the dimension of <span class="math inline">\(\mathbb C\)</span> as a vector space over itself?</p>
+</div>
+<div id="exr-dim-of-cr" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.4</strong></span> What is the dimension of <span class="math inline">\(\mathbb C\)</span> as a vector space over <span class="math inline">\(\mathbb R\)</span>?</p>
+</div>
+<p>The following lemma says that if one vector space is inside another, then the dimension of the one on the inside can’t be larger than the one on the outside:</p>
+<div id="lem-subspace-dim-ineq" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 4.2</strong></span> Let <span class="math inline">\(W \subset V\)</span> be a vector subspace of the vector space <span class="math inline">\(V\)</span>. Suppose <span class="math inline">\(W\)</span> had finite dimension. Then <span class="math display">\[
+\dim W \leq \dim V.
+\]</span></p>
+</div>
+<div id="exr-dim-of-continuous" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.5</strong></span> The dimension of the space of continuous functions <span class="math inline">\(\mathbb R \to \mathbb R\)</span> is not finite. Use the result of <a href="#exr-dim-of-pn" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a> to explain why.</p>
+</div>
+<div id="exr-dim-of-kernel-of-d" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.6</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Recall that we know that the function <span class="math inline">\(D : C^1 \to C^0\)</span> “take the derivative” is linear. Let <span class="math inline">\(K\)</span> be the set of all vectors in <span class="math inline">\(C^1\)</span> which are taken to the 0 vector in <span class="math inline">\(C^0\)</span> by <span class="math inline">\(D\)</span>. That is, <span class="math inline">\(K\)</span> is the set of all differentiable functions whose first derivative is 0 everywhere. As an equation, <span class="math display">\[
+K := \left\{ f : \mathbb R \to \mathbb R \left| D(f) = f'(x) = 0  \right.\right\}.
+\]</span> <span class="math inline">\(K\)</span> is a vector subspace of <span class="math inline">\(C^1\)</span> (you might want to convince yourself that this is true using <a href="the-notion-of-a-vector-space.html#thm-vector-subspace" class="quarto-xref">Theorem&nbsp;<span>2.1</span></a>, but you don’t have to for this exercise). What is <span class="math inline">\(\dim K\)</span>?</p>
+</blockquote>
+</div>
+</section>
+<section id="the-notion-of-isomorphism" class="level2">
+<h2 class="anchored" data-anchor-id="the-notion-of-isomorphism">The notion of isomorphism</h2>
+<p>We have identified one property that <span class="math inline">\(P_1\)</span> and <span class="math inline">\(\mathbb R^2\)</span> have in common: they have the same dimension. There is a more general notion of “sameness” that is true for these two vector spaces. We will introduce the word for it here, before explaining precisely what it means in the following section.</p>
+<p>For the purposes of this book, <span class="math inline">\(V\)</span> and <span class="math inline">\(W\)</span> are <em>isomorphic</em> if they are “the same” once we fix some piece of data.</p>
+<p>In mathematics more generally, if two objects are isomorphic, it means that they “behave identically” but might need an extra piece of information to actually identify one with the other. The full notion is extremely broad.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</section>
+<section id="isomorphism-to-mathbb-rn-given-a-basis" class="level2">
+<h2 class="anchored" data-anchor-id="isomorphism-to-mathbb-rn-given-a-basis">Isomorphism to <span class="math inline">\(\mathbb R^n\)</span> (given a basis)</h2>
+<p>Recall <a href="the-notion-of-a-vector-space.html#thm-list-spaces" class="quarto-xref">Theorem&nbsp;<span>2.2</span></a>, that <span class="math inline">\(\mathbb R^n\)</span> is the set of lists of length <span class="math inline">\(n\)</span>, where the elements of the list are real numbers. Recall that <span class="math inline">\(\mathbb R^n\)</span> is a vector space, and notice that we can demonstrate at least one basis for <span class="math inline">\(\mathbb R^n\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;(1,0,0, \cdots ,0,0) ,\\
+&amp;(0,1,0, \cdots ,0,0), \\
+&amp;\quad \vdots  \\
+&amp;(0,0, \cdots ,0,1,0), \\
+&amp;(0,0,0, \cdots ,0,1)
+\end{aligned}
+\]</span></p>
+<p>Notice that this basis has exactly <span class="math inline">\(n\)</span> elements.</p>
+<p>Now, suppose we have another vector space <span class="math inline">\(V\)</span> over <span class="math inline">\(\mathbb R\)</span> with a basis of <span class="math inline">\(n\)</span> elements <span class="math inline">\([b_1 , \ldots , b_n]\)</span>. Given a vector <span class="math inline">\(v \in V\)</span>, there is a unique list of <span class="math inline">\(n\)</span> real numbers <span class="math inline">\(v_1 , \ldots , v_n\)</span> such that <span class="math display">\[
+v = v_1 b_1 + v_2 b_2 + \cdots + v_n b_n.
+\]</span></p>
+<p>As an example, consider <span class="math inline">\(P_1\)</span> with basis <span class="math inline">\([x+1,x-1]\)</span>. The vector <span class="math inline">\(12 \pi x - 2025\)</span> can only be written in one way relative to this basis: <span class="math display">\[
+12 \pi x - 2025 = \left ( \frac{12 \pi - 2025}{2} \right )(x+1) +  \left ( \frac{12 \pi + 2025}{2} \right )(x-1) .
+\]</span></p>
+<p>Once we choose a basis, every vector can be “identified” with its list of cooeficients relative to that basis. In the example above, we have <span class="math display">\[
+12 \pi x - 2025 \quad ''='' \quad \left ( \frac{12 \pi - 2025}{2} , \frac{12 \pi + 2025}{2} \right ).
+\]</span> We put the equals sign in quotes here because these two vectors are not identical (they’re not even in the same vector space), but once we choose a basis, we can think of the left as the right.</p>
+<div id="exr-standard-basis-p1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.7</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Choose a different basis for <span class="math inline">\(P_1\)</span> and write the coordinates of the vector <span class="math inline">\(12 \pi x - 2025\)</span> relative to that basis.</p>
+</blockquote>
+</div>
+<div id="exr-coords-to-vec" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.8</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Choose any basis you want for <span class="math inline">\(P_2\)</span>.</p>
+<p>The set <span class="math inline">\(W:=\Span\{ (1 , 0 , 0 , 0) , (0 , 0 , 1 , 0), (0 , 0 , 0 , 1), (1 , 0 , 1 , 0)\} \subset \mathbb R^4\)</span> is a vector subspace (But you shouldn’t believe me! You can check for yourself!). Choose a basis for this subspace.</p>
+<p>Using your choses bases, what vector is <span class="math inline">\((1,2,3) \in \mathbb R^3\)</span> when interpreted as coordinates for a vector in <span class="math inline">\(P_3\)</span>? How about when interpreted as coordinates for a vector in <span class="math inline">\(W\)</span>?</p>
+</blockquote>
+</div>
+<p>To make this notion precise, we notice that there is a function (which depends on the basis we choose for <span class="math inline">\(P_1\)</span>) which we’ll name <span class="math inline">\(C : P_1 \to \mathbb R^2\)</span>. It turns out that this function is a linear function between vector spaces.</p>
+<p>In particular, adding in <span class="math inline">\(P_1\)</span> and converting to coordinates, adding, and converting back to a polynomial produce the same value:</p>
+<p><span class="math display">\[
+( a x + b ) + (c x + d) = (a + c) x + (b + d)
+\]</span> and <span class="math display">\[
+\begin{aligned}
+\underbrace{\left ( \frac{a +b}{2} , \frac{a-b}{2} \right )}_{C(ax + b)} + \underbrace{\left ( \frac{c +d}{2} , \frac{c-d}{2} \right )}_{C(cx + d)}
+=&amp; \left ( \frac{a +b + c +d}{2} , \frac{a + c - (b+d) }{2} \right ) \\
+C^{-1} \left ( \frac{a +b + c +d}{2} , \frac{a + c - (b+d) }{2} \right )
+=&amp;  \frac{a +b + c +d}{2}(x+1) +  \frac{a + c - (b+d) }{2} (x-1) \\
+=&amp;  (a + c) x + (b + d)
+\end{aligned}
+\]</span> where <span class="math inline">\(C^{-1}\)</span> is the inverse function.</p>
+<p>A similar property holds for scalar multiplication.</p>
+<p>It is perhaps clear that these properties are not unique to <span class="math inline">\(P_1\)</span> and <span class="math inline">\(\mathbb R^2\)</span>, nor to the basis we chose for <span class="math inline">\(P_1\)</span> in the above example. Generalizing this example, we arrive at the following theorem.</p>
+<div id="thm-isomorphism-up-to-dim" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.1</strong></span> Let <span class="math inline">\(V\)</span> be a finite dimensional vector space over the field <span class="math inline">\(F\)</span>. Let <span class="math inline">\(n = \dim V\)</span>, and let <span class="math inline">\(B\)</span> be a choice of basis for <span class="math inline">\(V\)</span>. Then the function <span class="math inline">\(V \to F^n\)</span> taking a vector to its list of coordinates relative to <span class="math inline">\(B\)</span> is a linear function which is injective and surjective. (That is, the function is an isomorphism of vector spaces.)</p>
+</div>
+<div id="exr-basis-nonindependence" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.9</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Consider two bases <span class="math inline">\(B_1 := [x^2 , x , 1]\)</span> and <span class="math inline">\(B_2 := [x^2 , x , -1]\)</span> for <span class="math inline">\(P_2\)</span>.</p>
+<p>Consider the vector <span class="math inline">\((17, 5 , 2) \in \mathbb R^3\)</span>. What vector in <span class="math inline">\(P_2\)</span> does this represent relative to <span class="math inline">\(B_1\)</span>? What about relative to <span class="math inline">\(B_2\)</span>?</p>
+</blockquote>
+</div>
+<p>What this theorem says is that, once we choose a basis for <span class="math inline">\(P_1\)</span>, we can treat it <em>the same as</em> <span class="math inline">\(\mathbb R^2\)</span>. We can work with polynomials or coordinates in <span class="math inline">\(\mathbb R^2\)</span> and we will get the same results. The same thing is true for all vector spaces over <span class="math inline">\(\mathbb R\)</span> with dimension 2. This fact is generalized in the following corollary:</p>
+<div id="cor-vspace-dim" class="theorem corollary">
+<p><span class="theorem-title"><strong>Corollary 4.1</strong></span> Let <span class="math inline">\(V\)</span> and <span class="math inline">\(W\)</span> be two vector spaces over the same field of scalars <span class="math inline">\(F\)</span>. If <span class="math inline">\(\dim V\)</span> and <span class="math inline">\(\dim W\)</span> are finite and equal, then <span class="math inline">\(V\)</span> and <span class="math inline">\(W\)</span> are “the same” (isomorphic) once we choose bases for each of them.</p>
+</div>
+<p>The proof of this fact is that, since they have the same dimension (call it <span class="math inline">\(n\)</span>), then both <span class="math inline">\(V\)</span> and <span class="math inline">\(W\)</span> can be thought of as lists of coordinates in <span class="math inline">\(F^n\)</span>.</p>
+<!-- 
+::: {#fig-coordinate-add}
+
+```{.tikz}
+%%| filename: coordinate-add
+%%| image-width: 50%
+
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em] {
+     F_t(x) & F(x) \\
+     A_t & A \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\mathcal{B}_X$} (m-2-1)
+            edge [double] node [below] {$\mathcal{B}_t$} (m-1-2)
+    (m-2-1.east|-m-2-2) edge node [below] {$\mathcal{B}_T$} node [above] {$\exists$} (m-2-2)
+    (m-1-2) edge node [right] {$\mathcal{B}_T$} (m-2-2)
+            edge [dashed,-] (m-2-1);
+\end{tikzpicture}
+```
+::: -->
+</section>
+<section id="basis-dependence" class="level2">
+<h2 class="anchored" data-anchor-id="basis-dependence">Basis dependence</h2>
+<p>[TODO]</p>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>For readers familiar with the notion of cardinality, this lemma can be generalized to infinite bases where it states that any two bases have the same cardinality.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://en.wikipedia.org/wiki/Isomorphism">https://en.wikipedia.org/wiki/Isomorphism</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -831,11 +999,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ways-of-writing-linear-maps.html" class="pagination-link" aria-label="Ways of writing linear maps">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ways of writing linear maps</span></span>
+      <a href="./bases.html" class="pagination-link" aria-label="Bases">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bases</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./ways-of-writing-vectors.html" class="pagination-link" aria-label="Ways of writing vectors (relative to a basis)">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ways of writing vectors (relative to a basis)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -848,7 +1019,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/references.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/vector-spaces-isomorphic-to-euclidean-space.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>The source code generating this book is provided under <a href="https://github.com/fNBU/linearity-book/blob/release/LICENSE">the MIT License</a>.</p>
 </div>

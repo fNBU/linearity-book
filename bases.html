@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./vector-spaces-isomorphic-to-euclidean-space.html" rel="next">
 <link href="./the-notion-of-a-vector-space.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -41,8 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-ca80a785959aa3106eea590d00a8e12e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-2ce9fc9ac8b614e7ffef13962cc12eaf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-865080ad31756495a90e432e510a621e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -203,6 +203,24 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bases</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vector-spaces-isomorphic-to-euclidean-space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector spaces isomorphic to Euclidean space</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ways-of-writing-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ways of writing vectors (relative to a basis)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ways-of-writing-linear-maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ways of writing linear maps</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -229,9 +247,6 @@ window.Quarto = {
   <li><a href="#linear-independence" id="toc-linear-independence" class="nav-link" data-scroll-target="#linear-independence">Linear independence</a></li>
   <li><a href="#a-basis-for-a-vector-space" id="toc-a-basis-for-a-vector-space" class="nav-link" data-scroll-target="#a-basis-for-a-vector-space">A basis for a vector space</a></li>
   </ul></li>
-  <li><a href="#applying-linear-functions-using-basis-representation" id="toc-applying-linear-functions-using-basis-representation" class="nav-link" data-scroll-target="#applying-linear-functions-using-basis-representation">Applying linear functions using basis-representation</a></li>
-  <li><a href="#other-bases" id="toc-other-bases" class="nav-link" data-scroll-target="#other-bases">Other bases</a></li>
-  <li><a href="#dimension" id="toc-dimension" class="nav-link" data-scroll-target="#dimension">Dimension</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/bases.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
@@ -402,7 +417,7 @@ a_1 X_1 + a_2 X_2 + \cdots + a_n X_n, \quad a_i \in F
 <div id="def-ck" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.2</strong></span> We use <span class="math inline">\(C^k(\mathbb R, \mathbb R)\)</span> to denote the set of functions <span class="math inline">\(\mathbb R \to \mathbb R\)</span> such that, <span class="math inline">\(\forall f \in C^k(\mathbb R, \mathbb R)\)</span></p>
 <ul>
-<li><span class="math inline">\(f\)</span> has <span class="math inline">\(k\)</span> derivatives and</li>
+<li><span class="math inline">\(f\)</span> has at least <span class="math inline">\(k\)</span> derivatives and</li>
 <li>all of <span class="math inline">\(f\)</span>’s <span class="math inline">\(k\)</span> derivatives are continuous.</li>
 </ul>
 </div>
@@ -614,7 +629,7 @@ P(k) = P\left(\frac{k}{2025} 2025 \right) = \frac{k}{2025}P\left( 2025 \right)= 
 \]</span></p>
 <p>Verify for yourself that you understand why each equality in this computation is true. For the second equality, we used our knowledge that pircumference is linear and for the third equality we used our knowledge that <span class="math inline">\(P(2025) = 45\)</span>. If we had been missing either of those facts, we could not conclusively determine the formula for <span class="math inline">\(P\)</span>. That means that, once we know <span class="math inline">\(P\)</span> is linear, the knowledge of <span class="math inline">\(P\)</span> on at least one nonzero input is <strong>necessary</strong>.</p>
 <p>The following theorem gives two criteria addressing our motivating question at the start of this section: the first criteron describes when we have sufficient information to determine a linear function, the second describes when we have only the necessary (minimal) amount of information.</p>
-<div id="thm-linear-definition-nec-and-suff" class="theorem">
+<div id="thm-linear-definition-nec-and-suff-v1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 3.4</strong></span> Let <span class="math inline">\(L:A \to B\)</span> be linear. Suppose we know the value of <span class="math inline">\(L\)</span> on a set of vectors <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span>.</p>
 <ul>
 <li>If <span class="math inline">\(\Span \{ V_1 ,  \ldots V_n \} = A\)</span>, we can compute the value of <span class="math inline">\(L\)</span> on all inputs.</li>
@@ -622,20 +637,38 @@ P(k) = P\left(\frac{k}{2025} 2025 \right) = \frac{k}{2025}P\left( 2025 \right)= 
 </ul>
 </div>
 <p>Note that, if <span class="math inline">\(\Span \{ V_1 ,  \ldots V_n \} = A\)</span> and <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span> is linearly independent, this theorem implies that <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span> is a minimal choice of information defining <span class="math inline">\(L\)</span> everywhere on <span class="math inline">\(A\)</span>.</p>
-<p>This theorem is very powerful. For example, consider a linear function <span class="math inline">\(F : \mathbb R^3 \to \mathbb R^{2025}\)</span>. <a href="#thm-linear-definition-nec-and-suff" class="quarto-xref">Theorem&nbsp;<span>3.4</span></a> tells us that if we know only three facts, e.g.&nbsp;the values of <span class="math inline">\(L(1,0,0)\)</span>, <span class="math inline">\(L(0,1,0)\)</span>, and <span class="math inline">\(L(0,0,1)\)</span>, then we are able to use this information to find the value of <span class="math inline">\(L\)</span> on <strong>any</strong> of the infinitely many vectors in <span class="math inline">\(\mathbb R^3\)</span>. Of course, we would first have to show that <span class="math inline">\(\{(1,0,0),(0,1,0),(0,0,1)\}\)</span> spans <span class="math inline">\(\mathbb R^3\)</span>.</p>
+<p>This theorem is very powerful. For example, consider a linear function <span class="math inline">\(F : \mathbb R^3 \to \mathbb R^{2025}\)</span>. <a href="#thm-linear-definition-nec-and-suff-v1" class="quarto-xref">Theorem&nbsp;<span>3.4</span></a> tells us that if we know only three facts, e.g.&nbsp;the values of <span class="math inline">\(L(1,0,0)\)</span>, <span class="math inline">\(L(0,1,0)\)</span>, and <span class="math inline">\(L(0,0,1)\)</span>, then we are able to use this information to find the value of <span class="math inline">\(L\)</span> on <strong>any</strong> of the infinitely many vectors in <span class="math inline">\(\mathbb R^3\)</span>. Of course, we would first have to show that <span class="math inline">\(\{(1,0,0),(0,1,0),(0,0,1)\}\)</span> spans <span class="math inline">\(\mathbb R^3\)</span>.</p>
 <p>The situation of having a set of vectors that both spans an entire vector space and is linearly independent is so common, we give it the following name:</p>
 </section>
 </section>
 <section id="a-basis-for-a-vector-space" class="level3">
 <h3 class="anchored" data-anchor-id="a-basis-for-a-vector-space">A basis for a vector space</h3>
 <div id="def-basis" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.5</strong></span> Let <span class="math inline">\(V\)</span> be a vector space and let <span class="math inline">\(B \subset V\)</span> be a finite set of vectors. If <span class="math inline">\(\Span B = V\)</span> and <span class="math inline">\(B\)</span> is linearly independent, we say that <span class="math inline">\(B\)</span> is <em>a basis for</em> <span class="math inline">\(V\)</span>.</p>
+<p><span class="theorem-title"><strong>Definition 3.5</strong></span> Let <span class="math inline">\(V\)</span> be a vector space and let <span class="math inline">\(B\)</span> be a finite, ordered list of vectors in <span class="math inline">\(V\)</span>. If</p>
+<ul>
+<li><span class="math inline">\(\Span B = V\)</span> and</li>
+<li><span class="math inline">\(B\)</span> is linearly independent, we say that <span class="math inline">\(B\)</span> is <em>a basis for</em> <span class="math inline">\(V\)</span>.</li>
+</ul>
+</div>
+<p>We write list here because order and repetition matter, and these are not qualities of sets.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Notation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We write lists like <span class="math inline">\([ 1 , 2, 2 , 3]\)</span> with square brackets rather than curly ones.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Note that for lists, <span class="math inline">\([1,1,1] \ne [1]\)</span> while for sets <span class="math inline">\(\{1,1,1\} = \{1\}\)</span>, and also, for lists <span class="math inline">\([1 , 2] \ne [2,1]\)</span> while for sets <span class="math inline">\(\{1,2\} = \{2,1\}\)</span>.</p>
+</div>
 </div>
 <div id="exr-basis-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.15</strong></span> Is the set <span class="math inline">\(\{(1,0),(0,1)\} \subset \mathbb R^2\)</span> a basis? Explain why.</p>
+<p><span class="theorem-title"><strong>Exercise 3.15</strong></span> Is the list <span class="math inline">\([(1,0),(0,1)] \subset \mathbb R^2\)</span> a basis? Explain why.</p>
 </div>
 <div id="exr-basis-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.16</strong></span> Is the set <span class="math inline">\(\{(2,1),(2,-1)\} \subset \mathbb R^2\)</span> a basis? Explain why.</p>
+<p><span class="theorem-title"><strong>Exercise 3.16</strong></span> Is the set <span class="math inline">\([(2,1),(2,-1)] \subset \mathbb R^2\)</span> a basis? Explain why.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -648,29 +681,23 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>The preceding exercises demonstrate a very important point: if <span class="math inline">\(V\)</span> has a basis, it is not unique. There are actually many bases for a vector space, and which one you should choose to use <strong>depends on the problem at hand</strong>.</p>
-<p>For example, both <span class="math inline">\(\{(1,0), (0,1)\}\)</span> and <span class="math inline">\(\{(1,1), (1,-1)\}\)</span> are bases for <span class="math inline">\(\mathbb R^2\)</span>. If we are dealing with a linear function <span class="math inline">\(L : \mathbb R^2 \to \mathbb R\)</span> where we know <span class="math inline">\(L (1,1) = 5\)</span> and <span class="math inline">\(L(1,-1) = 3\)</span>, then it is not useful to work with the basis <span class="math inline">\(\{(1,0), (0,1)\}\)</span></p>
+<p>For example, both <span class="math inline">\([(1,0), (0,1)]\)</span> and <span class="math inline">\([(1,1), (1,-1)]\)</span> are bases for <span class="math inline">\(\mathbb R^2\)</span>. If we are dealing with a linear function <span class="math inline">\(L : \mathbb R^2 \to \mathbb R\)</span> where we know <span class="math inline">\(L (1,1) = 5\)</span> and <span class="math inline">\(L(1,-1) = 3\)</span>, then it is not useful to work with the basis <span class="math inline">\([(1,0), (0,1)]\)</span>.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="applying-linear-functions-using-basis-representation" class="level2">
-<h2 class="anchored" data-anchor-id="applying-linear-functions-using-basis-representation">Applying linear functions using basis-representation</h2>
-<p>[TODO]</p>
-</section>
-<section id="other-bases" class="level2">
-<h2 class="anchored" data-anchor-id="other-bases">Other bases</h2>
-<p>[TODO]</p>
-</section>
-<section id="dimension" class="level2">
-<h2 class="anchored" data-anchor-id="dimension">Dimension</h2>
-<p>[TODO]</p>
+<p>We now have a restatement of <a href="#thm-linear-definition-nec-and-suff-v1" class="quarto-xref">Theorem&nbsp;<span>3.4</span></a> that uses this definition:</p>
+<div id="thm-linear-definition-nec-and-suff-v2" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3.5</strong></span> Let <span class="math inline">\(L:A \to B\)</span> be linear. Suppose we know the value of <span class="math inline">\(L\)</span> on a set of vectors <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span>. If <span class="math inline">\([ V_1 , \ldots , V_n ]\)</span> is a basis for <span class="math inline">\(A\)</span>, then we know the value of <span class="math inline">\(L\)</span> on all its inputs and <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span> is a minimal choice of data defining <span class="math inline">\(L\)</span>.</p>
+</div>
+<p>We finally answered the two mysteries that have been motivating us for a few chapters, so we’re done, right?</p>
 
 
+</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>This is a German word that, in math, means a guess with some free parameters (in this case, <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>) in it. We compute with this guess, and then later find values of the parameters that make the computation valid and also solve our problem. If we cannot find such values, the we have essentially proved that there is no solution to our problem with the form given in the ansatz (although there may be a solution of another form if our ansatz is not general enough).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is the notation convention used by many modern programming languages.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -1243,8 +1270,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./vector-spaces-isomorphic-to-euclidean-space.html" class="pagination-link" aria-label="Vector spaces isomorphic to Euclidean space">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector spaces isomorphic to Euclidean space</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
