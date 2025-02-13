@@ -238,10 +238,14 @@ $body$
       -- Convert PDF to SVG using Inkscape
       local args = {
         -- '--pages=1',
-        -- '--export-area-drawing',
+        '--export-area-drawing',
         -- '--export-type=svg',
-        -- '--export-plain-svg',
+        '--export-plain-svg',
         -- '--export-margin=0',
+        '--export-width=10',
+        '--export-height=10',
+        '--export-dpi=300',
+        -- '--export-text-to-path',
         '--export-filename=' .. svg_file,
         pdf_file
       }
@@ -321,7 +325,7 @@ local function code_to_figure(conf)
     pandoc.mediabag.insert(fname, 'image/svg+xml', imgdata)
 
     -- Create the image object.
-    local image = pandoc.Image(dgr_opt.alt, fname, "", dgr_opt['image-attr'])
+    local image = pandoc.Image(dgr_opt.alt, fname, "", dgr_opt[''])
 
     -- Create a figure if the diagram has a caption; otherwise return just the image.
     return dgr_opt.caption and
