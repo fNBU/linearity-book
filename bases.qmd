@@ -612,7 +612,9 @@ Let $V$ be a vector space and let $B$ be a finite, ordered list of vectors in $V
 If 
 
 - $\Span B = V$ and 
-- $B$ is linearly independent, we say that $B$ is *a basis for* $V$.
+- $B$ is linearly independent, 
+
+we say that $B$ is *a basis for* $V$.
 
 :::
 

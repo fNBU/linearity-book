@@ -180,7 +180,7 @@ We put the equals sign in quotes here because these two vectors are not identica
 > The set $W:=\Span\{ (1 , 0 , 0 , 0) , (0 , 0 , 1 , 0), (0 , 0 , 0 , 1), (1 , 0 , 1 , 0)\} \subset \mathbb R^4$ is a vector subspace (But you shouldn't believe me! You can check for yourself!).
 > Choose a basis for this subspace.
 > 
-> Using your choses bases, what vector is $(1,2,3) \in \mathbb R^3$ when interpreted as coordinates for a vector in $P_3$?
+> Using your choses bases, what vector is $(1,2,3) \in \mathbb R^3$ when interpreted as coordinates for a vector in $P_2$?
 > How about when interpreted as coordinates for a vector in $W$?
 :::
 
