@@ -1,22 +1,50 @@
 # Ways of writing linear maps
 
-[TODO]
+We saw in the previous chapter that, once we choose a basis for a vector space $V$, we can write vectors as their list of coefficients relative to this basis.
 
-## Maps from 1-dimensional spaces
-
-[TODO]
-
-## Maps to 1-dimensional spaces
-
-[TODO]
-
-## Maps from 2-dimensions to 2-dimensions
-
-[TODO]
+Suppose we have a linear function $L : V \to W$.
+How can we write this in a basis?
 
 ## Maps in finite dimensions
 
-[TODO]
+Let's consider the linear function $F : P_2 \to \mathbb R^2$ given by
+$$
+F(x^2) = (0,0) ,\quad F(x) = (1,0) ,\quad F(1) = (0,1).
+$$
+Let's express this in a basis.
+Consider the basis $[x^2,x,1]$ for $P_2$ and $[(1,0),(0,1)]$ for $\mathbb R^2$.
+
+Then the vector $x \in P_2$ corresponds to the list of coefficients 
+$$
+\left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right]
+$$
+and the vector $(1,0) \in \mathbb R^2$ corresponds to the list of coefficients
+$$
+\left[  \begin{aligned} 1 \\ 0 \end{aligned}\right].
+$$
+
+So, whatever our expression for $F$ is in coordinates, it must fit in
+$$
+F \left( \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] \right) = \left[  \begin{aligned} 1 \\ 0 \end{aligned}\right],
+$$
+and similarly,
+$$
+F \left( \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right] \right) = \left[  \begin{aligned} 0 \\ 1 \end{aligned}\right], \quad 
+F \left( \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] \right) = \left[  \begin{aligned} 0 \\ 0 \end{aligned}\right].
+$$
+
+First, let's note that, when we're applying a linear function to the coefficients of a vector written as a column, we usually don't write the parentheses after the function name.
+That is, we will write function applications like
+$$
+F \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] = \left[  \begin{aligned} 0 \\ 0 \end{aligned}\right], \quad 
+F \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] = \left[  \begin{aligned} 1 \\ 0 \end{aligned}\right], \quad 
+F \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right] = \left[  \begin{aligned} 0 \\ 1 \end{aligned}\right].
+$$
+
+### Writing linear functions as 2-dimensional arrays.
+
+
+
 
 ## Maps involving infinite dimensional spaces
 
