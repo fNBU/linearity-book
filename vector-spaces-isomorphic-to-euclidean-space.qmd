@@ -215,10 +215,14 @@ Let $V$ be a finite dimensional vector space over the field $F$.
 Let $n = \dim V$, and let $B$ be a choice of basis for $V$.
 Then the function $V \to F^n$ taking a vector to its list of coordinates relative to $B$ is a linear function which is injective and surjective.
 (That is, the function is an isomorphism of vector spaces.)
+The inverse of this function is also linear.
 
 :::
 
-::: {#exr-basis-nonindependence}
+The fact that the coordinate function $\Phi : V \to F^n$ and its inverse are linear imply that addition and scalar multiplication in $V$ and $F^n$ are compatible.
+That is, we can add vectors in $V$, or we can convert to coordinates, add in $F^n$ and convert back to $V$ and get the same answer.
+
+::: {#exr-basis-dependence}
 > Consider two bases $B_1 := [x^2 , x , 1]$ and $B_2 := [x^2 , x , -1]$ for $P_2$.
 >
 > Consider the vector $(17, 5 , 2) \in \mathbb R^3$.
@@ -239,32 +243,3 @@ If $\dim V$ and $\dim W$ are finite and equal, then $V$ and $W$ are "the same" (
 :::
 
 The proof of this fact is that, since they have the same dimension (call it $n$), then both $V$ and $W$ can be thought of as lists of coordinates in $F^n$.
-
-<!-- 
-::: {#fig-coordinate-add}
-
-```{.tikz}
-%%| filename: coordinate-add
-%%| image-width: 50%
-
-\usetikzlibrary{matrix}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em] {
-     F_t(x) & F(x) \\
-     A_t & A \\};
-  \path[-stealth]
-    (m-1-1) edge node [left] {$\mathcal{B}_X$} (m-2-1)
-            edge [double] node [below] {$\mathcal{B}_t$} (m-1-2)
-    (m-2-1.east|-m-2-2) edge node [below] {$\mathcal{B}_T$} node [above] {$\exists$} (m-2-2)
-    (m-1-2) edge node [right] {$\mathcal{B}_T$} (m-2-2)
-            edge [dashed,-] (m-2-1);
-\end{tikzpicture}
-```
-::: -->
-
-
-## Basis dependence
-
-[TODO]
-
-

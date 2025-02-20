@@ -1,31 +1,192 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
 # Ways of writing vectors (relative to a basis)
 
-[TODO]
-
-## Columns
-
-[TODO]
+We saw in @thm-isomorphism-up-to-dim that, once we choose a basis, we may think of a vector as its list of coefficients relative to that basis.
+Let's look at that in more detail.
 
 ## Linear combinations
 
-[TODO]
+Consider the vector space $P_3$ over $\mathbb R$.
+We know that $[1,x,x^2,x^3]$ is a basis for $P_3$.
+When we want to write a vector, say
+$$
+2x^3 + x^2 - \pi
+$$
+as a list of coefficients relative to this basis, how do we do that?
 
-### Summation notation
+We always write the vector as a linear combination of basis vectors:
+$$
+2x^3 + x^2 - \pi = (2) x^3 + (1) x^2 + (0) x + (-\pi) 1.
+$$
+Here, the numbers in parentheses are the coefficients of this vector (polynomial) relative to this basis.
 
-[TODO]
+Be careful!
+We had to remember to write a coefficient for **every** basis vector, even if that vector doesn't appear on the left side.
+So we must include some scalar times $x$, even though there are no $x$s on the left.
+How do we do that?
+We use a coefficient of zero (note that, no matter what field we are using for scalars, we always have a coefficient of "zero"; its the additive identity in the field).
+
+Be careful again!
+Had we considered a different basis, we would get a different list of coefficients in our linear combination.
+Refer back to @exr-basis-dependence to see an example of this.
+
+## Columns
+
+Once we choose a basis, it is common to write the coordinates of a that vector as a column, rather than in the list notation we have used so far.
+So, for example, the vector $2x^3 + x^2 - \pi \in P_3$ above would be written as
+$$
+\left[ 
+\begin{aligned}
+2 \\ 1 \\ 0 \\ - \pi
+\end{aligned}
+\right].
+$$
+
+Lets again remember that this notation only works if we have already agreed on a basis for $P_3$ (in this case, $[1,x,x^2,x^3]$).
+
+You may have seen notation like
+$$
+\left( 
+\begin{aligned}
+2 \\ 1 \\ 0 \\ - \pi
+\end{aligned}
+\right).
+$$
+This is merely a syntatical difference; both of these notations are perfectly reasonable.
+In this book we will use square brackets, rather than round ones.
 
 ## Other ways you might encounter
 
-[TODO]
+There are other notations that are used in some communities.
+This is because the concept of a vector space has been re-discovered many times.
+The first that we will talk about is common in physics.
+
+### i, j, k
+
+When we are considering the vector space $\mathbb R^3$, it is common to use the letters $i,j,k$ to mean the following three vectors:
+$$
+\begin{aligned}
+i &= (1,0,0) \\
+j &= (0,1,0) \\
+k &= (0,0,1)
+\end{aligned}
+$$
+Sometimes, to visually distinguish these on the printed page, they are written in bold (eg ${\bf i} , {\bf j} , {\bf k}$), or with hats above them (eg $\hat i , \hat j, \hat k$).
+
+So, for example, the vector we would have written $(1 , 2 , 0)$ up until now would be written as $i + 2j$.
+This has the convenience that we can write nothing for basis elements with a coefficient of zero.
+It also has the advantage that it is a commutative notation; the vector $i + 2j$ is the same as the vector $2j + i$.
+
+Beware, though, that this notation almost always applies to a single situation: when we are talking about the vector space $\mathbb R^3$ and we have already agreed that the basis is $[(1,0,0), (0,1,0), (0,0,1)]$.
+This is a common situation in Physics (specifically classical mechanics), and that is the reason this notation has become standard there.
+
+This notation is sometimes also used for $\mathbb R^2$, where $i = (1,0)$ and $j = (0,1)$.
+This makes implicit use of the fact that there is a linear map $\mathbb R^2 \to \mathbb R^3$ given by
+$$
+(x,y) \mapsto (x,y,0)
+$$
+so that $-i + 6j \in \mathbb R^2$ (which we would usually write as $(-1,6)$) corresponds to $-i+6j \in \mathbb R^3$ (which is really $(-1,6,0)$).
+This map is a bijection between $\mathbb R^2$ and $\Span \{ (1,0,0) , (0,1,0)\} \subset \mathbb R^3$.
+As long as this is understood by the people communicating about vectors, all is good.
+
+But beware that the function $(x,y) \mapsto (x,y,0)$ is not canonical!
+There are many injective linear functions $\mathbb R^2 \to \mathbb R^3$ and none of them is preferred over another (at least, mathematically).
+For example, $(x,y) \mapsto (x+y , 0 , x-y)$ is also an injective linear function, but it does not send $i \in \mathbb R^2$ to $i \in \mathbb R^3$.
 
 ### Rows
 
-[TODO]
+It is rare (in mathematics) these days[^vectors-in-cs], but some texts choose to represent the coefficients of a vector as a row, rather than a column.
+So, for example, they would represent $2x^3 + x^2 - \pi \in P_3$ as
+$$
+\left[ 2  \, 1 \, 0 \, - \pi \right] \quad \text{or}
+\left( 2  \, 1 \, 0 \, - \pi \right) \quad \text{or}
+\left( 2  , 1 , 0 , - \pi \right).
+$$
 
-### Einstein summation notation
+[^vectors-in-cs]: It is common to see horizontally written vectors in programming languages. For example, the invocation `np.array([1, 2, 3])` in the [NumPy library](https://numpy.org/) for the [Python programming language](https://www.python.org/).
 
-[TODO]
+We have used the last of these three notations in @thm-list-spaces.
+Writing vectors in this way has implications for how one must then write linear functions in coordinates (more on this later).
+In this text, when we intend to combine a vector in coordinates with a linear function in coordinates, we write the vector vertically.
 
 ### bra-ket
 
-[TODO]
+In Quantum Mechanics, it is common to work with vectors that are functions.
+If we are in a finite dimensional vector space of functions (eg $P_n$), then we can write vectors as lists of coordinates (once we choose a basis).
+But when we are working with an infinite dimensional vector space (such as $C^0$ or $C^\infty$), we have no hope of writing vectors as lists of coefficients relative to a basis (because the list may be infinitely long).
+
+In these cases, it is common to simply write the name of the function (eg $f \in C^\infty$) and then refer elsewhere for information about the properties of the function.
+
+In Quantum Mechanics, it is common to write the name of a function inside a $\langle$ and a $\mid$ to emphasize that it is a vector:
+$$
+\left\langle f \right|.
+$$
+So, for example, if we know that $\left\langle f \right|$ and $\left\langle g \right|$ are vectors in the same vector space, then $\left\langle f + 3g \right|$ is also a vector in the same space.
+
+### Summation notation
+
+In the study of manifolds[^manifolds-ref], including differentiable geometry and general relativity, it is common to write the basis for an $n$-dimensional vector space like
+$$
+\left[ \frac{d}{dx^1} ,  \frac{d}{dx^2} , \cdots ,  \frac{d}{dx^n} \right ]
+$$
+where $\frac{d}{dx^i}$ is just a symbolic placeholder for the $i$-th basis vector (akin to how $\hat j$ is a symbolic placeholder for the second basis vector in a particular basis of $\mathbb R^3$).
+
+In this case, we would write a vector like 
+$$
+\frac{d}{dx^1} + 2 \frac{d}{dx^2} - \pi \frac{d}{dx^3}.
+$$
+
+When we want to talk about a vector in this notation, but without reference to particular coefficients, it's common to write
+$$
+X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n}.
+$$
+Note that the superscript on $X^1$ is not an exponent; it's just a way of notationally distinguishing a symbol.
+Think of it akin to the notation $a_1 , a_2 , \ldots$.
+So, for example, we might write the following:
+
+> The length of the vector 
+> $$
+> X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n}
+> $$
+> is
+> $$
+> \sqrt{ (X^1)^2 + (X^2)^2 + \cdots + (X^n)^2}.
+> $$
+
+#### Implicit sums
+
+When working with vectors we write like
+$$
+X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n}
+$$
+it is common to write them using a capital $\Sigma$ like
+$$
+\sum_{i=1}^n X^i \frac{d}{dx^i} .
+$$
+You might remember this notation from discussions of Riemann sums in Calculus.
+
+A stranger thing is common in the study of manifolds; if the smallest and largest values of $i$ are understood, it is common to omit the $\Sigma$ altogether.
+This situation occurs quite often; the lower limit of $i$ is 1 and the upper limit is just the dimension of the vector space in which $X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n}$ lives.
+
+So, all three of the following notations *denote* the same vector:
+$$
+\begin{aligned}
+& X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n} \\
+=& \sum_{i=1}^n X^i \frac{d}{dx^i} \\
+=& X^i \frac{d}{dx^i}
+\end{aligned}
+$$
+
+
+[^manifolds-ref]: [https://en.wikipedia.org/wiki/Manifold](https://en.wikipedia.org/wiki/Manifold)
