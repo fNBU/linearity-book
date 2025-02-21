@@ -41,8 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2ce9fc9ac8b614e7ffef13962cc12eaf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-865080ad31756495a90e432e510a621e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bb86085bf2017d3f2b399e4ede986c0b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-fb7ff7eb76f40aa1ea63653f6396e01d.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -210,16 +239,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#columns" id="toc-columns" class="nav-link active" data-scroll-target="#columns">Columns</a></li>
-  <li><a href="#linear-combinations" id="toc-linear-combinations" class="nav-link" data-scroll-target="#linear-combinations">Linear combinations</a>
-  <ul class="collapse">
-  <li><a href="#summation-notation" id="toc-summation-notation" class="nav-link" data-scroll-target="#summation-notation">Summation notation</a></li>
-  </ul></li>
+  <li><a href="#linear-combinations" id="toc-linear-combinations" class="nav-link active" data-scroll-target="#linear-combinations">Linear combinations</a></li>
+  <li><a href="#columns" id="toc-columns" class="nav-link" data-scroll-target="#columns">Columns</a></li>
   <li><a href="#other-ways-you-might-encounter" id="toc-other-ways-you-might-encounter" class="nav-link" data-scroll-target="#other-ways-you-might-encounter">Other ways you might encounter</a>
   <ul class="collapse">
+  <li><a href="#i-j-k" id="toc-i-j-k" class="nav-link" data-scroll-target="#i-j-k">i, j, k</a></li>
   <li><a href="#rows" id="toc-rows" class="nav-link" data-scroll-target="#rows">Rows</a></li>
-  <li><a href="#einstein-summation-notation" id="toc-einstein-summation-notation" class="nav-link" data-scroll-target="#einstein-summation-notation">Einstein summation notation</a></li>
   <li><a href="#bra-ket" id="toc-bra-ket" class="nav-link" data-scroll-target="#bra-ket">bra-ket</a></li>
+  <li><a href="#summation-notation" id="toc-summation-notation" class="nav-link" data-scroll-target="#summation-notation">Summation notation</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/ways-of-writing-vectors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
@@ -246,36 +273,124 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>[TODO]</p>
-<section id="columns" class="level2">
-<h2 class="anchored" data-anchor-id="columns">Columns</h2>
-<p>[TODO]</p>
-</section>
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+<!-- the following block is for page defs which do not render anything upon definition  -->
+<div class="hidden">
+<p><span class="math display">\[
+\DeclareMathOperator{\Span}{Span}
+\]</span></p>
+</div>
+<p>We saw in <a href="vector-spaces-isomorphic-to-euclidean-space.html#thm-isomorphism-up-to-dim" class="quarto-xref">Theorem&nbsp;<span>4.1</span></a> that, once we choose a basis, we may think of a vector as its list of coefficients relative to that basis. Let’s look at that in more detail.</p>
 <section id="linear-combinations" class="level2">
 <h2 class="anchored" data-anchor-id="linear-combinations">Linear combinations</h2>
-<p>[TODO]</p>
-<section id="summation-notation" class="level3">
-<h3 class="anchored" data-anchor-id="summation-notation">Summation notation</h3>
-<p>[TODO]</p>
+<p>Consider the vector space <span class="math inline">\(P_3\)</span> over <span class="math inline">\(\mathbb R\)</span>. We know that <span class="math inline">\([1,x,x^2,x^3]\)</span> is a basis for <span class="math inline">\(P_3\)</span>. When we want to write a vector, say <span class="math display">\[
+2x^3 + x^2 - \pi
+\]</span> as a list of coefficients relative to this basis, how do we do that?</p>
+<p>We always write the vector as a linear combination of basis vectors: <span class="math display">\[
+2x^3 + x^2 - \pi = (2) x^3 + (1) x^2 + (0) x + (-\pi) 1.
+\]</span> Here, the numbers in parentheses are the coefficients of this vector (polynomial) relative to this basis.</p>
+<p>Be careful! We had to remember to write a coefficient for <strong>every</strong> basis vector, even if that vector doesn’t appear on the left side. So we must include some scalar times <span class="math inline">\(x\)</span>, even though there are no <span class="math inline">\(x\)</span>s on the left. How do we do that? We use a coefficient of zero (note that, no matter what field we are using for scalars, we always have a coefficient of “zero”; its the additive identity in the field).</p>
+<p>Be careful again! Had we considered a different basis, we would get a different list of coefficients in our linear combination. Refer back to <a href="vector-spaces-isomorphic-to-euclidean-space.html#exr-basis-dependence" class="quarto-xref">Exercise&nbsp;<span>4.9</span></a> to see an example of this.</p>
 </section>
+<section id="columns" class="level2">
+<h2 class="anchored" data-anchor-id="columns">Columns</h2>
+<p>Once we choose a basis, it is common to write the coordinates of a that vector as a column, rather than in the list notation we have used so far. So, for example, the vector <span class="math inline">\(2x^3 + x^2 - \pi \in P_3\)</span> above would be written as <span class="math display">\[
+\left[
+\begin{aligned}
+2 \\ 1 \\ 0 \\ - \pi
+\end{aligned}
+\right].
+\]</span></p>
+<p>Lets again remember that this notation only works if we have already agreed on a basis for <span class="math inline">\(P_3\)</span> (in this case, <span class="math inline">\([x^3,x^2,x,1]\)</span>).</p>
+<p>You may have seen notation like <span class="math display">\[
+\left(
+\begin{aligned}
+2 \\ 1 \\ 0 \\ - \pi
+\end{aligned}
+\right).
+\]</span> This is merely a syntatical difference; both of these notations are perfectly reasonable. In this book we will use square brackets, rather than round ones.</p>
 </section>
 <section id="other-ways-you-might-encounter" class="level2">
 <h2 class="anchored" data-anchor-id="other-ways-you-might-encounter">Other ways you might encounter</h2>
-<p>[TODO]</p>
+<p>There are other notations that are used in some communities. This is because the concept of a vector space has been re-discovered many times. The first that we will talk about is common in physics.</p>
+<section id="i-j-k" class="level3">
+<h3 class="anchored" data-anchor-id="i-j-k">i, j, k</h3>
+<p>When we are considering the vector space <span class="math inline">\(\mathbb R^3\)</span>, it is common to use the letters <span class="math inline">\(i,j,k\)</span> to mean the following three vectors: <span class="math display">\[
+\begin{aligned}
+i &amp;= (1,0,0) \\
+j &amp;= (0,1,0) \\
+k &amp;= (0,0,1)
+\end{aligned}
+\]</span> Sometimes, to visually distinguish these on the printed page, they are written in bold (eg <span class="math inline">\({\bf i} , {\bf j} , {\bf k}\)</span>), or with hats above them (eg <span class="math inline">\(\hat \imath , \hat \jmath, \hat k\)</span>). Many other notations are out there in the wild for these three vectors in <span class="math inline">\(\mathbb R^3\)</span>.</p>
+<p>So, for example, the vector we would have written <span class="math inline">\((1 , 2 , 0)\)</span> up until now would be written as <span class="math inline">\(i + 2j\)</span>. This has the convenience that we can write nothing for basis elements with a coefficient of zero. It also has the advantage that it is a commutative notation; the vector <span class="math inline">\(i + 2j\)</span> is the same as the vector <span class="math inline">\(2j + i\)</span>.</p>
+<p>Beware, though, that this notation almost always applies to a single situation: when we are talking about the vector space <span class="math inline">\(\mathbb R^3\)</span> and we have already agreed that the basis is <span class="math inline">\([(1,0,0), (0,1,0), (0,0,1)]\)</span>. This is a common situation in Physics (specifically classical mechanics), and that is the reason this notation has become standard there.</p>
+<p>This notation is sometimes also used for <span class="math inline">\(\mathbb R^2\)</span>, where <span class="math inline">\(i = (1,0)\)</span> and <span class="math inline">\(j = (0,1)\)</span>. This makes implicit use of the fact that there is a linear map <span class="math inline">\(\mathbb R^2 \to \mathbb R^3\)</span> given by <span class="math display">\[
+(x,y) \mapsto (x,y,0)
+\]</span> so that <span class="math inline">\(-i + 6j \in \mathbb R^2\)</span> (which we would usually write as <span class="math inline">\((-1,6)\)</span>) corresponds to <span class="math inline">\(-i+6j \in \mathbb R^3\)</span> (which is really <span class="math inline">\((-1,6,0)\)</span>). This map is a bijection between <span class="math inline">\(\mathbb R^2\)</span> and <span class="math inline">\(\Span \{ (1,0,0) , (0,1,0)\} \subset \mathbb R^3\)</span>. As long as this is understood by the people communicating about vectors, all is good.</p>
+<p>But beware that the function <span class="math inline">\((x,y) \mapsto (x,y,0)\)</span> is not canonical! There are many injective linear functions <span class="math inline">\(\mathbb R^2 \to \mathbb R^3\)</span> and none of them is preferred over another (at least, mathematically). For example, <span class="math inline">\((x,y) \mapsto (x+y , 0 , x-y)\)</span> is also an injective linear function, but it does not send <span class="math inline">\(i \in \mathbb R^2\)</span> to <span class="math inline">\(i \in \mathbb R^3\)</span>.</p>
+</section>
 <section id="rows" class="level3">
 <h3 class="anchored" data-anchor-id="rows">Rows</h3>
-<p>[TODO]</p>
-</section>
-<section id="einstein-summation-notation" class="level3">
-<h3 class="anchored" data-anchor-id="einstein-summation-notation">Einstein summation notation</h3>
-<p>[TODO]</p>
+<p>It is rare (in mathematics) these days<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, but some texts choose to represent the coefficients of a vector as a row, rather than a column. So, for example, they would represent <span class="math inline">\(2x^3 + x^2 - \pi \in P_3\)</span> as <span class="math display">\[
+\left[ 2  \, 1 \, 0 \, - \pi \right] \quad \text{or}
+\left( 2  \, 1 \, 0 \, - \pi \right) \quad \text{or}
+\left( 2  , 1 , 0 , - \pi \right).
+\]</span></p>
+<p>We have used the last of these three notations in <a href="the-notion-of-a-vector-space.html#thm-list-spaces" class="quarto-xref">Theorem&nbsp;<span>2.2</span></a>. Writing vectors in this way has implications for how one must then write linear functions in coordinates (more on this later). In this text, when we intend to combine a vector in coordinates with a linear function in coordinates, we write the vector vertically.</p>
 </section>
 <section id="bra-ket" class="level3">
 <h3 class="anchored" data-anchor-id="bra-ket">bra-ket</h3>
-<p>[TODO]</p>
+<p>In Quantum Mechanics, it is common to work with vectors that are functions. If we are in a finite dimensional vector space of functions (eg <span class="math inline">\(P_n\)</span>), then we can write vectors as lists of coordinates (once we choose a basis). But when we are working with an infinite dimensional vector space (such as <span class="math inline">\(C^0\)</span> or <span class="math inline">\(C^\infty\)</span>), we have no hope of writing vectors as lists of coefficients relative to a basis (because the list may be infinitely long).</p>
+<p>In these cases, it is common to simply write the name of the function (eg <span class="math inline">\(f \in C^\infty\)</span>) and then refer elsewhere for information about the properties of the function.</p>
+<p>In Quantum Mechanics, it is common to write the name of a function inside a <span class="math inline">\(\langle\)</span> and a <span class="math inline">\(\mid\)</span> to emphasize that it is a vector: <span class="math display">\[
+\left\langle f \right|.
+\]</span> So, for example, if we know that <span class="math inline">\(\left\langle f \right|\)</span> and <span class="math inline">\(\left\langle g \right|\)</span> are vectors in the same vector space, then <span class="math inline">\(\left\langle f + 3g \right|\)</span> is also a vector in the same space.</p>
+</section>
+<section id="summation-notation" class="level3">
+<h3 class="anchored" data-anchor-id="summation-notation">Summation notation</h3>
+<p>In the study of manifolds<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, including differentiable geometry and general relativity, it is common to write the basis for an <span class="math inline">\(n\)</span>-dimensional vector space like <span class="math display">\[
+\left[ \frac{d}{dx^1} ,  \frac{d}{dx^2} , \cdots ,  \frac{d}{dx^n} \right ]
+\]</span> where <span class="math inline">\(\frac{d}{dx^i}\)</span> is just a symbolic placeholder for the <span class="math inline">\(i\)</span>-th basis vector (akin to how <span class="math inline">\(\hat j\)</span> is a symbolic placeholder for the second basis vector in a particular basis of <span class="math inline">\(\mathbb R^3\)</span>).</p>
+<p>In this case, we would write a vector like <span class="math display">\[
+\frac{d}{dx^1} + 2 \frac{d}{dx^2} - \pi \frac{d}{dx^3}.
+\]</span></p>
+<p>When we want to talk about a vector in this notation, but without reference to particular coefficients, it’s common to write <span class="math display">\[
+X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n}.
+\]</span> Note that the superscript on <span class="math inline">\(X^1\)</span> is not an exponent; it’s just a way of notationally distinguishing a symbol. Think of it akin to the notation <span class="math inline">\(a_1 , a_2 , \ldots\)</span>. So, for example, we might write the following:</p>
+<blockquote class="blockquote">
+<p>The length of the vector <span class="math display">\[
+X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n}
+\]</span> is <span class="math display">\[
+\sqrt{ (X^1)^2 + (X^2)^2 + \cdots + (X^n)^2}.
+\]</span></p>
+</blockquote>
+<section id="implicit-sums" class="level4">
+<h4 class="anchored" data-anchor-id="implicit-sums">Implicit sums</h4>
+<p>When working with vectors we write like <span class="math display">\[
+X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n}
+\]</span> it is common to write them using a capital <span class="math inline">\(\Sigma\)</span> like <span class="math display">\[
+\sum_{i=1}^n X^i \frac{d}{dx^i} .
+\]</span> You might remember this notation from discussions of Riemann sums in Calculus.</p>
+<p>A stranger thing is common in the study of manifolds; if the smallest and largest values of <span class="math inline">\(i\)</span> are understood, it is common to omit the <span class="math inline">\(\Sigma\)</span> altogether. This situation occurs quite often; the lower limit of <span class="math inline">\(i\)</span> is 1 and the upper limit is just the dimension of the vector space in which <span class="math inline">\(X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n}\)</span> lives.</p>
+<p>So, all three of the following notations <em>denote</em> the same vector:<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <span class="math display">\[
+\begin{aligned}
+&amp; X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n} \\
+=&amp; \sum_{i=1}^n X^i \frac{d}{dx^i} \\
+=&amp; X^i \frac{d}{dx^i}
+\end{aligned}.
+\]</span></p>
 
 
 </section>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>It is common to see horizontally written vectors in programming languages. For example, the invocation <code>np.array([1, 2, 3])</code> in the <a href="https://numpy.org/">NumPy library</a> for the <a href="https://www.python.org/">Python programming language</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://en.wikipedia.org/wiki/Manifold">https://en.wikipedia.org/wiki/Manifold</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The last notation of the three in the following equation is called the <a href="https://en.wikipedia.org/wiki/Einstein_notation">Einstein summation convention</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

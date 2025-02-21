@@ -41,8 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2ce9fc9ac8b614e7ffef13962cc12eaf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-865080ad31756495a90e432e510a621e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bb86085bf2017d3f2b399e4ede986c0b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-fb7ff7eb76f40aa1ea63653f6396e01d.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -239,19 +239,15 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#maps-from-1-dimensional-spaces" id="toc-maps-from-1-dimensional-spaces" class="nav-link active" data-scroll-target="#maps-from-1-dimensional-spaces">Maps from 1-dimensional spaces</a></li>
-  <li><a href="#maps-to-1-dimensional-spaces" id="toc-maps-to-1-dimensional-spaces" class="nav-link" data-scroll-target="#maps-to-1-dimensional-spaces">Maps to 1-dimensional spaces</a></li>
-  <li><a href="#maps-from-2-dimensions-to-2-dimensions" id="toc-maps-from-2-dimensions-to-2-dimensions" class="nav-link" data-scroll-target="#maps-from-2-dimensions-to-2-dimensions">Maps from 2-dimensions to 2-dimensions</a></li>
-  <li><a href="#maps-in-finite-dimensions" id="toc-maps-in-finite-dimensions" class="nav-link" data-scroll-target="#maps-in-finite-dimensions">Maps in finite dimensions</a></li>
+  <li><a href="#maps-in-finite-dimensions" id="toc-maps-in-finite-dimensions" class="nav-link active" data-scroll-target="#maps-in-finite-dimensions">Maps in finite dimensions</a>
+  <ul class="collapse">
+  <li><a href="#writing-linear-functions-as-2-dimensional-arrays." id="toc-writing-linear-functions-as-2-dimensional-arrays." class="nav-link" data-scroll-target="#writing-linear-functions-as-2-dimensional-arrays.">Writing linear functions as 2-dimensional arrays.</a></li>
+  </ul></li>
   <li><a href="#maps-involving-infinite-dimensional-spaces" id="toc-maps-involving-infinite-dimensional-spaces" class="nav-link" data-scroll-target="#maps-involving-infinite-dimensional-spaces">Maps involving infinite dimensional spaces</a></li>
   <li><a href="#composing-maps" id="toc-composing-maps" class="nav-link" data-scroll-target="#composing-maps">Composing maps</a>
   <ul class="collapse">
-  <li><a href="#noncommutativity" id="toc-noncommutativity" class="nav-link" data-scroll-target="#noncommutativity">Noncommutativity</a></li>
-  </ul></li>
-  <li><a href="#adding-maps" id="toc-adding-maps" class="nav-link" data-scroll-target="#adding-maps">Adding maps</a></li>
-  <li><a href="#matrices-are-sort-of-like-numbers" id="toc-matrices-are-sort-of-like-numbers" class="nav-link" data-scroll-target="#matrices-are-sort-of-like-numbers">Matrices are sort of like numbers</a>
-  <ul class="collapse">
-  <li><a href="#numbers-are-1-times-1-matrices" id="toc-numbers-are-1-times-1-matrices" class="nav-link" data-scroll-target="#numbers-are-1-times-1-matrices">Numbers are <span class="math inline">\(1 \times 1\)</span> matrices</a></li>
+  <li><a href="#domains-and-codomains" id="toc-domains-and-codomains" class="nav-link" data-scroll-target="#domains-and-codomains">Domains and codomains</a></li>
+  <li><a href="#in-coordinates" id="toc-in-coordinates" class="nav-link" data-scroll-target="#in-coordinates">In coordinates</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/ways-of-writing-linear-maps.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
@@ -278,45 +274,233 @@ window.Quarto = {
 </header>
 
 
-<p>[TODO]</p>
-<section id="maps-from-1-dimensional-spaces" class="level2">
-<h2 class="anchored" data-anchor-id="maps-from-1-dimensional-spaces">Maps from 1-dimensional spaces</h2>
-<p>[TODO]</p>
-</section>
-<section id="maps-to-1-dimensional-spaces" class="level2">
-<h2 class="anchored" data-anchor-id="maps-to-1-dimensional-spaces">Maps to 1-dimensional spaces</h2>
-<p>[TODO]</p>
-</section>
-<section id="maps-from-2-dimensions-to-2-dimensions" class="level2">
-<h2 class="anchored" data-anchor-id="maps-from-2-dimensions-to-2-dimensions">Maps from 2-dimensions to 2-dimensions</h2>
-<p>[TODO]</p>
-</section>
+<p>We saw in the previous chapter that, once we choose a basis for a vector space <span class="math inline">\(V\)</span>, we can write vectors as their list of coefficients relative to this basis.</p>
+<p>Suppose we have a linear function <span class="math inline">\(L : V \to W\)</span>. How can we write this in a basis?</p>
 <section id="maps-in-finite-dimensions" class="level2">
 <h2 class="anchored" data-anchor-id="maps-in-finite-dimensions">Maps in finite dimensions</h2>
-<p>[TODO]</p>
+<p>Let’s consider the linear function <span class="math inline">\(F : P_2 \to \mathbb R^2\)</span> given by <span class="math display">\[
+F(x^2) = (0,0) ,\quad F(x) = (1,0) ,\quad F(1) = (0,1).
+\]</span> Let’s express this in a basis. Consider the basis <span class="math inline">\([x^2,x,1]\)</span> for <span class="math inline">\(P_2\)</span> and <span class="math inline">\([(1,0),(0,1)]\)</span> for <span class="math inline">\(\mathbb R^2\)</span>.</p>
+<p>Then the vector <span class="math inline">\(x \in P_2\)</span> corresponds to the list of coefficients <span class="math display">\[
+\left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right]
+\]</span> and the vector <span class="math inline">\((1,0) \in \mathbb R^2\)</span> corresponds to the list of coefficients <span class="math display">\[
+\left[  \begin{aligned} 1 \\ 0 \end{aligned}\right].
+\]</span></p>
+<p>So, whatever our expression for <span class="math inline">\(F\)</span> is in coordinates, it must fit in <span class="math display">\[
+F \left( \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] \right) = \left[  \begin{aligned} 1 \\ 0 \end{aligned}\right],
+\]</span> and similarly, <span class="math display">\[
+F \left( \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right] \right) = \left[  \begin{aligned} 0 \\ 1 \end{aligned}\right], \quad
+F \left( \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] \right) = \left[  \begin{aligned} 0 \\ 0 \end{aligned}\right].
+\]</span></p>
+<p>First, let’s note that, when we’re applying a linear function to the coefficients of a vector written as a column, we usually don’t write the parentheses after the function name. That is, we will write function applications like <span class="math display">\[
+F \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] = \left[  \begin{aligned} 0 \\ 0 \end{aligned}\right], \quad
+F \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] = \left[  \begin{aligned} 1 \\ 0 \end{aligned}\right], \quad
+F \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right] = \left[  \begin{aligned} 0 \\ 1 \end{aligned}\right].
+\]</span></p>
+<section id="writing-linear-functions-as-2-dimensional-arrays." class="level3">
+<h3 class="anchored" data-anchor-id="writing-linear-functions-as-2-dimensional-arrays.">Writing linear functions as 2-dimensional arrays.</h3>
+<p>We will introduce the notation for writing <span class="math inline">\(F\)</span> above in coordinates. Then we will develop fast processes for computing function application, composition, sums, multiples, and inverses of linear functions all while remaining “in coordinates”.</p>
+<p>The motivation will be the following:</p>
+<p>If we know a linear function on a basis for its domain, we know it everywhere. In particular,</p>
+<p><span class="math display">\[
+\begin{aligned}
+F \left[  \begin{aligned} a \\ b \\ c \end{aligned}\right]
+=&amp; F \left( a  \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] + b \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] + c \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right]\right) \\
+=&amp; a F \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] + b F \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] + c F \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right] \\
+=&amp; a \left[  \begin{aligned} 0 \\ 0 \end{aligned}\right] + b \left[  \begin{aligned} 1 \\ 0 \end{aligned}\right] + c \left[  \begin{aligned} 0 \\ 1 \end{aligned}\right]\\
+=&amp; \left[  \begin{aligned} (0)a + (1)b + (0)c \\ (0)a + (0)b + (1)c \end{aligned}\right] .
+\end{aligned}
+\]</span></p>
+<p>The way we will write <span class="math inline">\(F\)</span> in coordinates, is to write it as a 2-dimensional array of numbers. <span class="math display">\[
+\begin{bmatrix}
+\_ &amp; \_ &amp; \_\\
+\_ &amp; \_ &amp; \_
+\end{bmatrix}.
+\]</span></p>
+<p>The number of columns of the array is the dimension of the <strong>domain</strong> of <span class="math inline">\(F\)</span>, so in this case there are three columns. The number of rows of the array is the dimension of the <strong>codomain</strong> of <span class="math inline">\(F\)</span>, so in this case there are two rows.</p>
+<p>The first column of the array is where <span class="math inline">\(F\)</span> sends the first basis vector of its domain. If we use the basis we have already chosen, then the array for <span class="math inline">\(F\)</span> looks like <span class="math display">\[
+\begin{bmatrix}
+0 &amp; \_ &amp; \_\\
+0 &amp; \_ &amp; \_
+\end{bmatrix}
+\]</span> because <span class="math inline">\(F\)</span> takes its first basis vector to <span class="math inline">\((0,0)\)</span>, which, in the coordinates for the codomain, is the column</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+0 \\
+0
+\end{bmatrix}.
+\]</span></p>
+<p>Similarly, the second column of the array is where <span class="math inline">\(F\)</span> sends the second basis vector <span class="math display">\[
+\begin{bmatrix}
+0 &amp; 1 &amp; \_\\
+0 &amp; 0 &amp; \_
+\end{bmatrix}
+\]</span> and the third column is where <span class="math inline">\(F\)</span> sends the third basis vector <span class="math display">\[
+\begin{bmatrix}
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1
+\end{bmatrix}.
+\]</span></p>
+<p>This two dimensional array of numbers we used to represent <span class="math inline">\(F\)</span> is called a <em>matrix</em>.</p>
+<div id="exr-write-as-matrix" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.1</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Consider the linear function <span class="math inline">\(G: P_2 \to \mathbb R^2\)</span> given by <span class="math display">\[
+G(x^2) = (2,0) ,\quad G(x) = (-1,3) ,\quad G(1) = (7,\pi) .
+\]</span></p>
+<p>Using the same basis that we used for <span class="math inline">\(F\)</span> above, write the matrix for <span class="math inline">\(G\)</span>.</p>
+</blockquote>
+</div>
+<p>The way we apply a matrix, is as we did in the example above <span class="math display">\[
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13}\\
+a_{21} &amp; a_{22} &amp; a_{23}
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}=
+\begin{bmatrix}
+a_{11} x + a_{12} y + a_{13} z \\
+a_{21} x + a_{22} y + a_{23} z
+\end{bmatrix}.
+\]</span></p>
+<p>The formula for a matrix with <span class="math inline">\(n\)</span> rows and <span class="math inline">\(m\)</span> columns is needlessly complex. The intuition is this:</p>
+<ul>
+<li>The input vector must have the same number of entries as the number of columns of the matrix.</li>
+<li>The output vector must have the same number of entries as the number of rows of the matrix.</li>
+<li>To get the <strong>first</strong> entry in the output, multiply each of the entries in the input column with each of the entries in the <strong>first</strong> row of the matrix. Then add the products. That is the <strong>first</strong> entry of the result.</li>
+<li>To get the <strong>second</strong> entry in the output, multiply each of the entries in the input column with each of the entries in the <strong>second</strong> row of the matrix. Then add the products. That is the <strong>second</strong> entry of the result.</li>
+<li>Continue in this manner until you have filled all the entries in the output vector.</li>
+</ul>
+<div id="exr-write-as-matrix-big" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.2</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Consider the linear function <span class="math inline">\(G: \mathbb R^4 \to \mathbb R^4\)</span> given by <span class="math display">\[
+G \begin{bmatrix}1 \\ 0 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix}2 \\ 0 \\ 0 \\ 0 \end{bmatrix} , \quad
+G \begin{bmatrix}0 \\ 1 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix}0 \\ 2 \\ 0 \\ 0 \end{bmatrix} , \quad
+G \begin{bmatrix}0 \\ 0 \\ 1 \\ 0 \end{bmatrix} = G \begin{bmatrix}0 \\ 0 \\ 0 \\ 1 \end{bmatrix} = 0.
+\]</span></p>
+<p>Note that <span class="math inline">\(G\)</span> is already written in some (unknown basis). What is the matrix for <span class="math inline">\(G\)</span>?</p>
+<p>Compute <span class="math display">\[
+G \begin{bmatrix}w \\ x \\ y \\ z \end{bmatrix}.
+\]</span> Describe what <span class="math inline">\(G\)</span> does to its inputs in words.</p>
+</blockquote>
+</div>
+</section>
 </section>
 <section id="maps-involving-infinite-dimensional-spaces" class="level2">
 <h2 class="anchored" data-anchor-id="maps-involving-infinite-dimensional-spaces">Maps involving infinite dimensional spaces</h2>
-<p>[TODO]</p>
+<p>We know that some vector spaces do not have a finite dimension (for example, the space of continuous functions <span class="math inline">\(\mathbb R \to \mathbb R\)</span>). Since the size of a matrix for a linear map is determined by the dimension of the domain (the number of columns) and the dimension of the codomain (the number of rows), it is not possible to represent a linear function to or from an infinite dimensional vector space as a matrix. For now, we don’t have any good way to represent these.</p>
 </section>
 <section id="composing-maps" class="level2">
 <h2 class="anchored" data-anchor-id="composing-maps">Composing maps</h2>
-<p>[TODO]</p>
-<section id="noncommutativity" class="level3">
-<h3 class="anchored" data-anchor-id="noncommutativity">Noncommutativity</h3>
-<p>[TODO]</p>
+<p>For ordinary functions <span class="math inline">\(\mathbb R \to \mathbb R\)</span>, we have a way of composing functions. For example, if <span class="math inline">\(f(x) = x^3\)</span> and <span class="math inline">\(g(x) = x^2 + 1\)</span> then the function <span class="math inline">\(f \circ g\)</span> is given by <span class="math display">\[
+(f \circ g) (x) = f ( g ( x)) = f(x^2 + 1) = (x^2 + 1)^3.
+\]</span> What happens when we compose one linear map with another?</p>
+<section id="domains-and-codomains" class="level3">
+<h3 class="anchored" data-anchor-id="domains-and-codomains">Domains and codomains</h3>
+<p>First, let us observe that if we want to make a composition <span class="math inline">\(K \circ L\)</span> of two linear functions</p>
+<div class="imagify" data-zoom="3">
+<p><img src="data:image/svg+xml,%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0D%0A%3Csvg%20version%3D%271.1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20xmlns%3Axlink%3D%27http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%27%20width%3D%27902.28623pt%27%20height%3D%2771.079093pt%27%20viewBox%3D%27-72.000004%20-72.000009%20300.762077%2023.693031%27%3E%0D%0A%3Cstyle%20type%3D%27text%2Fcss%27%3E%0D%0A%3C%21%5BCDATA%5B%40font-face%7Bfont-family%3Almmi10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAY8AAoAAAAAB6gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEQAAABghVx1KWNtYXAAAAE4AAAANQAAADwAaACaZ2x5ZgAAAXAAAANdAAAEXBXkYA1oZWFkAAAE0AAAAC8AAAA2KmIrSWhoZWEAAAUAAAAAHgAAACQGtgI%2BaG10eAAABSAAAAAcAAAAHBTJAPpsb2NhAAAFPAAAABAAAAAQA0wEQm1heHAAAAVMAAAAGAAAACAACwBTbmFtZQAABWQAAADMAAABO76Ify9wb3N0AAAGMAAAAAwAAAAgAAMAAHjaY2Bm%2BsE4gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpR0ZPBhZvgP5DNDpJHU%2FAcKAwAAbg11eNpjYGBgYmBgYAZiESDJCKZZGDSANBuQZgTKujD4%2FP8P5DsyeP%2F%2F%2F%2F%2FA%2F11gVUAAAJGrCPwAAAB42lWTS2wbVRSG5z93fG899sy4sT1jsD2p48ckASelNjNNJNyoIWmTiqZJoEQlIgJRKipAlIamiyJFJQioQBVU6kPsuodtEWIFCyQWsEFi1U1ZVWLdDXjMGYdUWLO5OveM9J3v%2FFcjrdbr0QO6rz2jtTWtbmESym%2F47cB1gnASFRsy57iB27%2BI660OQgThIcfN5pxW4KdAD5BObG4rCTOVbYukinozllnKmgJm4txaGunkSMfDWZkzJTpOM%2F9T5ZecpSAEaJ%2BtgLT75tzbhVwtA7ItGdcNW6J6iE5nkLS7244tHmIl%2BlbTNKE91esKST9onjauhUwsmVBV5C5wtl3142PFQ96C8iCChl9tcA9j98%2BC21tuB%2FQbHcu88EF0o2RZ017ii6Jftm2srb8utldPrNYxMbsznE3M3NzYDOng8R%2FndcC6u37p%2FomjVkcXZabOejS1n0RJgZanF8%2FZxkmUas8T7Cci8X70T%2F2UiP4ckgbEFnNDa%2FUeihT9rk0xsyMV003AD8L4c1zHDZlfCQtVln8E7YbPDfForoeQB2PpwTAcukXN%2BbELs5e%2FFmK1vXhxZ3VsVB63kMaMkEYyAcLppbmPD84XpQP9ysLoRtBuSj0p5aPEO0frLYib259tLrZXhF6rW0sWCRX9zasgZTfOnAdmD69tFNabl14jjIxPrBdSAGmkjbHzkJ0XtCaPIlX8PVYe7BnngRS7VnuKw%2BAIAhGKpfHD57ejb8p2XzRmvQyLvnhljd46%2BS47%2FjxWe%2B3Vy%2B50Yd8QvvvkveeaLwrhyV3DGSHKHIkvF86eAavt%2Fhor1U8NL79Sebnv1e%2F1xHVmWx5IL4P5wiYPwWCiY9oOhpnNkX7MipiTr%2FtFR%2BVkdUTalPXQch16BEt%2F48M42EPjhKu3JwXqUzDVzlVW%2FXgcmHLnI5My2WfL%2BgquqxLhQBpcvbDA2ZfO4rGfjVuG51nqf6knw0mhufU9vwm9HFeJoz44s8CTHLN8MbqHll628oDR%2F5%2BSpiq27iSju8Usr4cdjPa6dIMdTLADTpY%2F8Bz6k3HCctIf2VvObu64h756STf2R43%2FXkGpUWbiT28bCWScuZp%2BLd7N1maQNp7OK8Ps%2FpVmrsHwx%2FMk%2BdXmi90%2F%2BnEPU2Zn1iX6F9izseAAAAB42mNgZGBgAOK4%2Fek58fw2XxmYWRhA4PHdz4cR9P%2BXzP1Md4FcDgYmkCgAcWYN6AB42mNgZGBgZvjPACRTGVT%2BX2TuZwCKoAB2AF3wA%2FoAAAJ2AAADAAAkAwkAKwLcADMDUAApA2UAJwK5ACgAAAAAAFgAtAESAWAB4gIueNpjYGRgYGBnCGJgZgABRgY0AAAJVABfeNpdjDGLwkAQRl%2B4GLjcYSUWcuA2tktC7C1FMK3NVatZ4kISIQkBi7vef%2B0kbuUMfLz5eLtAzD8B4wTMpxwnJJLrxTO%2BWHiOZNeeY1Zs%2BCAIP6X5Yec55JtfzzOWlJ4j6f88x2x5HPPc9NdDbyp3SZOqrl2anGzbuVujUu2LvW1sa3pbqPNdFYPrhrJWmU50xpFc1tBz5SBpqHBcSEmEalk38QlLSyfXjQYlnX4z9mI0kzX%2BZinEOnOXLBjE6SRLsRXZ9FaTPQGA6C7XeNpjYGbACwAAfQAE%29%20format%28%27woff%27%29%3B%7D%0D%0Atext.f0%20%7Bfont-family%3Almmi10%3Bfont-size%3A9.96264px%7D%0D%0A%5D%5D%3E%0D%0A%3C%2Fstyle%3E%0D%0A%3Cg%20id%3D%27page1%27%3E%0D%0A%3Cg%20stroke-miterlimit%3D%2710%27%20transform%3D%27matrix%28.996264%200%200%20-.996264%2030.946922%20-58.35192%29%27%20fill%3D%27%23000%27%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-131.062973%20-61.9874%29%27%20stroke%3D%27%23000%27%20stroke-miterlimit%3D%2710%27%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.73599%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2740.909562%27%20y%3D%27-58.35192%27%3EA%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-4.028293%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27100.685403%27%20y%3D%27-58.35192%27%3EB%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.916552%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27160.461243%27%20y%3D%27-58.35192%27%3EC%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-4.262483%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27220.237084%27%20y%3D%27-58.35192%27%3ED%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M-79.8%200H-42.19997%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%28-42.19997%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-95.667133%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2730.946922%27%20y%3D%27-58.35192%27%3EK%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M40.2%200H77.80003%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%2877.80003%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%2025.534237%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2730.946922%27%20y%3D%27-58.35192%27%3EL%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E" title="\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A &amp; B &amp; C &amp; D \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$K$} (m-1-2)
+    (m-1-3) edge node [above] {$L$} (m-1-4)
+    ;
+\end{tikzpicture}" class="img-fluid" style="display:block; margin: .5em auto;"></p>
+</div>
+<p>it must be true that the outputs of <span class="math inline">\(L\)</span> (its codomain, <span class="math inline">\(D\)</span>) must match the inputs of <span class="math inline">\(K\)</span> (its domain, <span class="math inline">\(A\)</span>).</p>
+<p>If we assume that <span class="math inline">\(A=D\)</span>, then we can form the composition</p>
+<div class="imagify" data-zoom="3">
+<p><img src="data:image/svg+xml,%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0D%0A%3Csvg%20version%3D%271.1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20xmlns%3Axlink%3D%27http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%27%20width%3D%27631.889818pt%27%20height%3D%2771.079093pt%27%20viewBox%3D%27-72.000004%20-72.000009%20210.629939%2023.693031%27%3E%0D%0A%3Cstyle%20type%3D%27text%2Fcss%27%3E%0D%0A%3C%21%5BCDATA%5B%40font-face%7Bfont-family%3Almmi10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAXYAAoAAAAABwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEQAAABghVx1GmNtYXAAAAE4AAAANQAAADwAaACYZ2x5ZgAAAXAAAAL%2BAAADwIqLMs9oZWFkAAAEcAAAAC8AAAA2KmIrUWhoZWEAAASgAAAAHgAAACQGtgI9aG10eAAABMAAAAAYAAAAGBF5ANFsb2NhAAAE2AAAAA4AAAAOA0oCSG1heHAAAAToAAAAGAAAACAACgBTbmFtZQAABQAAAADMAAABO76Ify9wb3N0AAAFzAAAAAwAAAAgAAMAAHjaY2Bmesk4gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpR0ZPBhZvgP5DNDpJHU%2FAcKAwD67A1meNpjYGBgYmBgYAZiESDJCKZZGDSANBuQZgTKOjP4%2FP8P5DsyeP%2F%2F%2F%2F%2FA%2F51gVUAAAJGJCPoAAAB42lWTz2sUZxjH5%2Fu8s%2B%2Frzu7MrM7uO6m7O2myPyZGN7HuOtN42AbXRI20akIllEBo8QeIHtTU9NBCsClooQgV1NKbf0CvhdJTPQhevBR68mJPgmcv7c76zKSHhrm8PO8z8Hm%2Bz%2Bc1yGiORvSKXhofGD3DaDmYhQrbYS%2FydRTPYsKFLGs%2F8rOLtN7tI0YUH9G%2BV9bdKCyAXqGY29hSEnbB64m8Skbzjl3zbAE7d2W1iGJ%2Bsh%2FgkizbEn3dqTydeF52FIQA7XEVUPQvL1wbKzdLINeRad1yJRpH6EIJeXe4pV3xGsvJL4ZhCOPgaCgk%2FW4ExrQRM7FkQjUhd4C9XiNMjxMBKg5UABG1w0abexg7Owtu7%2Fp90As6Wfr4y%2BRBzXGOBbkfqmHddbG69oXYWjmz0sLMYHvcy80%2FXN%2BI6fCpPxZNwHmydvvlmeNO3xR1pvYCmttLoqZA548tXXGtT1BrniC47yXiZvJv65xI%2Ft4nLYhN5obRHb0WBfrTmGNmLRXTzSCM4vTTvvZj5lfCQYPD%2Fwi9dsgN6Wh%2BgJgH49CjcWh6RJ3FAzcGX%2F0sxEpv6db2yoEpecpBEfNCWvkcCBfOLnx3eLEqNcyvT0%2BtR72ONPNSvs1dP97qQjzcurex1FsWZrPlnHVIqOQfXgUpt%2F3ZVWDw4er62Frn9ueEyemZtbECQMwejkbiPmd%2BfpchjBUKlwJEu63xolD2Mc7EWoZtqQRSer7OilqVZWNSuuQF6Pqa3sIxL36TyrNvmnDn8axAaw622r7D47jZbjAIYMvtb20qeUfr5jLuqxrh%2FSK4euM0%2ByX10sln1iMrCBz1P7PI0gV0Nn9j78x6WiXWSe5sriREPVNtP6%2ByUk1%2BRdesOxXAyv6nvK2q3Z%2FyyZOqxxFwBlOjIT3gDGY4A95euEu5bDLeYlmGkzxw5tjObrmHfvzUtPYm7f9Mq7XrTHz3sZVDSS80ze9TtTY3oqJ1qKIse%2FimyFy7BUvnyfPLqFSHf2VKxQW7P%2FCJ3gHF2pamAAB42mNgZGBgAOIa8dMW8fw2XxmYWRhA4PHdz8cR9P%2BXzP1Md4FcDgYmkCgAYm4NlgB42mNgZGBgZvjPACRTGVT%2BX2TuZwCKoAA2AF3vA%2FkAAAJ2AAADAAAkAwkAKwLcADMDZQAnArkAKAAAAAAAWAC0ARIBlAHgAAB42mNgZGBgYGMIYmBmAAFGBjQAAAk5AF542l2MMYvCQBBGX7gYuNxhJRZy4Da2S0LsLUUwrc1Vq1niQhIhCQGLu95%2F7SRu5Qx8vPl4u0DMPwHjBMynHCckkuvFM75YeI5k155jVmz4IAg%2Fpflh5znkm1%2FPM5aUniPp%2FzzHbHkc89z010NvKndJk6quXZqcbNu5W6NS7Yu9bWxreluo810Vg%2BuGslaZTnTGkVzW0HPlIGmocFxISYRqWTfxCUtLJ9eNBiWdfjP2YjSTNf5mKcQ6c5csGMTpJEuxFdn0VpM9AYDoLtd42mNgZsALAAB9AAQ%3D%29%20format%28%27woff%27%29%3B%7D%0D%0Atext.f0%20%7Bfont-family%3Almmi10%3Bfont-size%3A9.96264px%7D%0D%0A%5D%5D%3E%0D%0A%3C%2Fstyle%3E%0D%0A%3Cg%20id%3D%27page1%27%3E%0D%0A%3Cg%20stroke-miterlimit%3D%2710%27%20transform%3D%27matrix%28.996264%200%200%20-.996264%201.059002%20-58.35192%29%27%20fill%3D%27%23000%27%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-71.062973%20-61.9874%29%27%20stroke%3D%27%23000%27%20stroke-miterlimit%3D%2710%27%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.916553%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2711.021642%27%20y%3D%27-58.35192%27%3EC%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.73599%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2770.797482%27%20y%3D%27-58.35192%27%3EA%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-4.028293%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27130.573323%27%20y%3D%27-58.35192%27%3EB%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M-49.8%200H-12.19997%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%28-12.19997%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-34.465763%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%271.059002%27%20y%3D%27-58.35192%27%3EL%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M10.2%200H47.80003%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%2847.80003%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%2024.332867%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%271.059002%27%20y%3D%27-58.35192%27%3EK%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E" title="\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     C &amp; A &amp; B \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$L$} (m-1-2)
+    (m-1-2) edge node [above] {$K$} (m-1-3)
+    ;
+\end{tikzpicture}" class="img-fluid" style="display:block; margin: .5em auto;"></p>
+</div>
+<p>The meaning of <span class="math inline">\(K \circ L\)</span> is exactly the same as in the case of ordinary functions. Given a vector <span class="math inline">\(v \in C\)</span>, we can first apply <span class="math inline">\(L\)</span>, get an output, and then apply <span class="math inline">\(K\)</span> to this output: <span class="math display">\[
+(K \circ L)(v) = K(L(v)).
+\]</span></p>
 </section>
-</section>
-<section id="adding-maps" class="level2">
-<h2 class="anchored" data-anchor-id="adding-maps">Adding maps</h2>
-<p>[TODO]</p>
-</section>
-<section id="matrices-are-sort-of-like-numbers" class="level2">
-<h2 class="anchored" data-anchor-id="matrices-are-sort-of-like-numbers">Matrices are sort of like numbers</h2>
-<p>[TODO]</p>
-<section id="numbers-are-1-times-1-matrices" class="level3">
-<h3 class="anchored" data-anchor-id="numbers-are-1-times-1-matrices">Numbers are <span class="math inline">\(1 \times 1\)</span> matrices</h3>
-<p>[TODO]</p>
+<section id="in-coordinates" class="level3">
+<h3 class="anchored" data-anchor-id="in-coordinates">In coordinates</h3>
+<p>We saw earlier in the chapter that, if <span class="math inline">\(L: C \to A\)</span> is linear and <span class="math inline">\(C,A\)</span> are finite dimensional, we can represent <span class="math inline">\(L\)</span> as a matrix of numbers (once we have chosen bases for <span class="math inline">\(C,A\)</span>). How do we compose two linear functions once we represent them in coordinates?</p>
+<p>Let’s compose in the straightforward way. As an example, let <span class="math inline">\(R,T\)</span> be linear functions represented as matrices as <span class="math display">\[
+R=
+\begin{bmatrix}
+4 &amp; 2 &amp; -1 \\
+-2 &amp; 3 &amp; 1
+\end{bmatrix},
+\quad
+T=
+\begin{bmatrix}
+-1 &amp; 3 &amp; -2 \\
+1 &amp; -2 &amp; 1 \\
+4 &amp; -2 &amp; 3
+\end{bmatrix}.
+\]</span></p>
+<div id="exr-composition-compat" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.3</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Only one of the two compositions <span class="math display">\[
+R \circ T , \quad T \circ R
+\]</span> can possibly make sense. Which one is it? Explain why the other composition is impossible. (If this is difficult, it will be made clear in the next problem if you didn’t choose the correct one.)</p>
+</blockquote>
+</div>
+<div id="exr-composition-compute" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.4</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>In the previous problem, you concluded only one of the two compositions was possible.</p>
+<ul>
+<li><p>If you think <span class="math inline">\(R \circ T\)</span> is possible, compute</p>
+<p><span class="math display">\[
+T \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
+\]</span></p>
+<p>Once you have your answer, apply the matrix <span class="math inline">\(R\)</span> to it to get the value of</p>
+<p><span class="math display">\[
+(R \circ T )\begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
+\]</span></p></li>
+<li><p>If you think <span class="math inline">\(T \circ R\)</span> is possible, compute</p>
+<p><span class="math display">\[
+R \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
+\]</span></p>
+<p>Once you have your answer, apply the matrix <span class="math inline">\(T\)</span> to it to get the value of</p>
+<p><span class="math display">\[
+(T \circ R )\begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
+\]</span></p></li>
+</ul>
+</blockquote>
+</div>
+<!-- 
+### Noncommutativity
+
+[TODO]
+
+## Adding maps
+
+[TODO]
+
+## Matrices are sort of like numbers
+
+[TODO]
+
+### Numbers are $1 \times 1$ matrices
+
+[TODO]
+
+## Matrices are sort of like functions
+
+[TODO] -->
 
 
 </section>
