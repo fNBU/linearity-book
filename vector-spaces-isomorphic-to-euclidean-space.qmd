@@ -215,10 +215,55 @@ Let $V$ be a finite dimensional vector space over the field $F$.
 Let $n = \dim V$, and let $B$ be a choice of basis for $V$.
 Then the function $V \to F^n$ taking a vector to its list of coordinates relative to $B$ is a linear function which is injective and surjective.
 (That is, the function is an isomorphism of vector spaces.)
+The inverse of this function is also linear.
 
 :::
 
-::: {#exr-basis-nonindependence}
+The fact that the coordinate function $\Phi : V \to F^n$ and its inverse are linear imply that addition and scalar multiplication in $V$ and $F^n$ are compatible.
+That is, we can add vectors in $V$, or we can convert to coordinates, add in $F^n$ and convert back to $V$ and get the same answer.
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     V \times V & V \\
+     F^n \times F^n & F^n \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\Phi$} (m-2-1)
+            edge node [above] {$+$} (m-1-2)
+    (m-2-1) edge node [above] {$+$} (m-2-2)
+    (m-1-2) edge node [right] {$\Phi$} (m-2-2)
+    ;
+\end{tikzpicture}
+:::
+
+Note that the $+$ symbol on the top of the diagram is the vector addition operation in $V$.
+The $+$ symbol on the bottom is vector addition in $F^n$.
+
+The same rule applies for scalar multiplication.
+
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     F \times V & V \\
+     F \times F^n & F^n \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\Phi$} (m-2-1)
+            edge node [above] {$\cdot$} (m-1-2)
+    (m-2-1) edge node [above] {$\cdot$} (m-2-2)
+    (m-1-2) edge node [right] {$\Phi$} (m-2-2)
+    ;
+\end{tikzpicture}
+:::
+
+Note that the $\cdot$ symbol on the top of the diagram is the scalar multiplication operation in $V$.
+The $\cdot$ symbol on the bottom is scalar multiplication in $F^n$.
+
+::: {#exr-basis-dependence}
 > Consider two bases $B_1 := [x^2 , x , 1]$ and $B_2 := [x^2 , x , -1]$ for $P_2$.
 >
 > Consider the vector $(17, 5 , 2) \in \mathbb R^3$.
@@ -226,7 +271,7 @@ Then the function $V \to F^n$ taking a vector to its list of coordinates relativ
 > What about relative to $B_2$?
 :::
 
-What this theorem says is that, once we choose a basis for $P_1$, we can treat it *the same as* $\mathbb R^2$.
+What @thm-isomorphism-up-to-dim says is that, once we choose a basis for $P_1$, we can treat it *the same as* $\mathbb R^2$.
 We can work with polynomials or coordinates in $\mathbb R^2$ and we will get the same results.
 The same thing is true for all vector spaces over $\mathbb R$ with dimension 2.
 This fact is generalized in the following corollary:
@@ -240,31 +285,30 @@ If $\dim V$ and $\dim W$ are finite and equal, then $V$ and $W$ are "the same" (
 
 The proof of this fact is that, since they have the same dimension (call it $n$), then both $V$ and $W$ can be thought of as lists of coordinates in $F^n$.
 
-<!-- 
-::: {#fig-coordinate-add}
+::: {#exr-addition-example}
+> Consider 
+> $$
+> v=3x^3 + 5x^2-7x+1 , w=-4x^3 +2x^2 - 4x + 7 
+> $$
+> in the vector space $P_3$.
+> 
+> 1. Compute the polynomial $v+w$.
+> 1. Choose a basis for $P_3$. Write $v$ and $w$ as lists of coordinates in this basis.
+> 1. Add these two lists of coordinates using addition as it is defined in $\mathbb R^4$. 
+> 1. Write $v+w$ (your answer in part 1) as a list of coordinates in your basis for $P_3$.
+> 1. Did you get the same answer in the previous two parts? If the answer is no, go back and check your work.
+:::
 
-```{.tikz}
-%%| filename: coordinate-add
-%%| image-width: 50%
-
-\usetikzlibrary{matrix}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em] {
-     F_t(x) & F(x) \\
-     A_t & A \\};
-  \path[-stealth]
-    (m-1-1) edge node [left] {$\mathcal{B}_X$} (m-2-1)
-            edge [double] node [below] {$\mathcal{B}_t$} (m-1-2)
-    (m-2-1.east|-m-2-2) edge node [below] {$\mathcal{B}_T$} node [above] {$\exists$} (m-2-2)
-    (m-1-2) edge node [right] {$\mathcal{B}_T$} (m-2-2)
-            edge [dashed,-] (m-2-1);
-\end{tikzpicture}
-```
-::: -->
-
-
-## Basis dependence
-
-[TODO]
-
-
+::: {#exr-addition-example}
+> Consider 
+> $$
+> v= 2x^2-2x+7 
+> $$
+> in the vector space $P_2$.
+> 
+> 1. Compute the polynomial $5v$.
+> 1. Choose a basis for $P_2$. Write $v$ as a list of coordinates in this basis.
+> 1. Multiply this list of coordinates by $5$ using scalar multiplication as it is defined in $\mathbb R^3$. 
+> 1. Write $5v$ (your answer in part 1) as a list of coordinates in your basis for $P_2$.
+> 1. Did you get the same answer in the previous two parts? If the answer is no, go back and check your work.
+:::

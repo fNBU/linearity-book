@@ -1,13 +1,12 @@
 {
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+  "image": "ghcr.io/fnbu/quarto-build:trunk" ,
   "customizations": {
     "vscode": {
       "extensions": [
         "quarto.quarto",
         "tomoki1207.pdf",
-        "streetsidesoftware.code-spell-checker"
+        "streetsidesoftware.code-spell-checker",
+        "github.vscode-github-actions"
       ]
     }
   }
