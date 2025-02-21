@@ -284,3 +284,31 @@ If $\dim V$ and $\dim W$ are finite and equal, then $V$ and $W$ are "the same" (
 :::
 
 The proof of this fact is that, since they have the same dimension (call it $n$), then both $V$ and $W$ can be thought of as lists of coordinates in $F^n$.
+
+::: {#exr-addition-example}
+> Consider 
+> $$
+> v=3x^3 + 5x^2-7x+1 , w=-4x^3 +2x^2 - 4x + 7 
+> $$
+> in the vector space $P_3$.
+> 
+> 1. Compute the polynomial $v+w$.
+> 1. Choose a basis for $P_3$. Write $v$ and $w$ as lists of coordinates in this basis.
+> 1. Add these two lists of coordinates using addition as it is defined in $\mathbb R^4$. 
+> 1. Write $v+w$ (your answer in part 1) as a list of coordinates in your basis for $P_3$.
+> 1. Did you get the same answer in the previous two parts? If the answer is no, go back and check your work.
+:::
+
+::: {#exr-addition-example}
+> Consider 
+> $$
+> v= 2x^2-2x+7 
+> $$
+> in the vector space $P_2$.
+> 
+> 1. Compute the polynomial $5v$.
+> 1. Choose a basis for $P_2$. Write $v$ as a list of coordinates in this basis.
+> 1. Multiply this list of coordinates by $5$ using scalar multiplication as it is defined in $\mathbb R^3$. 
+> 1. Write $5v$ (your answer in part 1) as a list of coordinates in your basis for $P_2$.
+> 1. Did you get the same answer in the previous two parts? If the answer is no, go back and check your work.
+:::

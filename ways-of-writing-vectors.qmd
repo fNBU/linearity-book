@@ -53,7 +53,7 @@ $$
 \right].
 $$
 
-Lets again remember that this notation only works if we have already agreed on a basis for $P_3$ (in this case, $[1,x,x^2,x^3]$).
+Lets again remember that this notation only works if we have already agreed on a basis for $P_3$ (in this case, $[x^3,x^2,x,1]$).
 
 You may have seen notation like
 $$
@@ -82,7 +82,8 @@ j &= (0,1,0) \\
 k &= (0,0,1)
 \end{aligned}
 $$
-Sometimes, to visually distinguish these on the printed page, they are written in bold (eg ${\bf i} , {\bf j} , {\bf k}$), or with hats above them (eg $\hat i , \hat j, \hat k$).
+Sometimes, to visually distinguish these on the printed page, they are written in bold (eg ${\bf i} , {\bf j} , {\bf k}$), or with hats above them (eg $\hat \imath , \hat \jmath, \hat k$).
+Many other notations are out there in the wild for these three vectors in $\mathbb R^3$.
 
 So, for example, the vector we would have written $(1 , 2 , 0)$ up until now would be written as $i + 2j$.
 This has the convenience that we can write nothing for basis elements with a coefficient of zero.
@@ -179,14 +180,15 @@ You might remember this notation from discussions of Riemann sums in Calculus.
 A stranger thing is common in the study of manifolds; if the smallest and largest values of $i$ are understood, it is common to omit the $\Sigma$ altogether.
 This situation occurs quite often; the lower limit of $i$ is 1 and the upper limit is just the dimension of the vector space in which $X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n}$ lives.
 
-So, all three of the following notations *denote* the same vector:
+So, all three of the following notations *denote* the same vector:[^einstein-summation]
 $$
 \begin{aligned}
 & X^1 \frac{d}{dx^1} +X^2 \frac{d}{dx^2} + \cdots + X^n  \frac{d}{dx^n} \\
 =& \sum_{i=1}^n X^i \frac{d}{dx^i} \\
 =& X^i \frac{d}{dx^i}
-\end{aligned}
+\end{aligned}.
 $$
 
+[^einstein-summation]: The last notation of the three in the following equation is called the [Einstein summation convention](https://en.wikipedia.org/wiki/Einstein_notation)
 
 [^manifolds-ref]: [https://en.wikipedia.org/wiki/Manifold](https://en.wikipedia.org/wiki/Manifold)
