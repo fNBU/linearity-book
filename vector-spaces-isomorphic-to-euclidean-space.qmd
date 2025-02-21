@@ -222,6 +222,47 @@ The inverse of this function is also linear.
 The fact that the coordinate function $\Phi : V \to F^n$ and its inverse are linear imply that addition and scalar multiplication in $V$ and $F^n$ are compatible.
 That is, we can add vectors in $V$, or we can convert to coordinates, add in $F^n$ and convert back to $V$ and get the same answer.
 
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     V \times V & V \\
+     F^n \times F^n & F^n \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\Phi$} (m-2-1)
+            edge node [above] {$+$} (m-1-2)
+    (m-2-1) edge node [above] {$+$} (m-2-2)
+    (m-1-2) edge node [right] {$\Phi$} (m-2-2)
+    ;
+\end{tikzpicture}
+:::
+
+Note that the $+$ symbol on the top of the diagram is the vector addition operation in $V$.
+The $+$ symbol on the bottom is vector addition in $F^n$.
+
+The same rule applies for scalar multiplication.
+
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     F \times V & V \\
+     F \times F^n & F^n \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\Phi$} (m-2-1)
+            edge node [above] {$\cdot$} (m-1-2)
+    (m-2-1) edge node [above] {$\cdot$} (m-2-2)
+    (m-1-2) edge node [right] {$\Phi$} (m-2-2)
+    ;
+\end{tikzpicture}
+:::
+
+Note that the $\cdot$ symbol on the top of the diagram is the scalar multiplication operation in $V$.
+The $\cdot$ symbol on the bottom is scalar multiplication in $F^n$.
+
 ::: {#exr-basis-dependence}
 > Consider two bases $B_1 := [x^2 , x , 1]$ and $B_2 := [x^2 , x , -1]$ for $P_2$.
 >
@@ -230,7 +271,7 @@ That is, we can add vectors in $V$, or we can convert to coordinates, add in $F^
 > What about relative to $B_2$?
 :::
 
-What this theorem says is that, once we choose a basis for $P_1$, we can treat it *the same as* $\mathbb R^2$.
+What @thm-isomorphism-up-to-dim says is that, once we choose a basis for $P_1$, we can treat it *the same as* $\mathbb R^2$.
 We can work with polynomials or coordinates in $\mathbb R^2$ and we will get the same results.
 The same thing is true for all vector spaces over $\mathbb R$ with dimension 2.
 This fact is generalized in the following corollary:

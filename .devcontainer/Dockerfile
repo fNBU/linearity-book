@@ -13,7 +13,4 @@ run ln -s ~/opt/quarto-1.6.40/bin/quarto /usr/bin/quarto
 run apt-get -y update && apt-get -y install texlive-full
 run apt-get -y update && apt-get -y install librsvg2-bin
 
-# needed for tikz diagram rendering using danmackinlay/tikz
-run apt-get -y update && apt-get -y install inkscape
-
 entrypoint [ "/bin/bash" ]

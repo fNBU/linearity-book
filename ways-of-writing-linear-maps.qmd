@@ -43,12 +43,83 @@ $$
 
 ### Writing linear functions as 2-dimensional arrays.
 
+We will introduce the notation for writing $F$ above in coordinates.
+Then we will develop fast processes for computing function application, composition, sums, multiples, and inverses of linear functions all while remaining "in coordinates".
 
+The motivation will be the following:
 
+If we know a linear function on a basis for its domain, we know it everywhere.
+In particular,
+
+$$
+\begin{aligned}
+F \left[  \begin{aligned} a \\ b \\ c \end{aligned}\right] 
+=& F \left( a  \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] + b \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] + c \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right]\right) \\
+=& a F \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] + b F \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] + c F \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right] \\
+=& a \left[  \begin{aligned} 0 \\ 0 \end{aligned}\right] + b \left[  \begin{aligned} 1 \\ 0 \end{aligned}\right] + c \left[  \begin{aligned} 0 \\ 1 \end{aligned}\right]\\
+=& \left[  \begin{aligned} (0)a + (1)b + (0)c \\ (0)a + (0)b + (1)c \end{aligned}\right] .
+\end{aligned}
+$$
+
+The way we will write $F$ in coordinates, is to write it as a 2-dimensional array of numbers.
+$$
+\begin{bmatrix}
+\_ & \_ & \_\\
+\_ & \_ & \_
+\end{bmatrix}.
+$$
+
+The number of columns of the array is the dimension of the **domain** of $F$, so in this case there are three columns.
+The number of rows of the array is the dimension of the **codomain** of $F$, so in this case there are two rows.
+
+The first column of the array is where $F$ sends the first basis vector of its domain.
+If we use the basis we have already chosen, then the array for $F$ looks like
+$$
+\begin{bmatrix}
+0 & \_ & \_\\
+0 & \_ & \_
+\end{bmatrix}
+$$
+because $F$ takes its first basis vector to $(0,0)$, which, in the coordinates for the codomain, is the column 
+
+$$
+\begin{bmatrix}
+0 \\
+0 
+\end{bmatrix}.
+$$
+
+Similarly, the second column of the array is where $F$ sends the second basis vector
+$$
+\begin{bmatrix}
+0 & 1 & \_\\
+0 & 0 & \_
+\end{bmatrix}
+$$
+and the third column is where $F$ sends the third basis vector
+$$
+\begin{bmatrix}
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+This two dimensional array of numbers we used to represent $F$ is called a *matrix*.
+
+::: {#exr-write-as-matrix}
+> Consider the linear function $G: P_2 \to \mathbb R^2$ given by
+> $$
+> G(x^2) = (2,0) ,\quad G(x) = (-1,3) ,\quad G(1) = (7,\pi) .
+> $$
+> 
+> Using the same basis that we used for $F$ above, write the matrix for $G$.
+:::
 
 ## Maps involving infinite dimensional spaces
 
-[TODO]
+We know that some vector spaces do not have a finite dimension (for example, the space of continuous functions $\mathbb R \to \mathbb R$).
+Since the size of a matrix for a linear map is determined by the dimension of the domain (the number of columns) and the dimension of the codomain (the number of rows), it is not possible to represent a linear function to or from an infinite dimensional vector space as a matrix.
+For now, we don't have any good way to
 
 ## Composing maps
 
@@ -67,5 +138,9 @@ $$
 [TODO]
 
 ### Numbers are $1 \times 1$ matrices
+
+[TODO]
+
+## Matrices are sort of like functions
 
 [TODO]
