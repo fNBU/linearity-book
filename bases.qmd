@@ -483,19 +483,19 @@ This is another way of saying that $X_i$ is **not** in the span of all the $\{ X
 
 ::: {#exr-linearly-indep-1}
 
-Is the list $\[(1,0),(0,1)\] \subset \mathbb R^2$ linearly independent? Explain why.
+Is the list $[(1,0),(0,1)] \subset \mathbb R^2$ linearly independent? Explain why.
 
 :::
 
 ::: {#exr-linearly-indep-2}
 
-Is the list $\[(2,1),(2,-1)\ \subset \mathbb R^2$ linearly independent? Explain why.
+Is the list $[(2,1),(2,-1)] \subset \mathbb R^2$ linearly independent? Explain why.
 
 :::
 
 ::: {#exr-linearly-indep-3}
 
-Is the list $\[(1,2),(3,4),(-1,4)\] \subset \mathbb R^2$ linearly independent? Explain why.
+Is the list $[(1,2),(3,4),(-1,4)] \subset \mathbb R^2$ linearly independent? Explain why.
 
 :::
 

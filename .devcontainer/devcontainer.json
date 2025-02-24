@@ -1,5 +1,5 @@
 {
-  "image": "ghcr.io/fnbu/quarto-build:trunk" ,
+  "image": "ghcr.io/fnbu/quarto-build:latest" ,
   "customizations": {
     "vscode": {
       "extensions": [
