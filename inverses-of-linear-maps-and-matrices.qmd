@@ -1,0 +1,187 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# Inverses of linear maps and matrices
+
+[TODO]
+
+## Identities and inverses
+
+Let's go back and talk about functions $\mathbb R \to \mathbb R$ again.
+One thing we have for such functions is an identity function
+$$
+I(x) = x.
+$$
+We give this the name "identity" and use the symbol $I$ for it, but what in practice does this mean?
+What are the properties an identity should have?
+
+::: {#def-identity}
+Given a collection $S$ of things and an operation $\cdot : S \times S \to S$ for combining two things in $S$, a *left identity* for $\cdot$ is an element $e \in S$ that satisfies 
+$$
+e \cdot p = p , \quad \forall p \in S.
+$$
+A *right identity* for $\cdot$ is an element $\widehat e \in S$ such that
+$$
+p \cdot \widehat e = p , \quad \forall p \in S.
+$$
+:::
+
+That is, doing an operation with its left identity on the left side does nothing.
+Similarly for the right side.
+
+We have already seen some identity objects so far:
+
+- 0 is a left (and right) identity for $+$ in $\mathbb R$ (or by definition any group, field, etc)
+- 1 is a left (and right) identity for multiplication in $\mathbb R$ (or by definition any field, etc)
+- the zero vector in a vector space is (by definition) a left (and right) identity for vector addition in that space
+
+The function $I(x) = x$ is a left (and right) identity for a different operation in $\mathbb R \to \mathbb R$; it is the identity for composition.
+That is, for any $f : \mathbb R \to \mathbb R$,
+$$
+I \circ f = f \quad \text{and}\quad  f \circ I = f.
+$$
+In more detail, this looks like
+$$
+(I \circ f)(x) = I(f(x)) = f(x) = f(I(x)) = (f \circ I)(x).
+$$
+
+If we have an operation and an identity for that operation, we may also be lucky enough to have inverses for that operation:
+
+::: {#def-inverse}
+Given a collection $S$ of things and an operation $\cdot : S \times S \to S$ for combining two things in $S$:
+
+- if $\cdot$ has a left identity $e_L$, then an element $p \in S$ has a *left inverse* if there is an element $k \in S$ such that 
+  $$
+  k \cdot p = e_L.
+  $$
+- if $\cdot$ has a right identity $e_R$, then an element $p \in S$ has a *right inverse* if there is an element $\widehat k \in S$ such that 
+  $$
+  p \cdot \widehat k = e_R.
+  $$
+:::
+
+All the operations we have considered so far have the same left and right inverse, and are associative.
+In this case, one can show[^take-abstract-alg] that the left and right inverses, if they exist, are the same.
+In this case, we simply call it "the inverse" of (eg) $x$ and write it as $x^{-1}$.
+
+[^take-abstract-alg]: One usually learns to prove this in a course on Abstract Algebra. I have mentioned in an earlier footnote a source for this.
+
+As an example, consider the function $f(x) = x^3 + 1$.
+One can check that $g(x)= (x - 1)^{1/3}$ is both a left and right inverse for composition, and so we would normally write $f^{-1} (x) = (x - 1)^{1/3}$.
+
+We have seen other inverse elements:
+
+- Given $a \in \mathbb R$, there is an element (which we usually write $-a$) which is the inverse of $a$ with respect to the operation $+$. 0 is its own inverse w.r.t. $+$.
+- Given $a \in \mathbb R$ which is not zero, there is an element (which we usually write $\frac{1}{a}$) which is the inverse of $a$ with respect to the operation $\cdot$. 1 is its own inverse w.r.t. $\cdot$.
+- Given a vector $v \in V$ in a vector space, there is (by definition) a vector $-v \in V$ which is an inverse for vector addition.
+
+## The identity for linear functions
+
+If we have a linear function $G : A \to B$, what is the identity for composition?
+Well, if there is a left identity $I_L$, it must satisfy $I_L \circ G = G$.
+Let's write this out in a diagram:
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A & B & ? \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$G$} (m-1-2)
+    (m-1-2) edge node [above] {$I_L$} (m-1-3)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$I_L \circ G = G$} (m-1-3);
+\end{tikzpicture}
+:::
+
+Since the map on the bottom of the diagram is $G$, we know that the $?$ on the right must be the codomain of $G$, that is, the set $B$:
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A & B & B \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$G$} (m-1-2)
+    (m-1-2) edge node [above] {$I_L$} (m-1-3)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$I_L \circ G = G$} (m-1-3);
+\end{tikzpicture}
+:::
+
+So, $I_L : B \to B$ is a linear function which doesn't change its inputs.
+It's straightforward to guess that $I_L (v) = v$.
+
+What about a right inverse $I_R$?
+By the same reasoning, 
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A & A & B \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$I_R$} (m-1-2)
+    (m-1-2) edge node [above] {$G$} (m-1-3)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$G \circ I_R = G$} (m-1-3);
+\end{tikzpicture}
+:::
+
+It is straightforward to guess that $I_R(v) = v$ as well.
+
+But beware!
+The left and right inverses are not the same function.
+$I_L$ has domain and codomain $B$ while $I_R$ has domain and codomain $A$.
+
+However, these two inverses have something on common.
+In coordinates, they both have the form
+$$
+\begin{bmatrix}
+1 & 0 & 0 & \cdots & 0 \\
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+\end{bmatrix}
+$$
+the only potential difference is the size.
+
+::: {#def-identity-matrix}
+For every vector space $V$ there is an identity function, which is linear, from $V$ to $V$
+In general, it takes its input and returns them unmodified:
+$$
+I(v) = v.
+$$
+
+If $V$ is finite dimensional and we fix a basis for it, then $I: F^k \to F^k$.
+:::
+
+::: {#lem-identity-mat-in-coords}
+In the latter case of @def-identity-matrix, in coordinates $I$ has the form
+$$
+\begin{bmatrix}
+1 & 0 & 0 & \cdots & 0 \\
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+\end{bmatrix}
+$$
+:::
+
+<!-- ## The inverse of a linear function
+
+Given our discussion of inverse objects above, we might ask if linear functions have  -->

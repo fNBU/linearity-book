@@ -5,7 +5,7 @@ We saw in the previous chapter that, once we choose a basis for a vector space $
 Suppose we have a linear function $L : V \to W$.
 How can we write this in a basis?
 
-## Maps in finite dimensions
+## Maps in finite dimensions {#sec-maps-in-fin-dim}
 
 Let's consider the linear function $F : P_2 \to \mathbb R^2$ given by
 $$
@@ -273,23 +273,323 @@ $$
 >   (T \circ R )\begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
 >   $$
 :::
-<!-- 
+
+In the above exercises, you should have concluded that only $R \circ T$ is possible and the result is
+$$
+(R \circ T )\begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+=\begin{bmatrix} -28 \\ 34 \end{bmatrix}.
+$$
+Great, now we can compute compositions.
+
+However, it is true that the composition of two linear maps is a linear map itself.
+This means that $R \circ T$ is a linear function between finite dimensional vector spaces:
+ 
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     \mathbb R^3 & \mathbb R^3 & \mathbb R^2 \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$T$} (m-1-2)
+    (m-1-2) edge node [above] {$R$} (m-1-3)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$R \circ T$} (m-1-3);
+\end{tikzpicture}
+:::
+
+That is, there should be matrix representation of the function $R \circ T$ that has 2 rows and 3 columns.
+How can we compute such a matrix?
+
+The algorithm is the same as we used to multiply a matrix by a column.
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+4 & 2 & -1 \\
+-2 & 3 & 1
+\end{bmatrix}
+\begin{bmatrix}
+-1 & 3 & -2 \\
+1 & -2 & 1 \\
+4 & -2 & 3
+\end{bmatrix}
+&=
+\begin{bmatrix}
+\_ & \_ & \_\\
+\_ & \_ & \_
+\end{bmatrix} \\
+&= 
+\begin{bmatrix}
+4(-1) + 2(1) + (-1)(4) & \_ & \_\\
+\_ & \_ & \_
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+-6 & \_ & \_\\
+\_ & \_ & \_
+\end{bmatrix}
+\end{aligned}.
+$$
+
+That is, the top left entry in the matrix on the right is the result of combining the **top row** of the left matrix and the **left column** of the right matrix.
+When we say "combine" here, we mean the same operation we did when multiplying a matrix by a column: the top row and left column are both lists of 3 numbers; we multiply the corresponding entries and add the results.
+
+As another example, let's compute the bottom middle entry of the result matrix.
+$$
+\begin{aligned}
+\begin{bmatrix}
+4 & 2 & -1 \\
+-2 & 3 & 1
+\end{bmatrix}
+\begin{bmatrix}
+-1 & 3 & -2 \\
+1 & -2 & 1 \\
+4 & -2 & 3
+\end{bmatrix}
+&=
+\begin{bmatrix}
+-6 & \_ & \_\\
+\_ & (-2)(3) + 3(-2) + 1(-2) & \_
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+-6 & \_ & \_\\
+\_ & -14 & \_
+\end{bmatrix}
+\end{aligned}.
+$$
+
+::: {#exr-matmul}
+> Finish computing the matrix for $R \circ T$.
+:::
+
+::: {#exr-matmul-check}
+> Using the matrix for $R \circ T$, compute
+> $$
+> R \circ T \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+> $$
+> and verify that you get $\begin{bmatrix} -28 \\ 34 \end{bmatrix}$.
+:::
+
+
+
+::: {.callout-tip}
+## Matrix multiplication with `numpy`
+
+Matrix multiplications are long, and humans are prone to make trivial errors.
+In the wild, you will most often see matrices multiplied using a programming language.
+As an example, you can compute the matrix for $R \circ T$ using `numpy` for `python` as follows
+
+```python
+>>> import numpy
+>>> R = numpy.array( [ [ 4 , 2 , -1 ] , [ -2 , 3 , 1 ] ] )
+>>> T = numpy.array( [ [ -1 , 3 , -2 ] , [ 1 , -2 , 1 ] , [ 4 , -2 , 3 ] ] )
+>>> numpy.matmul( R , T )
+array([[ -6,  10,  -9],
+       [  9, -14,  10]])
+```
+
+To get the result
+$$
+R \circ T \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+$$
+you can do (assuming you have already evaluated the previous code block)
+```python
+>>> x = numpy.array( [ [ 0 ] , [ -1 ] , [ 2 ] ] )
+>>> RoT = numpy.matmul( R , T )
+>>> numpy.matmul( RoT , x )
+array([[-28],
+       [ 34]])
+```
+
+Throughout the remainder of the text, we will show examples of linear algebra computations in a variety of programming languages.
+(Almost all of these languages use, under the hood, the same two optimized implementations: BLAS and LAPACK.)
+:::
+
+::: {#exr-matmul-check}
+> Compute the matrix multiplication
+> $$
+> \begin{bmatrix}
+> 4 & 2 & -1 \\
+> -2 & 3 & 1
+> \end{bmatrix}
+> \begin{bmatrix}
+> -1 & 3 & -2 \\
+> 1 & -2 & 1 \\
+> 4 & -2 & 3
+> \end{bmatrix}.
+> $$
+> Show your work and only (if you want to) use code to check your answer.
+:::
+
+
 ### Noncommutativity
 
-[TODO]
+Beware!
+Since matrix multiplication corresponds to function composition, and function composition is not commutative, in general matrix multiplication is not guaranteed to be commutative.
 
-## Adding maps
+That is, if I compute the matrix product
+$$
+AB
+$$
+this will almost always **not** be equal to
+$$
+BA.
+$$
+In fact, in @exr-matmul-check the other matrix product 
+$$
+\begin{bmatrix}
+-1 & 3 & -2 \\
+1 & -2 & 1 \\
+4 & -2 & 3
+\end{bmatrix}
+\begin{bmatrix}
+4 & 2 & -1 \\
+-2 & 3 & 1
+\end{bmatrix}
+$$
+is not even defined.
+(Why?)
 
-[TODO]
+It is, however, true that matrix multiplication is associative.
+That is, if I want to multiply three matrices
+$$
+ABC = A(BC) = (AB)C 
+$$
+I can multiply the right two first to get one matrix representing $BC$, then multiply on the left by $A$ to get one matrix representing $ABC$.
 
-## Matrices are sort of like numbers
+I could also multiply starting from the left and obtain the same answer.
 
-[TODO]
+All three of the ways of multiplying the matrices above results in a single matrix representing the composition
 
-### Numbers are $1 \times 1$ matrices
+::: {#fig-matmul-assoc fig-align='center'}
 
-[TODO]
+::: {.imagify zoom='5' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     \mathbb R^k & \mathbb R^\ell & \mathbb R^m & \mathbb R^n  \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$C$} (m-1-2)
+    (m-1-2) edge node [above] {$B$} (m-1-3)
+    (m-1-3) edge node [above] {$A$} (m-1-4)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$A \circ B \circ C$} (m-1-4);
+\end{tikzpicture}
+:::
 
-## Matrices are sort of like functions
+:::
 
-[TODO] -->
+## Algebra of linear functions
+
+Note that when we have two functions $\mathbb R \to \mathbb R$, we can add them and multiply by constants.
+For example, consider $f(x)=e^x$ and $g(x) = x^2 + 1$.
+We can form the new function
+$$
+f(x) + 2 g(x)
+$$
+which just means compute $f$ on the input $x$, then compute $g$ on the input $x$ and multiply the result by 2, then add the two parts you got.
+So
+$$
+f(x) + 2 g(x) = e^x + 2(x^2 + 1).
+$$
+
+What is really happening is that we are evaluating $f$ and $g$ separately on $x$.
+Since they have the same codomain, once we have $f(x),g(x)$ which are objects in their codomain, we can do algebra in the codomain as usual.
+
+The same is true of linear maps and so, in finite dimensions with fixed bases, must be true of matrices as well.
+There is one complication, however: in order to combine linear functions (and the matrices representing them) in this way, we must first check that they have the same codomain.
+
+As an example, consider $F,G : \mathbb R^2 \to \mathbb R^3$ given by
+$$
+F = 
+\begin{bmatrix}
+ 1 & 2   \\
+ 1 & -1  \\
+ 4 & 1  
+\end{bmatrix}
+, \quad
+G=
+\begin{bmatrix}
+ 0  & 0  \\
+ -1 & 1  \\
+ 2  & 0 
+\end{bmatrix}.
+$$
+We can compute the matrix for $F + 3 G$ in the following way
+$$
+\begin{aligned}
+\begin{bmatrix}
+ 1 & 2   \\
+ 1 & -1  \\
+ 4 & 1  
+\end{bmatrix}
++3
+\begin{bmatrix}
+ 0  & 0  \\
+ -1 & 1  \\
+ 2  & 0 
+\end{bmatrix}
+&=
+\begin{bmatrix}
+ 1 & 2   \\
+ 1 & -1  \\
+ 4 & 1  
+\end{bmatrix}
++
+\begin{bmatrix}
+ 0  & 0  \\
+ -3 & 3  \\
+ 6  & 0 
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+ 1 & 2   \\
+ -2 & 2  \\
+ 10 & 1  
+\end{bmatrix}
+\end{aligned}
+$$
+
+That is, to multiply a linear map (written as a matrix) by a constant $k$, we multiply all entries of the matrix by $k$.
+To add linear maps (written as matrices), we add corresponding entries.
+
+Note that the addition
+$$
+\begin{bmatrix}
+ 1 & 2   \\
+ 1 & -1  \\
+ 4 & 1  
+\end{bmatrix}+
+\begin{bmatrix}
+ -1 & 1  \\
+ 2  & 0 
+\end{bmatrix}
+$$
+is not defined since the domain and codomain of these matrices have different dimensions.
+
+::: {#exr-mat-add-dim}
+> What are the dimensions of the domain and codomain of the two matrices above?
+:::
+
+::: {#exr-mat-add}
+> Compute
+> $$
+> \frac{1}{2}
+> \begin{bmatrix}
+>  0 & 1  & 0  & -2   \\
+>  1 & 3  & 0  & -1  \\
+>  0 & 2  & -3 & -1  \\
+>  0 & 1  & 1  & 0  
+> \end{bmatrix}
+> + 2
+> \begin{bmatrix}
+>  0 & 3  & -2 & 2   \\
+>  0 & 1  & 0  & 0  \\
+>  0 & -1 & -1 & -1  \\
+>  0 & 2  & 1  & 1  
+> \end{bmatrix}.
+> $$
+:::
