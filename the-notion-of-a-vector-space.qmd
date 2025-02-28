@@ -315,8 +315,6 @@ Note that this theorem only works if $F^n$ is a vector space over $F$.
 So, above, $\mathbb C^4$ is a vector space with scalars $\mathbb C$.
 
 ::: {#exr-cn-rn}
-
-Is $\mathbb R^n$ a vector subspace of $\mathbb C^n$?
-Think very carefully about @def-vector-subspace.
-
+> Is $\mathbb R^n$ a vector subspace of $\mathbb C^n$?
+> Think very carefully about @def-vector-subspace.
 :::

@@ -61,30 +61,22 @@ $$
 So, using this notation, $\dim P_1 = 2 = \dim \mathbb R^2$.
 
 ::: {#exr-dim-of-pn}
-
-What is the dimension of $P_2$?
-What about $P_3$?
-What about $P_n$?
-
+> What is the dimension of $P_2$?
+> What about $P_3$?
+> What about $P_n$?
 :::
 
 ::: {#exr-dim-of-arrows}
-
-What is the dimension of the vector space of arrows drawn on a piece of paper?
-What is the dimension of the vector space of arrows created in a space like a room? (You can think of bits of string of different lengths, with arrows on one end of them, held in space by two people. Addition and multiplication is as for arrows on paper.)
-
+> What is the dimension of the vector space of arrows drawn on a piece of paper?
+> What is the dimension of the vector space of arrows created in a space like a room? (You can think of bits of string of different lengths, with arrows on one end of them, held in space by two people. Addition and multiplication is as for arrows on paper.)
 :::
 
 ::: {#exr-dim-of-cc}
-
-What is the dimension of $\mathbb C$ as a vector space over itself?
-
+> What is the dimension of $\mathbb C$ as a vector space over itself?
 :::
 
 ::: {#exr-dim-of-cr}
-
-What is the dimension of $\mathbb C$ as a vector space over $\mathbb R$?
-
+> What is the dimension of $\mathbb C$ as a vector space over $\mathbb R$?
 :::
 
 The following lemma says that if one vector space is inside another, then the dimension of the one on the inside can't be larger than the one on the outside:
@@ -101,14 +93,11 @@ $$
 :::
 
 ::: {#exr-dim-of-continuous}
-
-The dimension of the space of continuous functions $\mathbb R \to \mathbb R$ is not finite.
-Use the result of @exr-dim-of-pn to explain why.
-
+> The dimension of the space of continuous functions $\mathbb R \to \mathbb R$ is not finite.
+> Use the result of @exr-dim-of-pn to explain why.
 :::
 
 ::: {#exr-dim-of-kernel-of-d}
-
 > Recall that we know that the function $D : C^1 \to C^0$ "take the derivative" is linear.
 > Let $K$ be the set of all vectors in $C^1$ which are taken to the 0 vector in $C^0$ by $D$.
 > That is, $K$ is the set of all differentiable functions whose first derivative is 0 everywhere.
@@ -118,7 +107,6 @@ Use the result of @exr-dim-of-pn to explain why.
 > $$
 > $K$ is a vector subspace of $C^1$ (you might want to convince yourself that this is true using @thm-vector-subspace, but you don't have to for this exercise).
 > What is $\dim K$?
-
 :::
 
 ## The notion of isomorphism

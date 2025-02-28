@@ -34,26 +34,20 @@ book:
       - vector-spaces-isomorphic-to-euclidean-space.qmd
       - ways-of-writing-vectors.qmd
       - ways-of-writing-linear-maps.qmd
+      - usefulness-of-matrix-equations.qmd
+      - inverses-of-linear-maps-and-matrices.qmd
     #   - solving-systems-of-linear-equations.qmd
     # - part: "Inner Product Spaces"
     - references.qmd
 
 
 filters:
-  # - tikz
   - imagify
-
-# tikz:
-#   cache: false
-#   save-tex: true  # Enable saving intermediate .tex files
-#   tex-dir: tikz-tex  # Optional: Specify directory to save .tex files
 
 bibliography: references.bib
 
 format:
   html:
-    # fig-width: 8
-    # fig-height: 8
     number-depth: 1
     theme:
       light: cosmo

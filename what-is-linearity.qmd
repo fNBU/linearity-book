@@ -59,25 +59,19 @@ $$
 $$
 
 ::: {#exr-circle}
-
-Demonstrate that the *area* of a circle as a function of its radius does not satisfy properties 1 and 2.
-
+> Demonstrate that the *area* of a circle as a function of its radius does not satisfy properties 1 and 2.
 :::
 
 ::: {#exr-area}
-
-Can you think of any shape in the plane whose area (as a function of scaling) satisfies properties 1 and 2?
-If yes, which?
-If no, why not?
-
+> Can you think of any shape in the plane whose area (as a function of scaling) satisfies properties 1 and 2?
+> If yes, which?
+> If no, why not?
 :::
 
 ::: {#exr-volume}
-
-Can you think of any shape in the 3-dimensional space whose *volume* (as a function of scaling) satisfies properties 1 and 2?
-If yes, which?
-If no, why not?
-
+> Can you think of any shape in the 3-dimensional space whose *volume* (as a function of scaling) satisfies properties 1 and 2?
+> If yes, which?
+> If no, why not?
 :::
 
 ### Classification of functions satisfying Properties 1 and 2
@@ -165,15 +159,11 @@ $$
 Notice that the function $S_2 : \mathbb R^2 \to \mathbb R^2$ "multiply coordinates by 2" has properties 1 and 2.
 
 ::: {#exr-scale-by-2-linear}
-
-Verify this.
-
+> Verify this.
 :::
 
 ::: {#exr-scaling-by-2-circle}
-
-Check that applying $S_2$ to a circle of radius $r$ produces a circle of radius $2r$.
-
+> Check that applying $S_2$ to a circle of radius $r$ produces a circle of radius $2r$.
 :::
 
 Now, for any curve $\gamma : [a,b] \to \mathbb R^2$ given by
@@ -254,9 +244,7 @@ I(f) := \int_a^b f(x) \quad dx.
 $$
 
 ::: {#exr-integration-is-linear}
-
-Check that $I$ has properties 1 and 2.
-
+> Check that $I$ has properties 1 and 2.
 :::
 
 #### Why are properties 1 and 2 useful?
@@ -285,8 +273,6 @@ This term is overloaded and means different things in these two contexts.
 :::
 
 ::: {#exr-when-are-lines-linear}
-
-Show that $f(x) = m x + b$ is only a linear function when $b = 0$.
-
+> Show that $f(x) = m x + b$ is only a linear function when $b = 0$.
 :::
 

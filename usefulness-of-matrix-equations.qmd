@@ -1,0 +1,132 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# The usefulness of matrix equations and their solutions
+
+In the previous chapter, we saw that we can use a matrix to represent (in coordinates) a linear function, and we saw how to compute the output (in coordinates) when we apply a linear function to a vector (in coordinates).
+
+We also saw that we can represent the composition of two linear functions as a single matrix by multiplying their matrices.
+
+## Matrix multiplication and linear combinations
+
+Recall that the method to find a matrix for a linear function $F : A \to B$ is the following:
+
+1. Choose a basis $[b_1 , b_2 , \ldots , b_k]$ for $A$.
+2. Choose a basis $[c_1 , c_2 , \ldots , c_\ell]$ for $B$.
+3. Compute the coefficients of $F(b_1) \in B$ with respect to $[c_1 , c_2 , \ldots , c_\ell]$.
+4. Take that list of coefficients and write it as the first column of our result matrix:
+   
+   $$
+   \begin{bmatrix}
+   F(b_1) & | & \cdots
+   \end{bmatrix}
+   $$
+
+5. Repeat steps (3.) and (4.) for the output of $F$ on the second basis element $b_2$. This is the second column of the matrix for $F$: 
+   
+   $$
+   \begin{bmatrix}
+   F(b_1) & | & F(b_2) & | & \cdots
+   \end{bmatrix}
+   $$
+
+6. Continue until there are no basis elements in the domain left.
+
+We already saw the example 
+$$
+F = 
+\begin{bmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 
+\end{bmatrix}
+$$
+at the beginning of @sec-maps-in-fin-dim.
+
+What we noticed then is that the multiplication 
+$$
+F 
+\begin{bmatrix}
+a \\
+b \\
+c
+\end{bmatrix}
+=
+a 
+\begin{bmatrix}
+ 0  \\
+ 0  
+\end{bmatrix}
++ b
+\begin{bmatrix}
+ 1 \\
+ 0 
+\end{bmatrix}
++ c
+\begin{bmatrix}
+ 0 \\
+ 1 
+\end{bmatrix}
+$$
+really just yields an arbitrary linear combination of the columns of $F$.
+
+This holds in general: if $A$ is a matrix with columns $A_1, A_2, \ldots , A_n$ and $X$ is the vector
+$$
+x:= 
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}
+$$
+
+Then the multiplication of $A$ and $x$ is
+$$
+Ax = x_1 A_1 + x_2 A_2 + \cdots + x_n A_n.
+$$
+That is, the multiplication $Ax$ is a linear combination of the columns of $A$.
+The coefficients of the linear combination are the entries in the column vector $x$.
+
+## Very many linear combinations
+
+Now, recall that many concepts we have seen thus far involve linear combinations.
+For example:
+
+- @def-span can be rephrased as:
+  
+  The span of the columns of $A$ is exactly the set
+  $$
+  \left \{ Ax | \forall x \right\}.
+  $$
+
+- @thm-linear-indep-defs has, as a consequence the following:
+
+  The columns of $A$ are linearly independent if and only if the matrix equation 
+  $$
+  Ax = 0
+  $$
+  has only one solution ($x = 0$).
+
+- @def-basis can be rephrased as:
+
+  The columns of $A$ form a basis for its codomain if and only if the following two properties hold:
+
+  1. For each $y$ in the codomain of $A$, the equation $Ax = y$ has a solution (that is, $A$ is surjective).
+  2. $Ax = 0$ has only one solution.
+
+Many more statements so far can be rephrased in terms of matrix equations.
+
+::: {#exr-columns-basis}
+
+
+
+:::
