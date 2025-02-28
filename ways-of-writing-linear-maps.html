@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./usefulness-of-matrix-equations.html" rel="next">
 <link href="./ways-of-writing-vectors.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -41,8 +75,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0641ef8e0de3485004944ea44cde210.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4827ddcd61b679de51c8630bc5e3bdc6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bb86085bf2017d3f2b399e4ede986c0b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-fb7ff7eb76f40aa1ea63653f6396e01d.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -221,6 +255,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ways of writing linear maps</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./usefulness-of-matrix-equations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The usefulness of matrix equations and their solutions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inverses-of-linear-maps-and-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Inverses of linear maps and matrices</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -239,7 +285,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#maps-in-finite-dimensions" id="toc-maps-in-finite-dimensions" class="nav-link active" data-scroll-target="#maps-in-finite-dimensions">Maps in finite dimensions</a>
+  <li><a href="#sec-maps-in-fin-dim" id="toc-sec-maps-in-fin-dim" class="nav-link active" data-scroll-target="#sec-maps-in-fin-dim">Maps in finite dimensions</a>
   <ul class="collapse">
   <li><a href="#writing-linear-functions-as-2-dimensional-arrays." id="toc-writing-linear-functions-as-2-dimensional-arrays." class="nav-link" data-scroll-target="#writing-linear-functions-as-2-dimensional-arrays.">Writing linear functions as 2-dimensional arrays.</a></li>
   </ul></li>
@@ -248,7 +294,9 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#domains-and-codomains" id="toc-domains-and-codomains" class="nav-link" data-scroll-target="#domains-and-codomains">Domains and codomains</a></li>
   <li><a href="#in-coordinates" id="toc-in-coordinates" class="nav-link" data-scroll-target="#in-coordinates">In coordinates</a></li>
+  <li><a href="#noncommutativity" id="toc-noncommutativity" class="nav-link" data-scroll-target="#noncommutativity">Noncommutativity</a></li>
   </ul></li>
+  <li><a href="#algebra-of-linear-functions" id="toc-algebra-of-linear-functions" class="nav-link" data-scroll-target="#algebra-of-linear-functions">Algebra of linear functions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/ways-of-writing-linear-maps.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
@@ -276,8 +324,8 @@ window.Quarto = {
 
 <p>We saw in the previous chapter that, once we choose a basis for a vector space <span class="math inline">\(V\)</span>, we can write vectors as their list of coefficients relative to this basis.</p>
 <p>Suppose we have a linear function <span class="math inline">\(L : V \to W\)</span>. How can we write this in a basis?</p>
-<section id="maps-in-finite-dimensions" class="level2">
-<h2 class="anchored" data-anchor-id="maps-in-finite-dimensions">Maps in finite dimensions</h2>
+<section id="sec-maps-in-fin-dim" class="level2">
+<h2 class="anchored" data-anchor-id="sec-maps-in-fin-dim">Maps in finite dimensions</h2>
 <p>Let’s consider the linear function <span class="math inline">\(F : P_2 \to \mathbb R^2\)</span> given by <span class="math display">\[
 F(x^2) = (0,0) ,\quad F(x) = (1,0) ,\quad F(1) = (0,1).
 \]</span> Let’s express this in a basis. Consider the basis <span class="math inline">\([x^2,x,1]\)</span> for <span class="math inline">\(P_2\)</span> and <span class="math inline">\([(1,0),(0,1)]\)</span> for <span class="math inline">\(\mathbb R^2\)</span>.</p>
@@ -403,7 +451,7 @@ G \begin{bmatrix}w \\ x \\ y \\ z \end{bmatrix}.
 <h3 class="anchored" data-anchor-id="domains-and-codomains">Domains and codomains</h3>
 <p>First, let us observe that if we want to make a composition <span class="math inline">\(K \circ L\)</span> of two linear functions</p>
 <div class="imagify" data-zoom="3">
-<p><img src="data:image/svg+xml,%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0D%0A%3Csvg%20version%3D%271.1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20xmlns%3Axlink%3D%27http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%27%20width%3D%27902.28623pt%27%20height%3D%2771.079093pt%27%20viewBox%3D%27-72.000004%20-72.000009%20300.762077%2023.693031%27%3E%0D%0A%3Cstyle%20type%3D%27text%2Fcss%27%3E%0D%0A%3C%21%5BCDATA%5B%40font-face%7Bfont-family%3Almmi10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAY8AAoAAAAAB6gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEQAAABghVx1KWNtYXAAAAE4AAAANQAAADwAaACaZ2x5ZgAAAXAAAANdAAAEXBXkYA1oZWFkAAAE0AAAAC8AAAA2Kmur3WhoZWEAAAUAAAAAHgAAACQGtgI%2BaG10eAAABSAAAAAcAAAAHBTJAPpsb2NhAAAFPAAAABAAAAAQA0wEQm1heHAAAAVMAAAAGAAAACAACwBTbmFtZQAABWQAAADMAAABO76Ify9wb3N0AAAGMAAAAAwAAAAgAAMAAHjaY2Bm%2BsE4gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpR0ZPBhZvgP5DNDpJHU%2FAcKAwAAbg11eNpjYGBgYmBgYAZiESDJCKZZGDSANBuQZgTKujD4%2FP8P5DsyeP%2F%2F%2F%2F%2FA%2F11gVUAAAJGrCPwAAAB42lWTS2wbVRSG5z93fG899sy4sT1jsD2p48ckASelNjNNJNyoIWmTiqZJoEQlIgJRKipAlIamiyJFJQioQBVU6kPsuodtEWIFCyQWsEFi1U1ZVWLdDXjMGYdUWLO5OveM9J3v%2FFcjrdbr0QO6rz2jtTWtbmESym%2F47cB1gnASFRsy57iB27%2BI660OQgThIcfN5pxW4KdAD5BObG4rCTOVbYukinozllnKmgJm4txaGunkSMfDWZkzJTpOM%2F9T5ZecpSAEaJ%2BtgLT75tzbhVwtA7ItGdcNW6J6iE5nkLS7244tHmIl%2BlbTNKE91esKST9onjauhUwsmVBV5C5wtl3142PFQ96C8iCChl9tcA9j98%2BC21tuB%2FQbHcu88EF0o2RZ017ii6Jftm2srb8utldPrNYxMbsznE3M3NzYDOng8R%2FndcC6u37p%2FomjVkcXZabOejS1n0RJgZanF8%2FZxkmUas8T7Cci8X70T%2F2UiP4ckgbEFnNDa%2FUeihT9rk0xsyMV003AD8L4c1zHDZlfCQtVln8E7YbPDfForoeQB2PpwTAcukXN%2BbELs5e%2FFmK1vXhxZ3VsVB63kMaMkEYyAcLppbmPD84XpQP9ysLoRtBuSj0p5aPEO0frLYib259tLrZXhF6rW0sWCRX9zasgZTfOnAdmD69tFNabl14jjIxPrBdSAGmkjbHzkJ0XtCaPIlX8PVYe7BnngRS7VnuKw%2BAIAhGKpfHD57ejb8p2XzRmvQyLvnhljd46%2BS47%2FjxWe%2B3Vy%2B50Yd8QvvvkveeaLwrhyV3DGSHKHIkvF86eAavt%2Fhor1U8NL79Sebnv1e%2F1xHVmWx5IL4P5wiYPwWCiY9oOhpnNkX7MipiTr%2FtFR%2BVkdUTalPXQch16BEt%2F48M42EPjhKu3JwXqUzDVzlVW%2FXgcmHLnI5My2WfL%2BgquqxLhQBpcvbDA2ZfO4rGfjVuG51nqf6knw0mhufU9vwm9HFeJoz44s8CTHLN8MbqHll628oDR%2F5%2BSpiq27iSju8Usr4cdjPa6dIMdTLADTpY%2F8Bz6k3HCctIf2VvObu64h756STf2R43%2FXkGpUWbiT28bCWScuZp%2BLd7N1maQNp7OK8Ps%2FpVmrsHwx%2FMk%2BdXmi90%2F%2BnEPU2Zn1iX6F9izseAAAAB42mNgZGBgAOK4NWku8fw2XxmYWRhA4PGjLbwI%2Bv9L5n6mu0AuBwMTSBQAO6ELzAB42mNgZGBgZvjPACRTGVT%2BX2TuZwCKoAB2AF3wA%2FoAAAJ2AAADAAAkAwkAKwLcADMDUAApA2UAJwK5ACgAAAAAAFgAtAESAWAB4gIueNpjYGRgYGBnCGJgZgABRgY0AAAJVABfeNpdjDGLwkAQRl%2B4GLjcYSUWcuA2tktC7C1FMK3NVatZ4kISIQkBi7vef%2B0kbuUMfLz5eLtAzD8B4wTMpxwnJJLrxTO%2BWHiOZNeeY1Zs%2BCAIP6X5Yec55JtfzzOWlJ4j6f88x2x5HPPc9NdDbyp3SZOqrl2anGzbuVujUu2LvW1sa3pbqPNdFYPrhrJWmU50xpFc1tBz5SBpqHBcSEmEalk38QlLSyfXjQYlnX4z9mI0kzX%2BZinEOnOXLBjE6SRLsRXZ9FaTPQGA6C7XeNpjYGbACwAAfQAE%29%20format%28%27woff%27%29%3B%7D%0D%0Atext.f0%20%7Bfont-family%3Almmi10%3Bfont-size%3A9.96264px%7D%0D%0A%5D%5D%3E%0D%0A%3C%2Fstyle%3E%0D%0A%3Cg%20id%3D%27page1%27%3E%0D%0A%3Cg%20stroke-miterlimit%3D%2710%27%20transform%3D%27matrix%28.996264%200%200%20-.996264%2030.946922%20-58.35192%29%27%20fill%3D%27%23000%27%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-131.062973%20-61.9874%29%27%20stroke%3D%27%23000%27%20stroke-miterlimit%3D%2710%27%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.73599%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2740.909562%27%20y%3D%27-58.35192%27%3EA%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-4.028293%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27100.685403%27%20y%3D%27-58.35192%27%3EB%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.916552%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27160.461243%27%20y%3D%27-58.35192%27%3EC%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-4.262483%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27220.237084%27%20y%3D%27-58.35192%27%3ED%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M-79.8%200H-42.19997%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%28-42.19997%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-95.667133%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2730.946922%27%20y%3D%27-58.35192%27%3EK%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M40.2%200H77.80003%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%2877.80003%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%2025.534237%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2730.946922%27%20y%3D%27-58.35192%27%3EL%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E" title="\usetikzlibrary{matrix}
+<p><img src="data:image/svg+xml,%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0D%0A%3Csvg%20version%3D%271.1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20xmlns%3Axlink%3D%27http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%27%20width%3D%27902.28623pt%27%20height%3D%2771.079093pt%27%20viewBox%3D%27-72.000004%20-72.000009%20300.762077%2023.693031%27%3E%0D%0A%3Cstyle%20type%3D%27text%2Fcss%27%3E%0D%0A%3C%21%5BCDATA%5B%40font-face%7Bfont-family%3Almmi10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAY8AAoAAAAAB6gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEQAAABghVx1KWNtYXAAAAE4AAAANQAAADwAaACaZ2x5ZgAAAXAAAANdAAAEXBXkYA1oZWFkAAAE0AAAAC8AAAA2KnRrmWhoZWEAAAUAAAAAHgAAACQGtgI%2BaG10eAAABSAAAAAcAAAAHBTJAPpsb2NhAAAFPAAAABAAAAAQA0wEQm1heHAAAAVMAAAAGAAAACAACwBTbmFtZQAABWQAAADMAAABO76Ify9wb3N0AAAGMAAAAAwAAAAgAAMAAHjaY2Bm%2BsE4gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpR0ZPBhZvgP5DNDpJHU%2FAcKAwAAbg11eNpjYGBgYmBgYAZiESDJCKZZGDSANBuQZgTKujD4%2FP8P5DsyeP%2F%2F%2F%2F%2FA%2F11gVUAAAJGrCPwAAAB42lWTS2wbVRSG5z93fG899sy4sT1jsD2p48ckASelNjNNJNyoIWmTiqZJoEQlIgJRKipAlIamiyJFJQioQBVU6kPsuodtEWIFCyQWsEFi1U1ZVWLdDXjMGYdUWLO5OveM9J3v%2FFcjrdbr0QO6rz2jtTWtbmESym%2F47cB1gnASFRsy57iB27%2BI660OQgThIcfN5pxW4KdAD5BObG4rCTOVbYukinozllnKmgJm4txaGunkSMfDWZkzJTpOM%2F9T5ZecpSAEaJ%2BtgLT75tzbhVwtA7ItGdcNW6J6iE5nkLS7244tHmIl%2BlbTNKE91esKST9onjauhUwsmVBV5C5wtl3142PFQ96C8iCChl9tcA9j98%2BC21tuB%2FQbHcu88EF0o2RZ017ii6Jftm2srb8utldPrNYxMbsznE3M3NzYDOng8R%2FndcC6u37p%2FomjVkcXZabOejS1n0RJgZanF8%2FZxkmUas8T7Cci8X70T%2F2UiP4ckgbEFnNDa%2FUeihT9rk0xsyMV003AD8L4c1zHDZlfCQtVln8E7YbPDfForoeQB2PpwTAcukXN%2BbELs5e%2FFmK1vXhxZ3VsVB63kMaMkEYyAcLppbmPD84XpQP9ysLoRtBuSj0p5aPEO0frLYib259tLrZXhF6rW0sWCRX9zasgZTfOnAdmD69tFNabl14jjIxPrBdSAGmkjbHzkJ0XtCaPIlX8PVYe7BnngRS7VnuKw%2BAIAhGKpfHD57ejb8p2XzRmvQyLvnhljd46%2BS47%2FjxWe%2B3Vy%2B50Yd8QvvvkveeaLwrhyV3DGSHKHIkvF86eAavt%2Fhor1U8NL79Sebnv1e%2F1xHVmWx5IL4P5wiYPwWCiY9oOhpnNkX7MipiTr%2FtFR%2BVkdUTalPXQch16BEt%2F48M42EPjhKu3JwXqUzDVzlVW%2FXgcmHLnI5My2WfL%2BgquqxLhQBpcvbDA2ZfO4rGfjVuG51nqf6knw0mhufU9vwm9HFeJoz44s8CTHLN8MbqHll628oDR%2F5%2BSpiq27iSju8Usr4cdjPa6dIMdTLADTpY%2F8Bz6k3HCctIf2VvObu64h756STf2R43%2FXkGpUWbiT28bCWScuZp%2BLd7N1maQNp7OK8Ps%2FpVmrsHwx%2FMk%2BdXmi90%2F%2BnEPU2Zn1iX6F9izseAAAAB42mNgZGBgAOK4Wc%2FOxPPbfGVgZmEAgcfPhV8j6P8vmfuZ7gK5HAxMIFEAb%2F0NRgB42mNgZGBgZvjPACRTGVT%2BX2TuZwCKoAB2AF3wA%2FoAAAJ2AAADAAAkAwkAKwLcADMDUAApA2UAJwK5ACgAAAAAAFgAtAESAWAB4gIueNpjYGRgYGBnCGJgZgABRgY0AAAJVABfeNpdjDGLwkAQRl%2B4GLjcYSUWcuA2tktC7C1FMK3NVatZ4kISIQkBi7vef%2B0kbuUMfLz5eLtAzD8B4wTMpxwnJJLrxTO%2BWHiOZNeeY1Zs%2BCAIP6X5Yec55JtfzzOWlJ4j6f88x2x5HPPc9NdDbyp3SZOqrl2anGzbuVujUu2LvW1sa3pbqPNdFYPrhrJWmU50xpFc1tBz5SBpqHBcSEmEalk38QlLSyfXjQYlnX4z9mI0kzX%2BZinEOnOXLBjE6SRLsRXZ9FaTPQGA6C7XeNpjYGbACwAAfQAE%29%20format%28%27woff%27%29%3B%7D%0D%0Atext.f0%20%7Bfont-family%3Almmi10%3Bfont-size%3A9.96264px%7D%0D%0A%5D%5D%3E%0D%0A%3C%2Fstyle%3E%0D%0A%3Cg%20id%3D%27page1%27%3E%0D%0A%3Cg%20stroke-miterlimit%3D%2710%27%20transform%3D%27matrix%28.996264%200%200%20-.996264%2030.946922%20-58.35192%29%27%20fill%3D%27%23000%27%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-131.062973%20-61.9874%29%27%20stroke%3D%27%23000%27%20stroke-miterlimit%3D%2710%27%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.73599%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2740.909562%27%20y%3D%27-58.35192%27%3EA%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-4.028293%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27100.685403%27%20y%3D%27-58.35192%27%3EB%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.916552%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27160.461243%27%20y%3D%27-58.35192%27%3EC%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-4.262483%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27220.237084%27%20y%3D%27-58.35192%27%3ED%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M-79.8%200H-42.19997%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%28-42.19997%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-95.667133%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2730.946922%27%20y%3D%27-58.35192%27%3EK%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M40.2%200H77.80003%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%2877.80003%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%2025.534237%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2730.946922%27%20y%3D%27-58.35192%27%3EL%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E" title="\usetikzlibrary{matrix}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
@@ -417,7 +465,7 @@ G \begin{bmatrix}w \\ x \\ y \\ z \end{bmatrix}.
 <p>it must be true that the outputs of <span class="math inline">\(L\)</span> (its codomain, <span class="math inline">\(D\)</span>) must match the inputs of <span class="math inline">\(K\)</span> (its domain, <span class="math inline">\(A\)</span>).</p>
 <p>If we assume that <span class="math inline">\(A=D\)</span>, then we can form the composition</p>
 <div class="imagify" data-zoom="3">
-<p><img src="data:image/svg+xml,%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0D%0A%3Csvg%20version%3D%271.1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20xmlns%3Axlink%3D%27http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%27%20width%3D%27631.889818pt%27%20height%3D%2771.079093pt%27%20viewBox%3D%27-72.000004%20-72.000009%20210.629939%2023.693031%27%3E%0D%0A%3Cstyle%20type%3D%27text%2Fcss%27%3E%0D%0A%3C%21%5BCDATA%5B%40font-face%7Bfont-family%3Almmi10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAXYAAoAAAAABwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEQAAABghVx1GmNtYXAAAAE4AAAANQAAADwAaACYZ2x5ZgAAAXAAAAL%2BAAADwIqLMs9oZWFkAAAEcAAAAC8AAAA2Kmur4WhoZWEAAASgAAAAHgAAACQGtgI9aG10eAAABMAAAAAYAAAAGBF5ANFsb2NhAAAE2AAAAA4AAAAOA0oCSG1heHAAAAToAAAAGAAAACAACgBTbmFtZQAABQAAAADMAAABO76Ify9wb3N0AAAFzAAAAAwAAAAgAAMAAHjaY2Bmesk4gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpR0ZPBhZvgP5DNDpJHU%2FAcKAwD67A1meNpjYGBgYmBgYAZiESDJCKZZGDSANBuQZgTKOjP4%2FP8P5DsyeP%2F%2F%2F%2F%2FA%2F51gVUAAAJGJCPoAAAB42lWTz2sUZxjH5%2Fu8s%2B%2Frzu7MrM7uO6m7O2myPyZGN7HuOtN42AbXRI20akIllEBo8QeIHtTU9NBCsClooQgV1NKbf0CvhdJTPQhevBR68mJPgmcv7c76zKSHhrm8PO8z8Hm%2Bz%2Bc1yGiORvSKXhofGD3DaDmYhQrbYS%2FydRTPYsKFLGs%2F8rOLtN7tI0YUH9G%2BV9bdKCyAXqGY29hSEnbB64m8Skbzjl3zbAE7d2W1iGJ%2Bsh%2FgkizbEn3dqTydeF52FIQA7XEVUPQvL1wbKzdLINeRad1yJRpH6EIJeXe4pV3xGsvJL4ZhCOPgaCgk%2FW4ExrQRM7FkQjUhd4C9XiNMjxMBKg5UABG1w0abexg7Owtu7%2Fp90As6Wfr4y%2BRBzXGOBbkfqmHddbG69oXYWjmz0sLMYHvcy80%2FXN%2BI6fCpPxZNwHmydvvlmeNO3xR1pvYCmttLoqZA548tXXGtT1BrniC47yXiZvJv65xI%2Ft4nLYhN5obRHb0WBfrTmGNmLRXTzSCM4vTTvvZj5lfCQYPD%2Fwi9dsgN6Wh%2BgJgH49CjcWh6RJ3FAzcGX%2F0sxEpv6db2yoEpecpBEfNCWvkcCBfOLnx3eLEqNcyvT0%2BtR72ONPNSvs1dP97qQjzcurex1FsWZrPlnHVIqOQfXgUpt%2F3ZVWDw4er62Frn9ueEyemZtbECQMwejkbiPmd%2BfpchjBUKlwJEu63xolD2Mc7EWoZtqQRSer7OilqVZWNSuuQF6Pqa3sIxL36TyrNvmnDn8axAaw622r7D47jZbjAIYMvtb20qeUfr5jLuqxrh%2FSK4euM0%2ByX10sln1iMrCBz1P7PI0gV0Nn9j78x6WiXWSe5sriREPVNtP6%2ByUk1%2BRdesOxXAyv6nvK2q3Z%2FyyZOqxxFwBlOjIT3gDGY4A95euEu5bDLeYlmGkzxw5tjObrmHfvzUtPYm7f9Mq7XrTHz3sZVDSS80ze9TtTY3oqJ1qKIse%2FimyFy7BUvnyfPLqFSHf2VKxQW7P%2FCJ3gHF2pamAAB42mNgZGBgAOIallMS8fw2XxmYWRhA4PGjLfwI%2Bv9L5n6mu0AuBwMTSBQALaULfgB42mNgZGBgZvjPACRTGVT%2BX2TuZwCKoAA2AF3vA%2FkAAAJ2AAADAAAkAwkAKwLcADMDZQAnArkAKAAAAAAAWAC0ARIBlAHgAAB42mNgZGBgYGMIYmBmAAFGBjQAAAk5AF542l2MMYvCQBBGX7gYuNxhJRZy4Da2S0LsLUUwrc1Vq1niQhIhCQGLu95%2F7SRu5Qx8vPl4u0DMPwHjBMynHCckkuvFM75YeI5k155jVmz4IAg%2Fpflh5znkm1%2FPM5aUniPp%2FzzHbHkc89z010NvKndJk6quXZqcbNu5W6NS7Yu9bWxreluo810Vg%2BuGslaZTnTGkVzW0HPlIGmocFxISYRqWTfxCUtLJ9eNBiWdfjP2YjSTNf5mKcQ6c5csGMTpJEuxFdn0VpM9AYDoLtd42mNgZsALAAB9AAQ%3D%29%20format%28%27woff%27%29%3B%7D%0D%0Atext.f0%20%7Bfont-family%3Almmi10%3Bfont-size%3A9.96264px%7D%0D%0A%5D%5D%3E%0D%0A%3C%2Fstyle%3E%0D%0A%3Cg%20id%3D%27page1%27%3E%0D%0A%3Cg%20stroke-miterlimit%3D%2710%27%20transform%3D%27matrix%28.996264%200%200%20-.996264%201.059002%20-58.35192%29%27%20fill%3D%27%23000%27%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-71.062973%20-61.9874%29%27%20stroke%3D%27%23000%27%20stroke-miterlimit%3D%2710%27%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.916553%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2711.021642%27%20y%3D%27-58.35192%27%3EC%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.73599%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2770.797482%27%20y%3D%27-58.35192%27%3EA%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-4.028293%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27130.573323%27%20y%3D%27-58.35192%27%3EB%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M-49.8%200H-12.19997%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%28-12.19997%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-34.465763%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%271.059002%27%20y%3D%27-58.35192%27%3EL%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M10.2%200H47.80003%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%2847.80003%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%2024.332867%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%271.059002%27%20y%3D%27-58.35192%27%3EK%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E" title="\usetikzlibrary{matrix}
+<p><img src="data:image/svg+xml,%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0D%0A%3Csvg%20version%3D%271.1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20xmlns%3Axlink%3D%27http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%27%20width%3D%27631.889818pt%27%20height%3D%2771.079093pt%27%20viewBox%3D%27-72.000004%20-72.000009%20210.629939%2023.693031%27%3E%0D%0A%3Cstyle%20type%3D%27text%2Fcss%27%3E%0D%0A%3C%21%5BCDATA%5B%40font-face%7Bfont-family%3Almmi10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAXYAAoAAAAABwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEQAAABghVx1GmNtYXAAAAE4AAAANQAAADwAaACYZ2x5ZgAAAXAAAAL%2BAAADwIqLMs9oZWFkAAAEcAAAAC8AAAA2KnRrp2hoZWEAAASgAAAAHgAAACQGtgI9aG10eAAABMAAAAAYAAAAGBF5ANFsb2NhAAAE2AAAAA4AAAAOA0oCSG1heHAAAAToAAAAGAAAACAACgBTbmFtZQAABQAAAADMAAABO76Ify9wb3N0AAAFzAAAAAwAAAAgAAMAAHjaY2Bmesk4gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpR0ZPBhZvgP5DNDpJHU%2FAcKAwD67A1meNpjYGBgYmBgYAZiESDJCKZZGDSANBuQZgTKOjP4%2FP8P5DsyeP%2F%2F%2F%2F%2FA%2F51gVUAAAJGJCPoAAAB42lWTz2sUZxjH5%2Fu8s%2B%2Frzu7MrM7uO6m7O2myPyZGN7HuOtN42AbXRI20akIllEBo8QeIHtTU9NBCsClooQgV1NKbf0CvhdJTPQhevBR68mJPgmcv7c76zKSHhrm8PO8z8Hm%2Bz%2Bc1yGiORvSKXhofGD3DaDmYhQrbYS%2FydRTPYsKFLGs%2F8rOLtN7tI0YUH9G%2BV9bdKCyAXqGY29hSEnbB64m8Skbzjl3zbAE7d2W1iGJ%2Bsh%2FgkizbEn3dqTydeF52FIQA7XEVUPQvL1wbKzdLINeRad1yJRpH6EIJeXe4pV3xGsvJL4ZhCOPgaCgk%2FW4ExrQRM7FkQjUhd4C9XiNMjxMBKg5UABG1w0abexg7Owtu7%2Fp90As6Wfr4y%2BRBzXGOBbkfqmHddbG69oXYWjmz0sLMYHvcy80%2FXN%2BI6fCpPxZNwHmydvvlmeNO3xR1pvYCmttLoqZA548tXXGtT1BrniC47yXiZvJv65xI%2Ft4nLYhN5obRHb0WBfrTmGNmLRXTzSCM4vTTvvZj5lfCQYPD%2Fwi9dsgN6Wh%2BgJgH49CjcWh6RJ3FAzcGX%2F0sxEpv6db2yoEpecpBEfNCWvkcCBfOLnx3eLEqNcyvT0%2BtR72ONPNSvs1dP97qQjzcurex1FsWZrPlnHVIqOQfXgUpt%2F3ZVWDw4er62Frn9ueEyemZtbECQMwejkbiPmd%2BfpchjBUKlwJEu63xolD2Mc7EWoZtqQRSer7OilqVZWNSuuQF6Pqa3sIxL36TyrNvmnDn8axAaw622r7D47jZbjAIYMvtb20qeUfr5jLuqxrh%2FSK4euM0%2ByX10sln1iMrCBz1P7PI0gV0Nn9j78x6WiXWSe5sriREPVNtP6%2ByUk1%2BRdesOxXAyv6nvK2q3Z%2FyyZOqxxFwBlOjIT3gDGY4A95euEu5bDLeYlmGkzxw5tjObrmHfvzUtPYm7f9Mq7XrTHz3sZVDSS80ze9TtTY3oqJ1qKIse%2FimyFy7BUvnyfPLqFSHf2VKxQW7P%2FCJ3gHF2pamAAB42mNgZGBgAOLqz1498fw2XxmYWRhA4PFz4U8I%2Bv9L5n6mu0AuBwMTSBQAYIoM7gB42mNgZGBgZvjPACRTGVT%2BX2TuZwCKoAA2AF3vA%2FkAAAJ2AAADAAAkAwkAKwLcADMDZQAnArkAKAAAAAAAWAC0ARIBlAHgAAB42mNgZGBgYGMIYmBmAAFGBjQAAAk5AF542l2MMYvCQBBGX7gYuNxhJRZy4Da2S0LsLUUwrc1Vq1niQhIhCQGLu95%2F7SRu5Qx8vPl4u0DMPwHjBMynHCckkuvFM75YeI5k155jVmz4IAg%2Fpflh5znkm1%2FPM5aUniPp%2FzzHbHkc89z010NvKndJk6quXZqcbNu5W6NS7Yu9bWxreluo810Vg%2BuGslaZTnTGkVzW0HPlIGmocFxISYRqWTfxCUtLJ9eNBiWdfjP2YjSTNf5mKcQ6c5csGMTpJEuxFdn0VpM9AYDoLtd42mNgZsALAAB9AAQ%3D%29%20format%28%27woff%27%29%3B%7D%0D%0Atext.f0%20%7Bfont-family%3Almmi10%3Bfont-size%3A9.96264px%7D%0D%0A%5D%5D%3E%0D%0A%3C%2Fstyle%3E%0D%0A%3Cg%20id%3D%27page1%27%3E%0D%0A%3Cg%20stroke-miterlimit%3D%2710%27%20transform%3D%27matrix%28.996264%200%200%20-.996264%201.059002%20-58.35192%29%27%20fill%3D%27%23000%27%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-71.062973%20-61.9874%29%27%20stroke%3D%27%23000%27%20stroke-miterlimit%3D%2710%27%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.916553%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2711.021642%27%20y%3D%27-58.35192%27%3EC%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-3.73599%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2770.797482%27%20y%3D%27-58.35192%27%3EA%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-4.028293%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27130.573323%27%20y%3D%27-58.35192%27%3EB%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M-49.8%200H-12.19997%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%28-12.19997%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-34.465763%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%271.059002%27%20y%3D%27-58.35192%27%3EL%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M10.2%200H47.80003%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%2847.80003%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%2024.332867%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%271.059002%27%20y%3D%27-58.35192%27%3EK%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E" title="\usetikzlibrary{matrix}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
@@ -481,29 +529,282 @@ R \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
 </ul>
 </blockquote>
 </div>
-<!-- 
-### Noncommutativity
-
-[TODO]
-
-## Adding maps
-
-[TODO]
-
-## Matrices are sort of like numbers
-
-[TODO]
-
-### Numbers are $1 \times 1$ matrices
-
-[TODO]
-
-## Matrices are sort of like functions
-
-[TODO] -->
-
-
+<p>In the above exercises, you should have concluded that only <span class="math inline">\(R \circ T\)</span> is possible and the result is <span class="math display">\[
+(R \circ T )\begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+=\begin{bmatrix} -28 \\ 34 \end{bmatrix}.
+\]</span> Great, now we can compute compositions.</p>
+<p>However, it is true that the composition of two linear maps is a linear map itself. This means that <span class="math inline">\(R \circ T\)</span> is a linear function between finite dimensional vector spaces:</p>
+<div class="imagify" data-zoom="3">
+<p><img src="data:image/svg+xml,%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0D%0A%3Csvg%20version%3D%271.1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20xmlns%3Axlink%3D%27http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%27%20width%3D%27641.219065pt%27%20height%3D%27143.004971pt%27%20viewBox%3D%27-72.000004%20-72.000008%20213.739688%2047.668324%27%3E%0D%0A%3Cstyle%20type%3D%27text%2Fcss%27%3E%0D%0A%3C%21%5BCDATA%5B%40font-face%7Bfont-family%3Almsy10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAMgAAoAAAAAA4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEsAAABgzfGXnGNtYXAAAAFAAAAAKgAAADQADCY5Z2x5ZgAAAWwAAABVAAAAWP5G96toZWFkAAABxAAAAC0AAAA2KgFqtmhoZWEAAAH0AAAAHgAAACQFGv%2BDaG10eAAAAhQAAAAIAAAACAUdADlsb2NhAAACHAAAAAYAAAAGACwAAG1heHAAAAIkAAAAFgAAACAABQAYbmFtZQAAAjwAAADTAAABPj7v4YNwb3N0AAADEAAAABAAAAAgAAMAAXjaY2Bm6mOcwMDKwMA0i%2BnsPxGGfhDN%2BIbxDYMxIycDELAxIAMFOCuluCydgU31meozZqk%2FmgwMzFLM14HCjAi1%2F%2F8zMAAAJswP5gB42mNgYGBiYGBgBmIRIMkIplkYFIA0CxAC%2BarP%2Fv%2BHkLekwfIMAGNOB2cAAHjaY2BisGSwZDzGeJyBm0GMgYGRj5Fdj1HdjtFcDszgYxQRE7djZDzGlB8WXMgEJtWZIpxdIyJcnSMYGYKLmJgKQyCkcyQTU1RLFBNTJAMDAGGFD90AAAB42mNgZGBgAGK1kKmJ8fw2XxmYWRhA4PFz4Z%2FINLMs43EgxcHABOIBABffCbcAAAB42mNgZGBglvqjCSRlGSwZrBiPMQBFUAATAEHXAqEAAAMdAAACAAA5AAAAAAAsAAB42mNgZGBgYGIQB2IQYGRAAwAC8wAeAAB42l2PsWrDMBCGP1PHUCfQqR06FE0dhYX7AN2yxFMgY8HGInGxbLCMQUvpA%2FShe3Y19Q7uvvvvP4GAnC8S1kh42OoaKZlMf7xjz2PkTFJFznnmlTuS9F6UF94jpxz4iLzjic%2FImejfkXPe%2BDlVVT3fzsE1Y%2B9N0TsfTHGxk%2B%2FGQRkdhaMd7FTPtlVNUO3S%2BeXqVKkLXXKikqyZuXEm4GgY6fEYCulOKGx8wTLJ1Ml%2BkB8Y9D%2FHURzD5lrfs7TiamSnhBa581Kv4leU262m%2FAWlJDBpAHjaY2BmQAaMDGgAAACOAAU%3D%29%20format%28%27woff%27%29%3B%7D%0D%0A%40font-face%7Bfont-family%3Arm-lmr7%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAPwAAoAAAAABGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEcAAABghvd14WNtYXAAAAE8AAAALAAAADQADACGZ2x5ZgAAAWgAAAE0AAABSG%2FgfAZoZWFkAAACnAAAAC8AAAA2Kbhrg2hoZWEAAALMAAAAIAAAACQGxgHkaG10eAAAAuwAAAAKAAAACgVRAEFsb2NhAAAC%2BAAAAAgAAAAIAEYApG1heHAAAAMAAAAAFwAAACAABQA9bmFtZQAAAxgAAADIAAABL%2FsTZANwb3N0AAAD4AAAABAAAAAgAAMAAXjaY2BmKmWcwMDKwMA0i%2BnsPxGGfhDN%2BIbxDYMxIycDELAxwAEjAxJIKS5LB0oaMRiz1P%2B7ysDAUs%2Bojarm%2F38GBgD8CA7JAHjaY2BgYGJgYGAGYhEgyQimWRgUgDQLEIL4xv%2F%2FA0mj%2F%2F%2F%2FnwfzGQBRbQaPeNpNzl1LwmAcBfDn%2FB%2FdQwYTUbeps%2Blik1QcGm6BODOyF6OUZN30ghEJWRdR0AcIoY9SV0G3fqauIuiuWnddHjic82NgXcYoSi9shTFLFD23A5%2Fski2JJQgZy5Jd8uEtQZURhyQ81wsjRY3vY5D4ym3wwb59lCkpgJmMlQn355dPnIJWUD74sBZjMs3nuiR95iazMaHSJCuu55C2d685rs62p9We2QMisfUkY2DezzvJ9MxaoUWGqCH8biiq8ofxFNeroQKp6XYoNPho1iBCp6KmJGH%2Fa4YTjzfjGYfpGEDWNKemM%2BLYa69lEZE1e1VLp%2FiWZQT5Btcz9Qjdvj4QNofBydvwjiPYKeiFTMLi1Tyof3o44okFzglxXesWuw6gFSVHzQOu3x%2B06xdGcsJ%2BAU5XMq142mNgZGBgAOLQfHaReH6brwzMLAwg8Pi58E8E%2Ff8N02WmFUAuBwMTSBQAJWQLqAB42mNgZGBgqf93lYGB6TKDOYMlEx8DUAQFMAEAZb8DsALTAAACRwBBADcAAAAAAAAARgCkeNpjYGRgYGBmsGEA0QxQEgkAAAaUAEMAeNpdjLFqwzAURY%2BpkzYOtJ06dFI%2FIMLBBQ%2F9gAxNlgyBjg4WwRDJIAdDhvbbe%2BNq6huuzrucJ6Dgh4zbZDxMeZuce21%2FPGPJU%2BK5%2BtfEheiNO7J8oeaZj8Q5j3wmnvHCV%2BK5%2Bj5xwTvf292%2B902oo1%2BdfawPLg5dH8zalqnZuOBic3GtOV5NO3bDePKmsqWt2LJjr%2B88DYGaKFpxVkZtB5zegU5GwLDGUv5zNnLC5DVc9LbyjlyVLaMuB%2BVJrqGari3VL%2FerLFl42mNgZkAGjAxoAAAAjgAF%29%20format%28%27woff%27%29%3B%7D%0D%0A%40font-face%7Bfont-family%3Almmi10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAARkAAoAAAAABRQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEQAAABghW101WNtYXAAAAE4AAAAMQAAADwAaACtZ2x5ZgAAAWwAAAGkAAAB4LTsKWtoZWFkAAADEAAAAC8AAAA2KeprkmhoZWEAAANAAAAAHgAAACQGIQGSaG10eAAAA2AAAAAMAAAADAfVAENsb2NhAAADbAAAAAgAAAAIAJAA8G1heHAAAAN0AAAAGAAAACAABgBdbmFtZQAAA4wAAADMAAABO76Ify9wb3N0AAAEWAAAAAwAAAAgAAMAAHjaY2BmmsM4gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpQMYghhZvgP5DNDpJHU%2FAcKAwDh6g0yeNpjYGBgYmBgYAZiESDJCKZZGDSANBuQZgTKBjGE%2FP8P5IPp%2F%2Bv%2FrwOrAgIAlEIJDwAAAHjaNZC%2FjtNAEMZ3Zu1d2%2FGfnO3sYhIbcsbrEDhOIr41CeDTKQqI4oQoUtHRXElBdx1UUNDyEkg0UFDwErwBFdRItCSsC2aamfnmK74fQTLf%2F6I2fiND8pwQUMegIgiB00UHbQdJGgHjrFamm1Po4ESruqS8AJ2yY%2BD9WUuh26Qpa2bGaQHSGMyD7K0jJhZG1a0U%2BMFqRsuTLvKs9avNNinGL0WYr%2Fx5Et%2B07AFz8WhzuaZQLQPnzWvOIAxXhf1%2BovJwCOXFJVqPHj%2FLNtTiFsRXEj0Cn9mo1zH3ETCOd3%2BgEte3u00wj2c2evZAnA2zO0kd5B3ufscBs3IOlAI6EQdIClweIJ2Ycbs%2BbxYxb%2B%2FLbHWY5VOoW58iElNAsv0ev%2BNX8sAsTJ3SRvGS94B4Kq6B5v8xKC3vGgwmq7oFivcMmKp7ZHKqJX6GMVCGT86rsevZb62hOFM0dD599G2A%2BOrTGX1HAdx09uK27904tCWwh5Z%2FgPfGAD8lDtKjapkjxSj9%2B0P4DiKNwj4NghsxGE2wdALGacbd6kKgl3zp1fAfBFo%2BCHjaY2BkYGAAYifBIrd4fpuvDMwsDCDw%2BLnwTwT9%2FzkzK9MeIJeDgQkkCgAiZwsWAHjaY2BkYGBm%2BM8AJDkZJP%2B3MrMyAEVQADMAQ3kCuQAAAnYAAAMJACoCVgAZAAAAAACQAPB42mNgZGBgYGaIYWBiAAFGBjQAAAnLAGR42l2MMYvCQBBGX7gYuNxhJRZy4Da2S0LsLUUwrc1Vq1niQhIhCQGLu95%2F7SRu5Qx8vPl4u0DMPwHjBMynHCckkuvFM75YeI5k155jVmz4IAg%2Fpflh5znkm1%2FPM5aUniPp%2FzzHbHkc89z010NvKndJk6quXZqcbNu5W6NS7Yu9bWxreluo810Vg%2BuGslaZTnTGkVzW0HPlIGmocFxISYRqWTfxCUtLJ9eNBiWdfjP2YjSTNf5mKcQ6c5csGMTpJEuxFdn0VpM9AYDoLtd42mNgZsALAAB9AAQ%3D%29%20format%28%27woff%27%29%3B%7D%0D%0A%40font-face%7Bfont-family%3Amsbm10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAPYAAoAAAAABEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEgAAABghsl1NmNtYXAAAAE8AAAAKQAAADQADAClZ2x5ZgAAAWgAAAEvAAABPPWHYXNoZWFkAAACmAAAAC8AAAA2KgFrrGhoZWEAAALIAAAAHgAAACQGkAGEaG10eAAAAugAAAAIAAAACAX%2FABBsb2NhAAAC8AAAAAYAAAAGAJ4AAG1heHAAAAL4AAAAGAAAACAACABkbmFtZQAAAxAAAAC3AAABIJ9HqPxwb3N0AAADyAAAABAAAAAgAAMAAXjaY2Bm%2Bs84gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpQMYghiXvcviIGBeR3jOlQ1%2F%2F8zMAAAOygP7njaY2BgYGJgYGAGYhEgyQimWRgUgDQLEIL4Qf%2F%2FQ8j%2F68F8BgBT%2FAauAAAAeNotjbFKw1AARd9N0hdaS5o2yXvaQEIT%2BiJFUmzTV6RQbAfbYq2DUOik6OTmIn6Dgz%2Fg5h%2B4uvgNCm5OiuDmH7T1CS4XLvccLskRe73WXrRnkpEhmZIFOScEHmVdGYAmNSr64EwmZSlMmkLymgzBuAWThQjA%2F6A4Ek2t20cimhBJoCaaeMrJhGlBb4tEF92YccekPtoKNSNUNN7IO3Ct1bflwTUbHOAN04VnYTg%2FDsaGfjnK4m1nP7AUdVcu5tL7h1kPRlpsRrwMFN9vZvpgkLq3VxTQ7WuVwNvTRdbJZGcDw686A2iV%2Fgera6irF7qlSuTsnC5mhZPdPX%2BcN3wKPT%2F%2BaZUmrVFY8HPhVMST16XeO1scKGn5aFW0WtUv2cuPzQrs1ac8PJob5BcCnzMrAHjaY2BkYGAA4v93tu6N57f5ysDMwgACj58L%2F0TQ%2F%2F8zyzDtA3I5GJhAogCKNg2JAHjaY2BkYGBe9y8ISMowCDAIM11gAIqgACYAUnsDGgAAAxwAAALjABAAAAAAAJ4AAHjaY2BkYGBgYkhmYGUAAUYGNAAACqQAbXjaTYwxC8IwEEZfsS1YnR3EIb8gpFScXcTF2b2loRSaCI0WXPztnm0G7%2BDu5eNdgIIPCb9KyOb5q5RcXgtnbKQXzqV3kQv2HFiRpGtJCk6RU7acI2di3yLnkjeRC474y2uwowuNK83djqF%2FeFVqswRX6%2B1YP22rmrdqpz5MnVOVNrriwosBy4gjyI%2BOEsN9TgI9DzxKMi3pv3EVw89WzVN2K1bDW2bLJHdBZieuoppvNdUXylEoaQB42mNgZkAGjAxoAAAAjgAF%29%20format%28%27woff%27%29%3B%7D%0D%0Atext.f0%20%7Bfont-family%3Amsbm10%3Bfont-size%3A9.96264px%7D%0D%0Atext.f1%20%7Bfont-family%3Almsy10%3Bfont-size%3A9.96264px%7D%0D%0Atext.f2%20%7Bfont-family%3Almmi10%3Bfont-size%3A9.96264px%7D%0D%0Atext.f3%20%7Bfont-family%3Arm-lmr7%3Bfont-size%3A6.973848px%7D%0D%0A%5D%5D%3E%0D%0A%3C%2Fstyle%3E%0D%0A%3Cg%20id%3D%27page1%27%3E%0D%0A%3Cg%20stroke-miterlimit%3D%2710%27%20transform%3D%27matrix%28.996264%200%200%20-.996264%201.059002%20-58.35192%29%27%20fill%3D%27%23000%27%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-71.062973%20-62.6407%29%27%20stroke%3D%27%23000%27%20stroke-miterlimit%3D%2710%27%3E%0D%0A%3Cg%20transform%3D%27translate%28-5.832239%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2711.021642%27%20y%3D%27-58.35192%27%3ER%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f3%27%20x%3D%2718.216902%27%20y%3D%27-61.967284%27%3E3%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-5.832239%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2770.797482%27%20y%3D%27-58.35192%27%3ER%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f3%27%20x%3D%2777.992743%27%20y%3D%27-61.967284%27%3E3%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-5.832238%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27130.573323%27%20y%3D%27-58.35192%27%3ER%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f3%27%20x%3D%27137.768583%27%20y%3D%27-61.967284%27%3E2%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M-49.8%200H-12.19997%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%28-12.19997%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-34.679293%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f2%27%20x%3D%271.059002%27%20y%3D%27-58.35192%27%3ET%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M10.2%200H47.80003%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%2847.80003%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%2025.101957%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f2%27%20x%3D%271.059002%27%20y%3D%27-58.35192%27%3ER%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cpath%20d%3D%27M-49.8-5.88316C-16.16252-25.30373%2016.16252-25.30373%2048.06801-6.88315%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27matrix%28.86601%20.5%20-.5%20.86601%2048.068%20-6.88315%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-13.236543%20-89.38557%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f2%27%20x%3D%271.059002%27%20y%3D%27-58.35192%27%3ER%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f1%27%20x%3D%2710.914365%27%20y%3D%27-58.35192%27%3E%E2%97%A6%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f2%27%20x%3D%2718.10957%27%20y%3D%27-58.35192%27%3ET%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E" title="\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     \mathbb R^3 &amp; \mathbb R^3 &amp; \mathbb R^2 \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$T$} (m-1-2)
+    (m-1-2) edge node [above] {$R$} (m-1-3)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$R \circ T$} (m-1-3);
+\end{tikzpicture}" class="img-fluid" style="display:block; margin: .5em auto;"></p>
+</div>
+<p>That is, there should be matrix representation of the function <span class="math inline">\(R \circ T\)</span> that has 2 rows and 3 columns. How can we compute such a matrix?</p>
+<p>The algorithm is the same as we used to multiply a matrix by a column.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}
+4 &amp; 2 &amp; -1 \\
+-2 &amp; 3 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+-1 &amp; 3 &amp; -2 \\
+1 &amp; -2 &amp; 1 \\
+4 &amp; -2 &amp; 3
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+\_ &amp; \_ &amp; \_\\
+\_ &amp; \_ &amp; \_
+\end{bmatrix} \\
+&amp;=
+\begin{bmatrix}
+4(-1) + 2(1) + (-1)(4) &amp; \_ &amp; \_\\
+\_ &amp; \_ &amp; \_
+\end{bmatrix}\\
+&amp;=
+\begin{bmatrix}
+-6 &amp; \_ &amp; \_\\
+\_ &amp; \_ &amp; \_
+\end{bmatrix}
+\end{aligned}.
+\]</span></p>
+<p>That is, the top left entry in the matrix on the right is the result of combining the <strong>top row</strong> of the left matrix and the <strong>left column</strong> of the right matrix. When we say “combine” here, we mean the same operation we did when multiplying a matrix by a column: the top row and left column are both lists of 3 numbers; we multiply the corresponding entries and add the results.</p>
+<p>As another example, let’s compute the bottom middle entry of the result matrix. <span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}
+4 &amp; 2 &amp; -1 \\
+-2 &amp; 3 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+-1 &amp; 3 &amp; -2 \\
+1 &amp; -2 &amp; 1 \\
+4 &amp; -2 &amp; 3
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+-6 &amp; \_ &amp; \_\\
+\_ &amp; (-2)(3) + 3(-2) + 1(-2) &amp; \_
+\end{bmatrix}\\
+&amp;=
+\begin{bmatrix}
+-6 &amp; \_ &amp; \_\\
+\_ &amp; -14 &amp; \_
+\end{bmatrix}
+\end{aligned}.
+\]</span></p>
+<div id="exr-matmul" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.5</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Finish computing the matrix for <span class="math inline">\(R \circ T\)</span>.</p>
+</blockquote>
+</div>
+<div id="exr-matmul-check" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.6</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Using the matrix for <span class="math inline">\(R \circ T\)</span>, compute <span class="math display">\[
+R \circ T \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+\]</span> and verify that you get <span class="math inline">\(\begin{bmatrix} -28 \\ 34 \end{bmatrix}\)</span>.</p>
+</blockquote>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Matrix multiplication with <code>numpy</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Matrix multiplications are long, and humans are prone to make trivial errors. In the wild, you will most often see matrices multiplied using a programming language. As an example, you can compute the matrix for <span class="math inline">\(R \circ T\)</span> using <code>numpy</code> for <code>python</code> as follows</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> numpy</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> R <span class="op">=</span> numpy.array( [ [ <span class="dv">4</span> , <span class="dv">2</span> , <span class="op">-</span><span class="dv">1</span> ] , [ <span class="op">-</span><span class="dv">2</span> , <span class="dv">3</span> , <span class="dv">1</span> ] ] )</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> T <span class="op">=</span> numpy.array( [ [ <span class="op">-</span><span class="dv">1</span> , <span class="dv">3</span> , <span class="op">-</span><span class="dv">2</span> ] , [ <span class="dv">1</span> , <span class="op">-</span><span class="dv">2</span> , <span class="dv">1</span> ] , [ <span class="dv">4</span> , <span class="op">-</span><span class="dv">2</span> , <span class="dv">3</span> ] ] )</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numpy.matmul( R , T )</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>array([[ <span class="op">-</span><span class="dv">6</span>,  <span class="dv">10</span>,  <span class="op">-</span><span class="dv">9</span>],</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>       [  <span class="dv">9</span>, <span class="op">-</span><span class="dv">14</span>,  <span class="dv">10</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To get the result <span class="math display">\[
+R \circ T \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+\]</span> you can do (assuming you have already evaluated the previous code block)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> numpy.array( [ [ <span class="dv">0</span> ] , [ <span class="op">-</span><span class="dv">1</span> ] , [ <span class="dv">2</span> ] ] )</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> RoT <span class="op">=</span> numpy.matmul( R , T )</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numpy.matmul( RoT , x )</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>array([[<span class="op">-</span><span class="dv">28</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>       [ <span class="dv">34</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Throughout the remainder of the text, we will show examples of linear algebra computations in a variety of programming languages. (Almost all of these languages use, under the hood, the same two optimized implementations: BLAS and LAPACK.)</p>
+</div>
+</div>
+<div id="exr-matmul-check" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.7</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Compute the matrix multiplication <span class="math display">\[
+\begin{bmatrix}
+4 &amp; 2 &amp; -1 \\
+-2 &amp; 3 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+-1 &amp; 3 &amp; -2 \\
+1 &amp; -2 &amp; 1 \\
+4 &amp; -2 &amp; 3
+\end{bmatrix}.
+\]</span> Show your work and only (if you want to) use code to check your answer.</p>
+</blockquote>
+</div>
 </section>
+<section id="noncommutativity" class="level3">
+<h3 class="anchored" data-anchor-id="noncommutativity">Noncommutativity</h3>
+<p>Beware! Since matrix multiplication corresponds to function composition, and function composition is not commutative, in general matrix multiplication is not guaranteed to be commutative.</p>
+<p>That is, if I compute the matrix product <span class="math display">\[
+AB
+\]</span> this will almost always <strong>not</strong> be equal to <span class="math display">\[
+BA.
+\]</span> In fact, in <a href="#exr-matmul-check" class="quarto-xref">Exercise&nbsp;<span>6.7</span></a> the other matrix product <span class="math display">\[
+\begin{bmatrix}
+-1 &amp; 3 &amp; -2 \\
+1 &amp; -2 &amp; 1 \\
+4 &amp; -2 &amp; 3
+\end{bmatrix}
+\begin{bmatrix}
+4 &amp; 2 &amp; -1 \\
+-2 &amp; 3 &amp; 1
+\end{bmatrix}
+\]</span> is not even defined. (Why?)</p>
+<p>It is, however, true that matrix multiplication is associative. That is, if I want to multiply three matrices <span class="math display">\[
+ABC = A(BC) = (AB)C
+\]</span> I can multiply the right two first to get one matrix representing <span class="math inline">\(BC\)</span>, then multiply on the left by <span class="math inline">\(A\)</span> to get one matrix representing <span class="math inline">\(ABC\)</span>.</p>
+<p>I could also multiply starting from the left and obtain the same answer.</p>
+<p>All three of the ways of multiplying the matrices above results in a single matrix representing the composition</p>
+<div id="fig-matmul-assoc" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="display:block; margin: .5em auto;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matmul-assoc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="imagify" data-zoom="5">
+<p><img src="data:image/svg+xml,%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0D%0A%3Csvg%20version%3D%271.1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20xmlns%3Axlink%3D%27http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%27%20width%3D%271532.876591pt%27%20height%3D%27285.573848pt%27%20viewBox%3D%27-72.000004%20-72.000005%20306.575318%2057.11477%27%3E%0D%0A%3Cstyle%20type%3D%27text%2Fcss%27%3E%0D%0A%3C%21%5BCDATA%5B%40font-face%7Bfont-family%3Almsy10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAMgAAoAAAAAA4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEsAAABgzfGXnGNtYXAAAAFAAAAAKgAAADQADCY5Z2x5ZgAAAWwAAABVAAAAWP5G96toZWFkAAABxAAAAC0AAAA2KgFqwmhoZWEAAAH0AAAAHgAAACQFGv%2BDaG10eAAAAhQAAAAIAAAACAUdADlsb2NhAAACHAAAAAYAAAAGACwAAG1heHAAAAIkAAAAFgAAACAABQAYbmFtZQAAAjwAAADTAAABPj7v4YNwb3N0AAADEAAAABAAAAAgAAMAAXjaY2Bm6mOcwMDKwMA0i%2BnsPxGGfhDN%2BIbxDYMxIycDELAxIAMFOCuluCydgU31meozZqk%2FmgwMzFLM14HCjAi1%2F%2F8zMAAAJswP5gB42mNgYGBiYGBgBmIRIMkIplkYFIA0CxAC%2BarP%2Fv%2BHkLekwfIMAGNOB2cAAHjaY2BisGSwZDzGeJyBm0GMgYGRj5Fdj1HdjtFcDszgYxQRE7djZDzGlB8WXMgEJtWZIpxdIyJcnSMYGYKLmJgKQyCkcyQTU1RLFBNTJAMDAGGFD90AAAB42mNgZGBgAGK1kKme8fw2XxmYWRhA4PFz4f%2FINLMs43EgxcHABOIBABTrCasAAAB42mNgZGBglvqjCSRlGSwZrBiPMQBFUAATAEHXAqEAAAMdAAACAAA5AAAAAAAsAAB42mNgZGBgYGIQB2IQYGRAAwAC8wAeAAB42l2PsWrDMBCGP1PHUCfQqR06FE0dhYX7AN2yxFMgY8HGInGxbLCMQUvpA%2FShe3Y19Q7uvvvvP4GAnC8S1kh42OoaKZlMf7xjz2PkTFJFznnmlTuS9F6UF94jpxz4iLzjic%2FImejfkXPe%2BDlVVT3fzsE1Y%2B9N0TsfTHGxk%2B%2FGQRkdhaMd7FTPtlVNUO3S%2BeXqVKkLXXKikqyZuXEm4GgY6fEYCulOKGx8wTLJ1Ml%2BkB8Y9D%2FHURzD5lrfs7TiamSnhBa581Kv4leU262m%2FAWlJDBpAHjaY2BmQAaMDGgAAACOAAU%3D%29%20format%28%27woff%27%29%3B%7D%0D%0A%40font-face%7Bfont-family%3Almmi10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAASwAAoAAAAABVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEQAAABghVx0%2FmNtYXAAAAE4AAAALAAAADQADACWZ2x5ZgAAAWQAAAHwAAACJCUSEwxoZWFkAAADVAAAAC8AAAA2KfBrwWhoZWEAAAOEAAAAHgAAACQGMgHfaG10eAAAA6QAAAAQAAAAEAtbAIJsb2NhAAADtAAAAAoAAAAKAWoAtG1heHAAAAPAAAAAGAAAACAACAA7bmFtZQAAA9gAAADMAAABO76Ify9wb3N0AAAEpAAAAAwAAAAgAAMAAHjaY2BmusY4gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpR0ZHBmZvgP5DNDpJHU%2FAcKAwDzAA1KeNpjYGBgYmBgYAZiESDJCKZZGBSANAsQgvjO%2F%2F8DScf%2F%2F%2F8fAPMZAFK5Bp942iXRPW8TQRAG4H1nfbv4a89wzp1RnIscf1wSZCfEpzuSwlgxMcERBGIpspAlCySIhKAATKCgcBEKCiqkUNDxA%2FgFVNDR0NCmCVX%2BAA3kzDpom9HsWzwzw4iVxmM6piN2mfmMlRWWIL2K5weOHYRLKJgQWdsJnLOPSb%2FeQIggXLEdK2vXAy8JOkbKGI6kQDpp%2BTwuo3FTpfNWmiNt7PVSSMXnGi4eiGxaoGFXp74VvmeVBOegc6YEUs7Djce5bCkDMpWY9BOmQHGFdjOIm6cj2%2BQn2Ik%2BM8Y4uzQ%2B5YK%2BMJctslCLhRbKgvgPtvyiNykLLqYUpAseVLxiRWc0%2B6zmOl53GqAfdD1z80X0Pq%2FUmmu8m%2FZmTBO9%2Fn0%2B6m51y6i1DmYto3k4GIa0vPm1HQPUp%2F7%2B0da6asT4jFZbLq2eJ56XoDtrnT0zcQv50jWCeTHiz6K%2F5ds8%2BnVBJMBfajdYfXzCk%2FSTrWqzLaTW1eAF4eTZju2E2i%2B5QlEv%2Fyr8iqcDk9EcF6EeTC89mIVNH6jaXnjaevWR867feX7QXZgXmwopNLlIxA0Qdrc33iy3p4WN2Osb84PAr4pYXIjfxpP1ch38cPR22PF3eKxUVtuKuIz%2B6FOQNCt3HwGtK71Brl%2Fdv0eYW6z1c0mA%2FgHKGV4ReNpjYGRgYADiyLVzdOL5bb4yMLMwgMDj58L%2FEfT%2Fl8zcTHeBXA4GJpAoAEe6DA4AeNpjYGRgYGb4zwAkORlU%2Fl9k5mYAiqAAFgBLJQMXAAACdgAAAwAAJAMJACsC3AAzAAAAAABYALQBEgAAeNpjYGRgYGBhsGJgZgABRgY0AAAGqwBEeNpdjDGLwkAQRl%2B4GLjcYSUWcuA2tktC7C1FMK3NVatZ4kISIQkBi7vef%2B0kbuUMfLz5eLtAzD8B4wTMpxwnJJLrxTO%2BWHiOZNeeY1Zs%2BCAIP6X5Yec55JtfzzOWlJ4j6f88x2x5HPPc9NdDbyp3SZOqrl2anGzbuVujUu2LvW1sa3pbqPNdFYPrhrJWmU50xpFc1tBz5SBpqHBcSEmEalk38QlLSyfXjQYlnX4z9mI0kzX%2BZinEOnOXLBjE6SRLsRXZ9FaTPQGA6C7XeNpjYGbACwAAfQAE%29%20format%28%27woff%27%29%3B%7D%0D%0A%40font-face%7Bfont-family%3Almmi7%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAWwAAoAAAAAB2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEcAAABghYdlEWNtYXAAAAE8AAAANQAAAEQAg%2BE1Z2x5ZgAAAXQAAALbAAAEIBOOr75oZWFkAAAEUAAAAC8AAAA2KsFrwGhoZWEAAASAAAAAHwAAACQG9gM5aG10eAAABKAAAAAUAAAAFA3%2FAMVsb2NhAAAEtAAAAAwAAAAMAh4DNG1heHAAAATAAAAAGAAAACAACABubmFtZQAABNgAAADMAAABMtm5rZJwb3N0AAAFpAAAAAwAAAAgAAMAAHjaY2BmOsM4gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGAQSbIaW4LB0omf0ggZnhP5DPzMAIVoNQ8R8oDAAVLA53AHjaY2BgYGJgYGAGYhEgyQimWRgMgDQHEILkshnyHiT8%2Fw9m5YJY%2F6f9nyq%2FBKwWDAASewySAAAAeNqVk8tu20YUhnnODEmRFGdE8dpaV5IiZcmlZZkiJVuR7ChCkjaGkQBOjCAogi6STbrsqq%2FQVYE%2BQPMAeYqg3Sb7AH2JIsu6I7kFknSTzgADzI8zB%2Fg%2BzJFAOrt6j2v8XbqQpJ6jKmKHSZqURZpByoFBmEzsBSSRSBdwWBYeB1KUCxh7LoNIlBZlojLgoKiev9kOJ47nL0DUHPoezrnuNKfpCkEmAF9PI079xPqFIo%2B1GgBTb%2B31gD5rX6b3LxKIvYSA32HO8DxN%2FKCTcz6iSGTgTjLUiaprys8022lm9LBgdab0U%2Fmno3pgm%2FjY5DrVeUWlpFr76zm715vs7XS7GLO4wgCOkq4jcGTNm%2BmauWN7baBnMdcRJZBGV%2B%2FJO%2FhNevGhg3yJRVkkKYMNHjKyjYSKlJHrqyiY5P8U7EMGQgtuyYvt6fktUJWNGAau4o9FNyGEvPOqVnSjPwNi9lxEd3d%2B%2FgUz1L4mV7wdF%2BScE3SGs2%2BGbJNpbsMBvTQUbrdCQ1Z1QwHH0tLVLdV%2FdLL7QA8u17eDhgHooG0wnTQ7R3WsC03myPcyur9bNTrPVgfuAeKq737Z%2BjV2OIOaJdtv5nZ0SHC%2B6Db%2FDQd%2FZH7NbQCcZI5oify0Zcc4mHSPEQcn0QplP8jNbK4cC7VWiMsbdSFQrK1DfCkcnn%2FsUEi5tvgZzv7jCl%2F6hhUt%2BlMgVe55%2BNle9h6SjY%2BqqZNG57iOlv6Rj%2Fjm6qD%2BP9Czu58ioxRc%2FQmv8a00k%2B4IYsGjqGJiVIZJviT5ZkLKLbr4Bt5WxxZNVdpwjbuEFpB8m4qj3DyAVySvTcenx2qqNE2DsLRHjUoSGqFpDSb7VQPl6WB0GuoUQdHMYbTuCnJVM%2BNdMTc80Ka9%2FrJxYfS1GMjTSagGUNUp64bxepz%2BcDMY2%2FURpVHEv3uynt5pVyqV0PqqPaQwaBmIYGKvAHpv7%2Fvy28msP336oyT9Df%2BDgbMAeNpjYGRgYABiayPv7nh%2Bm68MzCwMIPD4ufB%2FBP3%2FC%2FMdpotALgcDE0gUADl%2BDFMAeNpjYGRgYGb4z8DAwMLHIMGgynyHASiCAlgBNiYCOAACxwAAAm4ATQQOADAC0wAwAekAGAAAAAAAggEkAZwCEHjaY2BkYGBgZchlYGIAAUYGNAAAC6oAd3jaTY6xqsJAEEVPMBGMvOYVFoKw%2BAFLJA%2FS2Itg2tSuZtGFJEISAjbyPt1J3MIZuHNm7syyQMyLgDECfiYdIySS7sMRS349z6XbeI5Zs2VGEC5ksmbvORSn8Byx4ux5LvPBc8wf%2F6c8N%2F392JvKXbOqrl1W2LZzj0btdDL1B9vY1vS2VJenKgfXDbdapTrRKSdySUPPnaOoocJxJZNaSzqhAktLJ%2FygQbFDk3z5B%2FGbaWd8x1LKzoWnaCk%2FdXI5cJNdRTpdatI39m4tq3jaY2BmwAsAAH0ABA%3D%3D%29%20format%28%27woff%27%29%3B%7D%0D%0A%40font-face%7Bfont-family%3Amsbm10%3Bsrc%3Aurl%28data%3Aapplication%2Fx-font-woff%3Bbase64%2Cd09GRgABAAAAAAPYAAoAAAAABEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAEgAAABghsl1NmNtYXAAAAE8AAAAKQAAADQADAClZ2x5ZgAAAWgAAAEvAAABPPWHYXNoZWFkAAACmAAAAC8AAAA2KgFruGhoZWEAAALIAAAAHgAAACQGkAGEaG10eAAAAugAAAAIAAAACAX%2FABBsb2NhAAAC8AAAAAYAAAAGAJ4AAG1heHAAAAL4AAAAGAAAACAACABkbmFtZQAAAxAAAAC3AAABIJ9HqPxwb3N0AAADyAAAABAAAAAgAAMAAXjaY2Bm%2Bs84gYGVgYFpFtPZfyIM%2FSCa8Q3jGwZjRk4GIGBjgANGBiSQUlyWDpQMYghiXvcviIGBeR3jOlQ1%2F%2F8zMAAAOygP7njaY2BgYGJgYGAGYhEgyQimWRgUgDQLEIL4Qf%2F%2FQ8j%2F68F8BgBT%2FAauAAAAeNotjbFKw1AARd9N0hdaS5o2yXvaQEIT%2BiJFUmzTV6RQbAfbYq2DUOik6OTmIn6Dgz%2Fg5h%2B4uvgNCm5OiuDmH7T1CS4XLvccLskRe73WXrRnkpEhmZIFOScEHmVdGYAmNSr64EwmZSlMmkLymgzBuAWThQjA%2F6A4Ek2t20cimhBJoCaaeMrJhGlBb4tEF92YccekPtoKNSNUNN7IO3Ct1bflwTUbHOAN04VnYTg%2FDsaGfjnK4m1nP7AUdVcu5tL7h1kPRlpsRrwMFN9vZvpgkLq3VxTQ7WuVwNvTRdbJZGcDw686A2iV%2Fgera6irF7qlSuTsnC5mhZPdPX%2BcN3wKPT%2F%2BaZUmrVFY8HPhVMST16XeO1scKGn5aFW0WtUv2cuPzQrs1ac8PJob5BcCnzMrAHjaY2BkYGAA4v93ti6N57f5ysDMwgACj58L%2F0fQ%2F%2F8zyzDtA3I5GJhAogCHQg19AHjaY2BkYGBe9y8ISMowCDAIM11gAIqgACYAUnsDGgAAAxwAAALjABAAAAAAAJ4AAHjaY2BkYGBgYkhmYGUAAUYGNAAACqQAbXjaTYwxC8IwEEZfsS1YnR3EIb8gpFScXcTF2b2loRSaCI0WXPztnm0G7%2BDu5eNdgIIPCb9KyOb5q5RcXgtnbKQXzqV3kQv2HFiRpGtJCk6RU7acI2di3yLnkjeRC474y2uwowuNK83djqF%2FeFVqswRX6%2B1YP22rmrdqpz5MnVOVNrriwosBy4gjyI%2BOEsN9TgI9DzxKMi3pv3EVw89WzVN2K1bDW2bLJHdBZieuoppvNdUXylEoaQB42mNgZkAGjAxoAAAAjgAF%29%20format%28%27woff%27%29%3B%7D%0D%0Atext.f0%20%7Bfont-family%3Amsbm10%3Bfont-size%3A9.96264px%7D%0D%0Atext.f1%20%7Bfont-family%3Almsy10%3Bfont-size%3A9.96264px%7D%0D%0Atext.f2%20%7Bfont-family%3Almmi7%3Bfont-size%3A6.973848px%7D%0D%0Atext.f3%20%7Bfont-family%3Almmi10%3Bfont-size%3A9.96264px%7D%0D%0A%5D%5D%3E%0D%0A%3C%2Fstyle%3E%0D%0A%3Cg%20id%3D%27page1%27%3E%0D%0A%3Cg%20stroke-miterlimit%3D%2710%27%20transform%3D%27matrix%28.996264%200%200%20-.996264%2031.686291%20-58.35192%29%27%20fill%3D%27%23000%27%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-132.547255%20-62.81575%29%27%20stroke%3D%27%23000%27%20stroke-miterlimit%3D%2710%27%3E%0D%0A%3Cg%20transform%3D%27translate%28-6.048517%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%2741.648931%27%20y%3D%27-58.35192%27%3ER%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f2%27%20x%3D%2748.844191%27%20y%3D%27-61.967284%27%3Ek%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-5.514061%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27101.424772%27%20y%3D%27-58.35192%27%3ER%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f2%27%20x%3D%27108.620032%27%20y%3D%27-61.967284%27%3E%EE%81%A0%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-7.381478%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27161.939982%27%20y%3D%27-58.35192%27%3ER%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f2%27%20x%3D%27169.135242%27%20y%3D%27-61.967284%27%3Em%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27translate%28-6.309119%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f0%27%20x%3D%27222.455191%27%20y%3D%27-58.35192%27%3ER%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f2%27%20x%3D%27229.650451%27%20y%3D%27-61.967284%27%3En%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M-80.54214%200H-42.94211%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%28-42.94211%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-96.478505%20-55.03777%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f3%27%20x%3D%2731.686291%27%20y%3D%27-58.35192%27%3EC%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M-20.54214-.13431L17.05814-.63016%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27matrix%28.99988%20-.01317%20.01317%20.99988%2017.05814%20-.63014%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-36.590655%20-55.43315%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f3%27%20x%3D%2731.686291%27%20y%3D%27-58.35192%27%3EB%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27M40.94214-.80057H78.54218%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27translate%2878.54218%20-.80057%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%2025.187025%20-55.83834%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f3%27%20x%3D%2731.686291%27%20y%3D%27-58.35192%27%3EA%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cpath%20d%3D%27%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cpath%20d%3D%27M-80.54214-5.94853C-26.06065-37.70557%2025.79893-37.9205%2078.80606-7.60953%27%20fill%3D%27none%27%2F%3E%0D%0A%3Cg%20transform%3D%27matrix%28.86806%20.49637%20-.49637%20.86806%2078.80605%20-7.60953%29%27%3E%0D%0A%3Cpath%20d%3D%27M1.99997%200L-1.19998%201.59998L0%200L-1.19998-1.59998%27%20stroke%3D%27none%27%2F%3E%0D%0A%3C%2Fg%3E%0D%0A%3Cg%20transform%3D%27matrix%281.00375%200%200%20-1.00375%20-53.072265%20-98.86744%29%27%20stroke%3D%27none%27%20fill%3D%27%23000%27%3E%0D%0A%3Ctext%20class%3D%27f3%27%20x%3D%2731.686291%27%20y%3D%27-58.35192%27%3EA%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f1%27%20x%3D%2741.372156%27%20y%3D%27-58.35192%27%3E%E2%97%A6%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f3%27%20x%3D%2748.567361%27%20y%3D%27-58.35192%27%3EB%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f1%27%20x%3D%2758.837836%27%20y%3D%27-58.35192%27%3E%E2%97%A6%3C%2Ftext%3E%0D%0A%3Ctext%20class%3D%27f3%27%20x%3D%2766.033041%27%20y%3D%27-58.35192%27%3EC%3C%2Ftext%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E" title="\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     \mathbb R^k &amp; \mathbb R^\ell &amp; \mathbb R^m &amp; \mathbb R^n  \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$C$} (m-1-2)
+    (m-1-2) edge node [above] {$B$} (m-1-3)
+    (m-1-3) edge node [above] {$A$} (m-1-4)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$A \circ B \circ C$} (m-1-4);
+\end{tikzpicture}" class="img-fluid figure-img" style="display:block; margin: .5em auto;"></p>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-matmul-assoc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="algebra-of-linear-functions" class="level2">
+<h2 class="anchored" data-anchor-id="algebra-of-linear-functions">Algebra of linear functions</h2>
+<p>Note that when we have two functions <span class="math inline">\(\mathbb R \to \mathbb R\)</span>, we can add them and multiply by constants. For example, consider <span class="math inline">\(f(x)=e^x\)</span> and <span class="math inline">\(g(x) = x^2 + 1\)</span>. We can form the new function <span class="math display">\[
+f(x) + 2 g(x)
+\]</span> which just means compute <span class="math inline">\(f\)</span> on the input <span class="math inline">\(x\)</span>, then compute <span class="math inline">\(g\)</span> on the input <span class="math inline">\(x\)</span> and multiply the result by 2, then add the two parts you got. So <span class="math display">\[
+f(x) + 2 g(x) = e^x + 2(x^2 + 1).
+\]</span></p>
+<p>What is really happening is that we are evaluating <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> separately on <span class="math inline">\(x\)</span>. Since they have the same codomain, once we have <span class="math inline">\(f(x),g(x)\)</span> which are objects in their codomain, we can do algebra in the codomain as usual.</p>
+<p>The same is true of linear maps and so, in finite dimensions with fixed bases, must be true of matrices as well. There is one complication, however: in order to combine linear functions (and the matrices representing them) in this way, we must first check that they have the same codomain.</p>
+<p>As an example, consider <span class="math inline">\(F,G : \mathbb R^2 \to \mathbb R^3\)</span> given by <span class="math display">\[
+F =
+\begin{bmatrix}
+1 &amp; 2   \\
+1 &amp; -1  \\
+4 &amp; 1  
+\end{bmatrix}
+, \quad
+G=
+\begin{bmatrix}
+0  &amp; 0  \\
+-1 &amp; 1  \\
+2  &amp; 0
+\end{bmatrix}.
+\]</span> We can compute the matrix for <span class="math inline">\(F + 3 G\)</span> in the following way <span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}
+1 &amp; 2   \\
+1 &amp; -1  \\
+4 &amp; 1  
+\end{bmatrix}
++3
+\begin{bmatrix}
+0  &amp; 0  \\
+-1 &amp; 1  \\
+2  &amp; 0
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+1 &amp; 2   \\
+1 &amp; -1  \\
+4 &amp; 1  
+\end{bmatrix}
++
+\begin{bmatrix}
+0  &amp; 0  \\
+-3 &amp; 3  \\
+6  &amp; 0
+\end{bmatrix} \\
+&amp;=
+\begin{bmatrix}
+1 &amp; 2   \\
+-2 &amp; 2  \\
+10 &amp; 1  
+\end{bmatrix}
+\end{aligned}
+\]</span></p>
+<p>That is, to multiply a linear map (written as a matrix) by a constant <span class="math inline">\(k\)</span>, we multiply all entries of the matrix by <span class="math inline">\(k\)</span>. To add linear maps (written as matrices), we add corresponding entries.</p>
+<p>Note that the addition <span class="math display">\[
+\begin{bmatrix}
+1 &amp; 2   \\
+1 &amp; -1  \\
+4 &amp; 1  
+\end{bmatrix}+
+\begin{bmatrix}
+-1 &amp; 1  \\
+2  &amp; 0
+\end{bmatrix}
+\]</span> is not defined since the domain and codomain of these matrices have different dimensions.</p>
+<div id="exr-mat-add-dim" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.8</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>What are the dimensions of the domain and codomain of the two matrices above?</p>
+</blockquote>
+</div>
+<div id="exr-mat-add" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.9</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Compute <span class="math display">\[
+\frac{1}{2}
+\begin{bmatrix}
+0 &amp; 1  &amp; 0  &amp; -2   \\
+1 &amp; 3  &amp; 0  &amp; -1  \\
+0 &amp; 2  &amp; -3 &amp; -1  \\
+0 &amp; 1  &amp; 1  &amp; 0  
+\end{bmatrix}
++ 2
+\begin{bmatrix}
+0 &amp; 3  &amp; -2 &amp; 2   \\
+0 &amp; 1  &amp; 0  &amp; 0  \\
+0 &amp; -1 &amp; -1 &amp; -1  \\
+0 &amp; 2  &amp; 1  &amp; 1  
+\end{bmatrix}.
+\]</span></p>
+</blockquote>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1075,8 +1376,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./usefulness-of-matrix-equations.html" class="pagination-link" aria-label="The usefulness of matrix equations and their solutions">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The usefulness of matrix equations and their solutions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
