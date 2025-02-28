@@ -125,8 +125,23 @@ For example:
 
 Many more statements so far can be rephrased in terms of matrix equations.
 
-::: {#exr-columns-basis}
+::: {#exr-rephrase1}
+> Rewrite the following system of equations as a matrix equation:
+> $$
+> \begin{aligned}
+> 3x + 2y &= 5 \\
+> -x + y  &= 1.
+> \end{aligned}
+> $$
+:::
 
-
-
+::: {#exr-rephrase2}
+> Rewrite the following system of equations as a matrix equation:
+> $$
+> \begin{aligned}
+> x -2 y &= 3 \\
+> y &= 0 \\
+> -z + y  -1 &= 0.
+> \end{aligned}
+> $$
 :::
