@@ -12,7 +12,62 @@ $$
 
 # Inverses of linear maps and matrices
 
-[TODO]
+In the previous section, we saw that many problems that we have encountered can be rephrased as a matrix equation:
+
+$$
+Ax = b
+$$
+
+where $A$ is a matrix, $x,b$ are columns, and $A,b$ are known but $x$ is unknown.
+Let's observe that
+
+$$
+Ix = x
+$$
+
+where $I$ is the matrix for the identity linear map $I \colon V \to V$ given by $I(v) = v$.
+
+One consequence of this is, if we can find a matrix $B$ such that $BA = I$, then we can apply it to both sides and compute $x$:
+
+$$
+\begin{aligned}
+Ax =& b \\
+BAx =& Bb \\
+Ix =& Bb \\
+x =& Bb.
+\end{aligned}
+$$
+
+The quantity on the right is just the matrix $B$ multiplied by the column $b$, which is a multiplication we know how to do, so if we multiply out the right side, we obtain exactly $x$.
+
+Whether such a matrix exists for a particular $A$ is the topic of this chapter.
+
+::: {#exr-trial-inverse}
+> Solve the matrix equation
+> $$
+> \begin{bmatrix}
+> 1 & 2 \\
+> 2 & 3
+> \end{bmatrix}
+> \begin{bmatrix}
+> x \\
+> y
+> \end{bmatrix}
+> =
+> \begin{bmatrix}
+> 4  \\
+> -1 
+> \end{bmatrix}
+> $$
+> 
+> by multiplying (on the left) on both sides of this equation by 
+> $$
+> \begin{bmatrix}
+> -3 & 2 \\
+>  2 & -1
+> \end{bmatrix}.
+> $$
+:::
 
 ## Identities and inverses
 
