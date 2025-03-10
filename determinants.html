@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; What is Linearity? – Linearity</title>
+<title>9&nbsp; Determinants – Linearity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./the-notion-of-a-vector-space.html" rel="next">
-<link href="./preface.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./inverses-of-linear-maps-and-matrices.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -112,7 +112,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./what-is-linearity.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Linearity?</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./determinants.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Determinants</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -187,7 +187,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./what-is-linearity.html" class="sidebar-item-text sidebar-link active">
+  <a href="./what-is-linearity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Linearity?</span></span></a>
   </div>
 </li>
@@ -235,7 +235,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./determinants.html" class="sidebar-item-text sidebar-link">
+  <a href="./determinants.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Determinants</span></span></a>
   </div>
 </li>
@@ -257,20 +257,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#two-properties" id="toc-two-properties" class="nav-link active" data-scroll-target="#two-properties">Two properties</a>
-  <ul class="collapse">
-  <li><a href="#classification-of-functions-satisfying-properties-1-and-2" id="toc-classification-of-functions-satisfying-properties-1-and-2" class="nav-link" data-scroll-target="#classification-of-functions-satisfying-properties-1-and-2">Classification of functions satisfying Properties 1 and 2</a></li>
-  </ul></li>
-  <li><a href="#linear-functions" id="toc-linear-functions" class="nav-link" data-scroll-target="#linear-functions">Linear functions</a></li>
+  <li><a href="#the-geometry-of-the-row-reduction-matrices" id="toc-the-geometry-of-the-row-reduction-matrices" class="nav-link active" data-scroll-target="#the-geometry-of-the-row-reduction-matrices">The geometry of the row-reduction matrices</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/what-is-linearity.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/determinants.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./what-is-linearity.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Linearity?</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./determinants.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Determinants</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ch-what-is-linearity" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Linearity?</span></span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Determinants</span></h1>
 </div>
 
 
@@ -287,266 +283,26 @@ window.Quarto = {
 </header>
 
 
-<p>The function <span class="math inline">\(C : \mathbb R \to \mathbb R\)</span> given by</p>
-<p><span class="math display">\[ C(r) := 2 \pi r \]</span></p>
-<p>computes the circumference of a circle, given its radius.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Notation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>First, let’s talk about this notation.</p>
-<p>The notation <span class="math inline">\(C : \mathbb R \to \mathbb R\)</span> tells you about the inputs and outputs of the function <span class="math inline">\(C.\)</span> When we write <span class="math inline">\(f : A \to B\)</span>, we mean that <span class="math inline">\(f\)</span> takes inputs from the set <span class="math inline">\(A\)</span> and creates outputs in the set <span class="math inline">\(B\)</span>. You can think of <span class="math inline">\(f\)</span> as a machine transforming <span class="math inline">\(A\)</span>s into <span class="math inline">\(B\)</span>s.</p>
-<p>The notation <span class="math inline">\(C(r) := 2 \pi r\)</span> tells you that the <em>definition</em> of the function <span class="math inline">\(C\)</span> appears here. This is to avoid confusion like the following:</p>
-<p><span class="math display">\[ f(x) = x^2 \]</span></p>
-<p>If the function <span class="math inline">\(f\)</span> hasn’t appeared before, then this equation is probably a definition. But if we wrote “Given <span class="math inline">\(f(x) = x - 2\)</span>, solve the equation <span class="math inline">\(f(x) = x^2\)</span>”, then the same equation is not a definition. To avoid this ambiguity, when we write an equals sign with a colon on one side like this <span class="math inline">\(A := B\)</span> or <span class="math inline">\(B =: A\)</span>, we mean that the name on the side of the <span class="math inline">\(=\)</span> <em>with</em> the colon is defined to be the expression on the side without.</p>
-</div>
-</div>
-<p>The circumference of a circle has a couple nice properties. First, the circumference of a circle of radius 14 is twice the circumference of a circle of radius 7:</p>
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+<!-- the following block is for page defs which do not render anything upon definition  -->
+<div class="hidden">
 <p><span class="math display">\[
-\begin{aligned}
-C(7) &amp;= 2 \pi (7) = 14 \pi   \\
-C(14) &amp;= 2 \pi (14) = 28 \pi   
-\end{aligned}
+\DeclareMathOperator{\Span}{Span}
 \]</span></p>
-<p>This holds in general; multiplying the radius of a circle by <span class="math inline">\(k\)</span> also changes the circumference by a factor of <span class="math inline">\(k\)</span>:</p>
-<p><span class="math display">\[ C(k r) = k C(r) . \]</span></p>
-<p>Furthermore, adding any amount to the radius increases the circumference in a predictable way:</p>
-<p><span class="math display">\[ C(r_1 + r_2) = C(r_1) + C(r_2). \]</span></p>
-<p>It’s a bit remarkable that these two properties hold not just for circles; scaling any shape in the plane (with circumference <span class="math inline">\(c\)</span>) by a factor of <span class="math inline">\(k\)</span> multiplies its circumference by <span class="math inline">\(k\)</span> (its new circumference is <span class="math inline">\(kc\)</span>), and increasing the scale by a constant <span class="math inline">\(s\)</span> increases its circumference by <span class="math inline">\(sc\)</span>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/2-scale.svg" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Scaling a curve by a factor of 2</figcaption>
-</figure>
 </div>
-<section id="two-properties" class="level2">
-<h2 class="anchored" data-anchor-id="two-properties">Two properties</h2>
-<p>What other functions have the following two properties?</p>
-<p><span class="math display">\[
-\begin{aligned}
-\text{Property 1:} \quad &amp; f(a x )= a f(x) \\
-\text{Property 2:} \quad &amp; f( x + y ) = f(x) + f(y)
-\end{aligned}
-\]</span></p>
-<div id="exr-circle" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1.1</strong></span> &nbsp;</p>
-<blockquote class="blockquote">
-<p>Demonstrate that the <em>area</em> of a circle as a function of its radius does not satisfy properties 1 and 2.</p>
-</blockquote>
-</div>
-<div id="exr-area" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1.2</strong></span> &nbsp;</p>
-<blockquote class="blockquote">
-<p>Can you think of any shape in the plane whose area (as a function of scaling) satisfies properties 1 and 2? If yes, which? If no, why not?</p>
-</blockquote>
-</div>
-<div id="exr-volume" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1.3</strong></span> &nbsp;</p>
-<blockquote class="blockquote">
-<p>Can you think of any shape in the 3-dimensional space whose <em>volume</em> (as a function of scaling) satisfies properties 1 and 2? If yes, which? If no, why not?</p>
-</blockquote>
-</div>
-<section id="classification-of-functions-satisfying-properties-1-and-2" class="level3">
-<h3 class="anchored" data-anchor-id="classification-of-functions-satisfying-properties-1-and-2">Classification of functions satisfying Properties 1 and 2</h3>
-<p>So far, we have seen that some functions satisfy properties 1 and 2, and others do not.</p>
-<table class="caption-top table">
-<caption>Functions that do and don’t satisfy properties 1 and 2</caption>
-<colgroup>
-<col style="width: 45%">
-<col style="width: 54%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>do</th>
-<th>don’t</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>circumference of a circle as a function of radius</td>
-<td>area of a circle as a function of radius</td>
-</tr>
-<tr class="even">
-<td>circumference of any shape in the plane as a function of scale</td>
-<td>area of any shape in the plane as a function of scale</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>volume of any shape in 3-dimensions as a function of scale</td>
-</tr>
-</tbody>
-</table>
-<section id="why-does-scaling-satisfy-properties-1-2-for-any-shape-not-just-circles" class="level4">
-<h4 class="anchored" data-anchor-id="why-does-scaling-satisfy-properties-1-2-for-any-shape-not-just-circles">Why does scaling satisfy properties 1 &amp; 2 for any shape, not just circles?</h4>
-<p>We asserted above that property 1 is not just satisfied by circles (when you scale the radius) but is satisfied by all curves. Why is this the case?</p>
-<p>What do we mean by scaling a figure in the plane by a factor of 2? Well, a reasonable answer is to say that a figure is a set of points and each point has an <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinate. For example, the circle of radius <span class="math inline">\(r\)</span> is the set of points with coordinates given by</p>
-<p><span class="math display">\[
-\begin{aligned}
-x =&amp; r \cos \theta \\
-y =&amp; r \sin \theta
-\end{aligned}
-\]</span></p>
-<p>where <span class="math inline">\(\theta \in [0,2\pi]\)</span>.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Notation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We introduced a symbol above: <span class="math inline">\(\in\)</span>. This literally means “in” or “is in” depending on context.</p>
-<p>For example, <span class="math inline">\(\pi \in \mathbb R\)</span> means “pi is in the real numbers”.</p>
-<p>Sometimes we will want to list the set first, like <span class="math inline">\(\mathbb R \ni \pi\)</span>. In this case we read it as “the real numbers contain pi.”</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Notation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When we want to refer to a set, we will often use notation like the following:</p>
-<p><span class="math display">\[
-\left\{ (x,y) \in \mathbb R^2 \left| \begin{aligned} x =&amp; r \cos \theta \\ y =&amp; r \sin \theta \end{aligned} \quad, \theta \in [0,2\pi] \right. \right\}.
-\]</span></p>
-<p>In general, this notation has the form</p>
-<p><span class="math display">\[
-B=\left\{ f(x_1,x_2,...) \in A \left| \begin{aligned} &amp; \text{ constraints involving }  \\ &amp; x_1,x_2,... \end{aligned} \right. \right\}.
-\]</span></p>
-<p>The process for constructing the set <span class="math inline">\(B\)</span> is the following:</p>
+<p>We now have a technique for 1) determining if a linear function has an inverse and 2) computing the inverse (in finite dimensions, if it exists).</p>
+<p>We also have some checks to test for the existence of an inverse that are easy:</p>
 <ol type="1">
-<li><p>Find all the <span class="math inline">\(x_i\)</span> that satisfy the constraints to the right of the <span class="math inline">\(\mid\)</span> symbol.</p></li>
-<li><p>Plug all the <span class="math inline">\(x_i\)</span> you found in the previous step into the function <span class="math inline">\(f\)</span>.</p></li>
-<li><p>The function <span class="math inline">\(f\)</span> produces things in <span class="math inline">\(A\)</span>, and so the set of all the things you produced in the last step is a collection of some (but not necessarily all) of the things in <span class="math inline">\(A\)</span>.</p>
-<p>This is the set <span class="math inline">\(B\)</span>.</p></li>
+<li>if the matrix is not square, it is not invertible</li>
+<li>if there is a row or column of all zeros, the matrix is not invertible</li>
+<li>if there are two identical columns or two identical rows, the matrix is not invertible</li>
+<li>if we row reduce the augmented matrix and <strong>at any point</strong> get a matrix on the left that is obviously not invertible, the original matrix is not invertible</li>
+<li>if we row reduce and get the identity matrix on the left, the original matrix is invertible and its inverse now appears on the left of the reduced augmented matrix.</li>
 </ol>
-</div>
-</div>
-<p>Consider the point <span class="math inline">\((4,2)\)</span> in the plane. We can think of this point as the “sum” of its <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates:</p>
-<p><span class="math display">\[
-(4,2) = (4,0) + (0,2).
-\]</span></p>
-<p>To scale this point by a factor of 2, it seems reasonable to multiply both coordinates by 2:</p>
-<p><span class="math display">\[
-S_2((4,2)) = (8,4).
-\]</span></p>
-<p>Notice that the function <span class="math inline">\(S_2 : \mathbb R^2 \to \mathbb R^2\)</span> “multiply coordinates by 2” has properties 1 and 2.</p>
-<div id="exr-scale-by-2-linear" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1.4</strong></span> &nbsp;</p>
-<blockquote class="blockquote">
-<p>Verify this.</p>
-</blockquote>
-</div>
-<div id="exr-scaling-by-2-circle" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1.5</strong></span> &nbsp;</p>
-<blockquote class="blockquote">
-<p>Check that applying <span class="math inline">\(S_2\)</span> to a circle of radius <span class="math inline">\(r\)</span> produces a circle of radius <span class="math inline">\(2r\)</span>.</p>
-</blockquote>
-</div>
-<p>Now, for any curve <span class="math inline">\(\gamma : [a,b] \to \mathbb R^2\)</span> given by</p>
-<p><span class="math display">\[
-\gamma(t) = (x(t) , y(t)),
-\]</span></p>
-<p>its length can be computed by</p>
-<p><span class="math display">\[
-\int _{a}^{b}{\sqrt {x'(t)^{2}+y'(t)^{2}}} \quad dt.
-\]</span></p>
-<p>(You may have seen this in multivariable calculus or physics.) Consider the composition</p>
-<p><span class="math display">\[
-[a,b] \xrightarrow{\quad \gamma \quad} \mathbb R^2 \xrightarrow{\quad S_2 \quad} \mathbb R^2
-\]</span></p>
-<p>The formula is</p>
-<p><span class="math display">\[
-( S_2 \circ \gamma )(x) =  ( 2 x(t) , 2 y(t) )
-\]</span></p>
-<p>and the length is given by</p>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;\int _{a}^{b}{\sqrt {\left(\left[2x(t)\right]'\right)^{2}+\left(\left[2y(t)\right]'\right)^{2}}} \quad dt \\
-=&amp;\int _{a}^{b}{\sqrt {\left(2x'(t)\right)^{2}+\left(2y'(t)\right)^{2}}} \quad dt \\
-=&amp;\int _{a}^{b}{\sqrt {4\left(x'(t)\right)^{2}+4\left(y'(t)\right)^{2}}} \quad dt \\
-=&amp;\int _{a}^{b}{2\sqrt {\left(x'(t)\right)^{2}+\left(y'(t)\right)^{2}}} \quad dt \\
-=&amp;2\int _{a}^{b}{\sqrt {\left(x'(t)\right)^{2}+\left(y'(t)\right)^{2}}} \quad dt
-\end{aligned}
-\]</span></p>
-<p>Notice that what we obtain on the last line is exactly twice the length of the curve <span class="math inline">\(\gamma\)</span>. Convince yourself that there is nothing special about the number 2 here; if we had replaced <span class="math inline">\(S_2\)</span> by <span class="math inline">\(S_{17}\)</span>, then we would have obtained 17 times the length of <span class="math inline">\(\gamma\)</span> in the last line.</p>
-</section>
-<section id="more-functions-which-break-up-over-sums" class="level4">
-<h4 class="anchored" data-anchor-id="more-functions-which-break-up-over-sums">More functions which break up over “sums”</h4>
-<section id="differentiation" class="level5">
-<h5 class="anchored" data-anchor-id="differentiation">Differentiation</h5>
-<p>Now consider how we compute the derivative of a function like the following:</p>
-<p><span class="math display">\[
-\begin{aligned}
-\frac{d}{dx} \left[ 2x^2 + x \right] &amp;= \frac{d}{dx} \left[ 2x^2 \right] + \frac{d}{dx} \left[ x \right] \\
-&amp;= 2\frac{d}{dx} \left[ x^2 \right] + \frac{d}{dx} \left[ x \right] \\
-&amp;= 4x + 1
-\end{aligned}
-\]</span></p>
-<p>If we let <span class="math inline">\(D : \text{FUNCTIONS} \to \text{FUNCTIONS}\)</span> be the operation of taking a derivative, then in the first line we used</p>
-<p><span class="math display">\[ D[f_1(x) + f_2(x)] = D[f_1(x)] + D[f_2(x)] \]</span></p>
-<p>and in the second line we used the fact that, when <span class="math inline">\(k\)</span> is constant,</p>
-<p><span class="math display">\[ D[k f(x)] = k D[f(x)]. \]</span></p>
-<p>Thus, <span class="math inline">\(D\)</span> (that is, differentiation) satisfies properties 1 and 2. (Although you should probably be uncomfortable that we wrote <span class="math inline">\(D : \text{FUNCTIONS} \to \text{FUNCTIONS}\)</span> above. What is the set <span class="math inline">\(\text{FUNCTIONS}\)</span>? Are all functions differentiable? We will address this later. For now, it suffices to replace <span class="math inline">\(\text{FUNCTIONS}\)</span> above with <span class="math inline">\(P_n\)</span>, the set of all polynomials of degree at most <span class="math inline">\(n\)</span>. In fact, it is the case that <span class="math inline">\(D : P_n \to P_{n-1}\)</span> if <span class="math inline">\(n\geq 1\)</span>.)</p>
-</section>
-<section id="definite-integration" class="level5">
-<h5 class="anchored" data-anchor-id="definite-integration">Definite integration</h5>
-<p>Fix an interval <span class="math inline">\([a,b]\)</span> and consider <span class="math display">\[
-I(f) := \int_a^b f(x) \quad dx.
-\]</span></p>
-<div id="exr-integration-is-linear" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1.6</strong></span> &nbsp;</p>
-<blockquote class="blockquote">
-<p>Check that <span class="math inline">\(I\)</span> has properties 1 and 2.</p>
-</blockquote>
-</div>
-</section>
-</section>
-<section id="why-are-properties-1-and-2-useful" class="level4">
-<h4 class="anchored" data-anchor-id="why-are-properties-1-and-2-useful">Why are properties 1 and 2 useful?</h4>
-<p>Why is it useful that <span class="math inline">\(D\)</span> satisfies properties 1 and 2? It allows us to compute derivatives of complicated expressions like <span class="math inline">\(2x^2 + x\)</span> if we only know the computation on some simple parts of the expression. Knowing the derivative of <span class="math inline">\(x^2\)</span> and <span class="math inline">\(x\)</span> is all that is needed.</p>
-<p>Similarly, if we know the circumference of a shape in the plane at one scale, we can compute its circumference at all scales using property 1.</p>
-<p>Not all functions are linear, but if a function is linear, it is much easier to compute with.</p>
-</section>
-</section>
-</section>
-<section id="linear-functions" class="level2">
-<h2 class="anchored" data-anchor-id="linear-functions">Linear functions</h2>
-<div id="def-linear-function" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 1.1 (linear function)</strong></span> A function satisfying properties 1 and 2 is called <em>linear</em>.</p>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We use the term “linear” for these functions, but we also use the word “line” for graphs in the plane with formula <span class="math inline">\(f(x) = m x + b\)</span>. This term is overloaded and means different things in these two contexts.</p>
-</div>
-</div>
-<div id="exr-when-are-lines-linear" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1.7</strong></span> &nbsp;</p>
-<blockquote class="blockquote">
-<p>Show that <span class="math inline">\(f(x) = m x + b\)</span> is only a linear function when <span class="math inline">\(b = 0\)</span>.</p>
-</blockquote>
-</div>
+<p>This is nice, but it would be nice to have an easier computation that tells us if we have an inverse.</p>
+<section id="the-geometry-of-the-row-reduction-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="the-geometry-of-the-row-reduction-matrices">The geometry of the row-reduction matrices</h2>
+<p>Suppose we are row reducing a 2-row, 2-column matrix</p>
 
 
 </section>
@@ -1115,13 +871,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./preface.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./inverses-of-linear-maps-and-matrices.html" class="pagination-link" aria-label="Inverses of linear maps and matrices">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Inverses of linear maps and matrices</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./the-notion-of-a-vector-space.html" class="pagination-link" aria-label="The notion of a Vector Space">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The notion of a Vector Space</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1135,7 +891,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/what-is-linearity.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/determinants.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>The source code generating this book is provided under <a href="https://github.com/fNBU/linearity-book/blob/release/LICENSE">the MIT License</a>.</p>
 </div>
