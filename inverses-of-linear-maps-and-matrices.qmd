@@ -312,7 +312,7 @@ The following are equivalent:
 1. $F$ takes a basis for $A$ to a basis for $B$.
 :::
 
-Recall that when we say "the following are equivalent", we meen that we have the following "if-and-only-if" statements:
+Recall that when we say "the following are equivalent", we mean that we have the following "if-and-only-if" statements:
 
 ::: {.imagify zoom='3' }
 \usetikzlibrary{matrix}
