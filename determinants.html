@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./eigenvectors.html" rel="next">
 <link href="./inverses-of-linear-maps-and-matrices.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -239,6 +239,30 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Determinants</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eigenvectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vectors which map to (a multiple of) themselves</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geometric-transoformations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Geometric transformations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./usefulness-of-matrix-equations-part-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The usefulness of matrix equations again</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dual-spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dual spaces</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -302,7 +326,32 @@ window.Quarto = {
 <p>This is nice, but it would be nice to have an easier computation that tells us if we have an inverse.</p>
 <section id="the-geometry-of-the-row-reduction-matrices" class="level2">
 <h2 class="anchored" data-anchor-id="the-geometry-of-the-row-reduction-matrices">The geometry of the row-reduction matrices</h2>
-<p>Suppose we are row reducing a 2-row, 2-column matrix</p>
+<!-- Suppose we are row reducing a 2-row, 2-column matrix [TODO] -->
+<div id="exr-det-computation-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.1</strong></span> Compute the determinant of</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1 &amp; -1 &amp;  3 \\
+2 &amp;  0 &amp;  1 \\
+1 &amp; -1 &amp; -3
+\end{bmatrix}.
+\]</span></p>
+</div>
+<div id="exr-det-computation-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.2</strong></span> Compute the determinant of</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1 &amp; -1 &amp;  0 &amp; 0 &amp;  0 \\
+2 &amp;  0 &amp;  0 &amp; 0 &amp;  0 \\
+0 &amp;  0 &amp;  0 &amp; 2 &amp; -3 \\
+0 &amp;  0 &amp;  0 &amp; 3 &amp; -1 \\
+0 &amp;  0 &amp;  1 &amp; 4 &amp; -2
+\end{bmatrix}.
+\]</span></p>
+</div>
+<div id="exr-" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.3</strong></span> Why must a matrix with a row or column of all zeros have a determinant of 0? Show this computationally.</p>
+</div>
 
 
 </section>
@@ -876,8 +925,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./eigenvectors.html" class="pagination-link" aria-label="Vectors which map to (a multiple of) themselves">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vectors which map to (a multiple of) themselves</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

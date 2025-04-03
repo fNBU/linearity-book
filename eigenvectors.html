@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Adam Layne">
-<meta name="dcterms.date" content="2025-01-14">
 
-<title>Linearity</title>
+<title>10&nbsp; Vectors which map to (a multiple of) themselves – Linearity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./preface.html" rel="next">
+<link href="./geometric-transoformations.html" rel="next">
+<link href="./determinants.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -72,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -84,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">What are these notes?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./eigenvectors.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vectors which map to (a multiple of) themselves</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -138,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What are these notes?</span></a>
   </div>
 </li>
@@ -213,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./eigenvectors.html" class="sidebar-item-text sidebar-link">
+  <a href="./eigenvectors.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vectors which map to (a multiple of) themselves</span></span></a>
   </div>
 </li>
@@ -248,40 +276,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#what-are-these-notes" id="toc-what-are-these-notes" class="nav-link active" data-scroll-target="#what-are-these-notes">What are these notes?</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./eigenvectors.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vectors which map to (a multiple of) themselves</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Linearity</h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vectors which map to (a multiple of) themselves</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Adam Layne </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 14, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -291,14 +301,58 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="what-are-these-notes" class="level1 unnumbered">
-<h1 class="unnumbered">What are these notes?</h1>
-<p>These are notes for a first course in Linear Algebra.</p>
-<!-- This section is only rendered in in the HTML output. -->
-<p>The PDF version of these notes can be fount at <a href="https://fnbu.pw/linearity-book/Linearity.pdf">https://fnbu.pw/linearity-book/Linearity.pdf</a>.</p>
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+<!-- the following block is for page defs which do not render anything upon definition  -->
+<div class="hidden">
+<p><span class="math display">\[
+\DeclareMathOperator{\Span}{Span}
+\]</span></p>
+</div>
+<div id="exr-compute-eigen-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 10.1</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Find the eigenvalue-eigenvector pairs for the linear function <span class="math inline">\(\mathbb R^3 \to \mathbb R^3\)</span> given in coordinates by the matrix</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+3 &amp; 2 &amp; -2 \\
+0 &amp; 0 &amp; 0
+\end{bmatrix}.
+\]</span></p>
+</blockquote>
+</div>
+<div id="exr-compute-eigen-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 10.2</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Find the eigenvalue-eigenvector pairs for the linear function <span class="math inline">\(\mathbb R^2 \to \mathbb R^2\)</span> given in coordinates by the matrix</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1 &amp; -1 \\
+1 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p>If we think of this matrix as a map from <span class="math inline">\(\mathbb C^2 \to \mathbb C^2\)</span>, are the eigenvalue-eigenvector pairs different? Compute them.</p>
+</blockquote>
+</div>
+<div id="exr-compute-eigen-infinite" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 10.3</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Is there a function <span class="math inline">\(f \in C^\infty\)</span> that is an eigenvector of <span class="math inline">\(D : C^\infty \to C^\infty\)</span> (the differentiation operator)? What is its eigenvalue?</p>
+<p>Given <span class="math inline">\(a \in \mathbb R\)</span>, can you find a function <span class="math inline">\(f \in C^\infty\)</span> such that</p>
+<p><span class="math display">\[
+D(f) = a f ?
+\]</span></p>
+</blockquote>
+</div>
+<div id="exr-generate-map" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 10.4</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Let <span class="math inline">\(V\)</span> be a 3-dimensional vector space over <span class="math inline">\(\mathbb R\)</span>. Define a linear map <span class="math inline">\(V \to V\)</span> that has exactly 3 eigenvectors with eigenvalues 1, 2, and 3.</p>
+<p>(To start, what does the fact that <span class="math inline">\(V\)</span> is 3-dimensional allow you to assume?)</p>
+</blockquote>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -864,10 +918,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./determinants.html" class="pagination-link" aria-label="Determinants">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Determinants</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./preface.html" class="pagination-link" aria-label="Preface">
-        <span class="nav-page-text">Preface</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./geometric-transoformations.html" class="pagination-link" aria-label="Geometric transformations">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Geometric transformations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -881,7 +938,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/eigenvectors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>The source code generating this book is provided under <a href="https://github.com/fNBU/linearity-book/blob/release/LICENSE">the MIT License</a>.</p>
 </div>
