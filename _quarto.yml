@@ -36,6 +36,7 @@ book:
       - ways-of-writing-linear-maps.qmd
       - usefulness-of-matrix-equations.qmd
       - inverses-of-linear-maps-and-matrices.qmd
+      - determinants.qmd
     #   - solving-systems-of-linear-equations.qmd
     # - part: "Inner Product Spaces"
     - references.qmd
@@ -43,6 +44,9 @@ book:
 
 filters:
   - imagify
+
+# imagify:
+#   lazy: true
 
 bibliography: references.bib
 
