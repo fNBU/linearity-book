@@ -289,6 +289,7 @@ window.Quarto = {
   <li><a href="#linear-independence" id="toc-linear-independence" class="nav-link" data-scroll-target="#linear-independence">Linear independence</a></li>
   <li><a href="#a-basis-for-a-vector-space" id="toc-a-basis-for-a-vector-space" class="nav-link" data-scroll-target="#a-basis-for-a-vector-space">A basis for a vector space</a></li>
   </ul></li>
+  <li><a href="#how-do-objects-change-when-we-change-basis" id="toc-how-do-objects-change-when-we-change-basis" class="nav-link" data-scroll-target="#how-do-objects-change-when-we-change-basis">How do objects change when we change basis?</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/bases.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
@@ -731,10 +732,53 @@ Note
 <div id="thm-linear-definition-nec-and-suff-v2" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 3.5</strong></span> Let <span class="math inline">\(L:A \to B\)</span> be linear. Suppose we know the value of <span class="math inline">\(L\)</span> on a set of vectors <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span>. If <span class="math inline">\([ V_1 , \ldots , V_n ]\)</span> is a basis for <span class="math inline">\(A\)</span>, then we know the value of <span class="math inline">\(L\)</span> on all its inputs and <span class="math inline">\(\{ V_1 , \ldots , V_n \}\)</span> is a minimal choice of data defining <span class="math inline">\(L\)</span>.</p>
 </div>
-<p>We finally answered the two mysteries that have been motivating us for a few chapters, so we’re done, right?</p>
-
-
 </section>
+</section>
+<section id="how-do-objects-change-when-we-change-basis" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-objects-change-when-we-change-basis">How do objects change when we change basis?</h2>
+<div id="exr-basis-change-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.17</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Suppose we have fixed a basis for <span class="math inline">\(\mathbb R^3\)</span>. Let <span class="math inline">\(A : \mathbb R^3 \to \mathbb R^3\)</span> be given by the matrix <span class="math display">\[
+\begin{bmatrix}
+2 &amp; -1 &amp; 0 \\
+3 &amp; -3 &amp; 1 \\
+-2 &amp; 1 &amp; 0
+\end{bmatrix}
+\]</span> and let the vector <span class="math inline">\(v\)</span> be given by <span class="math display">\[
+\begin{bmatrix}
+-2 \\
+3 \\
+0
+\end{bmatrix}.
+\]</span></p>
+<p>Compute <span class="math inline">\(Av\)</span>.</p>
+<p>Consider the basis (call it <span class="math inline">\(\tilde{B}\)</span>) <span class="math display">\[
+\left[
+\begin{bmatrix}
+1 \\
+0 \\
+0
+\end{bmatrix},
+\begin{bmatrix}
+1 \\
+1 \\
+0
+\end{bmatrix},
+\begin{bmatrix}
+1 \\
+1 \\
+1
+\end{bmatrix}
+\right].
+\]</span></p>
+<p>Write <span class="math inline">\(A\)</span> and <span class="math inline">\(V\)</span> relative to <span class="math inline">\(\tilde{B}\)</span>.</p>
+<p>Call the new matrix and vector <span class="math inline">\(\tilde{A}\)</span> and <span class="math inline">\(\tilde{v}\)</span>. Compute <span class="math inline">\(\tilde{A}\tilde{v}\)</span>.</p>
+<p>Convert your answer for <span class="math inline">\(\tilde{A}\tilde{v}\)</span> back to the standard basis. Did you get the same thing as <span class="math inline">\(Av\)</span>?</p>
+</blockquote>
+</div>
+
+
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
