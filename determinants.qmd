@@ -1,0 +1,29 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# Determinants
+
+We now have a technique for 1) determining if a linear function has an inverse and 2) computing the inverse (in finite dimensions, if it exists).
+
+We also have some checks to test for the existence of an inverse that are easy:
+
+1. if the matrix is not square, it is not invertible
+1. if there is a row or column of all zeros, the matrix is not invertible
+1. if there are two identical columns or two identical rows, the matrix is not invertible
+1. if we row reduce the augmented matrix and **at any point** get a matrix on the left that is obviously not invertible, the original matrix is not invertible
+1. if we row reduce and get the identity matrix on the left, the original matrix is invertible and its inverse now appears on the left of the reduced augmented matrix.
+
+This is nice, but it would be nice to have an easier computation that tells us if we have an inverse.
+
+## The geometry of the row-reduction matrices
+
+Suppose we are row reducing a 2-row, 2-column matrix

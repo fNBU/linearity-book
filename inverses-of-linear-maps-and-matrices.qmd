@@ -1,0 +1,916 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# Inverses of linear maps and matrices
+
+In the previous section, we saw that many problems that we have encountered can be rephrased as a matrix equation:
+
+$$
+Ax = b
+$$
+
+where $A$ is a matrix, $x,b$ are columns, and $A,b$ are known but $x$ is unknown.
+Let's observe that
+
+$$
+Ix = x
+$$
+
+where $I$ is the matrix for the identity linear map $I \colon V \to V$ given by $I(v) = v$.
+
+One consequence of this is, if we can find a matrix $B$ such that $BA = I$, then we can apply it to both sides and compute $x$:
+
+$$
+\begin{aligned}
+Ax =& b \\
+BAx =& Bb \\
+Ix =& Bb \\
+x =& Bb.
+\end{aligned}
+$$
+
+The quantity on the right is just the matrix $B$ multiplied by the column $b$, which is a multiplication we know how to do, so if we multiply out the right side, we obtain exactly $x$.
+
+Whether such a matrix exists for a particular $A$ is the topic of this chapter.
+
+::: {#exr-trial-inverse}
+> Solve the matrix equation
+> $$
+> \begin{bmatrix}
+> 1 & 2 \\
+> 2 & 3
+> \end{bmatrix}
+> \begin{bmatrix}
+> x \\
+> y
+> \end{bmatrix}
+> =
+> \begin{bmatrix}
+> 4  \\
+> -1 
+> \end{bmatrix}
+> $$
+> 
+> by multiplying (on the left) on both sides of this equation by 
+> $$
+> \begin{bmatrix}
+> -3 & 2 \\
+>  2 & -1
+> \end{bmatrix}.
+> $$
+:::
+
+## Identities and inverses
+
+Let's go back and talk about functions $\mathbb R \to \mathbb R$ again.
+One thing we have for such functions is an identity function
+$$
+I(x) = x.
+$$
+We give this the name "identity" and use the symbol $I$ for it, but what in practice does this mean?
+What are the properties an identity should have?
+
+::: {#def-identity}
+Given a collection $S$ of things and an operation $\cdot : S \times S \to S$ for combining two things in $S$, a *left identity* for $\cdot$ is an element $e \in S$ that satisfies 
+$$
+e \cdot p = p , \quad \forall p \in S.
+$$
+A *right identity* for $\cdot$ is an element $\widehat e \in S$ such that
+$$
+p \cdot \widehat e = p , \quad \forall p \in S.
+$$
+:::
+
+That is, doing an operation with its left identity on the left side does nothing.
+Similarly for the right side.
+
+We have already seen some identity objects so far:
+
+- 0 is a left (and right) identity for $+$ in $\mathbb R$ (or by definition any group, field, etc)
+- 1 is a left (and right) identity for multiplication in $\mathbb R$ (or by definition any field, etc)
+- the zero vector in a vector space is (by definition) a left (and right) identity for vector addition in that space
+
+The function $I(x) = x$ is a left (and right) identity for a different operation in $\mathbb R \to \mathbb R$; it is the identity for composition.
+That is, for any $f : \mathbb R \to \mathbb R$,
+$$
+I \circ f = f \quad \text{and}\quad  f \circ I = f.
+$$
+In more detail, this looks like
+$$
+(I \circ f)(x) = I(f(x)) = f(x) = f(I(x)) = (f \circ I)(x).
+$$
+
+If we have an operation and an identity for that operation, we may also be lucky enough to have inverses for that operation:
+
+::: {#def-inverse}
+Given a collection $S$ of things and an operation $\cdot : S \times S \to S$ for combining two things in $S$:
+
+- if $\cdot$ has a left identity $e_L$, then an element $p \in S$ has a *left inverse* if there is an element $k \in S$ such that 
+  $$
+  k \cdot p = e_L.
+  $$
+- if $\cdot$ has a right identity $e_R$, then an element $p \in S$ has a *right inverse* if there is an element $\widehat k \in S$ such that 
+  $$
+  p \cdot \widehat k = e_R.
+  $$
+:::
+
+All the operations we have considered so far have the same left and right inverse, and are associative.
+In this case, one can show[^take-abstract-alg] that the left and right inverses, if they exist, are the same.
+In this case, we simply call it "the inverse" of (eg) $x$ and write it as $x^{-1}$.
+
+[^take-abstract-alg]: One usually learns to prove this in a course on Abstract Algebra. I have mentioned in an earlier footnote a source for this.
+
+As an example, consider the function $f(x) = x^3 + 1$.
+One can check that $g(x)= (x - 1)^{1/3}$ is both a left and right inverse for composition, and so we would normally write $f^{-1} (x) = (x - 1)^{1/3}$.
+
+We have seen other inverse elements:
+
+- Given $a \in \mathbb R$, there is an element (which we usually write $-a$) which is the inverse of $a$ with respect to the operation $+$. 0 is its own inverse w.r.t. $+$.
+- Given $a \in \mathbb R$ which is not zero, there is an element (which we usually write $\frac{1}{a}$) which is the inverse of $a$ with respect to the operation $\cdot$. 1 is its own inverse w.r.t. $\cdot$.
+- Given a vector $v \in V$ in a vector space, there is (by definition) a vector $-v \in V$ which is an inverse for vector addition.
+
+## The identity for linear functions
+
+If we have a linear function $G : A \to B$, what is the identity for composition?
+Well, if there is a left identity $I_L$, it must satisfy $I_L \circ G = G$.
+Let's write this out in a diagram:
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A & B & ? \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$G$} (m-1-2)
+    (m-1-2) edge node [above] {$I_L$} (m-1-3)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$I_L \circ G = G$} (m-1-3);
+\end{tikzpicture}
+:::
+
+Since the map on the bottom of the diagram is $G$, we know that the $?$ on the right must be the codomain of $G$, that is, the set $B$:
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A & B & B \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$G$} (m-1-2)
+    (m-1-2) edge node [above] {$I_L$} (m-1-3)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$I_L \circ G = G$} (m-1-3);
+\end{tikzpicture}
+:::
+
+So, $I_L : B \to B$ is a linear function which doesn't change its inputs.
+It's straightforward to guess that $I_L (v) = v$.
+
+What about a right inverse $I_R$?
+By the same reasoning, 
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A & A & B \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$I_R$} (m-1-2)
+    (m-1-2) edge node [above] {$G$} (m-1-3)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$G \circ I_R = G$} (m-1-3);
+\end{tikzpicture}
+:::
+
+It is straightforward to guess that $I_R(v) = v$ as well.
+
+But beware!
+The left and right identities are not the same function.
+$I_L$ has domain and codomain $B$ while $I_R$ has domain and codomain $A$.
+
+However, these two identities have something on common.
+In coordinates, they both have the form
+$$
+\begin{bmatrix}
+1 & 0 & 0 & \cdots & 0 \\
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+\end{bmatrix}
+$$
+the only potential difference is the size.
+
+::: {#def-identity-matrix}
+For every vector space $V$ there is an identity function, which is linear, from $V$ to $V$
+In general, it takes its input and returns them unmodified:
+$$
+I(v) = v.
+$$
+
+If $V$ is finite dimensional and we fix a basis for it, then $I: F^k \to F^k$.
+:::
+
+::: {#lem-identity-mat-in-coords}
+In the latter case of @def-identity-matrix, in coordinates $I$ has the form
+$$
+\begin{bmatrix}
+1 & 0 & 0 & \cdots & 0 \\
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+\end{bmatrix}
+$$
+:::
+
+## The inverse of a linear function
+
+Now that we know the matrix for the identity linear map from a vector space to itself, we can ask two questions:
+
+1. What are the inverses for linear functions?
+2. If we have fixed a basis, what is the matrix representation of the inverse?
+
+First let's note a coordinate-free fact about inverses. Suppose $F : \mathbb R^3 \to P_2$ is given by
+$$
+F(1,0,0) = x^2 + 2, \quad F(0,1,0) = x - 1, \quad F(0,0,1) = x + 1.
+$$
+First, let's note that if $F^{-1}$ exists, it has *domain* $P_2$ and *codomain* $\mathbb R^3$.
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     \mathbb R^3 & P_2 \\};
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$F$} (m-1-2);
+  \draw[->,>=stealth] (m-1-2) edge[bend right=30]node[above]{$F^{-1}$} (m-1-1);
+\end{tikzpicture}
+:::
+
+If $F^{-1} : P_2 \to \mathbb R^3$ is to be defined for all elements of its domain, then $F$ needs to hit each of those elements.
+That is, the vectors
+$$
+F(1,0,0) = x^2 + 2, \quad F(0,1,0) = x - 1, \quad F(0,0,1) = x + 1.
+$$
+should span $P_2$.
+Since $P_2$ has dimension 3 and there are three values in the definition of $F$, these three should also be linearly independent.
+That is,
+$$
+[x^2 + 2, x - 1, x + 1]
+$$
+should form a basis for $P_2$.
+
+::: {#exr-p2-basis}
+> Confirm that 
+> $$
+> [x^2 + 2, x - 1, x + 1]
+> $$
+> does indeed form a basis for $P_2$.
+:::
+
+In this case, whatever the formula for $F^{-1}$ is, it should at least satisfy the three equations
+$$
+(1,0,0) = F^{-1}(x^2 + 2), \quad (0,1,0) = F^{-1}(x - 1), \quad (0,0,1) = F^{-1}(x + 1).
+$$
+Let's note that, since $[x^2 + 2, x - 1, x + 1]$ is a basis for $P_2$, this information is enough to completely define $F^{-1}$.
+
+::: {#exr-compute-an-inverse}
+> For $F$ as above, compute
+> $$
+> F^{-1}(x^2-x+1).
+> $$
+> Show your work.
+:::
+
+So, in this example, what could have gone wrong?
+The only thing we had to check was that $F: \mathbb R^3 \to P_2$ took a basis for $\mathbb R^3$ to a basis for $P_2$.
+Checking this shows that $F$ is injective (because it takes a basis to a linearly independent set), and surjective (because it takes a basis to a spanning set).
+This holds in general:
+
+::: {#lem-invertability-v1}
+Let $F : A \to B$ be a linear function.
+Assume $A,B$ are vector spaces over the same field, have finite dimension, and that $\dim A = \dim B$.
+The following are equivalent:
+
+1. $F$ has an inverse.
+1. $F$ is surjective.
+1. $F$ is injective
+1. $F$ takes a basis for $A$ to a basis for $B$.
+:::
+
+Recall that when we say "the following are equivalent", we mean that we have the following "if-and-only-if" statements:
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\usetikzlibrary{arrows}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     (1.) & & (4.)\\
+      & (2.) & \\
+   & (3.) &  \\};
+  \draw[implies-implies, double equal sign distance] (m-1-1) -- (m-1-3);
+  \draw[implies-implies, double equal sign distance] (m-1-1) -- (m-2-2);
+  \draw[implies-implies, double equal sign distance] (m-1-1) -- (m-3-2);
+  \draw[implies-implies, double equal sign distance] (m-2-2) -- (m-1-3);
+  \draw[implies-implies, double equal sign distance] (m-2-2) -- (m-3-2);
+  \draw[implies-implies, double equal sign distance] (m-1-3) -- (m-3-2);
+\end{tikzpicture}
+:::
+
+### Inverse in coordinates
+
+The previous example was good: knowing the definition of $F$ on a basis allows us to check only one thing (any property except the first in @lem-invertability-v1) from which we know if $F$ is invertible or not invertible.
+
+There is something unsatisfying about 
+$$
+(1,0,0) = F^{-1}(x^2 + 2), \quad (0,1,0) = F^{-1}(x - 1), \quad (0,0,1) = F^{-1}(x + 1).
+$$
+as a definition for the inverse, however: the basis $[x^2 + 2, x - 1, x + 1]$ for $P_2$ is probably not the one we want.
+If we encounter $v \in P_2$ in the wild, we probably prefer to write it in the basis $[x^2, x , 1]$.
+So we still have a question: how to write the formula for $F^{-1}$ in whatever basis we choose for $P_2$.
+The following technique will be one step on the way there.
+
+#### Gaussian elimination (row reduction)
+
+In this section we will describe a technique that will be useful for computing many things efficiently in the remainder of the course.
+We will explain in the following sections **why** this technique works, but for now we will just explain **what** the technique is.
+
+Consider the matrix for $F$ above relative to the basis $[(1,0,0) , (0,1,0) , (0,0,1)]$ for $\mathbb R^3$ and the basis $[x^2, x , 1]$ for $P_2$:
+$$
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix}.
+$$
+We will apply the following three steps to transform this matrix:
+
+1. swap two rows
+2. multiply a row by a nonzero constant
+3. add a row to another row
+
+So we get the following steps:
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix}
+& \xrightarrow{\text{multiply row 1 by -2}}
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix} \\
+& \xrightarrow{\text{add row 1 to row 3}}
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 0 & -1 &  1 
+\end{bmatrix} \\
+& \xrightarrow{\text{multiply row 1 by -1/2}}
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 0 & -1 &  1 
+\end{bmatrix} \\
+& \xrightarrow{\text{add row 2 to row 3}}
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 0 &  0 &  2 
+\end{bmatrix} \\
+& \xrightarrow{\text{multiply row 3 by -1/2}}
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 0 &  0 & -1 
+\end{bmatrix} \\
+& \xrightarrow{\text{add row 3 to row 2}}
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  0 \\
+ 0 &  0 & -1 
+\end{bmatrix} \\
+& \xrightarrow{\text{multiply row 3 by -1}}
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  0 \\
+ 0 &  0 &  1 
+\end{bmatrix}. 
+\end{aligned}
+$$
+
+In principle, we could have applied these operations in any order, but we did them with the goal of arriving at the identity matrix (if that was possible).
+It does turn out to be possible in this case (but is not possible for every starting matrix).
+
+::: {#exr-row-red-noninvertible}
+> Row reduce the following matrix, attempting to get it as close to the identity matrix as possible:
+> $$
+> \begin{bmatrix}
+>  1 &  3 &  6 \\
+>  3 & -1 &  2 \\
+> -1 &  2 &  2 
+> \end{bmatrix}. 
+> $$
+> Is it impossible to get to the identity matrix?
+> If yes, why?
+:::
+
+
+::: {#exr-row-red-invertible}
+> Row reduce the following matrix, attempting to get it as close to the identity matrix as possible:
+> $$
+> \begin{bmatrix}
+>  1 &  0 & -1 &  0 \\
+> -1 &  0 &  1 & -1 \\
+>  0 &  1 &  0 &  1 \\
+> -1 &  0 &  1 &  1 
+> \end{bmatrix}. 
+> $$
+> Is it impossible to get to the identity matrix?
+> If yes, why?
+:::
+
+::: {#exr-non-invertibility-tests}
+> In @exr-row-red-noninvertible, what happened that allowed you to conclude the matrix you ended up with was not invertible?
+> 
+> Is it true that a matrix with two identical rows is not invertible?
+> Why?
+:::
+
+Let's note a few things:
+
+- The identity matrix is always a square matrix.
+- The matrix for $F$ also turned out to be square (this is because the domain and codomain of $F$ have the same dimension)
+  - From this we already have a fact: A matrix can *never* reduce to the idenity matrix if it is not a square matrix.
+- The three operations do change the linear function that the matrix represents.
+
+This last point can be seen by noting that 
+$$
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix}
+\begin{bmatrix}
+ 1  \\
+ 0  \\
+ 0  
+\end{bmatrix}
+=
+\begin{bmatrix}
+ 1  \\
+ 0  \\
+ 2  
+\end{bmatrix}
+$$
+but 
+$$
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix}
+\begin{bmatrix}
+ 1  \\
+ 0  \\
+ 0  
+\end{bmatrix}
+=
+\begin{bmatrix}
+-2  \\
+ 0  \\
+ 2  
+\end{bmatrix}.
+$$
+Since the outputs are different, these matrices represent different linear functions.
+
+We do have the following fact
+
+::: {#lem-row-ops-preserve}
+> If $B$ results from applying one of the three row operations to the matrix $A$, $B$ is invertible if and only if $A$ is.
+:::
+
+That is, we can apply and number of row operations to the starting matrix; if we obtain a matrix that is obviously invertible, then our starting matrix was invertible.
+If we obtain a matrix that is obviously not invertible, then our starting matrix was was not invertible.
+
+This raises the question: is the identity matrix (or indeed the identity function) invertible?
+
+::: {#lem-id-is-invertible}
+> The identity function $I : X \to X$ is its own inverse.
+:::
+
+This lemma is phrased very generally: we don't even assume $X$ is a vector space.
+You can think about how you might prove this lemma (what is the definition of "inverse"?).
+
+So, we know that $I$ is invertible, so it must be the case that
+$$
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix}
+$$
+is invertible.
+
+Of course, we already knew that; we computed the inverse in a very unintuitive basis for $P_2$ above.
+But the matrix
+$$
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix}
+$$
+is the matrix for $F$ in the intuitive basis: $[(1,0,0) , (0,1,0) , (0,0,1)]$ for $\mathbb R^3$ and the basis $[x^2, x , 1]$ for $P_2$.
+How can we compute the inverse in these coordinates?
+
+#### Row operations are matrix multiplications
+
+First, let's note that we can actually write a matrix multiplication for
+$$
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix}
+\xrightarrow{\text{multiply row 1 by -2}}
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix} .
+$$
+It is the same as
+$$
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  0 \\
+ 0 &  0 &  1 
+\end{bmatrix}
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix}
+=
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix} 
+$$
+
+::: {#exr-ver-row-op}
+> Verify the matrix multiplication above.
+:::
+
+Similarly,
+
+$$
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix} \\
+\xrightarrow{\text{add row 1 to row 3}}
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 0 & -1 &  1 
+\end{bmatrix} 
+$$
+
+is the same as the matrix multiplication
+
+$$
+\begin{bmatrix}
+ 1 &  0 &  0 \\
+ 0 &  1 &  0 \\
+ 1 &  0 &  1 
+\end{bmatrix} 
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 2 & -1 &  1 
+\end{bmatrix} 
+=
+\begin{bmatrix}
+-2 &  0 &  0 \\
+ 0 &  1 &  1 \\
+ 0 & -1 &  1 
+\end{bmatrix}.
+$$
+
+::: {#exr-wap-matrix}
+> Consider the row operation
+> $$
+> \underbrace{
+> \begin{bmatrix}
+>  1 &  2 &  3 \\
+>  4 &  5 &  6 \\
+>  7 &  8 &  9 
+> \end{bmatrix} \\}_{=:A}
+> \xrightarrow{\text{swap row 1 and row 2}}
+> \begin{bmatrix}
+>  4 &  5 &  6 \\
+>  1 &  2 &  3 \\
+>  7 &  8 &  9 
+> \end{bmatrix}.
+> $$
+> What is the matrix we would multiply $A$ by on the left to accomplish this operation?
+> Check that you are correct by multiplying on the left by your chosen matrix.
+:::
+
+::: {#exr-alt-ops}
+> Instead of the three row operations we presented before, it is common to instead introduce these three operations:
+>
+> - swap two rows
+> - multiply a row by a nonzero constant
+> - add a nonzero multiple of a row to another row.
+>
+> That is, the last operation is a combination of two of our previous operations.
+> 
+> What is the 4-row, 4-column matrix that, when we multiply by it on the left, adds a multiple of 3 of row 1 to row 3?
+> Check your answer by multiplying this matrix (on the left) with any matrix you choose on the right; does the right multiple of row 1 get added to row 2?
+:::
+
+In the future, we will often use the row operations from @exr-alt-ops rather than the ones we introduced earlier.
+These new three operations satisfy all the properties we would want: they can be represented by matrix multiplications on the left, and they preserve invertible/noninvertible.
+
+Let's rewrite the reduction of the matrix for $F$ to $I$ using matrix multiplications:
+
+$$
+\begin{aligned}
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  0 \\ -2 &  0 &  1           \end{bmatrix}}_{=:B_1        }
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  1 \\  2 & -1 &  1           \end{bmatrix}}_{=:A          }
+& =                  
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  1 \\  0 & -1 &  1           \end{bmatrix}}_{B_1A         }\\
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  0 \\  0 &  1 &  1           \end{bmatrix}}_{=:B_2        }
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  1 \\  0 & -1 &  1           \end{bmatrix}}_{B_1A         }
+& =                
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  1 \\  0 &  0 &  2           \end{bmatrix}}_{B_2B_1A      }\\
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  0 \\  0 &  0 &  \frac{1}{2} \end{bmatrix}}_{=:B_3        }
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  1 \\  0 &  0 &  2           \end{bmatrix}}_{B_2B_1A      }
+& =              
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  1 \\  0 &  0 &  1           \end{bmatrix}}_{B_3B_2B_1A   } \\
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 & -1 \\  0 &  0 &  1           \end{bmatrix}}_{=:B_4        }
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  1 \\  0 &  0 &  1           \end{bmatrix}}_{B_3B_2B_1A   } 
+& =            
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  0 \\  0 &  0 &  1           \end{bmatrix}}_{B_4B_3B_2B_1A}. 
+\end{aligned}
+$$
+
+Here we have used the multiply-then-add operation from @exr-alt-ops in order to get to the identity matrix in only four steps.
+
+Let us observe one thing about this result; we can write this series of operations in a single line as follows:
+$$
+\begin{aligned}
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 & -1 \\ 0 &  0 & 1 \end{bmatrix}}_{=B_4}
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  0 \\ 0 &  0 & \frac{1}{2}\end{bmatrix}}_{=B_3}
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  0 \\  0 &  1 &  1 \end{bmatrix}}_{=B_2}
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  0 \\ -2 &  0 &  1 \end{bmatrix}}_{=B_1}&
+\underbrace{\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  1 \\  2 & -1 &  1 \end{bmatrix}}_{=A}\\
+&=
+\begin{bmatrix} 1 &  0 &  0 \\ 0 &  1 &  0 \\ 0 &  0 & 1 \end{bmatrix},
+\end{aligned}
+$$
+
+that is, there are four matrices $B_1,B_2,B_3,B_4$ such that
+$$
+B_4B_3B_2B_1A = I.
+$$
+
+If we're lucky, then the product $B_4B_3B_2B_1$ is equal to $A^{-1}$.
+
+::: {#exr-product-is-inverse}
+> Compute the matrix
+> $$
+> B_4B_3B_2B_1.
+> $$
+> 
+> Remember, matrix multiplication is associative but not commutative.
+> 
+> Call the result of this matrix multiplication $B$.
+> Compute $BA$ and verify that you obtain $I$.
+:::
+
+We have seen evidence of the following theorem.
+
+::: {#thm-inverse}
+Suppose $F: A \to B$ is a linear transformation, that $X$ is the matrix for $F$ in some basis, and that $X$ is square.
+
+1. $X$ row reduces to the identity matrix if and only if $F$ is an invertible function
+2. If $B_k B_{k-1} \cdots B_2 B_1 X$ is a matrix multiplication resulting in $I$, then the matrix product
+
+$$
+B_k B_{k-1} \cdots B_2 B_1 = A^{-1}.
+$$
+:::
+
+That is, row reduction gives us both an algorithm for determining if a matrix represents an invertible function, and also an algorithm for computing it.
+
+::: {#exr-find-inverse-row-red-1}
+> Compute the inverse of
+> 
+> $$
+> \begin{bmatrix} 
+>   1 & -1 &  3 \\ 
+>   0 &  4 &  0 \\
+>  -2 &  0 &  1 
+> \end{bmatrix}
+> $$
+> 
+> using the method in @thm-inverse.
+:::
+
+#### Finding the inverse matrix a bit faster
+
+@thm-inverse at least gives us an algorithm that will always eventually tell us if a matrix has an inverse.
+If we use the theorem to *find* and inverse, however, it is a lot of work:
+
+- first we must find a sequence of row operations that either
+  1. reduce our matrix to something clearly not invertible (in which case we are done), or
+  2. reduce our matrix to $I$.
+- in the latter case, we need to write out all the matrices for our row operations (with the first operation on the right and the last operation on the left)
+- then we must multiply these matrices until we arrive at a single matrix, which is our inverse.
+
+This is potentially a lot of work if the number of row reduction steps is large.
+There is a way we can do our row operations and compute the inverse at the same time.
+
+Instead of writing our matrix by itself like
+
+$$
+A:=
+\left[\begin{array}{cc}  
+ 1 & 2 \\  
+ 3 & 4   
+\end{array}\right]
+$$
+
+we write our matrix, but also write the identity matrix of the same size in some extra columns
+
+$$
+\left[\begin{array}{cccc}  
+ 1 & 2 & 1 & 0 \\  
+ 3 & 4 & 0 & 1  
+\end{array}\right].
+$$
+
+Usually, to make it visually clearer what we are doing, we draw a vertical line between the two halves:
+
+$$
+\left[\begin{array}{cc|cc}  
+ 1 & 2 & 1 & 0 \\  
+ 3 & 4 & 0 & 1  
+\end{array}\right].
+$$
+
+Now, we do our row operations as normal, but when we do them, we do it to the *whole* row, including the new part on the right half.
+So, for example, the first thing we'd do might be to add $-3$ times the first row to the second:
+
+$$
+\underbrace{
+\left[\begin{array}{cc}  
+ 1 & 0 \\  
+-3 & 1   
+\end{array}\right]}_{=:B_1}
+\left[\begin{array}{cc|cc}  
+ 1 & 2 & 1 & 0 \\  
+ 3 & 4 & 0 & 1  
+\end{array}\right]
+= 
+\left[\begin{array}{cc|cc}  
+ 1 &  2 &  1 & 0 \\  
+ 0 & -2 & -3 & 1 
+\end{array}\right].
+$$
+
+Notice what we have done.
+On the left half of our result, we have $B_1A$ which is what we expect.
+On the right half of our result, we have $B_1I = B_1$.
+
+Now, let's do our second step: multiply the second row by $3/4$.
+
+$$
+\underbrace{
+\left[\begin{array}{cc}  
+ 1 & 0 \\  
+ 0 & -\frac{1}{2}   
+\end{array}\right]}_{=:B_2}
+\left[\begin{array}{cc|cc}  
+ 1 &  2 &  1 & 0 \\  
+ 0 & -2 & -3 & 1 
+\end{array}\right]
+= 
+\left[\begin{array}{cc|cc}  
+ 1 &  2 &  1 & 0 \\  
+ 0 &  1 & \frac{3}{2} & -\frac{1}{2} 
+\end{array}\right].
+$$
+
+Let's look at where we are now: on the left of our result is $B_2B_1A$ and on the right is $B_2B_1I=B_2B_1$.
+
+::: {#exr-aug-22}
+> Finish the row reduction above until you get the identity matrix on the left side.
+> 
+> Call the matrix now appearing on the right of the augmented matrix $B$.
+> Compute the product $BA$.
+:::
+
+Let's be explicit about the pattern:
+- on the left of our augmented matrix we are computing the row reduction of $A$ by successively multiplying on the left by matrices (which do the row operations)
+- on the right of our augmented matrix we are computing (one step at a time) the product of all the matrices we're multiplying by on the left.
+
+Recall from earlier in the chapter that this product is exactly what the formula for the inverse is (if it exists).
+This is a theorem
+
+::: {#thm-aug-inv}
+Suppose the augmented matrix
+
+$$
+\left[\begin{array}{c|c}  
+ A &  I \\ 
+\end{array}\right]
+$$
+
+row reduces to 
+
+$$
+\left[\begin{array}{c|c}  
+ I &  B \\ 
+\end{array}\right].
+$$
+
+Then $B = A^{-1}$.
+:::
+
+::: {#exr-aug-44}
+> Compute the inverse of the matrix
+> 
+> $$
+> \left[\begin{array}{cccc}  
+>   1 &  2 & -1 &  0 \\
+>   0 & -1 &  0 &  1 \\
+>   2 &  0 & -2 &  0 \\
+>   0 &  3 & -1 & -3 
+> \end{array}\right]
+> $$
+> 
+> by forming the augmented matrix and row reducing.
+> 
+> Check your answer by multiplying the matrix above with the right half of your row reduction.
+:::
+
+This is all good, we now have a technique that computes whether $A$ has an inverse and, if it does, computes $A^{-1}$ at the same time.
+
+## Using inverse matrices
+
+::: {#exr-solve-using-inv}
+> Solve the system of equations
+> 
+> $$
+> \begin{aligned}
+> w + 2x - y &= 4 \\
+> -x + z &= 3 \\
+> 2w -2y &= 2 \\
+> 3x - y + z &= 1 
+> \end{aligned}
+> $$
+> 
+> by
+> 
+> 1. turning it into a matrix equation of the form
+>    $$
+>    A 
+>    \left[\begin{array}{c}  
+>    w \\
+>    x \\
+>    y \\
+>    z 
+>    \end{array}\right]=b
+>    $$
+>    for some matrices $A$ and $b$ of constants,
+> 2. computing $A^{-1}$ (see @exr-aug-44),
+> 3. computing $A^{-1}b$.
+> 
+> What are the values of $w,x,y,z$ that solve our original system?
+:::

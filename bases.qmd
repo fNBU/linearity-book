@@ -1,0 +1,661 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# Bases
+
+Remember that the derivative function $D(f) := \frac{df}{dx}$ allows us to compute the derivative of, for example
+
+$$
+f(x) = x^2 + 4 \sin x
+$$
+
+if we know how to compute $D$ on only $x^2$ and $\sin x$.
+In fact, knowing just how to compute $D$ on these two functions and knowing that $D$ is linear allows us to compute the derivative of any function of the form
+
+$$
+x \mapsto a x^2 + b \sin x , \quad a,b \in \mathbb R.
+$$
+
+::: {.callout-tip title="Notation"}
+
+We just introduced the notation $\mapsto$.
+This is a mathematician's way of referring to a function without giving it a name.
+
+As an example both of
+
+$$
+x \mapsto x^2 \quad \text{and} \quad f(x) = x^2
+$$
+
+are the same function.
+On the right, we choose to give the function a name "$f$".
+On the left, we describe the function by saying how inputs are transformed into outputs, but we don't give it a name.
+The function on the left is just "the function that squares its input".
+It doesn't have a name, so this is called an *anonymous function*.
+
+Mathematicians use an anonymous function when they won't want to refer to a function again later, and so have no need of giving it a name.
+If you'll want to refer to a function later, it's useful to give it a name when you define it, so you'll write $f(x)= x^2$ (or use some other letter if $f$ is already used for something else).
+
+This pattern also shows up in computer science, although they often call anonymous functions *lambdas* and instead of writing $x \mapsto x^2$ they will write `λx.x^2` or `fun x => x^2` or some variation thereof.
+
+:::
+
+From a very small amount of information, we actually know a lot about $D$.
+Thus, we begin this chapter straightforwardly with a question, which is the title of the next section:
+
+## What is the minimal amount of information needed to unambiguously describe a linear function?
+
+Consider the following example:
+
+Assume that $L : P_2 \to P_0$ is linear and that
+
+$$
+L(x^2 + 3x) = 4.
+$$
+
+Can we determine $L$ on every element of $P_2$?
+That is, can we compute
+
+$$
+L(a x^2 + b x + c)?
+$$
+
+Let's try our best.
+We would like to isolate a term that looks like $x^2 + 3x$ because that is something we have information about.
+
+$$
+\begin{aligned}
+L(a x^2 + b x + c)=& L(a x^2 + b x)  + L(c) \quad &\text{by property 1} \\
+=& L\left(a \left[ x^2 + \frac{b}{a} x \right] \right)  + L(c) \quad &\text{assuming } a \ne 0 \\
+=& a L\left( x^2 + \frac{b}{a} x \right)  + L(c) &\quad \text{by property 2}  \end{aligned}
+$$
+
+then we are basically stuck.
+Although we can force $x^2$ to show up, we can't *at the same time* force $3x$ to show up; forcing a coefficient of $1$ on $x^2$ will always effect the coefficient of $x$.
+Furthermore, we have no information about how to deal with $L(c)$.
+
+So, in this case, knowing that $L$ is linear and knowing its value on *one* input is insufficient.
+
+::: {#exr-p2-basis}
+
+In the example above, is it enough to know that 
+$$
+\begin{aligned}
+L(x^2) =& 1 , \\
+L(x) =& 1 ,
+\end{aligned}
+$$
+
+to be able to determine $L$ on all of $P_2$?
+
+What if we know 
+$$
+\begin{aligned}
+L(x^2) =& 1 , \\
+L(x) =& 1 ,\\
+L(1) =& -2 
+\end{aligned}?
+$$
+
+:::
+
+## Writing vectors relative to a set of vectors
+
+Let $X,Y \in \mathbb R^2$ be given by $X:= (1,1)$ and $Y:= (1,-1)$.
+Suppose $L : \mathbb R^2 \to \mathbb R$ is linear and also that we know
+$$
+\begin{aligned}
+L(X) =&  1, \\
+L(Y) =&  -2 
+\end{aligned}.
+$$
+
+Can we compute $L$ on the vector $(2,3)$?
+If the answer to this question were yes then there would have to be a way to express $(2,3)$ in terms of $X$ and $Y$ (since those are the only two values we know anything about).
+That is, there would be $a,b \in \mathbb R$ such that
+
+$$
+(2,3) = a X + b Y = a (1,1) + b(1 , -1) = (a , a) + ( b , -b ) = (a + b , a - b).
+$$
+
+So, $L$ can be computed on $(2,3)$ if and only if the following system has a solution:
+
+$$
+\begin{aligned}
+2 =& a + b ,\\
+3 =& a - b
+\end{aligned}.
+$$
+
+We can solve this system (solving for, say, $a$ in the first and substituting the value in the second).
+We find that there is only one solution: $a = \frac{5}{2} , b= -\frac{1}{2}$.
+
+Using this information, how do we compute $L(2,3)$?
+Well, now we know that
+
+$$
+(2,3) = \frac{5}{2} (1 , 1) + \left( -\frac{1}{2} \right) (1,-1)
+$$
+
+so let's just apply the function $L$ to both sides of this equation:
+
+$$
+\begin{aligned}
+L(2,3) =& L \left[ \frac{5}{2} (1 , 1) + \left( -\frac{1}{2} \right) (1,-1) \right] \\
+=& L \left[ \frac{5}{2} (1 , 1) \right] + L \left[ \left( -\frac{1}{2} \right) (1,-1) \right] \\
+=& \frac{5}{2} L   (1 , 1) + \left( -\frac{1}{2} \right) L  (1,-1) \\
+=& \frac{5}{2} 1 + \left( -\frac{1}{2} \right) (-2) \\
+=& \frac{5}{2}  + 1\\
+=& \frac{7}{2}
+\end{aligned}
+$$
+
+::: {#exr-lin-example-justification}
+
+For each $=$-symbol in the computation above, write the assumption, property, or rule that tells us we are allowed to conclude the left hand side is equal to the right hand side.
+
+:::
+
+The above computation shows that the answer to our question is yes, this amount of information about $L$ is sufficient to compute $L(2,3)$.
+Notice that this is the case even though we were not given the formula for $L$.
+
+You may want to convince yourself that the vector $(2,3)$ above was not special; given the information we have about $L$, we can compute $L(k,l)$ for any $(k,l) \in \mathbb R^2$.
+
+::: {#exr-lin-nonexample}
+
+If we know that $L : \mathbb R^2 \to \mathbb R$ is linear and that
+
+$$
+L(0,1) = 1 , \quad L(0,2) = 2,
+$$
+
+can we compute $L(1,2)$?
+If yes, compute it.
+If no, why not?
+
+:::
+
+::: {#exr-lin-example}
+
+
+If we know that $L : \mathbb R^2 \to \mathbb R$ is linear and that
+
+$$
+L(0,1) = 2 , \quad L(1,1) = 2,
+$$
+
+can we compute $L(1,2)$?
+If yes, compute it.
+If no, why not?
+
+:::
+
+### Linear combinations
+
+The trick to computing $L(2,3)$ in the previous section was to rewrite $(2,3)$ in the form
+
+$$
+(2,3) = a (1,1) + b(1 , -1).
+$$
+
+This is a good ansatz[^1] because we are able to split over the $+$ and pull the $a$ and $b$ out (using the fact that $L$ is linear).
+The following definition captures this pattern in general.
+
+[^1]: This is a German word that, in math, means a guess with some free parameters (in this case, $a$ and $b$) in it. We compute with this guess, and then later find values of the parameters that make the computation valid and also solve our problem. If we cannot find such values, the we have essentially proved that there is no solution to our problem with the form given in the ansatz (although there may be a solution of another form if our ansatz is not general enough).
+
+::: {#def-linear-combination}
+
+If $X_1, X_2 , \ldots , X_n$ is a collection of vectors in the vector space $V$, then any expression of the form
+
+$$
+a_1 X_1 + a_2 X_2 + \cdots + a_n X_n, \quad a_i \in F
+$$
+
+is called a *linear combination* of $X_1, X_2 , \ldots , X_n$.
+
+:::
+
+For some of the following exercises, we need to know about the following definition:
+
+::: {#def-ck}
+
+We use $C^k(\mathbb R, \mathbb R)$ to denote the set of functions $\mathbb R \to \mathbb R$ such that, $\forall f \in C^k(\mathbb R, \mathbb R)$
+
+- $f$ has at least $k$ derivatives and
+- all of $f$'s $k$ derivatives are continuous.
+
+:::
+
+Sometimes we write just $C^k$ rather than $C^k(\mathbb R, \mathbb R)$ if it is implicit from the context that we are talking about functions $\mathbb R \to \mathbb R$.
+
+Notice, in particular, that $C^0$ is just the set of continuous functions $\mathbb R \to \mathbb R$.
+$C^1$ is the set of functions with at least one derivative which is continuous.
+
+$C^\infty$ is used to denote the set of functions $\mathbb R \to \mathbb R$ that have infinitely many derivatives, all of which are continuous (many "nice" familiar functions are in $C^\infty$, for example $x \mapsto \sin x$, $x \mapsto e^x$ and any polynomial).
+
+::: {#lem-ck-vspace}
+
+For any $k$, the set $C^k(\mathbb R, \mathbb R)$ is a vector space over $\mathbb R$.
+
+:::
+
+The proof of this lemma follows from the fact that $\mathbb R$ is a vector space over $\mathbb R$, and when we do operations on functions, we really do operations inside the codomain of the function.
+
+::: {#exr-cinfty-example-1}
+
+Is
+
+$$
+\pi \sin x - 100 x^3
+$$
+
+a linear combination in $C^0$?
+If no, why not?
+If yes, what is a set of vectors in $C^0$ that this is a linear combination of?
+
+:::
+
+::: {#exr-cinfty-example-2}
+
+Is
+
+$$
+7 \cos x \sin x 
+$$
+
+a linear combination in $C^0$?
+If no, why not?
+If yes, what is a set of vectors in $C^0$ that this is a linear combination of?
+
+:::
+
+We then have the following generalization of the computation we did in the example above:
+
+::: {#thm-linear-function-sufficiency-1}
+
+Let $L: A \to B$ be linear. These two statements are equivalent:
+
+- We know the value of $L$ on a set of vectors $X_1 ,  X_2 , \ldots , X_n \in A$.
+  That is, 
+
+  $$
+  \begin{aligned}
+  L(X_1) =& Y_1 \\
+  L(X_2) =& Y_2 \\
+  \vdots & \\
+  L(X_n) =& Y_n 
+  \end{aligned}
+  $$
+
+  for some $Y_i \in B$.
+
+- We know the value of $L$ on any linear combination of $X_1 ,  X_2 , \ldots , X_n$.
+
+
+:::
+
+The proof $\implies$ is a straightforward application of properties 1 and 2 of linear functions.
+You might try to generate the justification yourself.
+The proof of $\impliedby$ is an application of proof by contradiction.
+
+::: {.callout-note}
+
+@thm-linear-function-sufficiency-1 is not a tautology!
+
+The set $\{X_1 ,  X_2 , \ldots , X_n\}$ is a finite set (think of $\{(1,1) , (1,-1)\}$ which contains only 2 elements).
+
+The set of linear combinations of $\{X_1 ,  X_2 , \ldots , X_n\}$ is *infinite* (if the field of scalars is infinite, which in the case of $\mathbb R$ or $\mathbb C$ it is).
+
+The set of linear combinations of $\{(1,1) , (1,-1)\}$ contains, for example,
+$$
+\begin{aligned}
+&(1,1),(2,2),(a,a) \forall a \in \mathbb R ,\\
+&(\pi,e),\left(\sqrt{2},2025^{1/3}\right),\\
+&a(1,1) + b(1,-1) = (a+b,a-b) \forall a,b \in \mathbb R.
+\end{aligned}
+$$
+In particular, this set is infinite.
+
+:::
+
+### The span of a set of vectors
+
+We will use the words "is a linear combination of" or "can be expressed as a linear combination of" quite often, so we introduce some terminology to shorthand this.
+
+::: {#def-span}
+
+If $V$ is a vector space over a field $F$, $X_1 , \ldots , X_n \in V$, and $W$ is expressible as a linear combination of $\{X_1 , \ldots , X_n \}$ we say that $W$ is in the *span* of $\{X_1 , \ldots , X_n \}$. We can write this
+
+$$
+W \in \Span \{X_1 , \ldots , X_n \}.
+$$
+
+We also refer to the following set as *the span* of $\{X_1 , \ldots , X_n \}$:
+$$
+\Span \{X_1 , \ldots , X_n \} := \{ a_1 X_1 + \cdots + a_n X_n \mid a_i \in F \}.
+$$
+
+:::
+
+So, for example, $(0,2025) \in \Span \{(0,1),(0,6)\}$, but the vector $(17,9) \not \in \Span \{(0,1),(0,6)\}$.
+
+::: {#exr-span-basis}
+Let $(a,b) \in \mathbb R^2$.
+Is $(a,b) \in \Span \{ (1,1) , (1,-1) \}$?
+Why or why not?
+:::
+
+
+::: {#exr-span-dependent}
+Let $(a,b) \in \mathbb R^2$.
+Is $(a,b) \in \Span \{ (1,2) , (1 ,5) , (1 , -3) \}$?
+Why or why not?
+:::
+
+Given the above definition, we can rephrase @thm-linear-function-sufficiency-1:
+
+::: {#thm-linear-function-sufficiency-2}
+
+Let $L: A \to B$ be linear. These two statements are equivalent:
+
+- We know the value of $L$ on a set of vectors $X_1 ,  X_2 , \ldots , X_n \in A$.
+- We know the value of $L$ on $\Span \{ X_1 ,  X_2 , \cdots , X_n \}$.
+
+:::
+
+There isn't really anything to prove here; this is exactly @thm-linear-function-sufficiency-1 except with "any linear combination of" replaced by $\Span$, which is @def-span.
+
+::: {#exr-p2-sufficiency}
+Is $\Span \{ 1 + x , x + x^2 \} = P_2$? Why or why not?
+:::
+
+::: {#exr-p3-sufficiency}
+Show that $\Span \{ 1 + x , x + x^2, x^2 , x^3 \} = P_3$ by finding a representation of
+$$
+ax^3 + b x^2 + c x + d 
+$$
+(which is the form of a generic element of $P_3$) as a linear combination of $\{ 1 + x , x + x^2, x^2 , x^3 \}$.
+:::
+
+::: {#exr-diff-span}
+Suppose we know that $F'(x) = f(x)$ and $G'(x) = g(x)$ (that is, $F,G$ have derivatives, and we give the names $f,g$ to those derivatives).
+Recall the definition of the operator $D$ for differentiation:
+$$
+D(h) := h'(x),
+$$
+and that we already know $D : \{ \text{differentiable functions} \} \to \{ \text{functions}\}$ is linear.
+(In view of the notation introduced in @def-ck, we can now write this as $D: C^1 \to C^0$.)
+
+Is it true that 
+$$
+D\left[F(x) + 14G(x)\right]=f(x) + 14 g(x)?
+$$
+Did you use any properties about $D$ *other than* linearity to conclude that?
+
+Suppose $G(x) > 0 , \forall x$.
+Is it true that 
+$$
+D\left [ \frac{F(x)}{G(x)} \right] = \frac{f(x) G(x) - F(x)g(x)}{\left[G(x)\right]^2}?
+$$
+Did you use any properties about $D$ *other than* linearity to conclude that?
+:::
+
+### Linear independence
+
+Suppose we have a collection of vectors $\{ X_1 , \ldots , X_n \} \in \mathbb R^2$.
+We have seen examples where 
+
+1. $\{ X_1 , \ldots , X_n \}$ consists of two vectors and $\Span \{ X_1 , \ldots , X_n \}$ **is not all of** $\mathbb R^2$ 
+
+   (this happened when $\{ X_1 , \ldots , X_n \} = \{(0,1) , (0,2)\}$),
+
+
+1. $\{ X_1 , \ldots , X_n \}$ consists of two vectors and $\Span \{ X_1 , \ldots , X_n \}$ **is equal to** $\mathbb R^2$ 
+
+   (this happened when $\{ X_1 , \ldots , X_n \} = \{(1,1) , (1,-1)\}$),
+
+1. $\{ X_1 , \ldots , X_n \}$ consists of three vectors and $\Span \{ X_1 , \ldots , X_n \}$ **is equal to** $\mathbb R^2$ 
+
+   (this happened when $\{ X_1 , \ldots , X_n \} = \{(1,2) , (1 , 6) , (1,-3)\}$).
+
+In the last case, we got something extra; there were infinitely many ways of representing an arbitrary element $(a,b) \in \mathbb R^2$ as a linear combination of $\{(1,2) , (1 , 6) , (1,-3)\}$.
+In the second case, we get a unique way of representing each vector as a linear combination, and in the first case we don't even get any way to represent some vectors as a linear combination.
+
+From @def-span we now can say that the distinction between the first case and the other two is that
+
+$$
+\Span \{(1,1) , (1,-1)\} = \Span \{(1,2) , (1 , 6) , (1,-3)\} = \mathbb R^2
+$$
+
+but that
+
+$$
+\Span \{(0,1) , (0,2)\} \ne \mathbb R^2.
+$$
+
+From @thm-linear-function-sufficiency-2, we know that if we know a linear function on the two vectors
+
+$$
+(1,1) , (1,-1)
+$$
+
+or on the three vectors
+
+$$
+(1,2) , (1 , 6) , (1,-3)
+$$
+
+then we know its value on all inputs $(a,b) \in \mathbb R^2$.
+
+What is the criterion that distinguishes the second case from the last one?
+That is, is there a property we can measure about the set of vectors 
+$$
+\{(1,2) , (1 , 6) , (1,-3)\}
+$$ 
+that is different when we measure it about
+$$
+\{(1,1) , (1,-1)\}
+$$ 
+that tells is that we get a unique linear combination in the latter case, but a nonunique linear combination in the former case?
+It turns out to be the following definition, and we will see why in a later part of the book.
+
+::: {#def-linear-independence}
+
+Let $V$ be a vector space and $\{ X_1 , \ldots , X_n \} \subset V$.
+We say that the set $\{ X_1 , \ldots , X_n \}$ is *linearly independent* if, for each $i \in \{ 1 , \ldots , n \}$,
+
+$$
+X_i \not \in \Span \{X_1 , X_2 , \cdots , X_{i-1} , X_{i + 1} , \cdots , X_n\}.
+$$
+
+This is another way of saying that $X_i$ is **not** in the span of all the $\{ X_j \}$ with $X_i$ removed.
+
+:::
+
+::: {#exr-linearly-indep-1}
+
+Is the list $[(1,0),(0,1)] \subset \mathbb R^2$ linearly independent? Explain why.
+
+:::
+
+::: {#exr-linearly-indep-2}
+
+Is the list $[(2,1),(2,-1)] \subset \mathbb R^2$ linearly independent? Explain why.
+
+:::
+
+::: {#exr-linearly-indep-3}
+
+Is the list $[(1,2),(3,4),(-1,4)] \subset \mathbb R^2$ linearly independent? Explain why.
+
+:::
+
+Although we chose to define linear independence using @def-linear-independence, there are equivalent statements that we could have used.
+We summarize them in the following theorem.
+
+::: {#thm-linear-indep-defs}
+
+Let $V$ be a vector space and $\{ X_1 , \ldots , X_n \} \subset V$.
+The following statements are equivalent:
+
+1. $\{ X_1 , \ldots , X_n \}$ is linearly independent in the sense of @def-linear-independence.
+
+1. $0 = a_1 X_1 + \cdots + a_n X_n$ has only one solution (when $a_i = 0 \, \forall i$).
+
+1. For every $v \in \Span  \{ X_1 , \ldots , X_n \}$, the equation $v = a_1 X_1 + \cdots + a_n X_n$ has **exactly** one solution.
+
+:::
+
+When we say "the following statements are equivalent", we mean that among (1.), (2.), and (3.) above, there are proofs
+
+$$
+(1.) \, \Leftrightarrow \, (2.) \, \Leftrightarrow \, (3.).
+$$
+
+So, we chose to use @def-linear-independence as the definition, and (in the proof of @thm-linear-indep-defs) would prove that (2.) is equivalent to @def-linear-independence.
+But we could have just as well used (2.) as the definition, and proved the statement in @def-linear-independence as a theorem.
+If you look at different books on this subject, you will see different approaches; all of them are equally correct.
+
+We omit the proof of @thm-linear-indep-defs; the equivalences are not difficult to prove.
+
+From this, we get the following lemma quite easily:
+
+::: {#lem-some-tests-for-linear-dep}
+
+Let $V$ be a vector space and $S=\{ X_1 , \ldots , X_n \} \subset V$.
+
+- If $S$ contains the zero vector, it is linearly dependent.
+- If $S$ contains the same vector twice, it is linearly dependent.
+
+:::
+
+Note that this lemma **is not an iff** statement.
+For example, not every linearly dependent set contains the zero vector.
+But if a set does contain the zero vector, this lemma tells you that that set is linearly dependent.
+
+#### Necessity and sufficiency
+
+We are finally in a position to answer the question that began this chapter: 
+
+> What is the minimal amount of information needed to unambiguously describe a linear function?
+
+Note that there are two parts of this statement: how much information suffices to define a linear function, and how much information minimally suffices.
+These criteria are different.
+
+For example, in @sec-ch-what-is-linearity we saw that the formula
+
+$$
+C(r) := 2 \pi r
+$$
+
+is enough to know $C$ on all its inputs (after all, this formula tells you how to compute $C$ for any input you could pick).
+So this formula **suffices** to define the linear function $C$.
+
+However, we saw later in that chapter that, once we know $C$ is linear, this is more information than we need.
+It is enough to know far less information.
+For example, suppose I tell you that, in some other universe there are creatures called pumans who have a shape they call a pircle whose pircumference (as they call it) is a function of some measurement they refer to as the pradius of the pircle.
+Both pradius and pircumference are nonnegative real numbers, thankfully.
+
+I don't know the formula for pircumference as a function of pradius (communication with the pumans is very slow and difficult), but I have learned from them two things:
+
+- pircumference as a function of pradius is linear
+- the pircumference of a pircle of pradius 2025 is 45.
+
+It turns out that this is enough information to discover the formula for pircumference!
+Let $k \geq 0$ be any arbitrary pradius, and call the pircumference function $P$.
+We can compute
+
+$$
+P(k) = P\left(\frac{k}{2025} 2025 \right) = \frac{k}{2025}P\left( 2025 \right)= \frac{k}{2025}45 = \frac{k}{45}.
+$$
+
+Verify for yourself that you understand why each equality in this computation is true.
+For the second equality, we used our knowledge that pircumference is linear and for the third equality we used our knowledge that $P(2025) = 45$.
+If we had been missing either of those facts, we could not conclusively determine the formula for $P$.
+That means that, once we know $P$ is linear, the knowledge of $P$ on at least one nonzero input is **necessary**.
+
+The following theorem gives two criteria addressing our motivating question at the start of this section: the first criteron describes when we have sufficient information to determine a linear function, the second describes when we have only the necessary (minimal) amount of information.
+
+::: {#thm-linear-definition-nec-and-suff-v1}
+
+Let $L:A \to B$ be linear.
+Suppose we know the value of $L$ on a set of vectors $\{ V_1 , \ldots , V_n \}$.
+
+- If $\Span \{ V_1 ,  \ldots V_n \} = A$, we can compute the value of $L$ on all inputs.
+- If $\{ V_1 , \ldots , V_n \}$ is linearly independent, then $\{ V_1 , \ldots , V_n \}$ is a minimal set of information defining $L$ on $\Span \{ V_1 ,  \ldots V_n \}$.
+
+:::
+
+Note that, if $\Span \{ V_1 ,  \ldots V_n \} = A$ and $\{ V_1 , \ldots , V_n \}$ is linearly independent, this theorem implies that $\{ V_1 , \ldots , V_n \}$ is a minimal choice of information defining $L$ everywhere on $A$.
+
+This theorem is very powerful.
+For example, consider a linear function $F : \mathbb R^3 \to \mathbb R^{2025}$.
+@thm-linear-definition-nec-and-suff-v1 tells us that if we know only three facts, e.g. the values of $L(1,0,0)$, $L(0,1,0)$, and $L(0,0,1)$, then we are able to use this information to find the value of $L$ on **any** of the infinitely many vectors in $\mathbb R^3$.
+Of course, we would first have to show that $\{(1,0,0),(0,1,0),(0,0,1)\}$ spans $\mathbb R^3$.
+
+The situation of having a set of vectors that both spans an entire vector space and is linearly independent is so common, we give it the following name:
+
+### A basis for a vector space
+
+::: {#def-basis}
+
+Let $V$ be a vector space and let $B$ be a finite, ordered list of vectors in $V$.
+If 
+
+- $\Span B = V$ and 
+- $B$ is linearly independent, 
+
+we say that $B$ is *a basis for* $V$.
+
+:::
+
+We write list here because order and repetition matter, and these are not qualities of sets.
+
+::: {.callout-tip title="Notation"}
+We write lists like $[ 1 , 2, 2 , 3]$ with square brackets rather than curly ones.[^list-notation]
+Note that for lists, $[1,1,1] \ne [1]$ while for sets $\{1,1,1\} = \{1\}$, and also, for lists $[1 , 2] \ne [2,1]$ while for sets $\{1,2\} = \{2,1\}$.
+:::
+
+[^list-notation]: This is the notation convention used by many modern programming languages.
+
+::: {#exr-basis-1}
+
+Is the list $[(1,0),(0,1)] \subset \mathbb R^2$ a basis? Explain why.
+
+:::
+
+::: {#exr-basis-2}
+
+Is the set $[(2,1),(2,-1)] \subset \mathbb R^2$ a basis? Explain why.
+
+:::
+
+
+::: {.callout-note}
+
+The preceding exercises demonstrate a very important point: if $V$ has a basis, it is not unique.
+There are actually many bases for a vector space, and which one you should choose to use **depends on the problem at hand**.
+
+For example, both $[(1,0), (0,1)]$ and $[(1,1), (1,-1)]$ are bases for $\mathbb R^2$.
+If we are dealing with a linear function $L : \mathbb R^2 \to \mathbb R$ where we know $L (1,1) = 5$ and $L(1,-1) = 3$, then it is not useful to work with the basis $[(1,0), (0,1)]$.
+
+:::
+
+We now have a restatement of @thm-linear-definition-nec-and-suff-v1 that uses this definition:
+
+::: {#thm-linear-definition-nec-and-suff-v2}
+Let $L:A \to B$ be linear.
+Suppose we know the value of $L$ on a set of vectors $\{ V_1 , \ldots , V_n \}$.
+If $[ V_1 , \ldots , V_n ]$ is a basis for $A$, then we know the value of $L$ on all its inputs and $\{ V_1 , \ldots , V_n \}$ is a minimal choice of data defining $L$. 
+:::
+
+We finally answered the two mysteries that have been motivating us for a few chapters, so we're done, right?

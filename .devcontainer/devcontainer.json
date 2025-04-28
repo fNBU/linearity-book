@@ -1,0 +1,13 @@
+{
+  "image": "ghcr.io/fnbu/quarto-build:latest" ,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "quarto.quarto",
+        "tomoki1207.pdf",
+        "streetsidesoftware.code-spell-checker",
+        "github.vscode-github-actions"
+      ]
+    }
+  }
+}

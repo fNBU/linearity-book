@@ -1,0 +1,595 @@
+# Ways of writing linear maps
+
+We saw in the previous chapter that, once we choose a basis for a vector space $V$, we can write vectors as their list of coefficients relative to this basis.
+
+Suppose we have a linear function $L : V \to W$.
+How can we write this in a basis?
+
+## Maps in finite dimensions {#sec-maps-in-fin-dim}
+
+Let's consider the linear function $F : P_2 \to \mathbb R^2$ given by
+$$
+F(x^2) = (0,0) ,\quad F(x) = (1,0) ,\quad F(1) = (0,1).
+$$
+Let's express this in a basis.
+Consider the basis $[x^2,x,1]$ for $P_2$ and $[(1,0),(0,1)]$ for $\mathbb R^2$.
+
+Then the vector $x \in P_2$ corresponds to the list of coefficients 
+$$
+\left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right]
+$$
+and the vector $(1,0) \in \mathbb R^2$ corresponds to the list of coefficients
+$$
+\left[  \begin{aligned} 1 \\ 0 \end{aligned}\right].
+$$
+
+So, whatever our expression for $F$ is in coordinates, it must fit in
+$$
+F \left( \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] \right) = \left[  \begin{aligned} 1 \\ 0 \end{aligned}\right],
+$$
+and similarly,
+$$
+F \left( \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right] \right) = \left[  \begin{aligned} 0 \\ 1 \end{aligned}\right], \quad 
+F \left( \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] \right) = \left[  \begin{aligned} 0 \\ 0 \end{aligned}\right].
+$$
+
+First, let's note that, when we're applying a linear function to the coefficients of a vector written as a column, we usually don't write the parentheses after the function name.
+That is, we will write function applications like
+$$
+F \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] = \left[  \begin{aligned} 0 \\ 0 \end{aligned}\right], \quad 
+F \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] = \left[  \begin{aligned} 1 \\ 0 \end{aligned}\right], \quad 
+F \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right] = \left[  \begin{aligned} 0 \\ 1 \end{aligned}\right].
+$$
+
+### Writing linear functions as 2-dimensional arrays.
+
+We will introduce the notation for writing $F$ above in coordinates.
+Then we will develop fast processes for computing function application, composition, sums, multiples, and inverses of linear functions all while remaining "in coordinates".
+
+The motivation will be the following:
+
+If we know a linear function on a basis for its domain, we know it everywhere.
+In particular,
+
+$$
+\begin{aligned}
+F \left[  \begin{aligned} a \\ b \\ c \end{aligned}\right] 
+=& F \left( a  \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] + b \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] + c \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right]\right) \\
+=& a F \left[  \begin{aligned} 1 \\ 0 \\ 0 \end{aligned}\right] + b F \left[  \begin{aligned} 0 \\ 1 \\ 0 \end{aligned}\right] + c F \left[  \begin{aligned} 0 \\ 0 \\ 1 \end{aligned}\right] \\
+=& a \left[  \begin{aligned} 0 \\ 0 \end{aligned}\right] + b \left[  \begin{aligned} 1 \\ 0 \end{aligned}\right] + c \left[  \begin{aligned} 0 \\ 1 \end{aligned}\right]\\
+=& \left[  \begin{aligned} (0)a + (1)b + (0)c \\ (0)a + (0)b + (1)c \end{aligned}\right] .
+\end{aligned}
+$$
+
+The way we will write $F$ in coordinates, is to write it as a 2-dimensional array of numbers.
+$$
+\begin{bmatrix}
+\_ & \_ & \_\\
+\_ & \_ & \_
+\end{bmatrix}.
+$$
+
+The number of columns of the array is the dimension of the **domain** of $F$, so in this case there are three columns.
+The number of rows of the array is the dimension of the **codomain** of $F$, so in this case there are two rows.
+
+The first column of the array is where $F$ sends the first basis vector of its domain.
+If we use the basis we have already chosen, then the array for $F$ looks like
+$$
+\begin{bmatrix}
+0 & \_ & \_\\
+0 & \_ & \_
+\end{bmatrix}
+$$
+because $F$ takes its first basis vector to $(0,0)$, which, in the coordinates for the codomain, is the column 
+
+$$
+\begin{bmatrix}
+0 \\
+0 
+\end{bmatrix}.
+$$
+
+Similarly, the second column of the array is where $F$ sends the second basis vector
+$$
+\begin{bmatrix}
+0 & 1 & \_\\
+0 & 0 & \_
+\end{bmatrix}
+$$
+and the third column is where $F$ sends the third basis vector
+$$
+\begin{bmatrix}
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+This two dimensional array of numbers we used to represent $F$ is called a *matrix*.
+
+::: {#exr-write-as-matrix}
+> Consider the linear function $G: P_2 \to \mathbb R^2$ given by
+> $$
+> G(x^2) = (2,0) ,\quad G(x) = (-1,3) ,\quad G(1) = (7,\pi) .
+> $$
+> 
+> Using the same basis that we used for $F$ above, write the matrix for $G$.
+:::
+
+The way we apply a matrix, is as we did in the example above
+$$
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+z 
+\end{bmatrix}=
+\begin{bmatrix}
+a_{11} x + a_{12} y + a_{13} z \\
+a_{21} x + a_{22} y + a_{23} z 
+\end{bmatrix}.
+$$
+
+The formula for a matrix with $n$ rows and $m$ columns is needlessly complex.
+The intuition is this:
+
+- The input vector must have the same number of entries as the number of columns of the matrix.
+- The output vector must have the same number of entries as the number of rows of the matrix.
+- To get the **first** entry in the output, multiply each of the entries in the input column with each of the entries in the **first** row of the matrix. Then add the products. That is the **first** entry of the result.
+- To get the **second** entry in the output, multiply each of the entries in the input column with each of the entries in the **second** row of the matrix. Then add the products. That is the **second** entry of the result.
+- Continue in this manner until you have filled all the entries in the output vector.
+
+::: {#exr-write-as-matrix-big}
+> Consider the linear function $G: \mathbb R^4 \to \mathbb R^4$ given by
+> $$
+> G \begin{bmatrix}1 \\ 0 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix}2 \\ 0 \\ 0 \\ 0 \end{bmatrix} , \quad 
+> G \begin{bmatrix}0 \\ 1 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix}0 \\ 2 \\ 0 \\ 0 \end{bmatrix} , \quad
+> G \begin{bmatrix}0 \\ 0 \\ 1 \\ 0 \end{bmatrix} = G \begin{bmatrix}0 \\ 0 \\ 0 \\ 1 \end{bmatrix} = 0.
+> $$
+> 
+> Note that $G$ is already written in some (unknown basis).
+> What is the matrix for $G$?
+>
+> Compute 
+> $$
+> G \begin{bmatrix}w \\ x \\ y \\ z \end{bmatrix}.
+> $$
+> Describe what $G$ does to its inputs in words.
+:::
+
+## Maps involving infinite dimensional spaces
+
+We know that some vector spaces do not have a finite dimension (for example, the space of continuous functions $\mathbb R \to \mathbb R$).
+Since the size of a matrix for a linear map is determined by the dimension of the domain (the number of columns) and the dimension of the codomain (the number of rows), it is not possible to represent a linear function to or from an infinite dimensional vector space as a matrix.
+For now, we don't have any good way to represent these.
+
+## Composing maps
+
+For ordinary functions $\mathbb R \to \mathbb R$, we have a way of composing functions. For example, if $f(x) = x^3$ and $g(x) = x^2 + 1$ then the function $f \circ g$ is given by
+$$
+(f \circ g) (x) = f ( g ( x)) = f(x^2 + 1) = (x^2 + 1)^3.
+$$
+What happens when we compose one linear map with another?
+
+### Domains and codomains
+
+First, let us observe that if we want to make a composition $K \circ L$ of two linear functions
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A & B & C & D \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$K$} (m-1-2)
+    (m-1-3) edge node [above] {$L$} (m-1-4)
+    ;
+\end{tikzpicture}
+:::
+
+it must be true that the outputs of $L$ (its codomain, $D$) must match the inputs of $K$ (its domain, $A$).
+
+If we assume that $A=D$, then we can form the composition
+
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     C & A & B \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$L$} (m-1-2)
+    (m-1-2) edge node [above] {$K$} (m-1-3)
+    ;
+\end{tikzpicture}
+:::
+
+The meaning of $K \circ L$ is exactly the same as in the case of ordinary functions.
+Given a vector $v \in C$, we can first apply $L$, get an output, and then apply $K$ to this output:
+$$
+(K \circ L)(v) = K(L(v)).
+$$
+
+### In coordinates
+
+We saw earlier in the chapter that, if $L: C \to A$ is linear and $C,A$ are finite dimensional, we can represent $L$ as a matrix of numbers (once we have chosen bases for $C,A$).
+How do we compose two linear functions once we represent them in coordinates?
+
+Let's compose in the straightforward way.
+As an example, let $R,T$ be linear functions represented as matrices as
+$$
+R= 
+\begin{bmatrix}
+4 & 2 & -1 \\
+-2 & 3 & 1
+\end{bmatrix},
+\quad 
+T=
+\begin{bmatrix}
+-1 & 3 & -2 \\
+1 & -2 & 1 \\
+4 & -2 & 3
+\end{bmatrix}.
+$$
+
+::: {#exr-composition-compat}
+> Only one of the two compositions
+> $$
+> R \circ T , \quad T \circ R
+> $$
+> can possibly make sense.
+> Which one is it?
+> Explain why the other composition is impossible.
+> (If this is difficult, it will be made clear in the next problem if you didn't choose the correct one.)
+:::
+
+::: {#exr-composition-compute}
+> In the previous problem, you concluded only one of the two compositions was possible.
+> 
+> - If you think $R \circ T$ is possible, compute 
+> 
+>   $$
+>   T \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
+>   $$
+> 
+>   Once you have your answer, apply the matrix $R$ to it to get the value of 
+> 
+>   $$
+>   (R \circ T )\begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
+>   $$
+> 
+> - If you think $T \circ R$ is possible, compute 
+> 
+>   $$
+>   R \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
+>   $$
+> 
+>   Once you have your answer, apply the matrix $T$ to it to get the value of 
+> 
+>   $$
+>   (T \circ R )\begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}.
+>   $$
+:::
+
+In the above exercises, you should have concluded that only $R \circ T$ is possible and the result is
+$$
+(R \circ T )\begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+=\begin{bmatrix} -28 \\ 34 \end{bmatrix}.
+$$
+Great, now we can compute compositions.
+
+However, it is true that the composition of two linear maps is a linear map itself.
+This means that $R \circ T$ is a linear function between finite dimensional vector spaces:
+ 
+::: {.imagify zoom='3' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     \mathbb R^3 & \mathbb R^3 & \mathbb R^2 \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$T$} (m-1-2)
+    (m-1-2) edge node [above] {$R$} (m-1-3)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$R \circ T$} (m-1-3);
+\end{tikzpicture}
+:::
+
+That is, there should be matrix representation of the function $R \circ T$ that has 2 rows and 3 columns.
+How can we compute such a matrix?
+
+The algorithm is the same as we used to multiply a matrix by a column.
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+4 & 2 & -1 \\
+-2 & 3 & 1
+\end{bmatrix}
+\begin{bmatrix}
+-1 & 3 & -2 \\
+1 & -2 & 1 \\
+4 & -2 & 3
+\end{bmatrix}
+&=
+\begin{bmatrix}
+\_ & \_ & \_\\
+\_ & \_ & \_
+\end{bmatrix} \\
+&= 
+\begin{bmatrix}
+4(-1) + 2(1) + (-1)(4) & \_ & \_\\
+\_ & \_ & \_
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+-6 & \_ & \_\\
+\_ & \_ & \_
+\end{bmatrix}
+\end{aligned}.
+$$
+
+That is, the top left entry in the matrix on the right is the result of combining the **top row** of the left matrix and the **left column** of the right matrix.
+When we say "combine" here, we mean the same operation we did when multiplying a matrix by a column: the top row and left column are both lists of 3 numbers; we multiply the corresponding entries and add the results.
+
+As another example, let's compute the bottom middle entry of the result matrix.
+$$
+\begin{aligned}
+\begin{bmatrix}
+4 & 2 & -1 \\
+-2 & 3 & 1
+\end{bmatrix}
+\begin{bmatrix}
+-1 & 3 & -2 \\
+1 & -2 & 1 \\
+4 & -2 & 3
+\end{bmatrix}
+&=
+\begin{bmatrix}
+-6 & \_ & \_\\
+\_ & (-2)(3) + 3(-2) + 1(-2) & \_
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+-6 & \_ & \_\\
+\_ & -14 & \_
+\end{bmatrix}
+\end{aligned}.
+$$
+
+::: {#exr-matmul}
+> Finish computing the matrix for $R \circ T$.
+:::
+
+::: {#exr-matmul-check}
+> Using the matrix for $R \circ T$, compute
+> $$
+> R \circ T \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+> $$
+> and verify that you get $\begin{bmatrix} -28 \\ 34 \end{bmatrix}$.
+:::
+
+
+
+::: {.callout-tip}
+## Matrix multiplication with `numpy`
+
+Matrix multiplications are long, and humans are prone to make trivial errors.
+In the wild, you will most often see matrices multiplied using a programming language.
+As an example, you can compute the matrix for $R \circ T$ using `numpy` for `python` as follows
+
+```python
+>>> import numpy
+>>> R = numpy.array( [ [ 4 , 2 , -1 ] , [ -2 , 3 , 1 ] ] )
+>>> T = numpy.array( [ [ -1 , 3 , -2 ] , [ 1 , -2 , 1 ] , [ 4 , -2 , 3 ] ] )
+>>> numpy.matmul( R , T )
+array([[ -6,  10,  -9],
+       [  9, -14,  10]])
+```
+
+To get the result
+$$
+R \circ T \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+$$
+you can do (assuming you have already evaluated the previous code block)
+```python
+>>> x = numpy.array( [ [ 0 ] , [ -1 ] , [ 2 ] ] )
+>>> RoT = numpy.matmul( R , T )
+>>> numpy.matmul( RoT , x )
+array([[-28],
+       [ 34]])
+```
+
+Throughout the remainder of the text, we will show examples of linear algebra computations in a variety of programming languages.
+(Almost all of these languages use, under the hood, the same two optimized implementations: BLAS and LAPACK.)
+:::
+
+::: {#exr-matmul-check}
+> Compute the matrix multiplication
+> $$
+> \begin{bmatrix}
+> 1 & 3 & 0 \\
+> 0 & 1 & 3
+> \end{bmatrix}
+> \begin{bmatrix}
+> -2 & -3 & -2 \\
+> 1 & 2 & -2 \\
+> 2 & -1 & 3
+> \end{bmatrix}.
+> $$
+> Show your work and only (if you want to) use code to check your answer.
+:::
+
+
+### Noncommutativity
+
+Beware!
+Since matrix multiplication corresponds to function composition, and function composition is not commutative, in general matrix multiplication is not guaranteed to be commutative.
+
+That is, if I compute the matrix product
+$$
+AB
+$$
+this will almost always **not** be equal to
+$$
+BA.
+$$
+In fact, in @exr-matmul-check the other matrix product 
+$$
+\begin{bmatrix}
+-1 & 3 & -2 \\
+1 & -2 & 1 \\
+4 & -2 & 3
+\end{bmatrix}
+\begin{bmatrix}
+4 & 2 & -1 \\
+-2 & 3 & 1
+\end{bmatrix}
+$$
+is not even defined.
+(Why?)
+
+It is, however, true that matrix multiplication is associative.
+That is, if I want to multiply three matrices
+$$
+ABC = A(BC) = (AB)C 
+$$
+I can multiply the right two first to get one matrix representing $BC$, then multiply on the left by $A$ to get one matrix representing $ABC$.
+
+I could also multiply starting from the left and obtain the same answer.
+
+All three of the ways of multiplying the matrices above results in a single matrix representing the composition
+
+::: {#fig-matmul-assoc fig-align='center'}
+
+::: {.imagify zoom='5' }
+\usetikzlibrary{matrix}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     \mathbb R^k & \mathbb R^\ell & \mathbb R^m & \mathbb R^n  \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$C$} (m-1-2)
+    (m-1-2) edge node [above] {$B$} (m-1-3)
+    (m-1-3) edge node [above] {$A$} (m-1-4)
+    ;
+  \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$A \circ B \circ C$} (m-1-4);
+\end{tikzpicture}
+:::
+
+:::
+
+## Algebra of linear functions
+
+Note that when we have two functions $\mathbb R \to \mathbb R$, we can add them and multiply by constants.
+For example, consider $f(x)=e^x$ and $g(x) = x^2 + 1$.
+We can form the new function
+$$
+f(x) + 2 g(x)
+$$
+which just means compute $f$ on the input $x$, then compute $g$ on the input $x$ and multiply the result by 2, then add the two parts you got.
+So
+$$
+f(x) + 2 g(x) = e^x + 2(x^2 + 1).
+$$
+
+What is really happening is that we are evaluating $f$ and $g$ separately on $x$.
+Since they have the same codomain, once we have $f(x),g(x)$ which are objects in their codomain, we can do algebra in the codomain as usual.
+
+The same is true of linear maps and so, in finite dimensions with fixed bases, must be true of matrices as well.
+There is one complication, however: in order to combine linear functions (and the matrices representing them) in this way, we must first check that they have the same codomain.
+
+As an example, consider $F,G : \mathbb R^2 \to \mathbb R^3$ given by
+$$
+F = 
+\begin{bmatrix}
+ 1 & 2   \\
+ 1 & -1  \\
+ 4 & 1  
+\end{bmatrix}
+, \quad
+G=
+\begin{bmatrix}
+ 0  & 0  \\
+ -1 & 1  \\
+ 2  & 0 
+\end{bmatrix}.
+$$
+We can compute the matrix for $F + 3 G$ in the following way
+$$
+\begin{aligned}
+\begin{bmatrix}
+ 1 & 2   \\
+ 1 & -1  \\
+ 4 & 1  
+\end{bmatrix}
++3
+\begin{bmatrix}
+ 0  & 0  \\
+ -1 & 1  \\
+ 2  & 0 
+\end{bmatrix}
+&=
+\begin{bmatrix}
+ 1 & 2   \\
+ 1 & -1  \\
+ 4 & 1  
+\end{bmatrix}
++
+\begin{bmatrix}
+ 0  & 0  \\
+ -3 & 3  \\
+ 6  & 0 
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+ 1 & 2   \\
+ -2 & 2  \\
+ 10 & 1  
+\end{bmatrix}
+\end{aligned}
+$$
+
+That is, to multiply a linear map (written as a matrix) by a constant $k$, we multiply all entries of the matrix by $k$.
+To add linear maps (written as matrices), we add corresponding entries.
+
+Note that the addition
+$$
+\begin{bmatrix}
+ 1 & 2   \\
+ 1 & -1  \\
+ 4 & 1  
+\end{bmatrix}+
+\begin{bmatrix}
+ -1 & 1  \\
+ 2  & 0 
+\end{bmatrix}
+$$
+is not defined since the domain and codomain of these matrices have different dimensions.
+
+::: {#exr-mat-add-dim}
+> What are the dimensions of the domain and codomain of the two matrices above?
+:::
+
+::: {#exr-mat-add}
+> Compute
+> $$
+> \frac{1}{2}
+> \begin{bmatrix}
+>  0 & 1  & 0  & -2   \\
+>  1 & 3  & 0  & -1  \\
+>  0 & 2  & -3 & -1  \\
+>  0 & 1  & 1  & 0  
+> \end{bmatrix}
+> + 2
+> \begin{bmatrix}
+>  0 & 3  & -2 & 2   \\
+>  0 & 1  & 0  & 0  \\
+>  0 & -1 & -1 & -1  \\
+>  0 & 2  & 1  & 1  
+> \end{bmatrix}.
+> $$
+:::
