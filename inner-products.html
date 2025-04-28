@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; The usefulness of matrix equations and their solutions – Linearity</title>
+<title>14&nbsp; Inner Products – Linearity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./inverses-of-linear-maps-and-matrices.html" rel="next">
-<link href="./ways-of-writing-linear-maps.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./dual-spaces.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -112,7 +112,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./usefulness-of-matrix-equations.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The usefulness of matrix equations and their solutions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./inner-products.html">Inner Product Spaces</a></li><li class="breadcrumb-item"><a href="./inner-products.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Inner Products</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -223,7 +223,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./usefulness-of-matrix-equations.html" class="sidebar-item-text sidebar-link active">
+  <a href="./usefulness-of-matrix-equations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The usefulness of matrix equations and their solutions</span></span></a>
   </div>
 </li>
@@ -276,7 +276,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inner-products.html" class="sidebar-item-text sidebar-link">
+  <a href="./inner-products.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Inner Products</span></span></a>
   </div>
 </li>
@@ -293,22 +293,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#matrix-multiplication-and-linear-combinations" id="toc-matrix-multiplication-and-linear-combinations" class="nav-link active" data-scroll-target="#matrix-multiplication-and-linear-combinations">Matrix multiplication and linear combinations</a></li>
-  <li><a href="#very-many-linear-combinations" id="toc-very-many-linear-combinations" class="nav-link" data-scroll-target="#very-many-linear-combinations">Very many linear combinations</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/usefulness-of-matrix-equations.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./what-is-linearity.html">Vector Spaces</a></li><li class="breadcrumb-item"><a href="./usefulness-of-matrix-equations.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The usefulness of matrix equations and their solutions</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./inner-products.html">Inner Product Spaces</a></li><li class="breadcrumb-item"><a href="./inner-products.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Inner Products</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The usefulness of matrix equations and their solutions</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Inner Products</span></h1>
 </div>
 
 
@@ -332,119 +325,52 @@ window.Quarto = {
 \DeclareMathOperator{\Span}{Span}
 \]</span></p>
 </div>
-<p>In the previous chapter, we saw that we can use a matrix to represent (in coordinates) a linear function, and we saw how to compute the output (in coordinates) when we apply a linear function to a vector (in coordinates).</p>
-<p>We also saw that we can represent the composition of two linear functions as a single matrix by multiplying their matrices.</p>
-<section id="matrix-multiplication-and-linear-combinations" class="level2">
-<h2 class="anchored" data-anchor-id="matrix-multiplication-and-linear-combinations">Matrix multiplication and linear combinations</h2>
-<p>Recall that the method to find a matrix for a linear function <span class="math inline">\(F : A \to B\)</span> is the following:</p>
-<ol type="1">
-<li><p>Choose a basis <span class="math inline">\([b_1 , b_2 , \ldots , b_k]\)</span> for <span class="math inline">\(A\)</span>.</p></li>
-<li><p>Choose a basis <span class="math inline">\([c_1 , c_2 , \ldots , c_\ell]\)</span> for <span class="math inline">\(B\)</span>.</p></li>
-<li><p>Compute the coefficients of <span class="math inline">\(F(b_1) \in B\)</span> with respect to <span class="math inline">\([c_1 , c_2 , \ldots , c_\ell]\)</span>.</p></li>
-<li><p>Take that list of coefficients and write it as the first column of our result matrix:</p>
-<p><span class="math display">\[
-\begin{bmatrix}
-F(b_1) &amp; | &amp; \cdots
-\end{bmatrix}
-\]</span></p></li>
-<li><p>Repeat steps (3.) and (4.) for the output of <span class="math inline">\(F\)</span> on the second basis element <span class="math inline">\(b_2\)</span>. This is the second column of the matrix for <span class="math inline">\(F\)</span>:</p>
-<p><span class="math display">\[
-\begin{bmatrix}
-F(b_1) &amp; | &amp; F(b_2) &amp; | &amp; \cdots
-\end{bmatrix}
-\]</span></p></li>
-<li><p>Continue until there are no basis elements in the domain left.</p></li>
-</ol>
-<p>We already saw the example <span class="math display">\[
-F =
-\begin{bmatrix}
-0 &amp; 1 &amp; 0 \\
-0 &amp; 0 &amp; 1
-\end{bmatrix}
-\]</span> at the beginning of <a href="ways-of-writing-linear-maps.html#sec-maps-in-fin-dim" class="quarto-xref"><span>Section 6.1</span></a>.</p>
-<p>What we noticed then is that the multiplication <span class="math display">\[
-F
-\begin{bmatrix}
-a \\
-b \\
-c
-\end{bmatrix}
-=
-a
-\begin{bmatrix}
-0  \\
-0  
-\end{bmatrix}
-+ b
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-+ c
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-\]</span> really just yields an arbitrary linear combination of the columns of <span class="math inline">\(F\)</span>.</p>
-<p>This holds in general: if <span class="math inline">\(A\)</span> is a matrix with columns <span class="math inline">\(A_1, A_2, \ldots , A_n\)</span> and <span class="math inline">\(X\)</span> is the vector <span class="math display">\[
-x:=
-\begin{bmatrix}
-x_1 \\
-x_2 \\
-\vdots \\
-x_n
-\end{bmatrix}
-\]</span></p>
-<p>Then the multiplication of <span class="math inline">\(A\)</span> and <span class="math inline">\(x\)</span> is <span class="math display">\[
-Ax = x_1 A_1 + x_2 A_2 + \cdots + x_n A_n.
-\]</span> That is, the multiplication <span class="math inline">\(Ax\)</span> is a linear combination of the columns of <span class="math inline">\(A\)</span>. The coefficients of the linear combination are the entries in the column vector <span class="math inline">\(x\)</span>.</p>
-</section>
-<section id="very-many-linear-combinations" class="level2">
-<h2 class="anchored" data-anchor-id="very-many-linear-combinations">Very many linear combinations</h2>
-<p>Now, recall that many concepts we have seen thus far involve linear combinations. For example:</p>
-<ul>
-<li><p><a href="bases.html#def-span" class="quarto-xref">Definition&nbsp;<span>3.3</span></a> can be rephrased as:</p>
-<p>The span of the columns of <span class="math inline">\(A\)</span> is exactly the set <span class="math display">\[
-\left \{ Ax | \forall x \right\}.
-\]</span></p></li>
-<li><p><a href="bases.html#thm-linear-indep-defs" class="quarto-xref">Theorem&nbsp;<span>3.3</span></a> has, as a consequence the following:</p>
-<p>The columns of <span class="math inline">\(A\)</span> are linearly independent if and only if the matrix equation <span class="math display">\[
-Ax = 0
-\]</span> has only one solution (<span class="math inline">\(x = 0\)</span>).</p></li>
-<li><p><a href="bases.html#def-basis" class="quarto-xref">Definition&nbsp;<span>3.5</span></a> can be rephrased as:</p>
-<p>The columns of <span class="math inline">\(A\)</span> form a basis for its codomain if and only if the following two properties hold:</p>
-<ol type="1">
-<li>For each <span class="math inline">\(y\)</span> in the codomain of <span class="math inline">\(A\)</span>, the equation <span class="math inline">\(Ax = y\)</span> has a solution (that is, <span class="math inline">\(A\)</span> is surjective).</li>
-<li><span class="math inline">\(Ax = 0\)</span> has only one solution.</li>
-</ol></li>
-</ul>
-<p>Many more statements so far can be rephrased in terms of matrix equations.</p>
-<div id="exr-rephrase1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.1</strong></span> &nbsp;</p>
+<div id="exr-p1-inner-prod" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.1</strong></span> &nbsp;</p>
 <blockquote class="blockquote">
-<p>Rewrite the following system of equations as a matrix equation: <span class="math display">\[
-\begin{aligned}
-3x + 2y &amp;= 5 \\
--x + y  &amp;= 1.
-\end{aligned}
+<p>Consider the vector space <span class="math inline">\(P_1\)</span> over <span class="math inline">\(\mathbb R\)</span>. Does the function <span class="math inline">\(I : P_1 \to \mathbb R\)</span> given by</p>
+<p><span class="math display">\[
+I(p ,q ) := \int_{0}^{1} p(x) q(x) x \, dx
+\]</span></p>
+<p>define an inner product on <span class="math inline">\(P_1\)</span>? Make sure to verify all of the inner product properties or show that one is not satisfied.</p>
+</blockquote>
+</div>
+<div id="exr-inner-prod-from-just-len" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.2</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Find an inner product on <span class="math inline">\(\mathbb R^2\)</span> such that <span class="math inline">\((1,0)\)</span> has length 2 and <span class="math inline">\((1,1)\)</span> has length 3.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Do a computation to demonstrate that your inner product has these two properties.</p>
+</blockquote>
+</div>
+<div id="exr-plane-projection" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.3</strong></span> &nbsp;</p>
+<blockquote class="blockquote">
+<p>Given <span class="math display">\[
+x := \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+\]</span></p>
+<p>in <span class="math inline">\(\mathbb R^3\)</span> with the dot product, compute the part of <span class="math inline">\(x\)</span> orthogonal to the plane spanned by</p>
+<p><span class="math display">\[
+\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \quad \text{and}
+\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}.
 \]</span></p>
 </blockquote>
 </div>
-<div id="exr-rephrase2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.2</strong></span> &nbsp;</p>
+<!-- gram schmit -->
+<div id="exr-matrix-solve-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.4</strong></span> &nbsp;</p>
 <blockquote class="blockquote">
-<p>Rewrite the following system of equations as a matrix equation: <span class="math display">\[
-\begin{aligned}
-x -2 y &amp;= 3 \\
-y &amp;= 0 \\
--z + y  -1 &amp;= 0.
-\end{aligned}
+<p>Consider the vector space <span class="math inline">\(P_2\)</span> over <span class="math inline">\(\mathbb R\)</span>. Consider the inner product <span class="math inline">\(I : P_2 \to \mathbb R\)</span> given by</p>
+<p><span class="math display">\[
+I(p ,q ) := \int_{0}^{1} p(x) q(x) \, dx
 \]</span></p>
+<p>(you do not need to show that this is an inner product).</p>
+<p>Find an orthonormal basis for <span class="math inline">\(P_2\)</span> with regard to this inner product.</p>
 </blockquote>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1010,13 +936,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ways-of-writing-linear-maps.html" class="pagination-link" aria-label="Ways of writing linear maps">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ways of writing linear maps</span></span>
+      <a href="./dual-spaces.html" class="pagination-link" aria-label="Dual spaces">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dual spaces</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./inverses-of-linear-maps-and-matrices.html" class="pagination-link" aria-label="Inverses of linear maps and matrices">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Inverses of linear maps and matrices</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1030,7 +956,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/usefulness-of-matrix-equations.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/fnbu/linearity-book/blob/release/inner-products.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>The source code generating this book is provided under <a href="https://github.com/fNBU/linearity-book/blob/release/LICENSE">the MIT License</a>.</p>
 </div>

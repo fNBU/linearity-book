@@ -496,10 +496,21 @@
     "href": "dual-spaces.html",
     "title": "13  Dual spaces",
     "section": "",
-    "text": "\\[\n\\DeclareMathOperator{\\Span}{Span}\n\\]",
+    "text": "\\[\n\\DeclareMathOperator{\\Span}{Span}\n\\]\n\n\nExercise 13.1  \n\nConsider the function \\(F : C^\\infty \\to \\mathbb R\\) given by \\[\nF(f) := f(2) - 3 f(1).\n\\]\nRecall that both \\(C^\\infty\\) and \\(\\mathbb R\\) are vector spaces.\nIs \\(F \\in ( C^\\infty )^*\\)? If yes, verify that it is. If no, check that one of the conditions for \\(F\\) to be in \\(( C^\\infty )^*\\) does not hold.\n\n\n\nExercise 13.2  \n\nLet \\(v,w \\in \\mathbb R^2\\) and suppose we are in coordinates where\n\\[\nv = \\begin{bmatrix}  1 \\\\ 1 \\end{bmatrix} , \\quad\nw = \\begin{bmatrix} -1 \\\\ 1 \\end{bmatrix}.\n\\]\nLet \\(F : \\mathbb R^2 \\to \\mathbb R\\) be a linear function given by\n\\[\nF(v) = 1 , \\quad F(w) = 2.\n\\]\nNote that \\(F \\in (\\mathbb R^2)^*\\). Find the matrix for \\(F\\).",
     "crumbs": [
       "Vector Spaces",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Dual spaces</span>"
+    ]
+  },
+  {
+    "objectID": "inner-products.html",
+    "href": "inner-products.html",
+    "title": "14  Inner Products",
+    "section": "",
+    "text": "\\[\n\\DeclareMathOperator{\\Span}{Span}\n\\]\n\n\nExercise 14.1  \n\nConsider the vector space \\(P_1\\) over \\(\\mathbb R\\). Does the function \\(I : P_1 \\to \\mathbb R\\) given by\n\\[\nI(p ,q ) := \\int_{0}^{1} p(x) q(x) x \\, dx\n\\]\ndefine an inner product on \\(P_1\\)? Make sure to verify all of the inner product properties or show that one is not satisfied.\n\n\n\nExercise 14.2  \n\nFind an inner product on \\(\\mathbb R^2\\) such that \\((1,0)\\) has length 2 and \\((1,1)\\) has length 3.\n\n\nDo a computation to demonstrate that your inner product has these two properties.\n\n\n\nExercise 14.3  \n\nGiven \\[\nx := \\begin{bmatrix} 1 \\\\ 2 \\\\ 3 \\end{bmatrix}\n\\]\nin \\(\\mathbb R^3\\) with the dot product, compute the part of \\(x\\) orthogonal to the plane spanned by\n\\[\n\\begin{bmatrix} 1 \\\\ 1 \\\\ 0 \\end{bmatrix}, \\quad \\text{and}\n\\begin{bmatrix} 1 \\\\ 0 \\\\ 1 \\end{bmatrix}.\n\\]\n\n\n\n\nExercise 14.4  \n\nConsider the vector space \\(P_2\\) over \\(\\mathbb R\\). Consider the inner product \\(I : P_2 \\to \\mathbb R\\) given by\n\\[\nI(p ,q ) := \\int_{0}^{1} p(x) q(x) \\, dx\n\\]\n(you do not need to show that this is an inner product).\nFind an orthonormal basis for \\(P_2\\) with regard to this inner product.",
+    "crumbs": [
+      "Inner Product Spaces",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Inner Products</span>"
     ]
   },
   {
