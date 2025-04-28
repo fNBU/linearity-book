@@ -1,0 +1,45 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# Dual spaces
+
+::: {#exr-dual-def} 
+> Consider the function $F : C^\infty \to \mathbb R$ given by
+> $$
+> F(f) := f(2) - 3 f(1).
+> $$
+> 
+> Recall that both $C^\infty$ and $\mathbb R$ are vector spaces.
+> 
+> Is $F \in ( C^\infty )^*$?
+> If yes, verify that it is.
+> If no, check that one of the conditions for $F$ to be in $( C^\infty )^*$ does not hold.
+:::
+
+::: {#exr-dual-in-coords} 
+> Let $v,w \in \mathbb R^2$ and suppose we are in coordinates where
+> 
+> $$
+> v = \begin{bmatrix}  1 \\ 1 \end{bmatrix} , \quad 
+> w = \begin{bmatrix} -1 \\ 1 \end{bmatrix}.
+> $$
+> 
+> Let $F : \mathbb R^2 \to \mathbb R$ be a linear function given by
+> 
+> $$
+> F(v) = 1 , \quad F(w) = 2.
+> $$
+> 
+> Note that $F \in (\mathbb R^2)^*$.
+> Find the matrix for $F$.
+:::
+

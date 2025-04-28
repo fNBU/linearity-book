@@ -1,0 +1,75 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# Geometric transformations
+
+
+::: {#exr-2rotations}
+> Consider $\mathbb R^3$ with the standard basis.
+> We'll refer to the span of the basis vectors the $x$ axis, the $y$ axis, and the $z$ axis.
+> Find the matrix that
+> 
+> 1. rotates around the $z$ axis by $\pi/4$ and then
+> 2. rotates around the $x$ axis by $\pi/6$.
+> 
+> Show your work.
+:::
+
+::: {#exr-arbitrary-reflection}
+> Let
+> $$
+> v :=
+> \begin{bmatrix}
+> a \\
+> b 
+> \end{bmatrix}
+> $$
+> be a nonzero vector in $\mathbb R^2$.
+> Find the matrix $RFL_v$ that reflects over $\Span v$ by
+> 
+> 1. finding two linearly independent eigenvectors of $RFL_v$ geometrically,
+> 1. computing the matrix in the eigenvector basis for this transformation,
+> 1. computing the matrices to change to and from the eigenvector basis, and
+> 1. multiplying in the correct order to obtain $RFL_v$ in the standard basis.
+:::
+
+::: {#exr-rnk-nullity}
+> Suppose $L : \mathbb R^5 \to \mathbb R^{17}$ takes the following three vectors to the zero vector:
+> $$
+> \begin{bmatrix}
+> 1 \\
+> 0 \\
+> -1 \\
+> 2 \\
+> 0
+> \end{bmatrix},
+> \quad
+> \begin{bmatrix}
+> 0 \\
+> 1 \\
+> 2 \\
+> -1 \\
+> 1
+> \end{bmatrix},
+> \quad
+> \begin{bmatrix}
+> 1 \\
+> 1 \\
+> 1 \\
+> 1 \\
+> 1
+> \end{bmatrix}.
+> $$
+> 
+> What is the dimension of the image of $L$?
+:::
+

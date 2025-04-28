@@ -1,0 +1,56 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# Vectors which map to (a multiple of) themselves
+
+::: {#exr-compute-eigen-1}
+> Find the eigenvalue-eigenvector pairs for the linear function $\mathbb R^3 \to \mathbb R^3$ given in coordinates by the matrix
+> 
+> $$
+> \begin{bmatrix}
+>  1 & 0 & 0 \\ 
+>  3 & 2 & -2 \\
+>  0 & 0 & 0 
+> \end{bmatrix}.
+> $$
+:::
+
+::: {#exr-compute-eigen-2}
+> Find the eigenvalue-eigenvector pairs for the linear function $\mathbb R^2 \to \mathbb R^2$ given in coordinates by the matrix
+> 
+> $$
+> \begin{bmatrix}
+> 1 & -1 \\
+> 1 & 1
+> \end{bmatrix}
+> $$
+> 
+> If we think of this matrix as a map from $\mathbb C^2 \to \mathbb C^2$, are the eigenvalue-eigenvector pairs different?
+> Compute them.
+:::
+
+::: {#exr-compute-eigen-infinite}
+> Is there a function $f \in C^\infty$ that is an eigenvector of $D : C^\infty \to C^\infty$ (the differentiation operator)? What is its eigenvalue?
+> 
+> Given $a \in \mathbb R$, can you find a function $f \in C^\infty$ such that
+> 
+> $$
+> D(f) = a f ?
+> $$
+:::
+
+::: {#exr-generate-map}
+> Let $V$ be a 3-dimensional vector space over $\mathbb R$.
+> Define a linear map $V \to V$ that has exactly 3 eigenvectors with eigenvalues 1, 2, and 3.
+> 
+> (To start, what does the fact that $V$ is 3-dimensional allow you to assume?)
+:::

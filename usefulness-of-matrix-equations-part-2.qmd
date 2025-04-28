@@ -1,0 +1,38 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# The usefulness of matrix equations again
+
+
+::: {#exr-matrix-solve-1}
+> Solve the system of equations
+> $$
+> \begin{aligned}
+> x + y + z &= 6 \\
+> 2x - y + z &= 3 \\
+> x + 2y - z &= 4
+> \end{aligned}
+> $$
+> by converting to an augmented matrix and row reducing.
+:::
+
+::: {#exr-matrix-solve-2}
+> Solve the system of equations
+> $$
+> \begin{aligned}
+> x + y + z &= 3 \\
+> 2x + 2y + 2z &= 6 \\
+> x - y &= 1
+> \end{aligned}
+> $$
+> by converting to an augmented matrix and row reducing.
+:::

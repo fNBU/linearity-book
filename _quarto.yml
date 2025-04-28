@@ -37,8 +37,13 @@ book:
       - usefulness-of-matrix-equations.qmd
       - inverses-of-linear-maps-and-matrices.qmd
       - determinants.qmd
-    #   - solving-systems-of-linear-equations.qmd
-    # - part: "Inner Product Spaces"
+      - eigenvectors.qmd
+      - geometric-transoformations.qmd
+      - usefulness-of-matrix-equations-part-2.qmd
+      - dual-spaces.qmd
+    - part: "Inner Product Spaces"
+      chapters: 
+      - inner-products.qmd
     - references.qmd
 
 

@@ -658,4 +658,56 @@ Suppose we know the value of $L$ on a set of vectors $\{ V_1 , \ldots , V_n \}$.
 If $[ V_1 , \ldots , V_n ]$ is a basis for $A$, then we know the value of $L$ on all its inputs and $\{ V_1 , \ldots , V_n \}$ is a minimal choice of data defining $L$. 
 :::
 
-We finally answered the two mysteries that have been motivating us for a few chapters, so we're done, right?
+
+## How do objects change when we change basis?
+
+::: {#exr-basis-change-1}
+> Suppose we have fixed a basis for $\mathbb R^3$.
+> Let $A : \mathbb R^3 \to \mathbb R^3$ be given by the matrix
+> $$
+> \begin{bmatrix}
+> 2 & -1 & 0 \\
+> 3 & -3 & 1 \\
+> -2 & 1 & 0
+> \end{bmatrix}
+> $$
+> and let the vector $v$ be given by
+> $$
+> \begin{bmatrix}
+> -2 \\
+> 3 \\
+> 0
+> \end{bmatrix}.
+> $$
+> 
+> Compute $Av$.
+> 
+> Consider the basis (call it $\tilde{B}$)
+> $$
+> \left[
+> \begin{bmatrix}
+> 1 \\
+> 0 \\
+> 0
+> \end{bmatrix},
+> \begin{bmatrix}
+> 1 \\
+> 1 \\
+> 0
+> \end{bmatrix},
+> \begin{bmatrix}
+> 1 \\
+> 1 \\
+> 1
+> \end{bmatrix}
+> \right].
+> $$
+> 
+> Write $A$ and $V$ relative to $\tilde{B}$.
+> 
+> Call the new matrix and vector $\tilde{A}$ and $\tilde{v}$.
+> Compute $\tilde{A}\tilde{v}$.
+> 
+> Convert your answer for $\tilde{A}\tilde{v}$ back to the standard basis.
+> Did you get the same thing as $Av$?
+:::

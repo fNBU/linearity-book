@@ -1,0 +1,59 @@
+<!-- the hidden latex block causes errors when rendering to pdf, so we force it only to render to html -->
+::: {.content-visible when-format="html"} 
+
+<!-- the following block is for page defs which do not render anything upon definition  -->
+::: {.hidden} 
+$$
+\DeclareMathOperator{\Span}{Span}
+$$
+:::
+
+:::
+
+# Inner Products
+
+::: {#exr-p1-inner-prod} 
+> Consider the vector space $P_1$ over $\mathbb R$.
+> Does the function $I : P_1 \to \mathbb R$ given by 
+> 
+> $$
+> I(p ,q ) := \int_{0}^{1} p(x) q(x) x \, dx 
+> $$
+> 
+> define an inner product on $P_1$?
+> Make sure to verify all of the inner product properties or show that one is not satisfied.
+:::
+
+::: {#exr-inner-prod-from-just-len} 
+> Find an inner product on $\mathbb R^2$ such that $(1,0)$ has length 2 and $(1,1)$ has length 3.
+
+> Do a computation to demonstrate that your inner product has these two properties.
+:::
+
+::: {#exr-plane-projection} 
+> Given
+> $$
+> x := \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+> $$
+> 
+> in $\mathbb R^3$ with the dot product, compute the part of $x$ orthogonal to the plane spanned by
+> 
+> $$
+> \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \quad \text{and}
+> \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}.
+> $$
+:::
+
+<!-- gram schmit -->
+::: {#exr-matrix-solve-1} 
+> Consider the vector space $P_2$ over $\mathbb R$.
+> Consider the inner product $I : P_2 \to \mathbb R$ given by 
+> 
+> $$
+> I(p ,q ) := \int_{0}^{1} p(x) q(x) \, dx 
+> $$
+> 
+> (you do not need to show that this is an inner product).
+> 
+> Find an orthonormal basis for $P_2$ with regard to this inner product.
+:::

@@ -26,4 +26,35 @@ This is nice, but it would be nice to have an easier computation that tells us i
 
 ## The geometry of the row-reduction matrices
 
-Suppose we are row reducing a 2-row, 2-column matrix
+<!-- Suppose we are row reducing a 2-row, 2-column matrix [TODO] -->
+
+::: {#exr-det-computation-1}
+Compute the determinant of 
+
+$$
+\begin{bmatrix}
+1 & -1 &  3 \\
+2 &  0 &  1 \\
+1 & -1 & -3 
+\end{bmatrix}.
+$$
+:::
+
+::: {#exr-det-computation-2}
+Compute the determinant of 
+
+$$
+\begin{bmatrix}
+1 & -1 &  0 & 0 &  0 \\
+2 &  0 &  0 & 0 &  0 \\
+0 &  0 &  0 & 2 & -3 \\
+0 &  0 &  0 & 3 & -1 \\
+0 &  0 &  1 & 4 & -2 
+\end{bmatrix}.
+$$
+:::
+
+::: {#exr-}
+Why must a matrix with a row or column of all zeros have a determinant of 0?
+Show this computationally.
+:::
