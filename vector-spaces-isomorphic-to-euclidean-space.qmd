@@ -210,8 +210,7 @@ The inverse of this function is also linear.
 The fact that the coordinate function $\Phi : V \to F^n$ and its inverse are linear imply that addition and scalar multiplication in $V$ and $F^n$ are compatible.
 That is, we can add vectors in $V$, or we can convert to coordinates, add in $F^n$ and convert back to $V$ and get the same answer.
 
-::: {.imagify zoom='3' }
-\usetikzlibrary{matrix}
+```{.tikz}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
@@ -224,7 +223,7 @@ That is, we can add vectors in $V$, or we can convert to coordinates, add in $F^
     (m-1-2) edge node [right] {$\Phi$} (m-2-2)
     ;
 \end{tikzpicture}
-:::
+```
 
 Note that the $+$ symbol on the top of the diagram is the vector addition operation in $V$.
 The $+$ symbol on the bottom is vector addition in $F^n$.
@@ -232,8 +231,7 @@ The $+$ symbol on the bottom is vector addition in $F^n$.
 The same rule applies for scalar multiplication.
 
 
-::: {.imagify zoom='3' }
-\usetikzlibrary{matrix}
+```{.tikz}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
@@ -246,7 +244,7 @@ The same rule applies for scalar multiplication.
     (m-1-2) edge node [right] {$\Phi$} (m-2-2)
     ;
 \end{tikzpicture}
-:::
+```
 
 Note that the $\cdot$ symbol on the top of the diagram is the scalar multiplication operation in $V$.
 The $\cdot$ symbol on the bottom is scalar multiplication in $F^n$.

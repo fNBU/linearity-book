@@ -43,10 +43,12 @@ book:
 
 
 filters:
-  - imagify
+  - teacup
 
-# imagify:
-#   lazy: true
+teacup:
+  preamble:
+    - \usetikzlibrary{matrix}
+    - \usetikzlibrary{arrows}
 
 bibliography: references.bib
 

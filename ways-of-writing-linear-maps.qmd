@@ -177,8 +177,7 @@ What happens when we compose one linear map with another?
 
 First, let us observe that if we want to make a composition $K \circ L$ of two linear functions
 
-::: {.imagify zoom='3' }
-\usetikzlibrary{matrix}
+```{.tikz}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
@@ -188,14 +187,13 @@ First, let us observe that if we want to make a composition $K \circ L$ of two l
     (m-1-3) edge node [above] {$L$} (m-1-4)
     ;
 \end{tikzpicture}
-:::
+```
 
 it must be true that the outputs of $L$ (its codomain, $D$) must match the inputs of $K$ (its domain, $A$).
 
 If we assume that $A=D$, then we can form the composition
 
-::: {.imagify zoom='3' }
-\usetikzlibrary{matrix}
+```{.tikz}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
@@ -205,7 +203,7 @@ If we assume that $A=D$, then we can form the composition
     (m-1-2) edge node [above] {$K$} (m-1-3)
     ;
 \end{tikzpicture}
-:::
+```
 
 The meaning of $K \circ L$ is exactly the same as in the case of ordinary functions.
 Given a vector $v \in C$, we can first apply $L$, get an output, and then apply $K$ to this output:
@@ -284,8 +282,7 @@ Great, now we can compute compositions.
 However, it is true that the composition of two linear maps is a linear map itself.
 This means that $R \circ T$ is a linear function between finite dimensional vector spaces:
  
-::: {.imagify zoom='3' }
-\usetikzlibrary{matrix}
+```{.tikz}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
@@ -296,7 +293,7 @@ This means that $R \circ T$ is a linear function between finite dimensional vect
     ;
   \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$R \circ T$} (m-1-3);
 \end{tikzpicture}
-:::
+```
 
 That is, there should be matrix representation of the function $R \circ T$ that has 2 rows and 3 columns.
 How can we compute such a matrix?
@@ -465,8 +462,7 @@ All three of the ways of multiplying the matrices above results in a single matr
 
 ::: {#fig-matmul-assoc fig-align='center'}
 
-::: {.imagify zoom='5' }
-\usetikzlibrary{matrix}
+```{.tikz width="90%"}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
@@ -478,7 +474,7 @@ All three of the ways of multiplying the matrices above results in a single matr
     ;
   \draw[->,>=stealth] (m-1-1) edge[bend right=30]node[below]{$A \circ B \circ C$} (m-1-4);
 \end{tikzpicture}
-:::
+```
 
 :::
 
